@@ -1,0 +1,25 @@
+@import 'utils';
+@import '_form';
+@import 'styles/utils';
+@import 'variables';
+
+.clearfix {
+  clear: both;
+}
+a,
+input,
+textarea,
+button {
+  @include animated();
+  &:focus {
+    outline: none;
+  }
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: red !important;
+}
