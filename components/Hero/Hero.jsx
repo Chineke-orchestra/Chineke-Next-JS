@@ -1,6 +1,8 @@
 import styles from './Hero.module.scss';
 import classNames from 'classnames';
 import Link from 'next/link';
+import { useState } from 'react';
+import { useRef } from 'react';
 import ReactPlayer from 'react-player';
 
 const heroData = {
@@ -15,6 +17,20 @@ const heroData = {
 };
 
 const Hero = () => {
+  const videoRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+
+  console.log(isMuted);
+
+  const togglePlayPause = () => {
+    setIsPlaying(!isPlaying);
+  };
+
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
+  };
+
   const videoSource = heroData.videoFile || heroData.videoUrl;
 
   return (
@@ -22,13 +38,24 @@ const Hero = () => {
       <div className={styles.videoContainer}>
         {videoSource && (
           <ReactPlayer
+            ref={videoRef}
             url={videoSource}
             controls={false}
             loop={true}
-            playing={true}
-            muted={true}
+            playing={isPlaying}
+            muted={isMuted}
           />
         )}
+        <div className={styles.controlsContainer}>
+          <span
+            onClick={togglePlayPause}
+            className={classNames(styles.play, { [styles.pause]: !isPlaying })}
+          />
+          <span
+            onClick={toggleMute}
+            className={classNames(styles.mute, { [styles.sound]: !isMuted })}
+          />
+        </div>
       </div>
       <div className={styles.bottomContainer}>
         <div className={classNames(styles.textContainer, 'container')}>
