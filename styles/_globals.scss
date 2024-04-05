@@ -23,3 +23,15 @@ button {
 a {
   color: red !important;
 }
+
+.container {
+  padding: 0 100px;
+  margin: 0 auto;
+  max-width: 1440px;
+  @include media-breakpoint-down(xl) {
+    padding: 0 60px;
+  }
+  @include media-breakpoint-down(md) {
+    padding: 0 20px;
+  }
+}

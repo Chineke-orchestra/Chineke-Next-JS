@@ -1,0 +1,57 @@
+@import '../../styles/utils.scss';
+
+.hero {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .videoContainer {
+    flex: 1;
+    width: 100%;
+    overflow: hidden;
+
+    > div {
+      width: 100% !important;
+      height: 100% !important;
+
+      video {
+        object-fit: cover;
+      }
+    }
+  }
+
+  .bottomContainer {
+    flex: 0 0 auto;
+    background-color: $yellow;
+    padding-top: 31px;
+    padding-bottom: 33px;
+
+    .textContainer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      h1 {
+        max-width: 581px;
+      }
+
+      .linksContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 13px;
+
+        a {
+          display: flex;
+
+          .arrow {
+            width: 24px;
+            height: 18px;
+            background-image: url('../../assets/svg/arrowRightOrange.svg');
+            background-repeat: no-repeat;
+          }
+        }
+      }
+    }
+  }
+}

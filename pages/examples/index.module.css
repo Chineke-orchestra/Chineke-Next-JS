@@ -1,4 +1,4 @@
-.container {
+/* .container {
 	min-width: 1024px;
 	font-size: 1.25rem;
 }
@@ -25,11 +25,11 @@
 	@apply pl-3;
 	list-style: disc;
 	margin: 1rem 0;
-}
+} */
 
 /* lg breakpoint */
-@media (min-width: 1024px) {
+/* @media (min-width: 1024px) {
 	.content {
 		@apply max-w-screen-md;
 	}
-}
+} */
