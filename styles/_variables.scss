@@ -1,0 +1,25 @@
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+) !default;
+// fonts
+$primary-font: 'Poppins', sans-serif;
+// color names
+$white: #fff;
+$black: #000;
+$red: #ed5500;
+$dark-red: #cc3d00;
+$navy: #1e1e4c;
+$blue: #0341f2;
+$green: #00c900;
+$yellow: #fcdd00;
+$light-gray: #f7f6f5;
+$gray: #181818;
+
+// color scheme
+$primary-color: $black;
+$secondary-color: $white;

@@ -1,3 +1,5 @@
+import '../styles/styles.scss';
+// TODO - REMOVE BELOW TWO CSS IMPORTS
 import '../styles/globals.css';
 import '@pantheon-systems/nextjs-kit/style.css';
 
