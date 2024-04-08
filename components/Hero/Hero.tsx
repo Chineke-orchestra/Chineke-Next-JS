@@ -1,31 +1,30 @@
 import styles from './Hero.module.scss';
 import classNames from 'classnames';
+import { NextPage } from 'next';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRef } from 'react';
 import ReactPlayer from 'react-player';
 import { motion } from 'framer-motion';
 import UseAnimation from '../../utils/UseAnimation';
+import { I_Link, I_Media } from 'types/index';
 
-const heroData = {
-  title: 'Championing change in classical music',
-  videoFile: '/videos/video.MOV',
-  videoUrl: 'https://example.com/video.mp4',
-  links: [
-    { label: 'Chineke!’s story & mission', url: 'https://www.google.com/' },
-    { label: 'Inspiring the next generation', url: 'https://www.google.com/' },
-    { label: 'Chineke! at the BRIT Awards', url: 'https://www.google.com/' },
-  ],
-};
+export interface HeroProps {
+  title: string;
+  links: I_Link[];
+  video: I_Media;
+}
 
-const Hero = () => {
+const Hero: NextPage<HeroProps> = ({ title, links, video }) => {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
   const [hoverStates, setHoverStates] = useState(
-    new Array(heroData.links.length).fill(false),
+    new Array(links.length).fill(false),
   );
   const [isMounted, setIsMounted] = useState(false);
+
+  console.log(video);
 
   useEffect(() => {
     setIsMounted(true);
@@ -43,13 +42,13 @@ const Hero = () => {
     setIsMuted(!isMuted);
   };
 
-  const handleHover = (index, isHovering) => {
+  const handleHover = (index: number, isHovering: boolean) => {
     setHoverStates((currentHoverStates) =>
       currentHoverStates.map((state, i) => (i === index ? isHovering : state)),
     );
   };
 
-  const videoSource = heroData.videoFile || heroData.videoUrl;
+  const videoSource = video;
 
   return (
     <section className={styles.hero}>
@@ -57,7 +56,7 @@ const Hero = () => {
         {isMounted && videoSource && (
           <ReactPlayer
             ref={videoRef}
-            url={videoSource}
+            url={video.url}
             controls={false}
             loop={true}
             playing={isPlaying}
@@ -77,9 +76,9 @@ const Hero = () => {
       </div>
       <div className={styles.bottomContainer}>
         <div className={classNames(styles.textContainer, 'container')}>
-          <h1 className={styles.title}>{heroData.title}</h1>
+          <h1 className={styles.title}>{title}</h1>
           <div className={styles.linksContainer}>
-            {heroData.links.map((item, index) => (
+            {links.map((item, index) => (
               <Link
                 key={index}
                 href={item.url}
@@ -87,7 +86,7 @@ const Hero = () => {
                 onMouseLeave={() => handleHover(index, false)}
               >
                 <h5>
-                  {item.label}
+                  {item.title}
                   <motion.span
                     className={styles.underline}
                     initial={{ scaleX: 0 }}

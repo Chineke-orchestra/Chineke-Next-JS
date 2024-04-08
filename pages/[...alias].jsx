@@ -58,8 +58,15 @@ export async function getServerSideProps(context) {
       {},
     );
 
-    // determine params from the resourceName
-    const params = 'include=field_reusable_components';
+    const includesArray = [
+      'field_reusable_components',
+      'field_reusable_components.field_video.field_media_video_file',
+    ];
+
+    const includeParam = includesArray.join(',');
+
+    const params = `include=${includeParam}`;
+
     const previewParams =
       context.preview && (await getPreview(context, resourceName, params));
 
