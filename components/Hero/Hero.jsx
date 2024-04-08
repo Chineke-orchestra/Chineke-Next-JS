@@ -1,9 +1,11 @@
 import styles from './Hero.module.scss';
 import classNames from 'classnames';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRef } from 'react';
 import ReactPlayer from 'react-player';
+import { motion } from 'framer-motion';
+import UseAnimation from '../../utils/UseAnimation';
 
 const heroData = {
   title: 'Championing change in classical music',
@@ -20,8 +22,18 @@ const Hero = () => {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
+  const [hoverStates, setHoverStates] = useState(
+    new Array(heroData.links.length).fill(false),
+  );
+  const [isMounted, setIsMounted] = useState(false);
 
-  console.log(isMuted);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
 
   const togglePlayPause = () => {
     setIsPlaying(!isPlaying);
@@ -31,12 +43,18 @@ const Hero = () => {
     setIsMuted(!isMuted);
   };
 
+  const handleHover = (index, isHovering) => {
+    setHoverStates((currentHoverStates) =>
+      currentHoverStates.map((state, i) => (i === index ? isHovering : state)),
+    );
+  };
+
   const videoSource = heroData.videoFile || heroData.videoUrl;
 
   return (
     <section className={styles.hero}>
       <div className={styles.videoContainer}>
-        {videoSource && (
+        {isMounted && videoSource && (
           <ReactPlayer
             ref={videoRef}
             url={videoSource}
@@ -62,9 +80,38 @@ const Hero = () => {
           <h1 className={styles.title}>{heroData.title}</h1>
           <div className={styles.linksContainer}>
             {heroData.links.map((item, index) => (
-              <Link key={index} href={item.url}>
-                <h5>{item.label}</h5>
-                <span className={styles.arrow} />
+              <Link
+                key={index}
+                href={item.url}
+                onMouseEnter={() => handleHover(index, true)}
+                onMouseLeave={() => handleHover(index, false)}
+              >
+                <h5>
+                  {item.label}
+                  <motion.span
+                    className={styles.underline}
+                    initial={{ scaleX: 0 }}
+                    animate={hoverStates[index] ? 'animate' : 'initial'}
+                    variants={UseAnimation('right', 0, {
+                      duration: 0.5,
+                      distance: 0,
+                      startScaleX: 0,
+                      endScaleX: 1,
+                    })}
+                    style={{
+                      originX: 0,
+                    }}
+                  />
+                </h5>
+                <motion.span
+                  className={styles.arrow}
+                  animate={hoverStates[index] ? 'animate' : 'initial'}
+                  variants={UseAnimation('right', 0, {
+                    distance: -10,
+                    duration: 0.5,
+                    fromOpacity: 1,
+                  })}
+                />
               </Link>
             ))}
           </div>

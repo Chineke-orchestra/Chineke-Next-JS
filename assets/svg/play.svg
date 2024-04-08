@@ -1,1 +1,5 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.73 21.55"><defs><style>.cls-1{fill:#fff;}</style></defs><path class="cls-1" d="M4,3.55l7.35,4.18,7.35,4.17-7.29,4.28L4.1,20.46,4,12,4,3.55M2.62,1.24,2.7,12l.07,10.77,9.3-5.45,9.29-5.45L12,6.56,2.62,1.24Z" transform="translate(-2.62 -1.24)"/></svg>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="30-play">
+<path id="Vector" d="M7 13.861V10.5165C7 7.21022 7 5.55707 8.06043 4.99274C9.12085 4.42842 10.492 5.35187 13.2344 7.19877L15.8356 8.95062C18.1611 10.5167 19.3238 11.2998 19.3001 12.3918C19.2765 13.4839 18.0809 14.2158 15.6899 15.6798L13.0886 17.2724C10.3927 18.9229 9.04481 19.7482 8.0224 19.1753C7 18.6025 7 17.022 7 13.861Z" stroke="#181818" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>
