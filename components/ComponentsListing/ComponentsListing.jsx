@@ -6,10 +6,12 @@ const ComponentsListing = ({ components }) => {
   const PrintComponent = ({ component }) => {
     switch (component?.type) {
       case 'paragraph--hero_banner':
+        console.log(component);
         const heroProps = {
           title: component?.field_title,
           links: component?.field_links.map((item) => formatLink(item)),
           video: formatMedia(component?.field_video?.field_media_video_file),
+          externalVideo: component?.field_video?.field_media_oembed_video,
         };
         console.log(component);
         return <Hero {...heroProps} />;

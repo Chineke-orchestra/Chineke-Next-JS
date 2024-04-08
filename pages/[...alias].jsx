@@ -61,6 +61,7 @@ export async function getServerSideProps(context) {
     const includesArray = [
       'field_reusable_components',
       'field_reusable_components.field_video.field_media_video_file',
+      'field_reusable_components.field_video',
     ];
 
     const includeParam = includesArray.join(',');

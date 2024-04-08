@@ -13,9 +13,10 @@ export interface HeroProps {
   title: string;
   links: I_Link[];
   video: I_Media;
+  externalVideo: string;
 }
 
-const Hero: NextPage<HeroProps> = ({ title, links, video }) => {
+const Hero: NextPage<HeroProps> = ({ title, links, video, externalVideo }) => {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
@@ -48,7 +49,7 @@ const Hero: NextPage<HeroProps> = ({ title, links, video }) => {
     );
   };
 
-  const videoSource = video;
+  const videoSource = externalVideo || video.url;
 
   return (
     <section className={styles.hero}>
@@ -56,11 +57,30 @@ const Hero: NextPage<HeroProps> = ({ title, links, video }) => {
         {isMounted && videoSource && (
           <ReactPlayer
             ref={videoRef}
-            url={video.url}
+            url={videoSource}
             controls={false}
             loop={true}
             playing={isPlaying}
             muted={isMuted}
+            config={{
+              youtube: {
+                playerVars: {
+                  controls: 0,
+                  modestbranding: 1,
+                  rel: 0,
+                },
+              },
+              vimeo: {
+                playerOptions: {
+                  autopause: true,
+                  autoplay: true,
+                  byline: false,
+                  title: false,
+                  portrait: false,
+                  background: true,
+                },
+              },
+            }}
           />
         )}
         <div className={styles.controlsContainer}>
