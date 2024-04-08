@@ -26,8 +26,6 @@ const Hero: NextPage<HeroProps> = ({ title, links, video, externalVideo }) => {
   );
   const [isMounted, setIsMounted] = useState(false);
 
-  console.log(video);
-
   useEffect(() => {
     setIsMounted(true);
   }, []);

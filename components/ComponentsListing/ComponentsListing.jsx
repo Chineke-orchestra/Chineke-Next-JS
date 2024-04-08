@@ -6,7 +6,6 @@ const ComponentsListing = ({ components }) => {
   const PrintComponent = ({ component }) => {
     switch (component?.type) {
       case 'paragraph--hero_banner':
-        console.log(component);
         const heroProps = {
           title: component?.field_title,
           links: component?.field_links.map((item) => formatLink(item)),
