@@ -8,6 +8,7 @@ import ReactPlayer from 'react-player';
 import { motion } from 'framer-motion';
 import UseAnimation from '../../utils/UseAnimation';
 import { I_Link, I_Media } from 'types/index';
+import ArrowButton from 'components/ArrowButton/ArrowButton';
 
 export interface HeroProps {
   title: string;
@@ -122,7 +123,7 @@ const Hero: NextPage<HeroProps> = ({ title, links, video, externalVideo }) => {
                     }}
                   />
                 </h5>
-                <motion.span
+                {/* <motion.span
                   className={styles.arrow}
                   animate={hoverStates[index] ? 'animate' : 'initial'}
                   variants={UseAnimation('right', 0, {
@@ -130,7 +131,8 @@ const Hero: NextPage<HeroProps> = ({ title, links, video, externalVideo }) => {
                     duration: 0.5,
                     fromOpacity: 1,
                   })}
-                />
+                /> */}
+                <ArrowButton isHovering={hoverStates[index]} />
               </Link>
             ))}
           </div>
