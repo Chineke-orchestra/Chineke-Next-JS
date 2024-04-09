@@ -1,3 +1,5 @@
+import { Fragment } from 'react';
+import { ViewportProvider } from 'utils/viewport';
 import '../styles/styles.scss';
 
 function App({ Component, pageProps }) {
@@ -6,7 +8,13 @@ function App({ Component, pageProps }) {
     delete pageProps.hrefLang;
   }
 
-  return <Component {...pageProps} />;
+  return (
+    <Fragment>
+      <ViewportProvider>
+        <Component {...pageProps} />
+      </ViewportProvider>
+    </Fragment>
+  );
 }
 
 export default App;

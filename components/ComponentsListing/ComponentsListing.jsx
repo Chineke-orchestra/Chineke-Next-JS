@@ -11,8 +11,9 @@ const ComponentsListing = ({ components }) => {
           links: component?.field_links.map((item) => formatLink(item)),
           video: formatMedia(component?.field_video?.field_media_video_file),
           externalVideo: component?.field_video?.field_media_oembed_video,
+          image: formatMedia(component?.field_mobile_image?.field_media_image),
         };
-        console.log(component);
+
         return <Hero {...heroProps} />;
       default:
         return <p>block {component?.type} was not implemented</p>;
