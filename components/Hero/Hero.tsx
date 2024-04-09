@@ -55,6 +55,8 @@ const Hero: NextPage<HeroProps> = ({ title, links, video, externalVideo }) => {
       <div className={styles.videoContainer}>
         {isMounted && videoSource && (
           <ReactPlayer
+            height="600px"
+            width="100%"
             ref={videoRef}
             url={videoSource}
             controls={false}
