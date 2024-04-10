@@ -15,8 +15,13 @@ li {
 h1 {
   font-size: 46px;
   line-height: 69px;
-  font-weight: 700;
+  font-weight: 600;
   color: $gray;
+
+  @include media-breakpoint-down(md) {
+    font-size: 28px;
+    line-height: normal;
+  }
 }
 h2 {
   font-size: 36px;
@@ -35,7 +40,6 @@ h3 {
   line-height: 42px;
   font-style: normal;
   font-weight: 600;
-  line-height: normal;
   color: $gray;
   @include media-breakpoint-down(md) {
     font-size: 18px;
@@ -44,7 +48,7 @@ h3 {
 h4 {
   font-size: 24px;
   line-height: 36px;
-  font-weight: 700;
+  font-weight: 600;
   color: $gray;
   @include media-breakpoint-down(md) {
     font-size: 24px;
@@ -56,13 +60,18 @@ h4 {
 h5 {
   font-size: 22px;
   line-height: 30px;
-  font-weight: 700;
+  font-weight: 600;
   color: $gray;
+
+  @include media-breakpoint-down(md) {
+    font-size: 18px;
+    line-height: normal;
+  }
 }
 h6 {
   font-size: 18px;
   line-height: 27px;
-  font-weight: 700;
+  font-weight: 600;
   color: $gray;
 }
 p {
