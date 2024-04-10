@@ -7,7 +7,6 @@
   gap: 10px;
   border-radius: 100px;
   cursor: pointer;
-  transition: transform 0.2s;
 
   &.large {
     padding: 18px 24px;
@@ -22,6 +21,12 @@
     color: $gray;
 
     &:hover {
+      background-color: $light-gray;
+      box-shadow: inset 0 0 0 2px $red;
+      color: $gray;
+    }
+
+    &:active {
       background-color: $red;
       color: $navy;
     }
@@ -30,22 +35,16 @@
   &.orange {
     background-color: $red;
     color: $navy;
+
     &:hover {
+      background-color: $light-gray;
+      box-shadow: inset 0 0 0 2px $yellow;
+      color: $gray;
+    }
+
+    &:active {
       background-color: $yellow;
       color: $gray;
     }
-  }
-
-  &.orangeOutline {
-    background-color: $light-gray;
-    border: 2px solid $red;
-    color: $gray;
-    &:hover {
-      border: 2px solid $yellow;
-    }
-  }
-
-  &:active {
-    transform: scale(0.9);
   }
 }
