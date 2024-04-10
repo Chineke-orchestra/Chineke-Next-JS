@@ -57,18 +57,13 @@ export const ExploreSection = (props: {
             <div className={styles.cards}>
               {props.cards?.map((item, index) => {
                 return (
-                  <motion.div
-                    key={index}
-                    className={styles.card}
-                    initial={{ scaleX: 0 }}
-                    animate={'animate'}
-                  >
+                  <div key={index} className={styles.card}>
                     <LinkComponent link={item.link}>
                       <h4>{item.title}</h4>
                     </LinkComponent>
 
                     <>{parse(item.body)}</>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
