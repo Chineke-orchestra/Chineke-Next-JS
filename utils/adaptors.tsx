@@ -21,23 +21,6 @@ export const formatLink = (link: {
     };
   };
 }): I_Link => {
-  // const getLinkData = async () => {
-  //   try {
-  //     const data = await translatePath(
-  //       `${process.env.BACKEND_URL}/router/translate-path/`,
-  //       link.uri.replace('entity:', ''),
-  //       {},
-  //     );
-  //     console.log('dataaaaa', data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // if (link.uri.includes('entity')) {
-  //   getLinkData();
-  // }
-
   let target = '_self' as '_self' | '_blank';
   let rel = '';
   if (link?.options?.attributes?.target) {

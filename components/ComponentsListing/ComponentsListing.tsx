@@ -33,7 +33,6 @@ const ComponentsListing = ({ components }: { components: any }) => {
           />
         );
       case 'paragraph--explore_section_variation_2':
-        console.log(component);
         return (
           <ExploreSection
             variation="variation_two"

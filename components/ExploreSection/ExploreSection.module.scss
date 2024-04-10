@@ -153,6 +153,12 @@
           font-size: 14px;
         }
       }
+      a {
+        width: max-content;
+      }
+      .button {
+        padding: 10px 0;
+      }
     }
   }
 }

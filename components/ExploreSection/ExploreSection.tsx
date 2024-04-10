@@ -5,6 +5,10 @@ import classNames from 'classnames';
 import { LinkComponent } from '..';
 
 import { motion } from 'framer-motion';
+import ArrowButton from 'components/ArrowButton/ArrowButton';
+import UseAnimation from 'utils/UseAnimation';
+import { useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 export const ExploreSection = (props: {
   title?: string;
@@ -16,7 +20,9 @@ export const ExploreSection = (props: {
     tags: string[];
   };
 }) => {
-  console.log('props', props);
+  const ref = useRef<any>();
+  const isInView = useInView(ref, { once: true });
+  
   return (
     <section
       className={classNames(styles.explore_section, styles[props.variation])}
@@ -54,16 +60,34 @@ export const ExploreSection = (props: {
               </div>
             )}
             {props.title && <h2>{props.title}</h2>}
-            <div className={styles.cards}>
+            <div className={styles.cards} ref={ref}>
               {props.cards?.map((item, index) => {
                 return (
-                  <div key={index} className={styles.card}>
+                  <motion.div
+                    key={index}
+                    className={styles.card}
+                    animate={isInView && 'animate'}
+                    initial={'initial'}
+                    variants={UseAnimation('up', 0.5 + index * 0.3, {
+                      startScaleY: 0,
+                      endScaleY: 1,
+                      duration: 1,
+                      fromOpacity: 1,
+                      damping: 56,
+                    })}
+                    style={{
+                      transformOrigin: 'bottom',
+                    }}
+                  >
                     <LinkComponent link={item.link}>
                       <h4>{item.title}</h4>
                     </LinkComponent>
 
                     <>{parse(item.body)}</>
-                  </div>
+                    <LinkComponent link={item.link} className={styles.button}>
+                      <ArrowButton />
+                    </LinkComponent>
+                  </motion.div>
                 );
               })}
             </div>

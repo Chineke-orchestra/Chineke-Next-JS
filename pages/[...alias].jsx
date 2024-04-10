@@ -14,7 +14,6 @@ export default function CatchAllRoute({
   footerMenu,
   preview,
 }) {
-  // console.log(pageData);
   return (
     <Layout preview={preview} footerMenu={footerMenu}>
       <NextSeo
@@ -96,7 +95,6 @@ export async function getServerSideProps(context) {
       res: context.res,
       anon: context.preview ? false : true,
     });
-    console.log(pageData);
 
     // const footerMenu = await store.getObject({
     //   objectName: 'menu_items--main',
