@@ -57,7 +57,12 @@ export async function getServerSideProps(context) {
     const includesArray = [
       'field_reusable_components',
       'field_reusable_components.field_video.field_media_video_file',
-      'field_reusable_components.field_video, field_reusable_components.field_mobile_image.field_media_image',
+      'field_reusable_components.field_video',
+      'field_reusable_components.field_mobile_image.field_media_image',
+      'field_reusable_components.field_static_2_column_image.field_media_image',
+      'field_reusable_components.field_cta_link_icon.field_media_image',
+      'field_reusable_components.field_2_columns_text',
+      'field_reusable_components.field_2_columns_text.field_cta_link_icon.field_media_image',
     ];
 
     const includeParam = includesArray.join(',');
@@ -86,17 +91,17 @@ export async function getServerSideProps(context) {
       anon: context.preview ? false : true,
     });
 
-    const footerMenu = await store.getObject({
-      objectName: 'menu_items--main',
-      refresh: true,
-      res: context.res,
-      anon: true,
-    });
+    // const footerMenu = await store.getObject({
+    //   objectName: 'menu_items--main',
+    //   refresh: true,
+    //   res: context.res,
+    //   anon: true,
+    // });
     return {
       props: {
         pageData,
         hrefLang,
-        footerMenu,
+        // footerMenu,
         preview: Boolean(context.preview),
       },
     };

@@ -12,8 +12,8 @@ export const formatMedia = (media: {
 
 export const formatLink = (link: { title: string; uri: string }): I_Link => {
   return {
-    url: link.uri.replace('internal:', ''),
+    url: link?.uri?.replace('internal:', ''),
     title: link?.title,
-    target: link.uri?.includes('internal') ? '_self' : '_blank',
+    target: link?.uri?.includes('internal') ? '_self' : '_blank',
   };
 };

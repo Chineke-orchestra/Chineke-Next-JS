@@ -1,5 +1,51 @@
 @import 'styles/utils';
 
 .btn {
-  border: 1px solid $black;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: transform 0.2s;
+
+  &.large {
+    padding: 18px 24px;
+  }
+
+  &.medium {
+    padding: 14px 20px;
+  }
+
+  &.yellow {
+    background-color: $yellow;
+    color: $gray;
+
+    &:hover {
+      background-color: $red;
+      color: $navy;
+    }
+  }
+
+  &.orange {
+    background-color: $red;
+    color: $navy;
+    &:hover {
+      background-color: $yellow;
+      color: $gray;
+    }
+  }
+
+  &.orangeOutline {
+    background-color: $light-gray;
+    border: 2px solid $red;
+    color: $gray;
+    &:hover {
+      border: 2px solid $yellow;
+    }
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
 }

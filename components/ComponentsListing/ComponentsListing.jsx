@@ -1,5 +1,6 @@
 import React from 'react';
 import Hero from '../Hero/Hero';
+import StaticTwoColumns from '../StaticTwoColumns/StaticTwoColumns';
 import { formatMedia, formatLink } from 'utils/adaptors';
 
 const ComponentsListing = ({ components }) => {
@@ -13,8 +14,31 @@ const ComponentsListing = ({ components }) => {
           externalVideo: component?.field_video?.field_media_oembed_video,
           image: formatMedia(component?.field_mobile_image?.field_media_image),
         };
-
         return <Hero {...heroProps} />;
+
+      case 'paragraph--static_2_column':
+        const staticTwoColumnProps = {
+          backgroundColor: component?.field_background_color?.color,
+          imagePosition: component?.field_image_position,
+          title: component?.field_title,
+          headline: component?.field_headline,
+          ctaLink: formatLink(component?.field_cta_button),
+          ctaIcon: formatMedia(
+            component?.field_cta_link_icon?.field_media_image,
+          ),
+          image: formatMedia(
+            component?.field_static_2_column_image?.field_media_image,
+          ),
+          cards: component?.field_2_columns_text.map((item) => {
+            return {
+              link: formatLink(item?.field_link),
+              text: item.field_rich_text,
+              icon: formatMedia(item?.field_cta_link_icon?.field_media_image),
+            };
+          }),
+        };
+        return <StaticTwoColumns {...staticTwoColumnProps} />;
+
       default:
         return <p>block {component?.type} was not implemented</p>;
     }
