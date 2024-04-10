@@ -14,6 +14,7 @@ export default function CatchAllRoute({
   footerMenu,
   preview,
 }) {
+  // console.log(pageData);
   return (
     <Layout preview={preview} footerMenu={footerMenu}>
       <NextSeo
@@ -59,7 +60,18 @@ export async function getServerSideProps(context) {
     );
 
     // determine params from the resourceName
-    const params = 'include=field_reusable_components';
+    let params = [
+      'field_reusable_components',
+      'field_reusable_components.field_cards',
+      'field_reusable_components.field_background_image.field_media_image',
+      'field_reusable_components.field_video',
+      'field_reusable_components.field_featured_link',
+      'field_reusable_components.field_featured_link.field_feature_image.field_media_image',
+      'field_reusable_components.field_featured_link.field_tags_category',
+    ];
+
+    params = `include=${params.join(',')}`;
+
     const previewParams =
       context.preview && (await getPreview(context, resourceName, params));
 
@@ -81,18 +93,19 @@ export async function getServerSideProps(context) {
       res: context.res,
       anon: context.preview ? false : true,
     });
+    console.log(pageData);
 
-    const footerMenu = await store.getObject({
-      objectName: 'menu_items--main',
-      refresh: true,
-      res: context.res,
-      anon: true,
-    });
+    // const footerMenu = await store.getObject({
+    //   objectName: 'menu_items--main',
+    //   refresh: true,
+    //   res: context.res,
+    //   anon: true,
+    // });
     return {
       props: {
         pageData,
         hrefLang,
-        footerMenu,
+        // footerMenu,
         preview: Boolean(context.preview),
       },
     };

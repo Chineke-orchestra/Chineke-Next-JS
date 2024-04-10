@@ -20,6 +20,31 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
+.container {
+  padding: 0 100px;
+  max-width: 1440px;
+  margin: 0 auto;
+  min-height: inherit;
+  @include media-breakpoint-down(lg) {
+    padding: 0 20px;
+  }
+}
+
 a {
-  color: red !important;
+  width: max-content;
+}
+
+.tag {
+  padding: 2px 10px;
+  border-radius: 45px;
+  width: max-content;
+  letter-spacing: 0.6px;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  &.light {
+    background-color: $light-gray;
+    color: $gray !important;
+  }
 }

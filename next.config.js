@@ -60,6 +60,7 @@ module.exports = async () => {
 	const nextConfig = {
 		...(injectedOptions && injectedOptions),
 		env: {
+			BACKEND_URL: process.env.BACKEND_URL,
 			backendUrl: backendUrl,
 			// set imageUrl if IMAGE_DOMAIN is set in env vars to override default
 			imageUrl: `https://${imageDomain}`,
