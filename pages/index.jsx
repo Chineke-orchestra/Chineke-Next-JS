@@ -23,7 +23,12 @@ export default function CatchAllRoute({
       />
       <h1>{pageData?.title}</h1>
       <>{parse(pageData?.body?.value)}</>
-      <ComponentsListing components={pageData?.field_reusable_components} />
+      <ComponentsListing
+        components={[
+          ...(pageData?.field_reusable_components || []),
+          { type: 'feature--static' },
+        ]}
+      />
     </Layout>
   );
 }
