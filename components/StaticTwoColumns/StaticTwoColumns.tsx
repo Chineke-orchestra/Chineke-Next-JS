@@ -61,9 +61,23 @@ const StaticTwoColumns = ({
           styles[flexDirection],
         )}
       >
-        <div className={styles.imageContainer}>
+        <motion.div
+          className={styles.imageContainer}
+          ref={ref}
+          initial={{ opacity: 0 }}
+          animate={isInView ? 'animate' : 'initial'}
+          variants={UseAnimation('up', {
+            delay: 0.5,
+            distance: 0,
+            duration: 1,
+
+            fromOpacity: 0,
+            toOpacity: 1,
+            transitionType: 'linear',
+          })}
+        >
           {image && <Image src={image.url} alt={image.alt} sizes="100%" fill />}
-        </div>
+        </motion.div>
 
         <div className={styles.textContainer}>
           <motion.div
@@ -71,7 +85,8 @@ const StaticTwoColumns = ({
             animate={isInView ? 'animate' : 'initial'}
             variants={UseAnimation('up', {
               delay: 0,
-              distance: 500,
+              initialY: 150,
+              endY: 0,
               duration: 1,
               stiffness: 100,
               fromOpacity: 0,
@@ -83,7 +98,7 @@ const StaticTwoColumns = ({
             {title && <h2>{title}</h2>}
           </motion.div>
 
-          <div className={styles.cardsContainer} ref={ref}>
+          <div className={styles.cardsContainer}>
             {cards &&
               cards.map((item, index) => (
                 <motion.div
@@ -92,10 +107,11 @@ const StaticTwoColumns = ({
                   initial={{ opacity: 0 }}
                   animate={isInView ? 'animate' : 'initial'}
                   variants={UseAnimation('up', {
-                    delay: 0,
-                    distance: 500,
+                    delay: index * 0.6,
+                    initialY: index * 150,
+                    endY: 0,
                     duration: 1,
-                    stiffness: 100,
+                    stiffness: 150,
                     fromOpacity: 0,
                     toOpacity: 1,
                   })}
