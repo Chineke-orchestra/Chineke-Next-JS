@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useInView } from 'framer-motion';
 import UseAnimation from 'utils/UseAnimation';
+import parse from 'html-react-parser';
 
 export interface I_Card {
   link?: I_Link;
@@ -111,7 +112,7 @@ const StaticTwoColumns = ({
                     initialY: index * 150,
                     endY: 0,
                     duration: 1,
-                    stiffness: 150,
+                    stiffness: 70,
                     fromOpacity: 0,
                     toOpacity: 1,
                   })}
@@ -142,7 +143,7 @@ const StaticTwoColumns = ({
                         </h4>
                       )}
 
-                      {item.text && <p>{item.text}</p>}
+                      {item.text && <p>{parse(item.text)}</p>}
 
                       {item.icon && (
                         <motion.div
