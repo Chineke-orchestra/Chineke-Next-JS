@@ -6,14 +6,21 @@
   align-items: center;
   gap: 10px;
   border-radius: 100px;
+  font-family: $primary-font;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: uppercase;
   cursor: pointer;
 
   &.large {
     padding: 18px 24px;
+    font-size: 16px;
   }
 
   &.medium {
     padding: 14px 20px;
+    font-size: 14px;
   }
 
   &.yellow {

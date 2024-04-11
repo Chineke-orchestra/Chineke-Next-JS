@@ -40,10 +40,6 @@ const Hero: NextPage<HeroProps> = ({
     setIsMounted(true);
   }, []);
 
-  if (!isMounted) {
-    return null;
-  }
-
   const togglePlayPause = () => {
     setIsPlaying(!isPlaying);
   };
@@ -64,7 +60,7 @@ const Hero: NextPage<HeroProps> = ({
     <section className={styles.hero}>
       <div className={styles.videoContainer}>
         {isMobile && image ? (
-          <Image src={image.url} alt={image.alt} fill />
+          <Image src={image.url} alt={image.alt} sizes="100%" fill />
         ) : (
           isMounted &&
           videoSource && (
@@ -131,7 +127,7 @@ const Hero: NextPage<HeroProps> = ({
                     className={styles.underline}
                     initial={{ scaleX: 0 }}
                     animate={hoverStates[index] ? 'animate' : 'initial'}
-                    variants={UseAnimation('right', 0, {
+                    variants={UseAnimation('right', {
                       duration: 0.5,
                       distance: 0,
                       startScaleX: 0,
@@ -142,15 +138,7 @@ const Hero: NextPage<HeroProps> = ({
                     }}
                   />
                 </h5>
-                {/* <motion.span
-                  className={styles.arrow}
-                  animate={hoverStates[index] ? 'animate' : 'initial'}
-                  variants={UseAnimation('right', 0, {
-                    distance: -10,
-                    duration: 0.5,
-                    fromOpacity: 1,
-                  })}
-                /> */}
+
                 <ArrowButton isHovering={hoverStates[index]} />
               </Link>
             ))}
