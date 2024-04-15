@@ -2,6 +2,7 @@ import React from 'react';
 import Hero from '../Hero/Hero';
 import StaticTwoColumns from '../StaticTwoColumns/StaticTwoColumns';
 import Feature from '../Feature/Feature';
+import RteSingleColumn from '../RteSingleColumn/RteSingleColumn';
 import { formatMedia, formatLink } from 'utils/adaptors';
 
 const ComponentsListing = ({ components }) => {
@@ -51,6 +52,13 @@ const ComponentsListing = ({ components }) => {
         };
 
         return <Feature {...featureProps} />;
+
+      case 'paragraph--rte_single_column':
+        const singleColumnProps = {
+          text: component?.field_text?.value,
+        };
+
+        return <RteSingleColumn {...singleColumnProps} />;
 
       default:
         return <p>block {component?.type} was not implemented</p>;
