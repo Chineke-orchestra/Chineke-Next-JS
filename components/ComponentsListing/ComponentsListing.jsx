@@ -3,6 +3,7 @@ import Hero from '../Hero/Hero';
 import StaticTwoColumns from '../StaticTwoColumns/StaticTwoColumns';
 import Feature from '../Feature/Feature';
 import RteSingleColumn from '../RteSingleColumn/RteSingleColumn';
+import TwoColumnText from '../TwoColumnText/TwoColumnText';
 import { formatMedia, formatLink } from 'utils/adaptors';
 
 const ComponentsListing = ({ components }) => {
@@ -59,6 +60,14 @@ const ComponentsListing = ({ components }) => {
         };
 
         return <RteSingleColumn {...singleColumnProps} />;
+
+      case 'paragraph--2_column_text':
+        const twoColumnTextProps = {
+          textLeft: component?.field_left_column_text?.value,
+          textRight: component?.field_right_column_text?.value,
+        };
+
+        return <TwoColumnText {...twoColumnTextProps} />;
 
       default:
         return <p>block {component?.type} was not implemented</p>;
