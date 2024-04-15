@@ -26,7 +26,7 @@ export default function CatchAllRoute({
       <ComponentsListing
         components={[
           ...(pageData?.field_reusable_components || []),
-          { type: 'feature--static' },
+          { type: 'paragraph--2_column_layout' },
         ]}
       />
     </Layout>
