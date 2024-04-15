@@ -9,3 +9,8 @@ export interface I_Link {
   title: string;
   target?: '_blank' | '_self' | '_parent' | '_top';
 }
+
+export interface I_Pattern {
+  color: string;
+  opacity: number;
+}

@@ -5,6 +5,7 @@ import Feature from '../Feature/Feature';
 import RteSingleColumn from '../RteSingleColumn/RteSingleColumn';
 import TwoColumnText from '../TwoColumnText/TwoColumnText';
 import ThreeColumnLayout from '../ThreeColumnLayout/ThreeColumnLayout';
+import Pattern from '../Pattern/Pattern';
 import { formatMedia, formatLink } from 'utils/adaptors';
 
 const ComponentsListing = ({ components }) => {
@@ -81,6 +82,17 @@ const ComponentsListing = ({ components }) => {
         };
 
         return <ThreeColumnLayout {...threeColumnLayoutProps} />;
+
+      case 'paragraph--pattern':
+        const patternProps = {
+          patternBackground: component?.field_pattern_background_colour,
+          patternImage: formatMedia(
+            component?.field_pattern_image?.field_media_image_1,
+          ),
+          patternColor: component?.field_pattern_image_colour,
+        };
+
+        return <Pattern {...patternProps} />;
 
       default:
         return <p>block {component?.type} was not implemented</p>;
