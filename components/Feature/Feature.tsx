@@ -9,28 +9,22 @@ import Image from 'next/image';
 export interface FeatureProps {
   headline: string;
   title: string;
-  description: string;
-  cta: I_Link;
+  text: string;
+  ctaLink: I_Link;
   image: I_Media;
 }
 
-const Feature = ({
-  headline,
-  title,
-  description,
-  cta,
-  image,
-}: FeatureProps) => {
+const Feature = ({ headline, title, text, ctaLink, image }: FeatureProps) => {
   return (
     <section className={classNames(styles.featureWrapper, 'container')}>
       <div className={styles.featureContainer}>
         <div className={styles.textContainer}>
           {headline && <h6>{headline}</h6>}
           {title && <h1>{title}</h1>}
-          {description && <p>{parse(description)}</p>}
-          {cta && (
-            <Link href={cta.url} className={classNames('btn large orange')}>
-              {cta.title}
+          {text && <p>{parse(text)}</p>}
+          {ctaLink && (
+            <Link href={ctaLink.url} className={classNames('btn large orange')}>
+              {ctaLink.title}
             </Link>
           )}
         </div>

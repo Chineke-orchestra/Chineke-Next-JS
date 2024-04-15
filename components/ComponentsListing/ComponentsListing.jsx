@@ -41,14 +41,13 @@ const ComponentsListing = ({ components }) => {
         };
         return <StaticTwoColumns {...staticTwoColumnProps} />;
 
-      case 'feature--static':
+      case 'paragraph--feature':
         const featureProps = {
-          headline: 'CHINEKE! Mission',
-          title: 'Diversity in Classical Music',
-          description:
-            'Chineke!’s motto is: ‘Championing change and celebrating diversity in classical music’.',
-          cta: { url: 'test', title: 'explore our mission' },
-          image: { url: '/images/feature.png', alt: 'image' },
+          headline: component?.field_tagline_text,
+          title: component?.field_feature_title,
+          text: component?.field_feature_text?.value,
+          ctaLink: formatLink(component?.field_feature_cta_button),
+          image: formatMedia(component?.field_image?.field_media_image_2),
         };
 
         return <Feature {...featureProps} />;
