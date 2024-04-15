@@ -75,4 +75,18 @@ ul {
   font-style: normal;
   font-weight: 400;
   line-height: 30px;
+  li {
+    padding-left: 12px;
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: 0;
+      background-color: $gray;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+  }
 }
