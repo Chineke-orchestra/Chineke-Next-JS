@@ -63,10 +63,13 @@ p {
   line-height: 27px;
   font-weight: 400;
   color: $gray;
+  strong {
+    font-weight: 600;
+  }
 }
 
 ul {
-  color: $white;
+  color: $black;
   font-family: $primary-font;
   font-size: 18px;
   font-style: normal;

@@ -1,5 +1,6 @@
 import React from 'react';
 import Hero from '../Hero/Hero';
+import Accordion from '../Accordion/Accordion';
 import { formatMedia, formatLink } from 'utils/adaptors';
 
 const ComponentsListing = ({ components }) => {
@@ -15,6 +16,17 @@ const ComponentsListing = ({ components }) => {
         };
 
         return <Hero {...heroProps} />;
+      case 'paragraph--accordion':
+        const accordionItems = component?.field_accordion_item?.map((item) => {
+          return {
+            title: item?.field_accordion_title,
+            text: item?.field_accordion_body?.value,
+          };
+        });
+        return (
+          <Accordion title={component?.field_title} items={accordionItems} />
+        );
+
       default:
         return <p>block {component?.type} was not implemented</p>;
     }
