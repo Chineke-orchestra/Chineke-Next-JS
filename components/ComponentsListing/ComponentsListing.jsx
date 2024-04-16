@@ -8,7 +8,7 @@ import ThreeColumnLayout from '../ThreeColumnLayout/ThreeColumnLayout';
 import { formatMedia, formatLink } from 'utils/adaptors';
 
 const ComponentsListing = ({ components }) => {
-  console.log(components);
+  // console.log(components);
   const PrintComponent = ({ component }) => {
     switch (component?.type) {
       case 'paragraph--hero_banner':
@@ -70,14 +70,11 @@ const ComponentsListing = ({ components }) => {
 
         return <TwoColumnText {...twoColumnTextProps} />;
 
-      case 'paragraph--2_column_layout':
+      case 'paragraph--3_column_layout':
         const threeColumnLayoutProps = {
-          image: {
-            url: '/images/feature.png',
-            alt: 'image',
-          },
-          title: 'The Foundation’s flagship ensemble',
-          text: 'The Chineke! Orchestra works closely with its sister ensemble, the Chineke! Junior Orchestra, a youth orchestra of Black and ethnically diverse players aged 11-22, with senior players acting as mentors, teachers and role models to the young musicians. With many of our junior musicians already benefiting from several existing youth schemes, junior music colleges and specialist music schools across the UK. The Chineke! Junior Orchestra acts as a bridge between such schemes and higher education, giving its players experience, encouragement and confidence during their formative years, with the hope of increasing the numbers of Black and ethnically diverse candidates currently studying music at third level. This process has already begun, with several of the junior musicians having won national competitions, gained places at top music schools or been admitted to study at elite third level institutions.Chineke! is the brainchild of Chi-chi Nwanoku CBE, who has this to say about the project: ‘My aim is to create a space where Black and ethnically diverse musicians can walk on stage and know that they belong, in every sense of the word. If even one Black and ethnically diverse child feels that their colour is getting in the way of their musical ambitions, then I hope to inspire them, give them a platform, and show them that music, of whatever kind, is for all people. Many cultural organisations such as the BBC, Association of British Orchestras, Royal Philharmonic Society and Arts Council England agree with this sentiment, and have supported Chineke!. After its launch concert at the Queen Elizabeth Hall in September of 2015, the Chineke! Orchestra was appointed as an Associate Orchestra of the Southbank Centre, and has performed there and in other major venues across the UK and Europe.',
+          image: formatMedia(component?.field_3col_image?.field_media_image),
+          title: component?.field_3col_title,
+          text: component?.field_3col_body_text?.value,
         };
 
         return <ThreeColumnLayout {...threeColumnLayoutProps} />;

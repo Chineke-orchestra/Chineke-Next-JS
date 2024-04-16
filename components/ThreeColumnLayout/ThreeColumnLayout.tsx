@@ -21,7 +21,7 @@ const ThreeColumnLayout = ({ image, title, text }: ThreeColumnLayoutProps) => {
 
       <div className={styles.textContainer}>
         {title && <h2>{title}</h2>}
-        {text && <p>{parse(text)}</p>}
+        {text && <div className={styles.textColumns}>{parse(text)}</div>}
       </div>
     </section>
   );
