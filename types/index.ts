@@ -11,6 +11,6 @@ export interface I_Link {
 }
 
 export interface I_Pattern {
-  color: string;
-  opacity: number;
+  color?: string;
+  opacity?: number;
 }
