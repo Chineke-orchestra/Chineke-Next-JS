@@ -70,6 +70,9 @@ export async function getServerSideProps(context) {
       'field_reusable_components.field_featured_link',
       'field_reusable_components.field_featured_link.field_feature_image.field_media_image',
       'field_reusable_components.field_featured_link.field_tags_category',
+      'field_reusable_components.field_story_cards',
+      'field_reusable_components.field_story_cards.field_tags',
+      'field_reusable_components.field_story_cards.field_feature_image',
     ];
 
     params = `include=${params.join(',')}`;

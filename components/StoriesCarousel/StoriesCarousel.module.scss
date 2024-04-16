@@ -1,0 +1,9 @@
+@import '../../styles/utils.scss';
+
+.arrow {
+  width: 24px;
+  height: 18px;
+  background-image: url('../../assets/svg/arrowRightOrange.svg');
+  background-repeat: no-repeat;
+  cursor: pointer;
+}

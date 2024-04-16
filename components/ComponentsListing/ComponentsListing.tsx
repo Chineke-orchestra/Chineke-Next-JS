@@ -51,6 +51,9 @@ const ComponentsListing = ({ components }: { components: any }) => {
             }}
           />
         );
+      case 'paragraph--stories_carousel':
+        console.log(component);
+        break;
 
       default:
         return <p>block {component?.type} was not implemented</p>;
