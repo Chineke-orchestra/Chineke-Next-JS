@@ -23,7 +23,12 @@ export default function CatchAllRoute({
       />
       <h1>{pageData?.title}</h1>
       <>{parse(pageData?.body?.value)}</>
-      <ComponentsListing components={pageData?.field_reusable_components} />
+      <ComponentsListing
+        components={[
+          ...(pageData?.field_reusable_components || []),
+          { type: 'feature--static' },
+        ]}
+      />
     </Layout>
   );
 }
@@ -62,7 +67,8 @@ export async function getServerSideProps(context) {
       'field_reusable_components.field_static_2_column_image.field_media_image',
       'field_reusable_components.field_cta_link_icon.field_media_image',
       'field_reusable_components.field_2_columns_text',
-      // 'field_reusable_components.field_2_columns_text.field_cta_link_icon.field_media_image',
+      'field_reusable_components.field_2_columns_text.field_cta_link_icon.field_media_image',
+      'field_reusable_components.field_image.field_media_image_2',
     ];
 
     const includeParam = includesArray.join(',');

@@ -1,9 +1,11 @@
 import React from 'react';
 import Hero from '../Hero/Hero';
 import StaticTwoColumns from '../StaticTwoColumns/StaticTwoColumns';
+import Feature from '../Feature/Feature';
 import { formatMedia, formatLink } from 'utils/adaptors';
 
 const ComponentsListing = ({ components }) => {
+  console.log(components);
   const PrintComponent = ({ component }) => {
     switch (component?.type) {
       case 'paragraph--hero_banner':
@@ -38,6 +40,17 @@ const ComponentsListing = ({ components }) => {
           }),
         };
         return <StaticTwoColumns {...staticTwoColumnProps} />;
+
+      case 'paragraph--feature':
+        const featureProps = {
+          headline: component?.field_tagline_text,
+          title: component?.field_feature_title,
+          text: component?.field_feature_text?.value,
+          ctaLink: formatLink(component?.field_feature_cta_button),
+          image: formatMedia(component?.field_image?.field_media_image_2),
+        };
+
+        return <Feature {...featureProps} />;
 
       default:
         return <p>block {component?.type} was not implemented</p>;
