@@ -22,12 +22,32 @@ button {
 
 .container {
   padding: 0 100px;
-  margin: 0 auto;
   max-width: 1440px;
+  margin: 0 auto;
+  min-height: inherit;
+
   @include media-breakpoint-down(xl) {
     padding: 0 30px;
   }
+  @include media-breakpoint-down(lg) {
+    padding: 0 20px;
+  }
   @include media-breakpoint-down(sm) {
     padding: 0 20px;
+  }
+}
+
+.tag {
+  padding: 2px 10px;
+  border-radius: 45px;
+  width: max-content;
+  letter-spacing: 0.6px;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  &.light {
+    background-color: $light-gray;
+    color: $gray !important;
   }
 }
