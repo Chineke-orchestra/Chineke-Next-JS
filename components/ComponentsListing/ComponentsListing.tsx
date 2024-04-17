@@ -7,6 +7,7 @@ import {
   formatTagsData,
 } from 'utils/adaptors';
 import Hero from 'components/Hero/Hero';
+import RteSingleColumn from 'components/RteSingleColumn/RteSingleColumn';
 
 const ComponentsListing = ({ components }: { components: any }) => {
   const PrintComponent = ({ component }: any) => {
@@ -51,6 +52,13 @@ const ComponentsListing = ({ components }: { components: any }) => {
             }}
           />
         );
+
+      case 'paragraph--rte_single_column':
+        const singleColumnProps = {
+          text: component?.field_text?.value,
+        };
+
+        return <RteSingleColumn {...singleColumnProps} />;
 
       default:
         return <p>block {component?.type} was not implemented</p>;
