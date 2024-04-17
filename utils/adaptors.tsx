@@ -70,3 +70,35 @@ export const formatTagsData = (
 ): string[] => {
   return data.map((item) => item.name);
 };
+
+export const formatCardWithImageData = (
+  data: {
+    field_card_background_color: { color: string };
+    field_target_option: string;
+    field_stories: {
+      title: string;
+      path: { alias: string };
+      field_tags: any[];
+    };
+    field_story_image: any;
+  }[],
+): {
+  backgroundColor: string;
+  link: I_Link;
+  tag: string;
+  image: I_Media;
+}[] => {
+  return data?.map((item) => {
+    return {
+      backgroundColor: item?.field_card_background_color?.color,
+      image: formatMedia(item?.field_story_image?.field_media_image),
+      link: {
+        url: item?.field_stories?.path?.alias,
+        title: item?.field_stories?.title,
+        target:
+          item?.field_target_option === 'new_browser' ? '_blank' : '_self',
+      },
+      tag: item?.field_stories?.field_tags?.[0]?.name,
+    };
+  });
+};

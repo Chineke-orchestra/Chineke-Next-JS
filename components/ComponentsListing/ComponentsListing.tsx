@@ -1,7 +1,8 @@
 import React from 'react';
-import { ExploreSection } from '..';
+import { Carousel, ExploreSection, StoriesCarousel } from '..';
 import {
   formatCardData,
+  formatCardWithImageData,
   formatLink,
   formatMedia,
   formatTagsData,
@@ -53,6 +54,15 @@ const ComponentsListing = ({ components }: { components: any }) => {
         );
       case 'paragraph--stories_carousel':
         console.log(component);
+        return (
+          <StoriesCarousel
+            title={component?.field_title}
+            body={component?.field_body?.value}
+            tagline={component?.field_tagline}
+            link={formatLink(component?.field_cta_button)}
+            cards={formatCardWithImageData(component?.field_story_card)}
+          />
+        );
         break;
 
       default:

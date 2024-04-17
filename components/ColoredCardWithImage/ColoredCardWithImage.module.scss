@@ -1,0 +1,18 @@
+@import '../../styles/utils.scss';
+
+.card {
+  width: 392px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  .image {
+    height: 340px;
+    position: relative;
+  }
+  .text {
+    padding: 11px 38px 40px 30px;
+    h5{
+      color: $white;
+    }
+  }
+}

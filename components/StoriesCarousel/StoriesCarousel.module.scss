@@ -1,9 +1,6 @@
 @import '../../styles/utils.scss';
 
-.arrow {
-  width: 24px;
-  height: 18px;
-  background-image: url('../../assets/svg/arrowRightOrange.svg');
-  background-repeat: no-repeat;
-  cursor: pointer;
+.stories_carousel {
+  padding: 80px 0 90px 0;
+  // overflow: hidden;
 }
