@@ -39,6 +39,8 @@ const StaticTwoColumns = ({
     new Array(cards.length).fill(false),
   );
 
+  console.log(ctaIcon);
+
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
@@ -173,9 +175,9 @@ const StaticTwoColumns = ({
               ))}
           </div>
 
-          {ctaLink && (
+          {ctaLink?.url && (
             <Link href={ctaLink.url} className={classNames('btn large orange')}>
-              {ctaLink.title}
+              {ctaLink?.title && ctaLink.title}
               {ctaIcon && (
                 <div className={styles.iconContainer}>
                   <Image
