@@ -3,7 +3,7 @@ import styles from './ArrowButton.module.scss';
 import UseAnimation from 'utils/UseAnimation';
 
 interface ArrowProps {
-  isHovering: boolean;
+  isHovering?: boolean;
 }
 
 const ArrowButton = ({ isHovering }: ArrowProps) => {

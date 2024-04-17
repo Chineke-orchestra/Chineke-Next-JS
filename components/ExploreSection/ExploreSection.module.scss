@@ -1,0 +1,164 @@
+@import 'styles/utils';
+
+.explore_section {
+  position: relative;
+  padding-bottom: 60px;
+  @include media-breakpoint-down(md) {
+    padding-bottom: 30px;
+  }
+
+  &.variation_one {
+    min-height: 600px;
+    height: 100%;
+    @include media-breakpoint-down(lg) {
+      min-height: auto;
+      padding-top: 246px;
+    }
+    @include media-breakpoint-down(sm) {
+      padding-top: 114px;
+    }
+    .background {
+      height: inherit;
+      min-height: inherit;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      @include media-breakpoint-down(lg) {
+        height: 427px;
+        background-size: 100% auto;
+      }
+      @include media-breakpoint-down(sm) {
+        height: 198px;
+      }
+    }
+    .inner_container {
+      display: flex;
+      align-items: flex-end;
+      height: 100%;
+      min-height: inherit;
+      width: 100%;
+      .cards_wrapper {
+        width: 100%;
+      }
+      h2 {
+        color: $white;
+        margin-bottom: 20px;
+        @include media-breakpoint-down(md) {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+  &.variation_two {
+    padding: 80px 0;
+    background-color: $light-gray;
+    @include media-breakpoint-down(md) {
+      padding: 20px 0;
+    }
+    .inner_container {
+      .cards_wrapper {
+        display: flex;
+        gap: 34px;
+        @include media-breakpoint-down(lg) {
+          flex-direction: column;
+          gap: 0;
+        }
+        .featured_card {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          padding: 20px;
+          @include media-breakpoint-down(lg) {
+            height: 413px;
+            flex: auto;
+            padding: 15px;
+          }
+          @include media-breakpoint-down(sm) {
+            height: 213px;
+          }
+
+          * {
+            color: $light-gray;
+            max-width: 530px;
+          }
+          p {
+            font-size: 14px;
+          }
+          .tags {
+            display: flex;
+            gap: 10px;
+          }
+        }
+        .cards {
+          width: 391px;
+          flex-direction: column;
+          gap: 0;
+          @include media-breakpoint-down(lg) {
+            width: 100%;
+          }
+          .card {
+            padding: 20px 30px 20px 0;
+            background-color: transparent;
+            @include media-breakpoint-down(lg) {
+              padding: 20px 0;
+            }
+            & + .card {
+              border-top: 1px solid rgba($black, 0.2);
+            }
+            &:first-child {
+              padding-top: 14px;
+            }
+            h4 {
+              @include media-breakpoint-down(md) {
+                font-size: 18px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .cards {
+    display: flex;
+    gap: 32px;
+    @include media-breakpoint-down(lg) {
+      flex-direction: column;
+    }
+    @include media-breakpoint-down(md) {
+      gap: 15px;
+    }
+    .card {
+      background-color: $white;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+      filter: drop-shadow(2px 4px 36px rgba(112, 112, 112, 0.25));
+      p {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        @include media-breakpoint-down(md) {
+          font-size: 14px;
+        }
+      }
+      a {
+        width: max-content;
+      }
+      .button {
+        padding: 10px 0;
+      }
+    }
+  }
+}
