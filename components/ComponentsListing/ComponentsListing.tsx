@@ -10,7 +10,6 @@ import Hero, { HeroProps } from 'components/Hero/Hero';
 import StaticTwoColumns, {
   StaticTwoColumnsProps,
 } from 'components/StaticTwoColumns/StaticTwoColumns';
-import Pattern, { PatternProps } from 'components/Pattern/Pattern';
 
 const ComponentsListing = ({ components }: { components: any }) => {
   const PrintComponent = ({ component }: any) => {
@@ -80,17 +79,6 @@ const ComponentsListing = ({ components }: { components: any }) => {
           }),
         };
         return <StaticTwoColumns {...staticTwoColumnProps} />;
-
-      case 'paragraph--pattern':
-        const patternProps: PatternProps = {
-          patternBackground: component?.field_pattern_background_colour,
-          patternImage: formatMedia(
-            component?.field_pattern_image?.field_media_image_1,
-          ),
-          patternColor: component?.field_pattern_image_colour,
-        };
-
-        return <Pattern {...patternProps} />;
 
       default:
         return <p>block {component?.type} was not implemented</p>;
