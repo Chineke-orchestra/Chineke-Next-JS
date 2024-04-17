@@ -1,5 +1,57 @@
 @import 'styles/utils';
 
 .btn {
-  border: 1px solid $black;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 100px;
+  font-family: $primary-font;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  &.large {
+    padding: 18px 24px;
+    font-size: 16px;
+  }
+
+  &.medium {
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+
+  &.yellow {
+    background-color: $yellow;
+    color: $gray;
+
+    &:hover {
+      background-color: $light-gray;
+      box-shadow: inset 0 0 0 2px $red;
+      color: $gray;
+    }
+
+    &:active {
+      background-color: $red;
+      color: $navy;
+    }
+  }
+
+  &.orange {
+    background-color: $red;
+    color: $navy;
+
+    &:hover {
+      background-color: $light-gray;
+      box-shadow: inset 0 0 0 2px $yellow;
+      color: $gray;
+    }
+
+    &:active {
+      background-color: $yellow;
+      color: $gray;
+    }
+  }
 }
