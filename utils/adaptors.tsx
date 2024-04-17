@@ -4,28 +4,44 @@ import { I_Card, I_Link, I_Media } from 'types/index';
 export const formatMedia = (media: {
   uri: { url: string };
   resourceIdObjMeta?: { alt: string };
-}): I_Media | null => {
-  if (!media) {
-    return null;
-  }
+}): I_Media => {
   return {
-    url: `${process.env.BACKEND_URL}${media.uri.url}`,
-    alt: media.resourceIdObjMeta?.alt || '',
+    url: `${process.env.BACKEND_URL}${media?.uri.url}`,
+    alt: media?.resourceIdObjMeta?.alt || '',
   };
 };
 
 export const formatLink = (link: {
   title: string;
   uri: string;
-}): I_Link | null => {
-  if (!link) {
-    return null;
+  options?: {
+    attributes: {
+      target: '_self' | '_blank';
+      rel: string;
+    };
+  };
+}): I_Link => {
+  let target = '_self' as '_self' | '_blank';
+  let rel = '';
+  if (link?.options?.attributes?.target) {
+    target = link?.options?.attributes?.target;
+  } else if (link?.uri?.includes('internal')) {
+    target = '_self';
+  } else {
+    target = '_blank';
   }
-
+  if (link?.options?.attributes?.rel) {
+    rel = link?.options?.attributes?.rel;
+  } else if (link?.uri?.includes('internal')) {
+    rel = '';
+  } else {
+    rel = 'nofollow noopenner';
+  }
   return {
-    url: link?.uri?.replace('internal:', ''),
+    url: link?.uri.replace('internal:', ''),
     title: link?.title,
-    target: link?.uri?.includes('internal') ? '_self' : '_blank',
+    target,
+    rel,
   };
 };
 
@@ -37,16 +53,12 @@ export const formatCardData = (
     };
     field_link: any;
   }[],
-): (I_Card | null)[] => {
+): I_Card[] => {
   return data?.map((item: any) => {
-    const link = formatLink(item?.field_link);
-    if (!link) {
-      return null;
-    }
     return {
       title: item?.field_title,
       body: item?.field_body_text_formatted?.value,
-      link: link,
+      link: formatLink(item?.field_link),
     };
   });
 };
