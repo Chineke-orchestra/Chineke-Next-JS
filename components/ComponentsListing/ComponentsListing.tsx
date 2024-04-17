@@ -53,7 +53,6 @@ const ComponentsListing = ({ components }: { components: any }) => {
           />
         );
       case 'paragraph--stories_carousel':
-        console.log(component);
         return (
           <StoriesCarousel
             title={component?.field_title}

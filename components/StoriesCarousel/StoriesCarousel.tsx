@@ -1,7 +1,10 @@
 import styles from './StoriesCarousel.module.scss';
 import { I_Link, I_Media } from 'types/index';
 import { Carousel, ColoredCardWithImage } from '..';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { SwiperSlide } from 'swiper/react';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
+import UseAnimation from 'utils/UseAnimation';
 
 const StoriesCarousel = (props: {
   title: string;
@@ -15,18 +18,36 @@ const StoriesCarousel = (props: {
     tag: string;
   }[];
 }) => {
+  const animationRef = useRef<any>();
+
+  const isInView = useInView(animationRef, {
+    margin: '0px 0px  -40% 0px',
+    once: true,
+  });
   return (
-    <section className={styles.stories_carousel}>
+    <section className={styles.stories_carousel} ref={animationRef}>
       <Carousel
         title={props.title}
         body={props.body}
         tagline={props.tagline}
         link={props.link}
       >
-        {props.cards?.map((item, index) => {
+        {props.cards?.map((item: any, index: any) => {
           return (
             <SwiperSlide key={index}>
-              <ColoredCardWithImage {...item} />
+              <motion.div
+                animate={isInView && 'animate'}
+                initial={'initial'}
+                variants={UseAnimation('right', 1 + index * 0.3, {
+                  startX: 300,
+                  endX: 0,
+                  duration: 1,
+                  fromOpacity: 0,
+                  damping: 56,
+                })}
+              >
+                <ColoredCardWithImage {...item} />
+              </motion.div>
             </SwiperSlide>
           );
         })}

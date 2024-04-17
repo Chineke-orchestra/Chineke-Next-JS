@@ -32,9 +32,6 @@ button {
   @include media-breakpoint-down(lg) {
     padding: 0 20px;
   }
-  @include media-breakpoint-down(sm) {
-    padding: 0 20px;
-  }
 }
 
 .tag {
@@ -52,6 +49,15 @@ button {
   }
 }
 
-// .swipper_slide {
-//   width: max-content!important;
-// }
+.swiper-slide {
+  width: max-content !important;
+}
+
+.underline {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: $black;
+}

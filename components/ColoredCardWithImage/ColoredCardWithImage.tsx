@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import styles from './ColoredCardWithImage.module.scss';
 import { I_Link, I_Media } from 'types/index';
 import Image from 'next/image';
-import { LinkComponent } from '..';
+import { LinkComponent } from 'components';
 
 const ColoredCardWithImage = (props: {
   tag?: string;
