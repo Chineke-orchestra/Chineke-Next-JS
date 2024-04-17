@@ -175,9 +175,9 @@ const StaticTwoColumns = ({
               ))}
           </div>
 
-          {ctaLink && (
+          {ctaLink?.url && (
             <Link href={ctaLink.url} className={classNames('btn large orange')}>
-              {ctaLink.title}
+              {ctaLink?.title && ctaLink.title}
               {ctaIcon && (
                 <div className={styles.iconContainer}>
                   <Image

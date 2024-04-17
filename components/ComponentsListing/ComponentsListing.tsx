@@ -10,6 +10,7 @@ import Hero, { HeroProps } from 'components/Hero/Hero';
 import StaticTwoColumns, {
   StaticTwoColumnsProps,
 } from 'components/StaticTwoColumns/StaticTwoColumns';
+import Feature, { FeatureProps } from 'components/Feature/Feature';
 
 const ComponentsListing = ({ components }: { components: any }) => {
   const PrintComponent = ({ component }: any) => {
@@ -79,6 +80,17 @@ const ComponentsListing = ({ components }: { components: any }) => {
           }),
         };
         return <StaticTwoColumns {...staticTwoColumnProps} />;
+
+      case 'paragraph--feature':
+        const featureProps: FeatureProps = {
+          headline: component?.field_tagline_text,
+          title: component?.field_feature_title,
+          text: component?.field_feature_text?.value,
+          ctaLink: formatLink(component?.field_feature_cta_button),
+          image: formatMedia(component?.field_image?.field_media_image_2),
+        };
+
+        return <Feature {...featureProps} />;
 
       default:
         return <p>block {component?.type} was not implemented</p>;
