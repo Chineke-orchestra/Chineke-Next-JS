@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExploreSection } from '..';
+import { Accordion, ExploreSection } from '..';
 import {
   formatCardData,
   formatLink,
@@ -120,6 +120,19 @@ const ComponentsListing = ({ components }: { components: any }) => {
         };
 
         return <Feature {...featureProps} />;
+
+      case 'paragraph--accordion':
+        const accordionItems = component?.field_accordion_item?.map(
+          (item: any) => {
+            return {
+              title: item?.field_accordion_title,
+              text: item?.field_accordion_body?.value,
+            };
+          },
+        );
+        return (
+          <Accordion title={component?.field_title} items={accordionItems} />
+        );
 
       default:
         return <p>block {component?.type} was not implemented</p>;

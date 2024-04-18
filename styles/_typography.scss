@@ -82,15 +82,32 @@ p {
   line-height: 27px;
   font-weight: 400;
   color: $gray;
+  strong {
+    font-weight: 600;
+  }
 }
 
 ul {
-  color: $white;
+  color: $black;
   font-family: $primary-font;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 30px;
+  li {
+    padding-left: 12px;
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: 0;
+      background-color: $gray;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+  }
 }
 
 a {
