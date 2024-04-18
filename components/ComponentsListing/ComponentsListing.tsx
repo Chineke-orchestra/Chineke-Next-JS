@@ -6,11 +6,19 @@ import {
   formatMedia,
   formatTagsData,
 } from 'utils/adaptors';
+import Pattern, { PatternProps } from 'components/Pattern/Pattern';
+import TwoColumnText, {
+  TwoColumnTextProps,
+} from 'components/TwoColumnText/TwoColumnText';
+import RteSingleColumn from 'components/RteSingleColumn/RteSingleColumn';
 import Hero, { HeroProps } from 'components/Hero/Hero';
+import ThreeColumnLayout, {
+  ThreeColumnLayoutProps,
+} from 'components/ThreeColumnLayout/ThreeColumnLayout';
 import StaticTwoColumns, {
   StaticTwoColumnsProps,
 } from 'components/StaticTwoColumns/StaticTwoColumns';
-import Pattern, { PatternProps } from 'components/Pattern/Pattern';
+import Feature, { FeatureProps } from 'components/Feature/Feature';
 
 const ComponentsListing = ({ components }: { components: any }) => {
   const PrintComponent = ({ component }: any) => {
@@ -25,6 +33,29 @@ const ComponentsListing = ({ components }: { components: any }) => {
         };
 
         return <Hero {...heroProps} />;
+
+      case 'paragraph--static_2_column':
+        const staticTwoColumnProps: StaticTwoColumnsProps = {
+          backgroundColor: component?.field_background_color?.color,
+          imagePosition: component?.field_image_position,
+          title: component?.field_title,
+          headline: component?.field_headline,
+          ctaLink: formatLink(component?.field_cta_button),
+          ctaIcon: formatMedia(
+            component?.field_cta_link_icon?.field_media_image,
+          ),
+          image: formatMedia(
+            component?.field_static_2_column_image?.field_media_image,
+          ),
+          cards: component?.field_2_columns_text.map((item: any) => {
+            return {
+              link: formatLink(item?.field_link),
+              text: item.field_rich_text,
+              icon: formatMedia(item?.field_cta_link_icon?.field_media_image),
+            };
+          }),
+        };
+        return <StaticTwoColumns {...staticTwoColumnProps} />;
 
       case 'paragraph--explore_section_variation_1':
         return (
@@ -58,29 +89,6 @@ const ComponentsListing = ({ components }: { components: any }) => {
           />
         );
 
-      case 'paragraph--static_2_column':
-        const staticTwoColumnProps: StaticTwoColumnsProps = {
-          backgroundColor: component?.field_background_color?.color,
-          imagePosition: component?.field_image_position,
-          title: component?.field_title,
-          headline: component?.field_headline,
-          ctaLink: formatLink(component?.field_cta_button),
-          ctaIcon: formatMedia(
-            component?.field_cta_link_icon?.field_media_image,
-          ),
-          image: formatMedia(
-            component?.field_static_2_column_image?.field_media_image,
-          ),
-          cards: component?.field_2_columns_text.map((item: any) => {
-            return {
-              link: formatLink(item?.field_link),
-              text: item.field_rich_text,
-              icon: formatMedia(item?.field_cta_link_icon?.field_media_image),
-            };
-          }),
-        };
-        return <StaticTwoColumns {...staticTwoColumnProps} />;
-
       case 'paragraph--pattern':
         const patternProps: PatternProps = {
           patternBackground: component?.field_pattern_background_colour,
@@ -91,6 +99,38 @@ const ComponentsListing = ({ components }: { components: any }) => {
         };
 
         return <Pattern {...patternProps} />;
+      case 'paragraph--2_column_text':
+        const twoColumnTextProps: TwoColumnTextProps = {
+          textLeft: component?.field_left_column_text?.value,
+          textRight: component?.field_right_column_text?.value,
+        };
+
+        return <TwoColumnText {...twoColumnTextProps} />;
+      case 'paragraph--rte_single_column':
+        const singleColumnProps = {
+          text: component?.field_text?.value,
+        };
+
+        return <RteSingleColumn {...singleColumnProps} />;
+      case 'paragraph--3_column_layout':
+        const threeColumnLayoutProps: ThreeColumnLayoutProps = {
+          image: formatMedia(component?.field_3col_image?.field_media_image),
+          title: component?.field_3col_title,
+          text: component?.field_3col_body_text?.value,
+        };
+
+        return <ThreeColumnLayout {...threeColumnLayoutProps} />;
+
+      case 'paragraph--feature':
+        const featureProps: FeatureProps = {
+          headline: component?.field_tagline_text,
+          title: component?.field_feature_title,
+          text: component?.field_feature_text?.value,
+          ctaLink: formatLink(component?.field_feature_cta_button),
+          image: formatMedia(component?.field_image?.field_media_image_2),
+        };
+
+        return <Feature {...featureProps} />;
 
       default:
         return <p>block {component?.type} was not implemented</p>;
