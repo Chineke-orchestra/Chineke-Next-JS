@@ -6,6 +6,7 @@ import {
   formatMedia,
   formatTagsData,
 } from 'utils/adaptors';
+import RteSingleColumn from 'components/RteSingleColumn/RteSingleColumn';
 import Hero, { HeroProps } from 'components/Hero/Hero';
 import ThreeColumnLayout, {
   ThreeColumnLayoutProps,
@@ -84,6 +85,12 @@ const ComponentsListing = ({ components }: { components: any }) => {
           />
         );
 
+      case 'paragraph--rte_single_column':
+        const singleColumnProps = {
+          text: component?.field_text?.value,
+        };
+
+        return <RteSingleColumn {...singleColumnProps} />;
       case 'paragraph--3_column_layout':
         const threeColumnLayoutProps: ThreeColumnLayoutProps = {
           image: formatMedia(component?.field_3col_image?.field_media_image),
