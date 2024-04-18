@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { motion, useInView } from 'framer-motion';
 import UseAnimation from 'utils/UseAnimation';
 import parse from 'html-react-parser';
+import TabCard from 'components/TabCard/TabCard';
 
 export interface I_Card {
   link?: I_Link;
@@ -38,8 +39,6 @@ const StaticTwoColumns = ({
   const [hoverStates, setHoverStates] = useState(
     new Array(cards.length).fill(false),
   );
-
-  console.log(ctaIcon);
 
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -104,74 +103,16 @@ const StaticTwoColumns = ({
           <div className={styles.cardsContainer}>
             {cards &&
               cards.map((item, index) => (
-                <motion.div
-                  className={styles.card}
+                <TabCard
                   key={index}
-                  initial={{ opacity: 0 }}
-                  animate={isInView ? 'animate' : 'initial'}
-                  variants={UseAnimation('up', {
-                    delay: index * 0.6,
-                    initialY: index * 150,
-                    endY: 0,
-                    duration: 1,
-                    stiffness: 70,
-                    fromOpacity: 0,
-                    toOpacity: 1,
-                  })}
-                >
-                  {item?.link?.url ? (
-                    <Link
-                      href={item.link.url}
-                      onMouseEnter={() => handleHover(index, true)}
-                      onMouseLeave={() => handleHover(index, false)}
-                    >
-                      {item.link.title && (
-                        <h4>
-                          {item.link.title}
-                          <motion.span
-                            className={styles.underline}
-                            initial={{ scaleX: 0 }}
-                            animate={hoverStates[index] ? 'animate' : 'initial'}
-                            variants={UseAnimation('right', {
-                              duration: 0.5,
-                              distance: 0,
-                              startScaleX: 0,
-                              endScaleX: 1,
-                            })}
-                            style={{
-                              originX: 0,
-                            }}
-                          />
-                        </h4>
-                      )}
-
-                      {item.text && <p>{parse(item.text)}</p>}
-
-                      {item.icon && (
-                        <motion.div
-                          className={styles.iconContainer}
-                          animate={hoverStates[index] ? 'animate' : 'initial'}
-                          variants={UseAnimation('right', {
-                            distance: 0,
-                            startX: 0,
-                            endX: 10,
-                            duration: 0.5,
-                            fromOpacity: 1,
-                          })}
-                        >
-                          <Image
-                            src={item.icon.url}
-                            alt={item.icon.alt}
-                            sizes="100%"
-                            fill
-                          />
-                        </motion.div>
-                      )}
-                    </Link>
-                  ) : (
-                    <p>{item.text}</p>
-                  )}
-                </motion.div>
+                  link={item.link}
+                  text={item.text}
+                  icon={item.icon}
+                  hoverState={hoverStates[index]}
+                  handleHover={handleHover}
+                  index={index}
+                  isInView={isInView}
+                />
               ))}
           </div>
 
