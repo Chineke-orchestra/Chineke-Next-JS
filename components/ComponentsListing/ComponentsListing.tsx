@@ -62,7 +62,6 @@ const ComponentsListing = ({ components }: { components: any }) => {
             cards={formatCardWithImageData(component?.field_story_card)}
           />
         );
-        break;
 
       default:
         return <p>block {component?.type} was not implemented</p>;

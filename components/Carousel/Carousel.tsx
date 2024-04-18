@@ -18,7 +18,7 @@ const Carousel = (props: {
   link: I_Link;
   children?: ReactNode;
 }) => {
-  const [init, setInit] = useState(false);
+  const [_, setInit] = useState(false);
   const [paddingLeft, setPaddingLeft] = useState(0);
 
   const prevRef = useRef<any>(null);
@@ -111,6 +111,7 @@ const Carousel = (props: {
               className={styles.buttons_container}
               style={{ transformOrigin: 'bottom' }}
             >
+              {/* TODO -> CHECK THE LAYOUT WHEN THE BRANCH WITH BUTTONS IS MERGED */}
               <LinkComponent
                 link={props.link}
                 className={classNames('btn', styles.button)}
