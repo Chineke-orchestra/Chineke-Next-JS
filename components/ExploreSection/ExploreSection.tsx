@@ -4,7 +4,7 @@ import styles from './ExploreSection.module.scss';
 import classNames from 'classnames';
 import { LinkComponent } from '..';
 
-import { motion } from 'framer-motion';
+import { delay, motion } from 'framer-motion';
 import ArrowButton from 'components/ArrowButton/ArrowButton';
 import UseAnimation from 'utils/UseAnimation';
 import { useInView } from 'framer-motion';

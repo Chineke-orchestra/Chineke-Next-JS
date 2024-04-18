@@ -4,6 +4,7 @@ import LinkComponent from './LinkComponent/LinkComponent';
 import Carousel from './Carousel/Carousel';
 import StoriesCarousel from './StoriesCarousel/StoriesCarousel';
 import ColoredCardWithImage from './ColoredCardWithImage/ColoredCardWithImage';
+import Accordion from './Accordion/Accordion';
 
 export {
   ComponentsListing,
@@ -12,4 +13,5 @@ export {
   Carousel,
   StoriesCarousel,
   ColoredCardWithImage,
+  Accordion,
 };
