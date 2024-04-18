@@ -34,4 +34,8 @@
       scale: 1.1;
     }
   }
+  :global(.underline) {
+    background-color: $white;
+    bottom: -5px;
+  }
 }

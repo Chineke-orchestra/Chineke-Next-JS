@@ -18,13 +18,14 @@ const Carousel = (props: {
   link: I_Link;
   children?: ReactNode;
 }) => {
-  const [_, setInit] = useState(false);
+  const [init, setInit] = useState(false);
   const [paddingLeft, setPaddingLeft] = useState(0);
-  const [width, setWidth] = useState(0);
+
   const prevRef = useRef<any>(null);
   const nextRef = useRef<any>(null);
   const ref = useRef<any>();
   const animationRef = useRef<any>();
+  const [width, setWidth] = useState(ref?.current?.offsetLeft);
 
   const isInView = useInView(animationRef, {
     margin: '0px 0px  -40% 0px',
@@ -35,18 +36,20 @@ const Carousel = (props: {
     setPaddingLeft(
       (document.getElementsByClassName('container')[0] as any)?.offsetLeft,
     );
-    setWidth(ref?.current?.offsetLeft);
   };
 
   useEffect(() => {
-    paddingHandler();
+    setWidth(ref?.current?.offsetLeft);
+  }, [paddingLeft]);
 
+  useEffect(() => {
+    paddingHandler();
     window.addEventListener('resize', paddingHandler);
 
     return () => {
       window.removeEventListener('resize', paddingHandler);
     };
-  }, []);
+  }, [ref]);
 
   return (
     <section
@@ -133,7 +136,7 @@ const Carousel = (props: {
             initialSlide={1}
             slidesPerView="auto"
             modules={[Navigation]}
-            className={classNames(styles.swipper)}
+            className={classNames(styles.swiper)}
             speed={1000}
             navigation={{
               prevEl: prevRef.current,

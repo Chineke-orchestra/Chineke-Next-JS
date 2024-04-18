@@ -3,6 +3,8 @@ import styles from './ColoredCardWithImage.module.scss';
 import { I_Link, I_Media } from 'types/index';
 import Image from 'next/image';
 import { LinkComponent } from 'components';
+import UseAnimation from 'utils/UseAnimation';
+import { useState } from 'react';
 
 const ColoredCardWithImage = (props: {
   tag?: string;
@@ -10,6 +12,7 @@ const ColoredCardWithImage = (props: {
   image: I_Media;
   backgroundColor: string;
 }) => {
+  const [animate, setAnimate] = useState(false);
   return (
     <LinkComponent link={props.link}>
       <div
@@ -27,7 +30,26 @@ const ColoredCardWithImage = (props: {
         </div>
         <div className={styles.text}>
           {props.tag && <p className="tag">{props.tag}</p>}
-          <h5>{props.link.title}</h5>
+          <h5
+            onMouseOver={() => setAnimate(true)}
+            onMouseLeave={() => setAnimate(false)}
+          >
+            {props.link.title}
+            <motion.span
+              className="underline"
+              initial={{ scaleX: 0 }}
+              animate={animate ? 'animate' : 'initial'}
+              variants={UseAnimation('right', 0, {
+                duration: 0.5,
+                distance: 0,
+                startScaleX: 0,
+                endScaleX: 1,
+              })}
+              style={{
+                originX: 0,
+              }}
+            />
+          </h5>
         </div>
       </div>
     </LinkComponent>
