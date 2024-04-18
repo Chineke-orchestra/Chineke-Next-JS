@@ -6,6 +6,9 @@ import {
   formatMedia,
   formatTagsData,
 } from 'utils/adaptors';
+import TwoColumnText, {
+  TwoColumnTextProps,
+} from 'components/TwoColumnText/TwoColumnText';
 import RteSingleColumn from 'components/RteSingleColumn/RteSingleColumn';
 import Hero, { HeroProps } from 'components/Hero/Hero';
 import ThreeColumnLayout, {
@@ -43,7 +46,7 @@ const ComponentsListing = ({ components }: { components: any }) => {
           image: formatMedia(
             component?.field_static_2_column_image?.field_media_image,
           ),
-          cards: component?.field_2_columns_text.map((item) => {
+          cards: component?.field_2_columns_text.map((item: any) => {
             return {
               link: formatLink(item?.field_link),
               text: item.field_rich_text,
@@ -85,6 +88,13 @@ const ComponentsListing = ({ components }: { components: any }) => {
           />
         );
 
+      case 'paragraph--2_column_text':
+        const twoColumnTextProps: TwoColumnTextProps = {
+          textLeft: component?.field_left_column_text?.value,
+          textRight: component?.field_right_column_text?.value,
+        };
+
+        return <TwoColumnText {...twoColumnTextProps} />;
       case 'paragraph--rte_single_column':
         const singleColumnProps = {
           text: component?.field_text?.value,
