@@ -40,8 +40,6 @@ const StaticTwoColumns = ({
     new Array(cards.length).fill(false),
   );
 
-  console.log(ctaIcon);
-
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
