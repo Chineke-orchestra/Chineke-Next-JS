@@ -30,7 +30,7 @@ const ColoredCardWithImage = (props: {
         </div>
         <div className={styles.text}>
           {/* TODO -> CHECK THE LAYOUT WHEN THE BRANCH WITH TAGS IS MERGED */}
-          {props.tag && <p className="tag">{props.tag}</p>}
+          {props.tag && <p className="tag light">{props.tag}</p>}
           <h5
             onMouseOver={() => setAnimate(true)}
             onMouseLeave={() => setAnimate(false)}
@@ -40,7 +40,7 @@ const ColoredCardWithImage = (props: {
               className="underline"
               initial={{ scaleX: 0 }}
               animate={animate ? 'animate' : 'initial'}
-              variants={UseAnimation('right', 0, {
+              variants={UseAnimation('right', {
                 duration: 0.5,
                 distance: 0,
                 startScaleX: 0,

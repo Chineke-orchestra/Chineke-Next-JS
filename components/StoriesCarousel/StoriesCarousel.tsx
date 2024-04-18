@@ -38,12 +38,13 @@ const StoriesCarousel = (props: {
               <motion.div
                 animate={isInView && 'animate'}
                 initial={'initial'}
-                variants={UseAnimation('right', 1 + index * 0.3, {
+                variants={UseAnimation('right', {
                   startX: 300,
                   endX: 0,
                   duration: 1,
                   fromOpacity: 0,
                   damping: 56,
+                  delay: 1 + index * 0.3,
                 })}
               >
                 <ColoredCardWithImage {...item} />

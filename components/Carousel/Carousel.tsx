@@ -8,7 +8,7 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/scss/pagination';
 import { Swiper } from 'swiper/react';
 import 'swiper/css';
-import { motion, useInView } from 'framer-motion';
+import { delay, motion, useInView } from 'framer-motion';
 import UseAnimation from 'utils/UseAnimation';
 
 const Carousel = (props: {
@@ -64,7 +64,7 @@ const Carousel = (props: {
               <motion.p
                 animate={isInView && 'animate'}
                 initial={'initial'}
-                variants={UseAnimation('up', 0, {
+                variants={UseAnimation('up', {
                   startScaleY: 0,
                   endScaleY: 1,
                   duration: 1,
@@ -78,11 +78,12 @@ const Carousel = (props: {
             <motion.h2
               animate={isInView && 'animate'}
               initial={'initial'}
-              variants={UseAnimation('up', 0.2, {
+              variants={UseAnimation('up', {
                 startScaleY: 0,
                 endScaleY: 1,
                 duration: 1,
                 fromOpacity: 1,
+                delay: 0.2,
               })}
             >
               {props.title}
@@ -90,11 +91,12 @@ const Carousel = (props: {
             <motion.div
               animate={isInView && 'animate'}
               initial={'initial'}
-              variants={UseAnimation('up', 0.5, {
+              variants={UseAnimation('up', {
                 startScaleY: 0,
                 endScaleY: 1,
                 duration: 1,
                 fromOpacity: 1,
+                delay: 0.5,
               })}
             >
               {parse(props.body)}
@@ -102,19 +104,19 @@ const Carousel = (props: {
             <motion.div
               animate={isInView && 'animate'}
               initial={'initial'}
-              variants={UseAnimation('up', 0.5, {
+              variants={UseAnimation('up', {
                 startScaleY: 0,
                 endScaleY: 1,
                 duration: 1,
                 fromOpacity: 1,
+                delay: 0.5,
               })}
               className={styles.buttons_container}
               style={{ transformOrigin: 'bottom' }}
             >
-              {/* TODO -> CHECK THE LAYOUT WHEN THE BRANCH WITH BUTTONS IS MERGED */}
               <LinkComponent
                 link={props.link}
-                className={classNames('btn', styles.button)}
+                className={classNames('btn large yellow', styles.button)}
               >
                 {props.link.title}
               </LinkComponent>

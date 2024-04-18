@@ -22,7 +22,7 @@ export const ExploreSection = (props: {
 }) => {
   const ref = useRef<any>();
   const isInView = useInView(ref, { once: true });
-  
+
   return (
     <section
       className={classNames(styles.explore_section, styles[props.variation])}
@@ -68,12 +68,13 @@ export const ExploreSection = (props: {
                     className={styles.card}
                     animate={isInView && 'animate'}
                     initial={'initial'}
-                    variants={UseAnimation('up', 0.5 + index * 0.3, {
+                    variants={UseAnimation('up', {
                       startScaleY: 0,
                       endScaleY: 1,
                       duration: 1,
                       fromOpacity: 1,
                       damping: 56,
+                      delay: 0.5 + index * 0.3,
                     })}
                     style={{
                       transformOrigin: 'bottom',
