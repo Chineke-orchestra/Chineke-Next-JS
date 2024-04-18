@@ -29,6 +29,29 @@ const ComponentsListing = ({ components }: { components: any }) => {
 
         return <Hero {...heroProps} />;
 
+      case 'paragraph--static_2_column':
+        const staticTwoColumnProps: StaticTwoColumnsProps = {
+          backgroundColor: component?.field_background_color?.color,
+          imagePosition: component?.field_image_position,
+          title: component?.field_title,
+          headline: component?.field_headline,
+          ctaLink: formatLink(component?.field_cta_button),
+          ctaIcon: formatMedia(
+            component?.field_cta_link_icon?.field_media_image,
+          ),
+          image: formatMedia(
+            component?.field_static_2_column_image?.field_media_image,
+          ),
+          cards: component?.field_2_columns_text.map((item) => {
+            return {
+              link: formatLink(item?.field_link),
+              text: item.field_rich_text,
+              icon: formatMedia(item?.field_cta_link_icon?.field_media_image),
+            };
+          }),
+        };
+        return <StaticTwoColumns {...staticTwoColumnProps} />;
+
       case 'paragraph--explore_section_variation_1':
         return (
           <ExploreSection
