@@ -6,7 +6,7 @@ import {
   formatMedia,
   formatTagsData,
 } from 'utils/adaptors';
-import Hero, { HeroProps } from 'components/Hero/Hero';
+import Hero from 'components/Hero/Hero';
 import ThreeColumnLayout, {
   ThreeColumnLayoutProps,
 } from 'components/ThreeColumnLayout/ThreeColumnLayout';
@@ -61,39 +61,14 @@ const ComponentsListing = ({ components }: { components: any }) => {
           />
         );
 
-      case 'paragraph--static_2_column':
-        const staticTwoColumnProps: StaticTwoColumnsProps = {
-          backgroundColor: component?.field_background_color?.color,
-          imagePosition: component?.field_image_position,
-          title: component?.field_title,
-          headline: component?.field_headline,
-          ctaLink: formatLink(component?.field_cta_button),
-          ctaIcon: formatMedia(
-            component?.field_cta_link_icon?.field_media_image,
-          ),
-          image: formatMedia(
-            component?.field_static_2_column_image?.field_media_image,
-          ),
-          cards: component?.field_2_columns_text.map((item: any) => {
-            return {
-              link: formatLink(item?.field_link),
-              text: item.field_rich_text,
-              icon: formatMedia(item?.field_cta_link_icon?.field_media_image),
-            };
-          }),
-        };
-        return <StaticTwoColumns {...staticTwoColumnProps} />;
-
-      case 'paragraph--feature':
-        const featureProps: FeatureProps = {
-          headline: component?.field_tagline_text,
-          title: component?.field_feature_title,
-          text: component?.field_feature_text?.value,
-          ctaLink: formatLink(component?.field_feature_cta_button),
-          image: formatMedia(component?.field_image?.field_media_image_2),
+      case 'paragraph--3_column_layout':
+        const threeColumnLayoutProps: ThreeColumnLayoutProps = {
+          image: formatMedia(component?.field_3col_image?.field_media_image),
+          title: component?.field_3col_title,
+          text: component?.field_3col_body_text?.value,
         };
 
-        return <Feature {...featureProps} />;
+        return <ThreeColumnLayout {...threeColumnLayoutProps} />;
 
       default:
         return <p>block {component?.type} was not implemented</p>;
