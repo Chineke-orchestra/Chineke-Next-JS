@@ -1,5 +1,6 @@
-const UseAnimation = (direction = 'up', delay = 0.2, options = {}) => {
+const UseAnimation = (direction = 'up', options = {}) => {
   const {
+    delay = 0.2,
     distance = 50,
     duration = 0.3,
     transitionType = 'spring',

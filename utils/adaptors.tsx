@@ -6,8 +6,8 @@ export const formatMedia = (media: {
   resourceIdObjMeta?: { alt: string };
 }): I_Media => {
   return {
-    url: `${process.env.BACKEND_URL}${media.uri.url}`,
-    alt: media.resourceIdObjMeta?.alt || '',
+    url: `${process.env.BACKEND_URL}${media?.uri.url}`,
+    alt: media?.resourceIdObjMeta?.alt || '',
   };
 };
 
@@ -25,20 +25,20 @@ export const formatLink = (link: {
   let rel = '';
   if (link?.options?.attributes?.target) {
     target = link?.options?.attributes?.target;
-  } else if (link.uri?.includes('internal')) {
+  } else if (link?.uri?.includes('internal')) {
     target = '_self';
   } else {
     target = '_blank';
   }
   if (link?.options?.attributes?.rel) {
     rel = link?.options?.attributes?.rel;
-  } else if (link.uri?.includes('internal')) {
+  } else if (link?.uri?.includes('internal')) {
     rel = '';
   } else {
     rel = 'nofollow noopenner';
   }
   return {
-    url: link.uri.replace('internal:', ''),
+    url: link?.uri.replace('internal:', ''),
     title: link?.title,
     target,
     rel,

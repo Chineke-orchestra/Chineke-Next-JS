@@ -11,12 +11,12 @@ const ArrowButton = ({ isHovering }: ArrowProps) => {
     <motion.div
       className={styles.arrow}
       animate={isHovering ? 'animate' : 'initial'}
-      whileHover={'animate'}
-      variants={UseAnimation('right', 0, {
+      variants={UseAnimation('right', {
         distance: 0,
-        endX: 10,
         duration: 0.5,
         fromOpacity: 1,
+        startX: 0,
+        endX: 10,
       })}
     />
   );

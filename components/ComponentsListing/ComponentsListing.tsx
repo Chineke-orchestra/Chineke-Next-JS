@@ -8,6 +8,9 @@ import {
   formatTagsData,
 } from 'utils/adaptors';
 import Hero from 'components/Hero/Hero';
+import ThreeColumnLayout, {
+  ThreeColumnLayoutProps,
+} from 'components/ThreeColumnLayout/ThreeColumnLayout';
 
 const ComponentsListing = ({ components }: { components: any }) => {
   const PrintComponent = ({ component }: any) => {
@@ -62,6 +65,15 @@ const ComponentsListing = ({ components }: { components: any }) => {
             cards={formatCardWithImageData(component?.field_story_card)}
           />
         );
+
+      case 'paragraph--3_column_layout':
+        const threeColumnLayoutProps: ThreeColumnLayoutProps = {
+          image: formatMedia(component?.field_3col_image?.field_media_image),
+          title: component?.field_3col_title,
+          text: component?.field_3col_body_text?.value,
+        };
+
+        return <ThreeColumnLayout {...threeColumnLayoutProps} />;
 
       default:
         return <p>block {component?.type} was not implemented</p>;
