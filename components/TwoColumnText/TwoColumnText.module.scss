@@ -1,0 +1,28 @@
+@import '../../styles/utils.scss';
+
+.textContainer {
+  display: flex;
+  gap: 32px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  justify-content: center;
+
+  @include media-breakpoint-down(md) {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .textColumn {
+    flex: 1;
+    max-width: 604px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    @include media-breakpoint-down(md) {
+      p {
+        font-size: 16px;
+      }
+    }
+  }
+}

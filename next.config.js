@@ -56,40 +56,40 @@ if (process.env.PANTHEON_UPLOAD_PATH) {
 }
 
 module.exports = async () => {
-  const locales = await getLocales();
-  const nextConfig = {
-    ...(injectedOptions && injectedOptions),
-    env: {
-      backendUrl: backendUrl,
-      BACKEND_URL: process.env.BACKEND_URL,
-      // set imageUrl if IMAGE_DOMAIN is set in env vars to override default
-      imageUrl: `https://${imageDomain}`,
-      // makes locales available to lib/stores.js
-      locales: locales,
-    },
-    reactStrictMode: true,
-    images: {
-      domains: [imageDomain],
-    },
-    i18n: {
-      locales: locales,
-      defaultLocale: 'en',
-    },
-    output: 'standalone',
-    async rewrites() {
-      return [
-        {
-          // inline-images can still be fetched from their source
-          source: '/sites/default/:path*',
-          destination: `${backendUrl}/sites/default/:path*`,
-        },
-      ];
-    },
-    transpilePackages: [
-      '@pantheon-systems/nextjs-kit',
-      '@pantheon-systems/drupal-kit',
-    ],
-  };
+	const locales = await getLocales();
+	const nextConfig = {
+		...(injectedOptions && injectedOptions),
+		env: {
+			BACKEND_URL: process.env.BACKEND_URL,
+			backendUrl: backendUrl,
+			// set imageUrl if IMAGE_DOMAIN is set in env vars to override default
+			imageUrl: `https://${imageDomain}`,
+			// makes locales available to lib/stores.js
+			locales: locales,
+		},
+		reactStrictMode: true,
+		images: {
+			domains: [imageDomain],
+		},
+		i18n: {
+			locales: locales,
+			defaultLocale: 'en',
+		},
+		output: 'standalone',
+		async rewrites() {
+			return [
+				{
+					// inline-images can still be fetched from their source
+					source: '/sites/default/:path*',
+					destination: `${backendUrl}/sites/default/:path*`,
+				},
+			];
+		},
+		transpilePackages: [
+			'@pantheon-systems/nextjs-kit',
+			'@pantheon-systems/drupal-kit',
+		],
+	};
 
   return nextConfig;
 };
