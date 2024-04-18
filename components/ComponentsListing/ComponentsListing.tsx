@@ -7,6 +7,9 @@ import {
   formatTagsData,
 } from 'utils/adaptors';
 import Hero, { HeroProps } from 'components/Hero/Hero';
+import ThreeColumnLayout, {
+  ThreeColumnLayoutProps,
+} from 'components/ThreeColumnLayout/ThreeColumnLayout';
 import StaticTwoColumns, {
   StaticTwoColumnsProps,
 } from 'components/StaticTwoColumns/StaticTwoColumns';
