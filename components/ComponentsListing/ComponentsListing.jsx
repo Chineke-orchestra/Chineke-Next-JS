@@ -4,10 +4,11 @@ import StaticTwoColumns from '../StaticTwoColumns/StaticTwoColumns';
 import Feature from '../Feature/Feature';
 import RteSingleColumn from '../RteSingleColumn/RteSingleColumn';
 import TwoColumnText from '../TwoColumnText/TwoColumnText';
+import ThreeColumnLayout from '../ThreeColumnLayout/ThreeColumnLayout';
 import { formatMedia, formatLink } from 'utils/adaptors';
 
 const ComponentsListing = ({ components }) => {
-  console.log(components);
+  // console.log(components);
   const PrintComponent = ({ component }) => {
     switch (component?.type) {
       case 'paragraph--hero_banner':
@@ -68,6 +69,15 @@ const ComponentsListing = ({ components }) => {
         };
 
         return <TwoColumnText {...twoColumnTextProps} />;
+
+      case 'paragraph--3_column_layout':
+        const threeColumnLayoutProps = {
+          image: formatMedia(component?.field_3col_image?.field_media_image),
+          title: component?.field_3col_title,
+          text: component?.field_3col_body_text?.value,
+        };
+
+        return <ThreeColumnLayout {...threeColumnLayoutProps} />;
 
       default:
         return <p>block {component?.type} was not implemented</p>;

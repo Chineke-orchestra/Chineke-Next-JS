@@ -26,7 +26,7 @@ export default function CatchAllRoute({
       <ComponentsListing
         components={[
           ...(pageData?.field_reusable_components || []),
-          { type: 'feature--static' },
+          { type: 'paragraph--2_column_layout' },
         ]}
       />
     </Layout>
@@ -69,6 +69,7 @@ export async function getServerSideProps(context) {
       'field_reusable_components.field_2_columns_text',
       'field_reusable_components.field_2_columns_text.field_cta_link_icon.field_media_image',
       'field_reusable_components.field_image.field_media_image_2',
+      'field_reusable_components.field_3col_image.field_media_image',
     ];
 
     const includeParam = includesArray.join(',');
