@@ -15,9 +15,9 @@ import Image from 'next/image';
 export interface HeroProps {
   title: string;
   links: I_Link[];
-  video: I_Media;
-  image?: I_Media;
-  externalVideo: string;
+  video?: I_Media | null;
+  image?: I_Media | null;
+  externalVideo?: string;
 }
 
 const Hero: NextPage<HeroProps> = ({
@@ -54,7 +54,7 @@ const Hero: NextPage<HeroProps> = ({
     );
   };
 
-  const videoSource = externalVideo || video.url;
+  const videoSource = externalVideo || video?.url;
 
   return (
     <section className={styles.hero}>
@@ -117,7 +117,7 @@ const Hero: NextPage<HeroProps> = ({
             {links.map((item, index) => (
               <Link
                 key={index}
-                href={item.url}
+                href={item.url || ''}
                 onMouseEnter={() => handleHover(index, true)}
                 onMouseLeave={() => handleHover(index, false)}
               >

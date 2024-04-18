@@ -3,10 +3,14 @@ import parse from 'html-react-parser';
 import styles from './RteSingleColumn.module.scss';
 
 interface RteSingleColumnProps {
-  text: string;
+  text?: string;
 }
 
 const RteSingleColumn = ({ text }: RteSingleColumnProps) => {
+  if (!text) {
+    return null;
+  }
+
   return <section className={styles.textContainer}>{parse(text)}</section>;
 };
 
