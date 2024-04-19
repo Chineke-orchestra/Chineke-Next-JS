@@ -9,7 +9,6 @@ import Pattern from '../Pattern/Pattern';
 import { formatMedia, formatLink } from 'utils/adaptors';
 
 const ComponentsListing = ({ components }) => {
-  // console.log(components);
   const PrintComponent = ({ component }) => {
     switch (component?.type) {
       case 'paragraph--hero_banner':
