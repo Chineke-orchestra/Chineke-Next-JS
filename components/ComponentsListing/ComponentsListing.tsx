@@ -6,6 +6,7 @@ import {
   formatMedia,
   formatTagsData,
 } from 'utils/adaptors';
+import Pattern, { PatternProps } from 'components/Pattern/Pattern';
 import TwoColumnText, {
   TwoColumnTextProps,
 } from 'components/TwoColumnText/TwoColumnText';
@@ -88,6 +89,16 @@ const ComponentsListing = ({ components }: { components: any }) => {
           />
         );
 
+      case 'paragraph--pattern':
+        const patternProps: PatternProps = {
+          patternBackground: component?.field_pattern_background_colour,
+          patternImage: formatMedia(
+            component?.field_pattern_image?.field_media_image_1,
+          ),
+          patternColor: component?.field_pattern_image_colour,
+        };
+
+        return <Pattern {...patternProps} />;
       case 'paragraph--2_column_text':
         const twoColumnTextProps: TwoColumnTextProps = {
           textLeft: component?.field_left_column_text?.value,

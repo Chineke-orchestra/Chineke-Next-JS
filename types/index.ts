@@ -16,3 +16,8 @@ export interface I_Card {
   body: string;
   link: I_Link;
 }
+
+export interface I_Pattern {
+  color?: string;
+  opacity?: number;
+}
