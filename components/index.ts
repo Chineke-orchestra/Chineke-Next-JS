@@ -1,6 +1,17 @@
 import ComponentsListing from './ComponentsListing/ComponentsListing';
 import ExploreSection from './ExploreSection/ExploreSection';
 import LinkComponent from './LinkComponent/LinkComponent';
-import Accordion from './Accordion/Accordion'
+import Carousel from './Carousel/Carousel';
+import StoriesCarousel from './StoriesCarousel/StoriesCarousel';
+import ColoredCardWithImage from './ColoredCardWithImage/ColoredCardWithImage';
+import Accordion from './Accordion/Accordion';
 
-export { ComponentsListing, ExploreSection, LinkComponent, Accordion };
+export {
+  ComponentsListing,
+  ExploreSection,
+  LinkComponent,
+  Carousel,
+  StoriesCarousel,
+  ColoredCardWithImage,
+  Accordion,
+};

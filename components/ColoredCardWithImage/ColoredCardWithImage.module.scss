@@ -1,0 +1,42 @@
+@import '../../styles/utils.scss';
+
+.card {
+  width: 392px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  @include media-breakpoint-down(md) {
+    width: 320px;
+    padding-top: 40px;
+  }
+  .image {
+    height: 340px;
+    position: relative;
+    img {
+      transition: scale 1s;
+    }
+    @include media-breakpoint-down(md) {
+      height: 241px;
+    }
+  }
+  .text {
+    padding: 11px 38px 40px 30px;
+    @include media-breakpoint-down(md) {
+      padding: 40px 30px;
+    }
+    h5 {
+      color: $white;
+      position: relative;
+      margin-top: 10px;
+    }
+  }
+  &:hover {
+    img {
+      scale: 1.1;
+    }
+  }
+  :global(.underline) {
+    background-color: $white;
+    bottom: -5px;
+  }
+}

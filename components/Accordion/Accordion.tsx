@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './Accordion.module.scss';
 import parse from 'html-react-parser';
 import classNames from 'classnames';
-import arrow from 'assets/svg/arrow.svg';
+import arrow from 'assets/svg/arrow-left.svg';
 import { ReactSVG } from 'react-svg';
 
 const Accordion = (props: {

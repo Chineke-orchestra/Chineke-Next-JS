@@ -41,8 +41,9 @@
           }
           svg {
             @include animated();
-            transform: rotate(90deg);
+            transform: rotate(-180deg);
             path {
+              stroke: $navy;
               @include animated();
             }
           }
@@ -75,7 +76,7 @@
               color: $white;
             }
             svg {
-              transform: rotate(270deg);
+              transform: rotate(-0deg);
               path {
                 stroke: $white;
               }

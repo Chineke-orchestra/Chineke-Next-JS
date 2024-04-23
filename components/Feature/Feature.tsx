@@ -22,7 +22,7 @@ const Feature = ({ headline, title, text, ctaLink, image }: FeatureProps) => {
           {headline && <h6>{headline}</h6>}
           {title && <h1>{title}</h1>}
           {text && <div className={styles.text}>{parse(text)}</div>}
-          {ctaLink && (
+          {ctaLink.url && (
             <Link href={ctaLink.url} className={classNames('btn large orange')}>
               {ctaLink.title}
             </Link>
