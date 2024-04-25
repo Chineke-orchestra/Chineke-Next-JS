@@ -1,9 +1,9 @@
 import React from 'react';
 import {
-  Carousel,
   ExploreSection,
   StoriesCarousel,
   Accordion,
+  TestimonialsListing
 } from 'components';
 import {
   formatCardData,
@@ -215,6 +215,23 @@ const ComponentsListing = ({ components }: { components: any }) => {
             tagline={component?.field_tagline}
             link={formatLink(component?.field_cta_button)}
             cards={formatCardWithImageData(component?.field_story_card)}
+          />
+        );
+
+      case 'paragraph--testimonial_list':
+        const testimonialsData = component?.field_testimonial_card?.map(
+          (item: any) => {
+            return {
+              author: item?.field_author,
+              date: item?.field_date,
+              text: item?.field_testimonial,
+            };
+          },
+        );
+        return (
+          <TestimonialsListing
+            title={component?.field_testimonial_title}
+            testimonials={testimonialsData}
           />
         );
 

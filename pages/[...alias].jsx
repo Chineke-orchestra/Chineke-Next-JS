@@ -56,6 +56,7 @@ export async function getServerSideProps(context) {
     );
 
     // determine params from the resourceName
+
     let params = [
       'field_reusable_components',
       'field_reusable_components.field_cards',
@@ -76,6 +77,7 @@ export async function getServerSideProps(context) {
       'field_reusable_components.field_cta_link_icon.field_media_image',
       'field_reusable_components.field_2_columns_text',
       'field_reusable_components.field_2_columns_text.field_cta_link_icon.field_media_image',
+      'field_reusable_components.field_testimonial_card'
     ];
 
     params = `include=${params.join(',')}`;
