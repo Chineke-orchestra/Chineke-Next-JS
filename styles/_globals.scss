@@ -49,8 +49,16 @@ button {
   }
 }
 
-.swiper-slide {
+.swiper-pagination-bullets {
   width: max-content !important;
+}
+.swiper-pagination-bullet {
+  width: 10px !important;
+  height: 10px !important;
+  background-color: rgba($light-gray, 0.2) !important;
+}
+.swiper-pagination-bullet-active {
+  background-color: $light-gray !important;
 }
 
 .underline {

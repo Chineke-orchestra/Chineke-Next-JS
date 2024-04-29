@@ -1,0 +1,119 @@
+@import '../../styles/utils.scss';
+
+.testimonials_carousel {
+  padding: 164px 0 152px 0;
+  background-color: $navy;
+  position: relative;
+  @include media-breakpoint-down(md) {
+    padding: 123px 0 117px 0;
+  }
+  .swiper {
+    margin-bottom: 60px;
+    .testimonial_card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 60px;
+      text-align: center;
+      .text {
+        font-size: 24px;
+        font-style: italic;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: 1.2px;
+        font-family: $primary-font;
+        color: $white;
+      }
+      .author {
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        letter-spacing: 0.6px;
+        text-transform: capitalize;
+        color: $yellow;
+        position: relative;
+        &::after {
+          content: '';
+          position: absolute;
+          top: -20px;
+          left: 50%;
+          width: 30px;
+          height: 1px;
+          background-color: $light-gray;
+          transform: translateX(-50%);
+        }
+      }
+    }
+  }
+  .swiper_controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 0 auto;
+    width: max-content;
+    .swiper_button {
+      width: 54px;
+      height: 54px;
+      border: 1px solid $white;
+      border-radius: 50%;
+      position: relative;
+      background-color: $navy;
+      @include animated();
+      cursor: pointer;
+      &::after {
+        width: 22px;
+        height: 22px;
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: url('../../assets/svg/arrow-right-2.svg');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+      &:first-child {
+        transform: rotate(180deg);
+      }
+      &:global(.swiper-button-disabled) {
+        border-color: rgba($white, 0.5);
+        &::after {
+          filter: grayscale(100%);
+        }
+      }
+
+      &:not(:disabled) {
+        &:hover {
+          background-color: $red;
+        }
+        &:active {
+          scale: 0.85;
+        }
+      }
+    }
+  }
+  &::after,
+  &::before {
+    content: '';
+    width: 64px;
+    height: 64px;
+    background: url('../../assets/svg/format-quote-open.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    @include media-breakpoint-down(md) {
+      top: 29px;
+    }
+  }
+  &::after {
+    transform: translateX(calc(-50% - 60px));
+  }
+  &::before {
+    transform: translateX(calc(50%)) rotate(180deg);
+  }
+}

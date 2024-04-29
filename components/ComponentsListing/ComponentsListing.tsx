@@ -3,7 +3,8 @@ import {
   ExploreSection,
   StoriesCarousel,
   Accordion,
-  TestimonialsListing
+  TestimonialsListing,
+  TestimonialsCarousel,
 } from 'components';
 import {
   formatCardData,
@@ -26,6 +27,7 @@ import StaticTwoColumns, {
   StaticTwoColumnsProps,
 } from 'components/StaticTwoColumns/StaticTwoColumns';
 import Feature, { FeatureProps } from 'components/Feature/Feature';
+import { I_Testimonial } from 'components/TestimonialsCarousel/TestimonialsCarousel';
 import TwoColumnsList, {
   TwoColumnsListProps,
 } from 'components/TwoColumnsList/TwoColumnsList';
@@ -210,6 +212,18 @@ const ComponentsListing = ({ components }: { components: any }) => {
         return (
           <Accordion title={component?.field_title} items={accordionItems} />
         );
+      case 'paragraph--testimonials': {
+        const formattedTestimonialsData: I_Testimonial[] =
+          component?.field_testimonial?.map((item: any) => {
+            return {
+              author: item?.field_author,
+              text: item?.field_testimonial,
+            };
+          });
+        return (
+          <TestimonialsCarousel testimonials={formattedTestimonialsData} />
+        );
+      }
 
       case 'paragraph--bullet_point_text':
         const twoColumnsList: TwoColumnsListProps = {
