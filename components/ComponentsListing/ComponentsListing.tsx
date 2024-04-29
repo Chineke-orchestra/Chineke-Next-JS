@@ -26,6 +26,9 @@ import StaticTwoColumns, {
   StaticTwoColumnsProps,
 } from 'components/StaticTwoColumns/StaticTwoColumns';
 import Feature, { FeatureProps } from 'components/Feature/Feature';
+import TwoColumnsList, {
+  TwoColumnsListProps,
+} from 'components/TwoColumnsList/TwoColumnsList';
 
 const ComponentsListing = ({ components }: { components: any }) => {
   const PrintComponent = ({ component }: any) => {
@@ -116,6 +119,7 @@ const ComponentsListing = ({ components }: { components: any }) => {
         };
 
         return <Pattern {...patternProps} />;
+
       case 'paragraph--2_column_text':
         const twoColumnTextPropsData: TwoColumnTextProps = {
           textLeft: component?.field_left_column_text?.value,
@@ -207,6 +211,16 @@ const ComponentsListing = ({ components }: { components: any }) => {
           <Accordion title={component?.field_title} items={accordionItems} />
         );
 
+      case 'paragraph--bullet_point_text':
+        const twoColumnsList: TwoColumnsListProps = {
+          title: component?.field_title,
+          list: component?.field_list_text,
+          text: component?.field_body_text?.value,
+          backgroundColor: component?.field_background_color?.color,
+          listStyle: component?.field_list,
+        };
+
+        return <TwoColumnsList {...twoColumnsList} />;
       case 'paragraph--stories_carousel':
         return (
           <StoriesCarousel
