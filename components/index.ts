@@ -7,6 +7,7 @@ import TestimonialsListing from './TestimonialsListing/TestimonialsListing';
 import Carousel from './Carousel/Carousel';
 import StoriesCarousel from './StoriesCarousel/StoriesCarousel';
 import ColoredCardWithImage from './ColoredCardWithImage/ColoredCardWithImage';
+import SupportCarousel from './SupportCarousel/SupportCarousel';
 
 export {
   ComponentsListing,
@@ -17,5 +18,6 @@ export {
   StoriesCarousel,
   ColoredCardWithImage,
   Accordion,
-  TestimonialsListing
+  TestimonialsListing,
+  SupportCarousel
 };

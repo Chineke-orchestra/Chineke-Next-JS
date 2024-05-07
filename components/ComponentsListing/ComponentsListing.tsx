@@ -4,6 +4,7 @@ import {
   StoriesCarousel,
   Accordion,
   TestimonialsListing,
+  SupportCarousel,
   TestimonialsCarousel,
 } from 'components';
 import {
@@ -262,6 +263,24 @@ const ComponentsListing = ({ components }: { components: any }) => {
             testimonials={testimonialsData}
           />
         );
+      case 'paragraph--support_carousel': {
+        const cards = component?.field_support_card?.map((item: any) => {
+          return {
+            title: item?.field_sup_text,
+            text: item?.field_sup_card_body_text,
+            link: formatLink(item?.field_url),
+          };
+        });
+        return (
+          <SupportCarousel
+            title={component?.field_sup_carousel_title}
+            tagline={component?.field_tagline_text}
+            body={component?.field_sup_body_text?.value}
+            cards={cards}
+            link={formatLink(component?.field_cta_button)}
+          />
+        );
+      }
 
       default:
         return <p>block {component?.type} was not implemented</p>;

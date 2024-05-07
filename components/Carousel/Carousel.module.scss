@@ -60,49 +60,9 @@
           flex-direction: column;
           height: 100%;
           justify-content: space-between;
+          gap: 60px;
           @include media-breakpoint-down(md) {
             flex-direction: row;
-          }
-        }
-      }
-
-      .swiper_controls {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        .swiper_button {
-          width: 54px;
-          height: 54px;
-          border: 1px solid $black;
-          border-radius: 50%;
-          position: relative;
-          background-color: $white;
-          @include animated();
-          cursor: pointer;
-          &::after {
-            width: 22px;
-            height: 22px;
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: url('../../assets/svg/arrow.svg');
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-position: center;
-          }
-          &:first-child {
-            transform: rotate(180deg);
-          }
-          &:global(.swiper-button-disabled) {
-            border-color: rgba($gray, 0.5);
-            &::after {
-              filter: grayscale(100%);
-            }
-          }
-          &:active {
-            scale: 0.85;
           }
         }
       }
@@ -113,11 +73,62 @@
         padding-right: 20px;
       }
     }
+    &.without_body_variation {
+      display: flex;
+      flex-direction: column;
+      .right_side {
+        width: 100% !important;
+      }
+      .left_side {
+        display: flex;
+        flex-direction: row;
+        padding-right: 60px;
+      }
+    }
   }
   :global(.btn) {
     width: max-content;
   }
-  :global(.swiper-slide) {
-    width: max-content !important;
+
+  .swiper_controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    .swiper_button {
+      width: 54px;
+      height: 54px;
+      border: 1px solid $black;
+      border-radius: 50%;
+      position: relative;
+      background-color: $white;
+      @include animated();
+      cursor: pointer;
+      &::after {
+        width: 22px;
+        height: 22px;
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: url('../../assets/svg/arrow.svg');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+      &:first-child {
+        transform: rotate(180deg);
+      }
+      &:global(.swiper-button-disabled) {
+        border-color: rgba($gray, 0.5);
+        &::after {
+          filter: grayscale(100%);
+        }
+      }
+      &:active {
+        scale: 0.85;
+      }
+    }
   }
+ 
 }

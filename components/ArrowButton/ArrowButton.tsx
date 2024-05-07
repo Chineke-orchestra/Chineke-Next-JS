@@ -1,15 +1,17 @@
 import { motion } from 'framer-motion';
 import styles from './ArrowButton.module.scss';
 import UseAnimation from 'utils/UseAnimation';
+import classNames from 'classnames';
 
 interface ArrowProps {
   isHovering?: boolean;
+  className?: string;
 }
 
-const ArrowButton = ({ isHovering }: ArrowProps) => {
+const ArrowButton = ({ isHovering, className }: ArrowProps) => {
   return (
     <motion.div
-      className={styles.arrow}
+      className={classNames(styles.arrow, className)}
       animate={isHovering ? 'animate' : 'initial'}
       variants={UseAnimation('right', {
         distance: 0,

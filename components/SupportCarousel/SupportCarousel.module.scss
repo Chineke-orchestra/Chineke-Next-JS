@@ -1,0 +1,61 @@
+@import '../../styles/utils.scss';
+
+.support_carousel {
+  padding: 80px 0 90px 0;
+  background-color: $yellow;
+  @include media-breakpoint-down(md) {
+    padding: 30px 0 16px 0;
+  }
+  .support_card {
+    width: 392px;
+    padding: 30px;
+    background-color: $white;
+    height: 100%;
+    position: relative;
+    @include media-breakpoint-down(md) {
+      padding: 20px;
+      width: 320px;
+    }
+    h4 {
+      line-height: normal;
+      margin-bottom: 10px;
+      position: relative;
+      max-width: max-content;
+      @include media-breakpoint-down(md) {
+        font-size: 18px;
+      }
+    }
+    p {
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      margin-bottom: 28px;
+      @include media-breakpoint-down(md) {
+        font-size: 14px;
+        margin-bottom: 28px;
+      }
+    }
+    .arrow {
+      position: absolute;
+      bottom: 30px;
+      left: 30px;
+      @include media-breakpoint-down(md) {
+        bottom: 20px;
+        left: 20px;
+      }
+    }
+  }
+  :global(.swiper-slide) {
+    height: auto !important;
+    width: max-content;
+  }
+  :global(.swiper-content) {
+    height: 100% !important;
+  }
+  :global(.swiper_controls_global) {
+    button {
+      background-color: transparent !important;
+    }
+  }
+}

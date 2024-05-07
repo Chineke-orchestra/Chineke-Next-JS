@@ -29,7 +29,6 @@ const ColoredCardWithImage = (props: {
           />
         </div>
         <div className={styles.text}>
-          {/* TODO -> CHECK THE LAYOUT WHEN THE BRANCH WITH TAGS IS MERGED */}
           {props.tag && <p className="tag light">{props.tag}</p>}
           <h5
             onMouseOver={() => setAnimate(true)}

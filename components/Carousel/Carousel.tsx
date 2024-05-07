@@ -10,14 +10,35 @@ import { Swiper } from 'swiper/react';
 import 'swiper/css';
 import { delay, motion, useInView } from 'framer-motion';
 import UseAnimation from 'utils/UseAnimation';
+import { useViewport } from 'utils/viewport';
+
+const SwiperCustomControls = ({
+  prevRef,
+  nextRef,
+}: {
+  prevRef: any;
+  nextRef: any;
+}) => {
+  return (
+    <div
+      className={classNames(styles.swiper_controls, 'swiper_controls_global')}
+    >
+      <button ref={prevRef} className={styles.swiper_button} />
+      <button ref={nextRef} className={styles.swiper_button} />
+    </div>
+  );
+};
 
 const Carousel = (props: {
   title: string;
   tagline?: string;
-  body: string;
-  link: I_Link;
+  body?: string;
+  link?: I_Link;
+  buttonClass?: string;
+  withoutBodyVariation?: boolean;
   children?: ReactNode;
 }) => {
+  const { isMobile } = useViewport();
   const [_, setInit] = useState(false);
   const [paddingLeft, setPaddingLeft] = useState(0);
 
@@ -57,7 +78,11 @@ const Carousel = (props: {
       style={{ paddingLeft }}
       ref={animationRef}
     >
-      <div className={styles.wrapper}>
+      <div
+        className={classNames(styles.wrapper, {
+          [styles.without_body_variation]: props.withoutBodyVariation,
+        })}
+      >
         <div className={styles.left_side}>
           <div className={styles.text_wrapper}>
             {props.tagline && (
@@ -88,19 +113,21 @@ const Carousel = (props: {
             >
               {props.title}
             </motion.h2>
-            <motion.div
-              animate={isInView && 'animate'}
-              initial={'initial'}
-              variants={UseAnimation('up', {
-                startScaleY: 0,
-                endScaleY: 1,
-                duration: 1,
-                fromOpacity: 1,
-                delay: 0.5,
-              })}
-            >
-              {parse(props.body)}
-            </motion.div>
+            {props.body && (
+              <motion.div
+                animate={isInView && 'animate'}
+                initial={'initial'}
+                variants={UseAnimation('up', {
+                  startScaleY: 0,
+                  endScaleY: 1,
+                  duration: 1,
+                  fromOpacity: 1,
+                  delay: 0.5,
+                })}
+              >
+                <>{parse(props.body)}</>
+              </motion.div>
+            )}
             <motion.div
               animate={isInView && 'animate'}
               initial={'initial'}
@@ -114,18 +141,39 @@ const Carousel = (props: {
               className={styles.buttons_container}
               style={{ transformOrigin: 'bottom' }}
             >
-              <LinkComponent
-                link={props.link}
-                className={classNames('btn large yellow', styles.button)}
-              >
-                {props.link.title}
-              </LinkComponent>
-              <div className={styles.swiper_controls}>
-                <button ref={prevRef} className={styles.swiper_button} />
-                <button ref={nextRef} className={styles.swiper_button} />
-              </div>
+              {props.link && (
+                <LinkComponent
+                  link={props.link}
+                  className={classNames(
+                    'btn large yellow',
+                    styles.button,
+                    props.buttonClass,
+                  )}
+                >
+                  {props.link.title}
+                </LinkComponent>
+              )}
+              {!props.withoutBodyVariation && (
+                <SwiperCustomControls prevRef={prevRef} nextRef={nextRef} />
+              )}
             </motion.div>
           </div>
+          {props.withoutBodyVariation && !isMobile && (
+            <motion.div
+              animate={isInView && 'animate'}
+              initial={'initial'}
+              variants={UseAnimation('up', {
+                startScaleY: 0,
+                endScaleY: 1,
+                duration: 1,
+                fromOpacity: 1,
+                delay: 0.5,
+              })}
+              style={{ transformOrigin: 'bottom' }}
+            >
+              <SwiperCustomControls prevRef={prevRef} nextRef={nextRef} />
+            </motion.div>
+          )}
         </div>
         <div
           className={styles.right_side}
@@ -136,7 +184,6 @@ const Carousel = (props: {
             grabCursor={false}
             centeredSlides={false}
             spaceBetween={20}
-            initialSlide={1}
             slidesPerView="auto"
             modules={[Navigation]}
             className={classNames(styles.swiper)}
@@ -154,6 +201,11 @@ const Carousel = (props: {
           >
             {props.children}
           </Swiper>
+        </div>
+        <div>
+          {props.withoutBodyVariation && isMobile && (
+            <SwiperCustomControls prevRef={prevRef} nextRef={nextRef} />
+          )}
         </div>
       </div>
     </section>
