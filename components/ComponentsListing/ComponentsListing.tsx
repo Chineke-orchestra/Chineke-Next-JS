@@ -3,6 +3,7 @@ import {
   ExploreSection,
   StoriesCarousel,
   Accordion,
+  StatsAndFigures,
   OurTeam,
   PartnersList,
   TestimonialsListing,
@@ -306,6 +307,24 @@ const ComponentsListing = ({ components }: { components: any }) => {
           };
         });
         return <OurTeam title={component?.field_title} cards={cards} />;
+      }
+
+      case 'paragraph--facts_figures': {
+        const stats = component?.field_stats.map((item: any) => {
+          return {
+            text: item?.field_stats_text,
+            title: item?.field_stats_title,
+          };
+        });
+        return (
+          <StatsAndFigures
+            title={component?.field_facts_title}
+            image={formatMedia(
+              component?.field_facts_image?.field_media_image_3,
+            )}
+            stats={stats}
+          />
+        );
       }
 
       default:

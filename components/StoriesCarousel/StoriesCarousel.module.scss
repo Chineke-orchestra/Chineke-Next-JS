@@ -6,6 +6,7 @@
     padding: 30px 0 16px 0;
   }
   :global(.swiper-slide) {
+    width: max-content;
     img {
       transition: scale 1s;
     }
