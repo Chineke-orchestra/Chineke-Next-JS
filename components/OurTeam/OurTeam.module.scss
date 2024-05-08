@@ -1,0 +1,113 @@
+@import '../../styles/utils.scss';
+
+.our_team {
+  padding: 40px 0 80px 0;
+  @include media-breakpoint-down(md) {
+    padding: 40px 0;
+  }
+  h2 {
+    margin-bottom: 40px;
+    @include media-breakpoint-down(md) {
+      margin-bottom: 20px;
+    }
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    gap: 32px;
+    margin-bottom: 40px;
+    @include media-breakpoint-down(lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include media-breakpoint-down(md) {
+      grid-template-columns: repeat(2, 1fr);
+      margin-bottom: 30px;
+    }
+    @include media-breakpoint-down(sm) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    .card {
+      width: 100%;
+      .tagline {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+      }
+      .title {
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 30px;
+      }
+
+      .image {
+        height: 293px;
+        position: relative;
+        overflow: hidden;
+        img {
+          object-fit: cover;
+          @include media-breakpoint-down(md) {
+            height: auto !important;
+          }
+        }
+      }
+      .text {
+        padding: 20px 20px 30px 20px;
+      }
+      &.background_red {
+        .tagline {
+          color: $navy;
+        }
+        .title {
+          color: $light-gray;
+        }
+      }
+      &.background_yellow {
+        .tagline {
+          color: $navy;
+        }
+        .title {
+          color: $dark-red;
+        }
+      }
+      &.background_navy {
+        .tagline {
+          color: $light-gray;
+        }
+        .title {
+          color: $yellow;
+        }
+      }
+      &.background_blue {
+        .tagline {
+          color: $light-gray;
+        }
+        .title {
+          color: $yellow;
+        }
+      }
+      &.background_gray,
+      &.background_dark_red {
+        .tagline {
+          color: $light-gray;
+        }
+        .title {
+          color: $yellow;
+        }
+      }
+      &.background_green {
+        .tagline {
+          color: $navy;
+        }
+        .title {
+          color: $white;
+        }
+      }
+    }
+  }
+  button {
+    margin: 0 auto;
+    display: block;
+  }
+}

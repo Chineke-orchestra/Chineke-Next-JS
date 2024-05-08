@@ -21,3 +21,13 @@ export interface I_Pattern {
   color?: string;
   opacity?: number;
 }
+
+export enum Colors {
+  '#ED5500' = '#ED5500',
+  '#FCDD00' = '#FCDD00',
+  '#1E1E4C' = '#1E1E4C',
+  '#0341F2' = '#0341F2',
+  '#FFFFFF' = '#FFFFFF',
+  '#00C900' = '#00C900',
+  '#181818' = '#181818',
+}
