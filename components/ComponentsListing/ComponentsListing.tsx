@@ -3,6 +3,7 @@ import {
   ExploreSection,
   StoriesCarousel,
   Accordion,
+  PartnersList,
   TestimonialsListing,
   SupportCarousel,
   TestimonialsCarousel,
@@ -246,6 +247,18 @@ const ComponentsListing = ({ components }: { components: any }) => {
             cards={formatCardWithImageData(component?.field_story_card)}
           />
         );
+      case 'paragraph--partners_list': {
+        const logos = component?.field_logo?.map((item: any) => {
+          return formatMedia(item?.field_media_image_4);
+        });
+        return (
+          <PartnersList
+            logos={logos}
+            title={component?.field_title}
+            tagline={component?.field_tagline}
+          />
+        );
+      }
 
       case 'paragraph--testimonial_list':
         const testimonialsData = component?.field_testimonial_card?.map(

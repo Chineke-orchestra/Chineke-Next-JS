@@ -7,6 +7,7 @@ import TestimonialsListing from './TestimonialsListing/TestimonialsListing';
 import Carousel from './Carousel/Carousel';
 import StoriesCarousel from './StoriesCarousel/StoriesCarousel';
 import ColoredCardWithImage from './ColoredCardWithImage/ColoredCardWithImage';
+import PartnersList from './PartnersList/PartnersList';
 import SupportCarousel from './SupportCarousel/SupportCarousel';
 
 export {
@@ -18,6 +19,7 @@ export {
   StoriesCarousel,
   ColoredCardWithImage,
   Accordion,
+  PartnersList,
   TestimonialsListing,
   SupportCarousel
 };

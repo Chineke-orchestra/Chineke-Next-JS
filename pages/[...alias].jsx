@@ -77,6 +77,7 @@ export async function getServerSideProps(context) {
       'field_reusable_components.field_cta_link_icon.field_media_image',
       'field_reusable_components.field_2_columns_text',
       'field_reusable_components.field_2_columns_text.field_cta_link_icon.field_media_image',
+      'field_reusable_components.field_logo.field_media_image_4',
       'field_reusable_components.field_testimonial_card',
       'field_reusable_components.field_support_card',
       'field_reusable_components.field_testimonial',
