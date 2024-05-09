@@ -2,6 +2,7 @@ import { getCurrentLocaleStore, globalDrupalStateStores } from '../lib/stores';
 import { getPreview } from '../lib/getPreview';
 import { translatePath } from '@pantheon-systems/drupal-kit';
 import { NextSeo } from 'next-seo';
+import { fetchLists } from 'utils/fetchLists.tsx';
 
 import Layout from '../components/layout';
 
@@ -84,6 +85,8 @@ export async function getServerSideProps(context) {
       'field_reusable_components.field_logo.field_media_image_4',
       'field_reusable_components.field_support_card',
       'field_reusable_components.field_testimonial',
+      'field_reusable_components.field_testimonial_card',
+      'field_reusable_components.field_event_card',
     ];
 
     params = `include=${params.join(',')}`;
@@ -118,7 +121,13 @@ export async function getServerSideProps(context) {
     // });
     return {
       props: {
-        pageData,
+        pageData: {
+          ...pageData,
+          field_reusable_components: await fetchLists(
+            pageData?.field_reusable_components,
+            store,
+          ),
+        },
         hrefLang,
         // footerMenu,
         preview: Boolean(context.preview),

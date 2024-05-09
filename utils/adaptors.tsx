@@ -1,4 +1,3 @@
-import { translatePath } from '@pantheon-systems/drupal-kit';
 import { I_Card, I_Link, I_Media } from 'types/index';
 
 export const formatMedia = (media: {

@@ -5,18 +5,25 @@ import Image from 'next/image';
 import { LinkComponent } from 'components';
 import UseAnimation from 'utils/UseAnimation';
 import { useState } from 'react';
+import classNames from 'classnames';
 
 const ColoredCardWithImage = (props: {
   tag?: string;
   link: I_Link;
   image: I_Media;
   backgroundColor: string;
+  fullWidthImage?: boolean;
+  date?: string;
+  index?: number;
 }) => {
   const [animate, setAnimate] = useState(false);
   return (
     <LinkComponent link={props.link}>
       <div
-        className={styles.card}
+        className={classNames(styles.card, {
+          [styles.full_width_image]: props.fullWidthImage,
+          [styles[`card_${props.index}`]]: props.index,
+        })}
         style={{ backgroundColor: props.backgroundColor }}
       >
         <div className={styles.image}>
@@ -50,6 +57,7 @@ const ColoredCardWithImage = (props: {
               }}
             />
           </h5>
+          {props.date && <p className={styles.date}>{props.date}</p>}
         </div>
       </div>
     </LinkComponent>

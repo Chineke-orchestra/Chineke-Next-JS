@@ -9,6 +9,7 @@ import {
   TestimonialsListing,
   SupportCarousel,
   TestimonialsCarousel,
+  EventsCarousel,
 } from 'components';
 import {
   formatCardData,
@@ -278,6 +279,18 @@ const ComponentsListing = ({ components }: { components: any }) => {
             testimonials={testimonialsData}
           />
         );
+      case 'paragraph--event_carousel': {
+        return (
+          <EventsCarousel
+            title={component?.field_event_carousel_title}
+            body={component?.field_body?.value}
+            tagline={component?.field_tagline}
+            link={formatLink(component?.field_cta)}
+            cards={component?.events}
+          />
+        );
+      }
+
       case 'paragraph--support_carousel': {
         const cards = component?.field_support_card?.map((item: any) => {
           return {

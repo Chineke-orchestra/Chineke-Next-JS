@@ -6,6 +6,7 @@ import TestimonialsListing from './TestimonialsListing/TestimonialsListing';
 import Carousel from './Carousel/Carousel';
 import StoriesCarousel from './StoriesCarousel/StoriesCarousel';
 import ColoredCardWithImage from './ColoredCardWithImage/ColoredCardWithImage';
+import EventsCarousel from './EventsCarousel/EventsCarousel';
 import Accordion from './Accordion/Accordion';
 import StatsAndFigures from './StatsAndFigures/StatsAndFigures';
 import OurTeam from './OurTeam/OurTeam';
@@ -25,5 +26,6 @@ export {
   OurTeam,
   PartnersList,
   TestimonialsListing,
+  EventsCarousel,
   SupportCarousel
 };
