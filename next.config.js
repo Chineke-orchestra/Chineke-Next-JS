@@ -8,6 +8,7 @@ require('dotenv').config({
 });
 
 if (
+  process.env.AH_SITE_ENVIRONMENT == undefined &&
   process.env.BACKEND_URL === undefined &&
   process.env.PANTHEON_CMS_ENDPOINT === undefined
 ) {
@@ -29,6 +30,12 @@ if (
 }
 
 let backendUrl, imageDomain;
+
+// Set config for internal dev environments
+if (process.env.AH_SITE_ENVIRONMENT !== undefined) {
+	process.env.BACKEND_URL = `https://chinekebe.${process.env.AH_SITE_ENVIRONMENT}.shareda.hogarthww.digital`;
+}
+
 if (process.env.BACKEND_URL === undefined) {
   backendUrl = `https://${process.env.PANTHEON_CMS_ENDPOINT}`;
   imageDomain = process.env.IMAGE_DOMAIN || process.env.PANTHEON_CMS_ENDPOINT;
@@ -61,6 +68,7 @@ module.exports = async () => {
 		...(injectedOptions && injectedOptions),
 		env: {
 			BACKEND_URL: process.env.BACKEND_URL,
+			PORT: process.env.AH_SITE_ENVIRONMENT ? 3058 : undefined,
 			backendUrl: backendUrl,
 			// set imageUrl if IMAGE_DOMAIN is set in env vars to override default
 			imageUrl: `https://${imageDomain}`,

@@ -1,0 +1,22 @@
+client: chineke
+application: chinekefe
+repository: 'Hogarth-Worldwide/di-chineke-main-frontend.git'
+notify: devopssec
+framework: react
+versions:
+  nodejs: 18
+react:
+  endpoint: .next/standalone/server.js
+  port: 3058
+build:
+  theme:
+    nodejs: 'nodejs-18'
+    install: '$(which npm) install --legacy-peer-deps'
+    build: '$(which npm) run build && export PORT=3058'
+    artifacts:
+      - '*.txt'
+  application:
+    dependencies:
+      - 'node_modules'
+      - 'package.json'
+      - 'package-lock.json'
