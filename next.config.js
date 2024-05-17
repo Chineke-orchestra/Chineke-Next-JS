@@ -34,6 +34,7 @@ let backendUrl, imageDomain;
 // Set config for internal dev environments
 if (process.env.AH_SITE_ENVIRONMENT !== undefined) {
 	process.env.BACKEND_URL = `https://chinekebe.${process.env.AH_SITE_ENVIRONMENT}.shareda.hogarthww.digital`;
+	console.log("An internal environment backend URL has been set: " + process.env.BACKEND_URL);
 }
 
 if (process.env.BACKEND_URL === undefined) {
@@ -50,6 +51,8 @@ if (process.env.BACKEND_URL === undefined) {
 }
 // remove trailing slash if it exists
 imageDomain = imageDomain.replace(/\/$/, '');
+
+console.log("The backend URL is " + backendUrl);
 
 // expose FRONTEND_URL to properly set hrefLang
 // and remove trailing slash
