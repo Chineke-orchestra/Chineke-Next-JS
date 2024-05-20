@@ -12,7 +12,7 @@ build:
   theme:
     nodejs: 'nodejs-18'
     install: '$(which npm) install --legacy-peer-deps'
-    build: '$(which npm) run build && export PORT=3058'
+    build: '$(which npm) run build-internal && export PORT=3058'
     artifacts:
       - '*.txt'
   application:
