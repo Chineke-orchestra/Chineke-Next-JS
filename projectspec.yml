@@ -17,18 +17,19 @@ build:
       - '*.txt'
   application:
     dependencies:
+      - 'node_modules'
       - 'package.json'
       - 'package-lock.json'
-      - .next
-      - next.config.js
-      - .env
-      - public
-      - assets
-      - components
-      - lib
-      - pages
-      - public
-      - scripts
-      - styles
-      - types
-      - utils
+      - '.next'
+      - 'next.config.js'
+      - '.env'
+      - 'public'
+      - 'assets'
+      - 'components'
+      - 'lib'
+      - 'pages'
+      - 'public'
+      - 'scripts'
+      - 'styles'
+      - 'types'
+      - 'utils'
