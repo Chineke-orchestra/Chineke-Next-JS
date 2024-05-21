@@ -111,7 +111,10 @@ const Header = ({ headerMenu }: HeadersComponentProps) => {
 
   return (
     <motion.nav
-      className={classNames(styles.navbar, isSmallScreen && styles.smallScreen)}
+      className={classNames(
+        styles.navbar,
+        isSmallScreen && dropdownVisible && styles.smallScreen,
+      )}
       ref={navbarRef}
       initial="initial"
       animate="animate"
