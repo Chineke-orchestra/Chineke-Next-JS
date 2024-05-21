@@ -55,6 +55,7 @@
       padding: 20px 21px 28px 20px;
       h5 {
         margin: 5px 0;
+        max-width: max-content;
       }
       :global(.tag) {
         border: none;
@@ -71,10 +72,8 @@
         font-weight: 600;
       }
     }
-    &.card_0,
-    &.card_1,
-    &.card_4,
-    &.card_5 {
+    &.background_red,
+    &.background_yellow {
       .text {
         :global(.tag),
         .date {
@@ -82,10 +81,8 @@
         }
       }
     }
-    &.card_2,
-    &.card_3,
-    &.card_6,
-    &.card_7 {
+    &.background_navy,
+    &.background_blue {
       .text {
         :global(.tag),
         .date {
@@ -93,26 +90,22 @@
         }
       }
     }
-    &.card_0,
-    &.card_4 {
+    &.background_red {
       .text {
         h5 {
           color: $light-gray !important;
         }
       }
     }
-    &.card_1,
-    &.card_5 {
+    &.background_yellow {
       .text {
         h5 {
           color: $dark_red !important;
         }
       }
     }
-    &.card_2,
-    &.card_3,
-    &.card_6,
-    &.card_7 {
+    &.background_navy,
+    &.background_blue {
       .text {
         h5 {
           color: $yellow !important;

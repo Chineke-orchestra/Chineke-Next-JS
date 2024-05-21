@@ -1,4 +1,4 @@
-import { I_Card, I_Link, I_Media } from 'types/index';
+import { Colors, I_Card, I_Link, I_Media } from 'types/index';
 
 export const formatMedia = (media: {
   uri: { url: string };
@@ -82,14 +82,14 @@ export const formatCardWithImageData = (
     field_story_image: any;
   }[],
 ): {
-  backgroundColor: string;
+  backgroundColor: Colors;
   link: I_Link;
   tag: string;
   image: I_Media;
 }[] => {
   return data?.map((item) => {
     return {
-      backgroundColor: item?.field_card_background_color?.color,
+      backgroundColor: item?.field_card_background_color?.color as Colors,
       image: formatMedia(item?.field_story_image?.field_media_image),
       link: {
         url: item?.field_stories?.path?.alias,
@@ -98,6 +98,51 @@ export const formatCardWithImageData = (
           item?.field_target_option === 'new_browser' ? '_blank' : '_self',
       },
       tag: item?.field_stories?.field_tags?.[0]?.name,
+    };
+  });
+};
+
+export const getMediaFromIncluded = (included: any, mediaId: string) => {
+  const media = included?.find((item: any) => item?.id === mediaId);
+  const file = included?.find(
+    (item: any) =>
+      item.id === media?.relationships?.field_media_image?.data?.id,
+  );
+
+  return { media, file };
+};
+
+export const formatViewEndpointPath = (viewId: string, displayId: string) => {
+  return `${process.env.BACKEND_URL}/jsonapi/views/${viewId}/${displayId}?include=field_feature_image.field_media_image`;
+};
+
+export const formatEventsCardsData = (
+  data: any,
+): {
+  tag?: string;
+  link: I_Link;
+  image: I_Media;
+  backgroundColor: Colors;
+  fullWidthImage?: boolean;
+  date?: string;
+} => {
+  const colors = ['#ED5500', '#FCDD00', '#1E1E4C', '#0341F2'];
+  return data?.data?.map((item: any, index: number) => {
+    const mediaId = item?.relationships?.field_feature_image?.data?.id;
+    const { media, file } = getMediaFromIncluded(data?.included, mediaId);
+
+    return {
+      tag: item?.attributes?.field_location,
+      link: {
+        url: item?.attributes?.path?.alias || '',
+        title: item?.attributes?.title,
+      },
+      backgroundColor: colors[index % 4],
+      image: {
+        url: `${process.env.BACKEND_URL}${file?.attributes?.uri?.url}`,
+        alt: media?.relationships?.field_media_image?.data?.meta?.alt,
+      },
+      date: item?.attributes?.field_date?.value,
     };
   });
 };

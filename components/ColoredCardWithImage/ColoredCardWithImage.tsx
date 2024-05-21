@@ -1,17 +1,18 @@
 import { motion } from 'framer-motion';
 import styles from './ColoredCardWithImage.module.scss';
-import { I_Link, I_Media } from 'types/index';
+import { Colors, I_Link, I_Media } from 'types/index';
 import Image from 'next/image';
 import { LinkComponent } from 'components';
 import UseAnimation from 'utils/UseAnimation';
 import { useState } from 'react';
 import classNames from 'classnames';
+import { backgroundClasses } from 'utils/constants';
 
 const ColoredCardWithImage = (props: {
   tag?: string;
   link: I_Link;
   image: I_Media;
-  backgroundColor: string;
+  backgroundColor: Colors;
   fullWidthImage?: boolean;
   date?: string;
   index?: number;
@@ -20,20 +21,18 @@ const ColoredCardWithImage = (props: {
   return (
     <LinkComponent link={props.link}>
       <div
-        className={classNames(styles.card, {
-          [styles.full_width_image]: props.fullWidthImage,
-          [styles[`card_${props.index}`]]: props.index,
-        })}
+        className={classNames(
+          'colored_card',
+          styles.card,
+          styles[backgroundClasses[props.backgroundColor]],
+          {
+            [styles.full_width_image]: props.fullWidthImage,
+          },
+        )}
         style={{ backgroundColor: props.backgroundColor }}
       >
         <div className={styles.image}>
-          <Image
-            src={props.image.url}
-            alt={props.image.alt}
-            fill
-            objectFit="contain"
-            objectPosition="center"
-          />
+          <Image src={props.image.url} alt={props.image.alt} fill />
         </div>
         <div className={styles.text}>
           {props.tag && <p className="tag light">{props.tag}</p>}

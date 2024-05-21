@@ -12,6 +12,7 @@ import StatsAndFigures from './StatsAndFigures/StatsAndFigures';
 import OurTeam from './OurTeam/OurTeam';
 import PartnersList from './PartnersList/PartnersList';
 import SupportCarousel from './SupportCarousel/SupportCarousel';
+import EventsList from './EventsList/EventsList';
 
 export {
   ComponentsListing,
@@ -27,5 +28,6 @@ export {
   PartnersList,
   TestimonialsListing,
   EventsCarousel,
-  SupportCarousel
+  SupportCarousel,
+  EventsList
 };

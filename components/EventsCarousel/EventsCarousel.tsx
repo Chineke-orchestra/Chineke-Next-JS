@@ -1,10 +1,11 @@
 import styles from './EventsCarousel.module.scss';
-import { I_Link, I_Media } from 'types/index';
+import { Colors, I_Link, I_Media } from 'types/index';
 import { Carousel, ColoredCardWithImage } from 'components';
 import { SwiperSlide } from 'swiper/react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import UseAnimation from 'utils/UseAnimation';
+import moment from 'moment';
 
 const EventsCarousel = (props: {
   title: string;
@@ -12,7 +13,7 @@ const EventsCarousel = (props: {
   body: string;
   link: I_Link;
   cards: {
-    backgroundColor: string;
+    backgroundColor: Colors;
     link: I_Link;
     image: I_Media;
     tag: string;
@@ -43,7 +44,12 @@ const EventsCarousel = (props: {
                   delay: 1 + index * 0.3,
                 })}
               >
-                <ColoredCardWithImage {...item} index={index} fullWidthImage />
+                <ColoredCardWithImage
+                  {...item}
+                  index={index}
+                  fullWidthImage
+                  date={moment(item?.date).format('D MMM YYYY - hA')}
+                />
               </motion.div>
             </SwiperSlide>
           );

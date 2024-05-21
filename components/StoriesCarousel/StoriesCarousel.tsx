@@ -1,5 +1,5 @@
 import styles from './StoriesCarousel.module.scss';
-import { I_Link, I_Media } from 'types/index';
+import { Colors, I_Link, I_Media } from 'types/index';
 import { Carousel, ColoredCardWithImage } from '..';
 import { SwiperSlide } from 'swiper/react';
 import { motion, useInView } from 'framer-motion';
@@ -12,7 +12,7 @@ const StoriesCarousel = (props: {
   body: string;
   link: I_Link;
   cards: {
-    backgroundColor: string;
+    backgroundColor: Colors;
     link: I_Link;
     image: I_Media;
     tag: string;

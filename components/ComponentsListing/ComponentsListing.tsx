@@ -10,6 +10,7 @@ import {
   SupportCarousel,
   TestimonialsCarousel,
   EventsCarousel,
+  EventsList,
 } from 'components';
 import {
   formatCardData,
@@ -338,6 +339,10 @@ const ComponentsListing = ({ components }: { components: any }) => {
             stats={stats}
           />
         );
+      }
+
+      case 'paragraph--event_list': {
+        return <EventsList cards={component?.events} />;
       }
 
       default:

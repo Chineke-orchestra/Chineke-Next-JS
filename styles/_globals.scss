@@ -69,3 +69,76 @@ button {
   left: 0;
   background-color: $black;
 }
+
+.custom_select {
+  width: max-content;
+
+  .custom_select__indicator-separator {
+    display: none;
+  }
+  .custom_select__control {
+    border-radius: 100px;
+    border: 2px solid $gray;
+    padding: 18px 24px;
+    background-color: $white;
+    transition: all 0.2s;
+    cursor: pointer;
+    &--menu-is-open {
+      border-radius: 50px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-bottom-color: $white!important;
+    }
+    &--is-focused,
+    &:hover {
+      border-color: $gray;
+      box-shadow: none;
+    }
+  }
+  .custom_select__placeholder,
+  .custom_select__single-value {
+    font-family: $primary-font;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    color: $gray;
+    @include media-breakpoint-down(md) {
+      font-size: 14px;
+    }
+  }
+  .custom_select__menu {
+    margin-top: 0;
+    border: 2px solid $gray;
+    border-radius: 0;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    padding: 0 0 24px;
+    background-color: $white;
+    border-top: none;
+    box-shadow: none;
+    overflow: hidden;
+  }
+  .custom_select__option {
+    font-family: $primary-font;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    color: $gray;
+    padding: 10px 24px;
+    cursor: pointer;
+    &--is-selected,
+    &:hover,
+    &--is-focused {
+      background-color: $red;
+      color: $white;
+    }
+    @include media-breakpoint-down(md) {
+      font-size: 14px;
+    }
+  }
+  .custom_select__value-container{
+    padding: 0;
+  }
+}
