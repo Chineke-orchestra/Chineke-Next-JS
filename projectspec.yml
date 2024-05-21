@@ -12,7 +12,7 @@ build:
   theme:
     nodejs: 'nodejs-18'
     install: '$(which npm) install --legacy-peer-deps'
-    build: '$(which npm) run build-internal && export PORT=3058'
+    build: 'pwd'
     artifacts:
       - '*.txt'
   application:
@@ -20,5 +20,15 @@ build:
       - 'package.json'
       - 'package-lock.json'
       - .next
-      - public
       - next.config.js
+      - .env
+      - public
+      - assets
+      - components
+      - lib
+      - pages
+      - public
+      - scripts
+      - styles
+      - types
+      - utils
