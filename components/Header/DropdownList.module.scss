@@ -1,0 +1,208 @@
+@import '../../styles/utils.scss';
+
+.linksContainer {
+  display: flex;
+  height: auto;
+  overflow-y: auto;
+
+  .dropdownColumn {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 0 34px;
+    border-right: 1px solid rgba(30, 30, 30, 0.1);
+    border-left: 1px solid rgba(30, 30, 30, 0.1);
+
+    &.smallScreen {
+      gap: 0px;
+      border-bottom: none;
+
+      .dropdownItem {
+        padding: 20px 0;
+        border-bottom: 1px solid rgba(30, 30, 30, 0.1);
+
+        .parentLink {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 20px;
+
+          .linkArrow {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &.bottomLine {
+      border-bottom: 1px solid rgba(30, 30, 30, 0.1);
+    }
+
+    .parentLink {
+      cursor: pointer;
+      @include animated();
+      &.backButton {
+        display: flex;
+        align-items: center;
+        font-size: 24px;
+        color: $navy;
+        margin-bottom: 4px;
+
+        &::before {
+          display: block;
+          content: '';
+          width: 24px;
+          height: 24px;
+          background-image: url('../../assets/svg/arrow_down_black.svg');
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: contain;
+          transform: rotate(90deg);
+          margin-right: 18px;
+          @include animated();
+        }
+
+        &:hover {
+          color: $red;
+
+          &::before {
+            background-image: url('../../assets/svg/arrow_down_red.svg');
+          }
+        }
+      }
+    }
+
+    .dropdownItem {
+      color: $navy;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      a,
+      h5 {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: normal;
+        color: $navy;
+        cursor: pointer;
+
+        &:hover {
+          color: $red;
+        }
+      }
+
+      p {
+        font-size: 14px;
+        line-height: normal;
+      }
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        color: $navy;
+
+        li {
+          display: flex;
+          gap: 20px;
+          align-items: center;
+
+          a {
+            font-size: 16px;
+          }
+
+          &:before {
+            display: block;
+            content: '';
+            width: 20px;
+            height: 1px;
+            background-color: $black;
+          }
+        }
+      }
+
+      .imageContainer {
+        width: 100%;
+        height: 200px;
+        position: relative;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          position: relative;
+        }
+      }
+    }
+
+    &.isFeatured {
+      border-right: none;
+    }
+
+    &:first-child {
+      padding-left: 0px;
+      border-left: none;
+      border-right: none;
+    }
+
+    &:last-child {
+      padding-right: 0px;
+      border-right: none;
+      border-left: none;
+    }
+
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #dad7d4;
+      border-radius: 10px;
+    }
+  }
+
+  &.smallScreen {
+    flex-direction: column;
+
+    .dropdownColumn {
+      padding: 20px 0px 14px 0px;
+      border-right: none;
+      border-left: none;
+
+      .dropdownItem {
+        h5,
+        a {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          cursor: pointer;
+
+          .linkArrow {
+            display: block;
+            content: '';
+            width: 14px;
+            height: 14px;
+            background-image: url('../../assets/svg/arrow_down_black.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            transform: rotate(-90deg);
+            margin-right: 18px;
+            @include animated();
+          }
+
+          &:hover {
+            .linkArrow {
+              background-image: url('../../assets/svg/arrow_down_red.svg');
+            }
+          }
+        }
+      }
+    }
+  }
+}

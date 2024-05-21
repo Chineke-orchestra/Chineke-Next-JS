@@ -6,7 +6,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useInView } from 'framer-motion';
 import UseAnimation from 'utils/UseAnimation';
-import parse from 'html-react-parser';
 import TabCard from 'components/TabCard/TabCard';
 
 export interface I_Card {

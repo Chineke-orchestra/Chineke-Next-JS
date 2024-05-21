@@ -9,10 +9,13 @@ const UseAnimation = (direction = 'up', options = {}) => {
     mass = 1,
     fromOpacity = 1,
     toOpacity = 1,
+    exitOpacity = 1, 
     startX = 0,
     startY = 0,
     endX = 0,
     endY = 0,
+    exitX = startX, 
+    exitY = startY, 
     startScaleX = 1,
     endScaleX = 1,
     startScaleY = 1,
@@ -57,24 +60,32 @@ const UseAnimation = (direction = 'up', options = {}) => {
           delay,
         };
 
-  return {
-    initial: {
-      x: initialX,
-      y: initialY,
-      opacity: fromOpacity,
-      scaleX: startScaleX,
-      scaleY: startScaleY,
-      transition,
-    },
-    animate: {
-      x: finalX,
-      y: finalY,
-      opacity: toOpacity,
-      scaleX: endScaleX,
-      scaleY: endScaleY,
-      transition,
-    },
-  };
-};
+        return {
+          initial: {
+            x: initialX,
+            y: initialY,
+            opacity: fromOpacity,
+            scaleX: startScaleX,
+            scaleY: startScaleY,
+            transition,
+          },
+          animate: {
+            x: finalX,
+            y: finalY,
+            opacity: toOpacity,
+            scaleX: endScaleX,
+            scaleY: endScaleY,
+            transition,
+          },
+          exit: {
+            x: exitX,
+            y: exitY,
+            opacity: exitOpacity,  
+            scaleX: startScaleX,
+            scaleY: startScaleY,
+            transition,
+          }
+        };
+      };
 
 export default UseAnimation;

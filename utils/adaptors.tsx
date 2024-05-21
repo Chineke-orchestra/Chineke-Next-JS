@@ -37,7 +37,7 @@ export const formatLink = (link: {
     rel = 'nofollow noopenner';
   }
   return {
-    url: link?.uri.replace('internal:', ''),
+    url: link?.uri?.replace('internal:', ''),
     title: link?.title,
     target,
     rel,
