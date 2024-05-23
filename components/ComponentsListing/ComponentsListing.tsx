@@ -12,6 +12,14 @@ import {
   EventsCarousel,
   VideoCarousel,
   EventsList,
+  Pattern,
+  TwoColumnText,
+  Hero,
+  ThreeColumnLayout,
+  StaticTwoColumns,
+  Feature,
+  TwoColumnsList,
+  RteSingleColumn,
 } from 'components';
 import {
   formatCardData,
@@ -20,24 +28,14 @@ import {
   formatMedia,
   formatTagsData,
 } from 'utils/adaptors';
-import Pattern, { PatternProps } from 'components/Pattern/Pattern';
-import TwoColumnText, {
-  TwoColumnTextProps,
-} from 'components/TwoColumnText/TwoColumnText';
-import Hero, { HeroProps } from 'components/Hero/Hero';
-import ThreeColumnLayout, {
-  ThreeColumnLayoutProps,
-} from 'components/ThreeColumnLayout/ThreeColumnLayout';
-import RteSingleColumn from 'components/RteSingleColumn/RteSingleColumn';
-
-import StaticTwoColumns, {
-  StaticTwoColumnsProps,
-} from 'components/StaticTwoColumns/StaticTwoColumns';
-import Feature, { FeatureProps } from 'components/Feature/Feature';
+import { PatternProps } from 'components/Pattern/Pattern';
+import { TwoColumnTextProps } from 'components/TwoColumnText/TwoColumnText';
+import { HeroProps } from 'components/Hero/Hero';
+import { ThreeColumnLayoutProps } from 'components/ThreeColumnLayout/ThreeColumnLayout';
+import { StaticTwoColumnsProps } from 'components/StaticTwoColumns/StaticTwoColumns';
+import { FeatureProps } from 'components/Feature/Feature';
 import { I_Testimonial } from 'components/TestimonialsCarousel/TestimonialsCarousel';
-import TwoColumnsList, {
-  TwoColumnsListProps,
-} from 'components/TwoColumnsList/TwoColumnsList';
+import { TwoColumnsListProps } from 'components/TwoColumnsList/TwoColumnsList';
 import PartnersBanner, {
   PartnersBannerProps,
 } from 'components/PartenersBanner/PartnersBanner';

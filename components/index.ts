@@ -15,6 +15,14 @@ import SupportCarousel from './SupportCarousel/SupportCarousel';
 import VideoCarousel from './VideoCarousel/VideoCarousel';
 import Modal from './Modal/Modal';
 import EventsList from './EventsList/EventsList';
+import Pattern from './Pattern/Pattern';
+import TwoColumnText from './TwoColumnText/TwoColumnText';
+import Hero from './Hero/Hero';
+import ThreeColumnLayout from './ThreeColumnLayout/ThreeColumnLayout';
+import RteSingleColumn from './RteSingleColumn/RteSingleColumn';
+import StaticTwoColumns from './StaticTwoColumns/StaticTwoColumns';
+import Feature from './Feature/Feature';
+import TwoColumnsList from './TwoColumnsList/TwoColumnsList';
 
 export {
   ComponentsListing,
@@ -31,6 +39,14 @@ export {
   TestimonialsListing,
   EventsCarousel,
   SupportCarousel,
+  Pattern,
+  TwoColumnText,
+  Hero,
+  ThreeColumnLayout,
+  RteSingleColumn,
+  StaticTwoColumns,
+  Feature,
+  TwoColumnsList,
   VideoCarousel,
   Modal,
   EventsList,
