@@ -6,6 +6,7 @@ import Layout from '../components/layout';
 import { ComponentsListing } from '../components';
 import parse from 'html-react-parser';
 import { fetchFooterData, fetchHeaderData } from '../utils/dataFetcher';
+import { fetchLists } from 'utils/fetchLists.tsx';
 
 export default function CatchAllRoute({
   pageData,
@@ -68,6 +69,8 @@ export async function getServerSideProps(context) {
       'field_reusable_components.field_image.field_media_image_2',
       'field_reusable_components.field_pattern_image.field_media_image_1',
       'field_reusable_components.field_3col_image.field_media_image',
+      'field_reusable_components.field_cards',
+      'field_reusable_components.field_background_image.field_media_image',
       'field_reusable_components.field_gallery_images.field_media_image',
     ];
 
@@ -103,7 +106,13 @@ export async function getServerSideProps(context) {
 
     return {
       props: {
-        pageData,
+        pageData: {
+          ...pageData,
+          field_reusable_components: await fetchLists(
+            pageData?.field_reusable_components,
+            store,
+          ),
+        },
         hrefLang,
         footerMenu,
         headerMenu,

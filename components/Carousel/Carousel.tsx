@@ -202,11 +202,12 @@ const Carousel = (props: {
             {props.children}
           </Swiper>
         </div>
-        <div>
-          {props.withoutBodyVariation && isMobile && (
-            <SwiperCustomControls prevRef={prevRef} nextRef={nextRef} />
-          )}
-        </div>
+
+        {props.withoutBodyVariation && isMobile && (
+          <div>
+            <SwiperCustomControls prevRef={prevRef} nextRef={nextRef} />{' '}
+          </div>
+        )}
       </div>
     </section>
   );

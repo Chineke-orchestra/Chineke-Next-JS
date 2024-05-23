@@ -84,7 +84,7 @@ export const ExploreSection = (props: {
                       <h4>{item.title}</h4>
                     </LinkComponent>
 
-                    <>{parse(item.body)}</>
+                    <>{item.body && parse(item.body)}</>
                     <LinkComponent link={item.link} className={styles.button}>
                       <ArrowButton />
                     </LinkComponent>
