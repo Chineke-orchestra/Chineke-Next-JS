@@ -1,0 +1,55 @@
+import React, { FC, ReactNode, useEffect } from 'react';
+import styles from './Modal.module.scss';
+import classNames from 'classnames';
+
+interface ModalProps {
+  children: ReactNode;
+  onClose: Function;
+  modalRef: React.RefObject<HTMLDivElement>;
+}
+
+const Modal: FC<ModalProps> = ({ children, onClose, modalRef }) => {
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node)
+      ) {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [modalRef, onClose]);
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
+
+  return (
+    <div className={styles.modal}>
+      <div className={styles.modal_content}>
+        <div className={classNames('container')}>
+          <div>{children}</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Modal;

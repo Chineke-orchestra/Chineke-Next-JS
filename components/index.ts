@@ -12,6 +12,8 @@ import StatsAndFigures from './StatsAndFigures/StatsAndFigures';
 import OurTeam from './OurTeam/OurTeam';
 import PartnersList from './PartnersList/PartnersList';
 import SupportCarousel from './SupportCarousel/SupportCarousel';
+import VideoCarousel from './VideoCarousel/VideoCarousel';
+import Modal from './Modal/Modal';
 import EventsList from './EventsList/EventsList';
 
 export {
@@ -29,5 +31,7 @@ export {
   TestimonialsListing,
   EventsCarousel,
   SupportCarousel,
-  EventsList
+  VideoCarousel,
+  Modal,
+  EventsList,
 };

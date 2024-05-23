@@ -10,6 +10,7 @@ import {
   SupportCarousel,
   TestimonialsCarousel,
   EventsCarousel,
+  VideoCarousel,
   EventsList,
 } from 'components';
 import {
@@ -341,6 +342,22 @@ const ComponentsListing = ({ components }: { components: any }) => {
               component?.field_facts_image?.field_media_image_3,
             )}
             stats={stats}
+          />
+        );
+      }
+      case 'paragraph--video_carousel': {
+        const videos = component?.field_media_card?.map((item: any) => {
+          return {
+            image: formatMedia(item?.field_feature_img?.field_media_image),
+            videoLink: item?.field_vimeo_link?.uri,
+            title: item?.title,
+          };
+        });
+        return (
+          <VideoCarousel
+            title={component?.field_title}
+            link={formatLink(component?.field_cta_button)}
+            videos={videos}
           />
         );
       }
