@@ -25,8 +25,6 @@ const DropdownList = ({ items, isSmallScreen }: DropdownListProps) => {
   const listItem = (item: HeaderProps, itemIndex: number) => {
     const imageSrc = item.imagePageUrl || item.imageUrl || missingImage.src;
 
-    console.log(item);
-
     if (isSmallScreen) {
       return (
         <li key={itemIndex} className={styles.dropdownItem}>

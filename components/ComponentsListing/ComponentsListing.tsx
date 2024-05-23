@@ -38,6 +38,9 @@ import { I_Testimonial } from 'components/TestimonialsCarousel/TestimonialsCarou
 import TwoColumnsList, {
   TwoColumnsListProps,
 } from 'components/TwoColumnsList/TwoColumnsList';
+import PartnersBanner, {
+  PartnersBannerProps,
+} from 'components/PartenersBanner/PartnersBanner';
 import ImagesGallery from 'components/ImagesGallery/ImagesGallery';
 
 const ComponentsListing = ({ components }: { components: any }) => {
@@ -365,6 +368,17 @@ const ComponentsListing = ({ components }: { components: any }) => {
       case 'paragraph--event_list': {
         return <EventsList cards={component?.events} />;
       }
+
+      case 'paragraph--partners_banner':
+        const partnersHeroProps: PartnersBannerProps = {
+          title: component?.field_title,
+          backgroundColor: component?.field_partners_background_colour?.color,
+          logos: component?.field_partners_banner_logo.map((item: any) => {
+            return formatMedia(item?.field_media_image_4);
+          }),
+        };
+
+        return <PartnersBanner {...partnersHeroProps} />;
 
       default:
         return <p>block {component?.type} was not implemented</p>;
