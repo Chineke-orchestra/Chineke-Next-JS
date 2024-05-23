@@ -54,6 +54,13 @@
       color: $gray;
     }
   }
+
+  &:disabled {
+    background-color: $light-gray;
+    color: $white;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
 }
 
 .btnCircle {

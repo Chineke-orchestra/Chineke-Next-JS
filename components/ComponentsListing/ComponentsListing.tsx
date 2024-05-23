@@ -37,8 +37,10 @@ import { I_Testimonial } from 'components/TestimonialsCarousel/TestimonialsCarou
 import TwoColumnsList, {
   TwoColumnsListProps,
 } from 'components/TwoColumnsList/TwoColumnsList';
+import ImagesGallery from 'components/ImagesGallery/ImagesGallery';
 
 const ComponentsListing = ({ components }: { components: any }) => {
+  console.log(components);
   const PrintComponent = ({ component }: any) => {
     switch (component?.type) {
       case 'paragraph--hero_banner':
@@ -241,6 +243,7 @@ const ComponentsListing = ({ components }: { components: any }) => {
         };
 
         return <TwoColumnsList {...twoColumnsList} />;
+
       case 'paragraph--stories_carousel':
         return (
           <StoriesCarousel
@@ -251,6 +254,7 @@ const ComponentsListing = ({ components }: { components: any }) => {
             cards={formatCardWithImageData(component?.field_story_card)}
           />
         );
+
       case 'paragraph--partners_list': {
         const logos = component?.field_logo?.map((item: any) => {
           return formatMedia(item?.field_media_image_4);
@@ -347,6 +351,15 @@ const ComponentsListing = ({ components }: { components: any }) => {
 
       default:
         return <p>block {component?.type} was not implemented</p>;
+
+      case 'paragraph--images_gallery': {
+        const galleryImages = component?.field_gallery_images?.map(
+          (item: any) => {
+            return formatMedia(item?.field_media_image);
+          },
+        );
+        return <ImagesGallery images={galleryImages} />;
+      }
     }
   };
 
