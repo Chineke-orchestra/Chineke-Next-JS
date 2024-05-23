@@ -22,7 +22,7 @@ const StatsAndFigures: FC<StatsAndFiguresProps> = ({ title, image, stats }) => {
             <Image src={image.url} alt={image.alt} fill />
           </div>
           <div className={styles.stats_wrapper}>
-            <h2>{title}</h2>
+            <h3>{title}</h3>
             <div className={styles.stats}>
               {stats?.map((item, index) => {
                 return (
