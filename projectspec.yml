@@ -12,24 +12,13 @@ build:
   theme:
     nodejs: 'nodejs-18'
     install: '$(which npm) install --legacy-peer-deps'
-    build: 'pwd'
+    build: '$(which npm) run build-internal && export PORT=3058'
     artifacts:
       - '*.txt'
   application:
     dependencies:
-      - 'node_modules'
       - 'package.json'
       - 'package-lock.json'
-      - '.next'
-      - 'next.config.js'
-      - '.env'
-      - 'public'
-      - 'assets'
-      - 'components'
-      - 'lib'
-      - 'pages'
-      - 'public'
-      - 'scripts'
-      - 'styles'
-      - 'types'
-      - 'utils'
+      - .next
+      - public
+      - next.config.js
