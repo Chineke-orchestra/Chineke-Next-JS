@@ -17,6 +17,7 @@
     }
 
     h2 {
+      color: $navy;
       @include media-breakpoint-down(md) {
         font-size: 28px;
         font-style: normal;
