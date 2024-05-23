@@ -3,8 +3,8 @@ import { getPreview } from '../lib/getPreview';
 import { translatePath } from '@pantheon-systems/drupal-kit';
 import { NextSeo } from 'next-seo';
 import { fetchLists } from 'utils/fetchLists.tsx';
-
 import Layout from '../components/layout';
+import TitleCard from '../components/TitleCard/TitleCard';
 import { ComponentsListing } from '../components';
 import { fetchFooterData, fetchHeaderData } from '../utils/dataFetcher';
 import { useEffect, useState } from 'react';
@@ -43,6 +43,17 @@ export default function CatchAllRoute({
         languageAlternates={hrefLang}
       />
       <div style={{ height: headerHeight }}></div>
+
+      {pageData.field_display_title_card && (
+        <TitleCard
+          title={pageData?.title}
+          text={pageData?.body?.value}
+          backgroundColor={pageData?.field_title_card_bg_color?.color}
+          path={pageData.path.alias}
+          headerMenu={headerMenu}
+        />
+      )}
+
       <ComponentsListing components={pageData?.field_reusable_components} />
     </Layout>
   );
