@@ -35,6 +35,7 @@ const SupportCarousel = (props: {
         link={props.link}
         buttonClass="orange"
         withoutBodyVariation={!props.body}
+        buttonsBottom
       >
         {props.cards?.map((item, index: any) => {
           return (

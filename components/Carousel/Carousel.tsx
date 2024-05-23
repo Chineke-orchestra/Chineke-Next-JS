@@ -36,10 +36,11 @@ const Carousel = (props: {
   link?: I_Link;
   buttonClass?: string;
   withoutBodyVariation?: boolean;
+  buttonsBottom?: boolean;
   children?: ReactNode;
 }) => {
   const { isMobile } = useViewport();
-  const [_, setInit] = useState(false);
+  const [initialized, setInitialized] = useState(false);
   const [paddingLeft, setPaddingLeft] = useState(0);
 
   const prevRef = useRef<any>(null);
@@ -71,6 +72,14 @@ const Carousel = (props: {
       window.removeEventListener('resize', paddingHandler);
     };
   }, [ref]);
+
+  useEffect(() => {
+    if (prevRef.current && nextRef.current) {
+      setTimeout(() => {
+        setInitialized(true);
+      }, 300);
+    }
+  }, [prevRef, nextRef, isMobile]);
 
   return (
     <section
@@ -153,7 +162,10 @@ const Carousel = (props: {
                   {props.link.title}
                 </LinkComponent>
               )}
-              {!props.withoutBodyVariation && (
+              {((!props.withoutBodyVariation && !props.buttonsBottom) ||
+                (!isMobile &&
+                  props.buttonsBottom &&
+                  !props.withoutBodyVariation)) && (
                 <SwiperCustomControls prevRef={prevRef} nextRef={nextRef} />
               )}
             </motion.div>
@@ -180,32 +192,38 @@ const Carousel = (props: {
           ref={ref}
           style={{ width: `calc(100vw - ${width}px)` }}
         >
-          <Swiper
-            grabCursor={false}
-            centeredSlides={false}
-            spaceBetween={20}
-            slidesPerView="auto"
-            modules={[Navigation]}
-            className={classNames(styles.swiper)}
-            speed={1000}
-            navigation={{
-              prevEl: prevRef.current,
-              nextEl: nextRef.current,
-            }}
-            breakpoints={{
-              768: {
-                spaceBetween: 32,
-              },
-            }}
-            onInit={() => setInit(true)}
-          >
-            {props.children}
-          </Swiper>
+          {initialized && (
+            <Swiper
+              grabCursor={false}
+              centeredSlides={false}
+              spaceBetween={20}
+              slidesPerView="auto"
+              modules={[Navigation]}
+              className={classNames(styles.swiper)}
+              speed={1000}
+              navigation={{
+                prevEl: prevRef.current,
+                nextEl: nextRef.current,
+              }}
+              breakpoints={{
+                768: {
+                  spaceBetween: 32,
+                },
+              }}
+              onInit={(swiper: any) => {
+                swiper.params.navigation.prevEl = prevRef.current;
+                swiper.params.navigation.nextEl = nextRef.current;
+                swiper.navigation.update();
+              }}
+            >
+              {props.children}
+            </Swiper>
+          )}
         </div>
 
-        {props.withoutBodyVariation && isMobile && (
+        {(props.withoutBodyVariation || props.buttonsBottom) && isMobile && (
           <div>
-            <SwiperCustomControls prevRef={prevRef} nextRef={nextRef} />{' '}
+            <SwiperCustomControls prevRef={prevRef} nextRef={nextRef} />
           </div>
         )}
       </div>
