@@ -19,7 +19,7 @@ const ColoredCardWithImage = (props: {
 }) => {
   const [animate, setAnimate] = useState(false);
   return (
-    <LinkComponent link={props.link}>
+    <LinkComponent link={props.link} className={styles.link}>
       <div
         className={classNames(
           'colored_card',
@@ -30,16 +30,16 @@ const ColoredCardWithImage = (props: {
           },
         )}
         style={{ backgroundColor: props.backgroundColor }}
+        onMouseOver={() => setAnimate(true)}
+        onFocus={() => setAnimate(true)}
+        onMouseLeave={() => setAnimate(false)}
       >
         <div className={styles.image}>
           <Image src={props.image.url} alt={props.image.alt} fill />
         </div>
         <div className={styles.text}>
           {props.tag && <p className="tag light">{props.tag}</p>}
-          <h5
-            onMouseOver={() => setAnimate(true)}
-            onMouseLeave={() => setAnimate(false)}
-          >
+          <h5>
             {props.link.title}
             <motion.span
               className="underline"
