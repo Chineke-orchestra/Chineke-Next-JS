@@ -20,7 +20,7 @@ import {
   Feature,
   TwoColumnsList,
   RteSingleColumn,
-  TimelineVariation1,
+  TimelineVariation3,
 } from 'components';
 import {
   formatCardData,
@@ -238,7 +238,10 @@ const ComponentsListing = ({ components }: { components: any }) => {
           patternColor: component?.field_pattern_image_colour,
         };
         return (
-          <TestimonialsCarousel testimonials={formattedTestimonialsData} pattern={pattern}/>
+          <TestimonialsCarousel
+            testimonials={formattedTestimonialsData}
+            pattern={pattern}
+          />
         );
       }
 
@@ -394,8 +397,8 @@ const ComponentsListing = ({ components }: { components: any }) => {
         return <ImagesGallery images={galleryImages} />;
       }
 
-      case 'paragraph--timeline_variation_1': {
-        const timelineItemsVariation1 = component?.field_timeline_item.map(
+      case 'paragraph--timeline_variation_3': {
+        const timelineItemsVariation3 = component?.field_timeline_item.map(
           (item: any) => {
             return {
               title: item?.field_title,
@@ -404,16 +407,30 @@ const ComponentsListing = ({ components }: { components: any }) => {
           },
         );
         return (
-          <TimelineVariation1
+          <TimelineVariation3
             headline={component?.field_headline}
-            timelineItems={timelineItemsVariation1}
+            timelineItems={timelineItemsVariation3}
             imageOne={formatMedia(
-              component?.field_featured_image?.field_media_image_2,
+              component?.field_timeline_item[0]?.field_image
+                ?.field_media_image_2,
             )}
-            imageOneText={component?.field_feature_image_text}
+            imageOneText={
+              component?.field_timeline_item[0]?.field_feature_image_text
+            }
             imageTwo={formatMedia(
-              component?.field_secondary_image?.field_media_image,
+              component?.field_timeline_item[1]?.field_image
+                ?.field_media_image_2,
             )}
+            imageTwoText={
+              component?.field_timeline_item[1]?.field_feature_image_text
+            }
+            imageThree={formatMedia(
+              component?.field_timeline_item[2]?.field_image
+                ?.field_media_image_2,
+            )}
+            imageThreeText={
+              component?.field_timeline_item[2]?.field_feature_image_text
+            }
           />
         );
       }

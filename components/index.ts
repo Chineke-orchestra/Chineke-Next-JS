@@ -23,6 +23,7 @@ import RteSingleColumn from './RteSingleColumn/RteSingleColumn';
 import StaticTwoColumns from './StaticTwoColumns/StaticTwoColumns';
 import Feature from './Feature/Feature';
 import TwoColumnsList from './TwoColumnsList/TwoColumnsList';
+import TimelineVariation3 from './Timeline/TimelineVariation3';
 import TimelineVariation1 from './Timeline/TimelineVariation1';
 
 export {
@@ -51,5 +52,6 @@ export {
   VideoCarousel,
   Modal,
   EventsList,
+  TimelineVariation3,
   TimelineVariation1,
 };

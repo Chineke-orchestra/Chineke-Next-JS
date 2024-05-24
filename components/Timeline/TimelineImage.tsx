@@ -14,10 +14,16 @@ export interface TimelineImageProps {
 const TimelineImage: React.FC<TimelineImageProps> = ({
   image,
   imageText,
+  additionalClass,
   children,
 }) => {
   return (
-    <div className={classNames(styles.imageBox)}>
+    <div
+      className={classNames(
+        styles.imageBox,
+        additionalClass ? styles[additionalClass] : '',
+      )}
+    >
       <div className={styles.imageContainer}>
         {image.url && (
           <Image src={image.url} alt={image.alt} sizes="100%" fill />

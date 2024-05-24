@@ -1,12 +1,12 @@
 @import '../../styles/utils.scss';
 
 .imageBox {
+  flex: 1;
   display: flex;
   gap: 20px;
   flex-direction: column;
   width: 100%;
   height: inherit;
-
   align-self: stretch;
 
   .imageContainer {
@@ -55,8 +55,31 @@
       opacity: 1;
     }
   }
-}
 
-.imageTwoVariation1 {
-  max-height: 400px;
+  &.imageOne,
+  .imageTwo {
+    .imageContainer {
+      height: 298px;
+    }
+
+    @include media-breakpoint-down(lg) {
+      height: 390px;
+    }
+  }
+
+  &.imageThree {
+    flex-direction: column-reverse;
+    margin-bottom: auto;
+    .imageContainer {
+      height: 242px;
+
+      @include media-breakpoint-down(lg) {
+        height: 390px;
+      }
+    }
+
+    @include media-breakpoint-down(lg) {
+      flex-direction: column;
+    }
+  }
 }
