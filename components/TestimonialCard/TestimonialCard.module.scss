@@ -37,6 +37,7 @@
       font-weight: 400;
       line-height: normal;
       letter-spacing: 1.2px;
+      color: $light-gray;
     }
     .author {
       font-size: 12px;
@@ -46,6 +47,7 @@
       letter-spacing: 0.6px;
       color: $yellow;
       position: relative;
+      text-transform: uppercase;
       &::after {
         content: '';
         position: absolute;

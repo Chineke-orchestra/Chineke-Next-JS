@@ -20,8 +20,8 @@ const TestimonialsListing = (props: {
     setSlicedTestimonials((prev) => [
       ...prev,
       ...props.testimonials.slice(
-        numberOfTestimonials - 1,
-        props.testimonials.length - 1,
+        numberOfTestimonials,
+        props.testimonials.length,
       ),
     ]);
     setShowButton(false);

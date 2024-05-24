@@ -285,7 +285,7 @@ const ComponentsListing = ({ components }: { components: any }) => {
           (item: any) => {
             return {
               author: item?.field_author,
-              date: item?.field_date,
+              date: item?.field_date_time,
               text: item?.field_testimonial,
             };
           },
