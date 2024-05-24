@@ -32,7 +32,7 @@
     .controlsContainer {
       position: absolute;
       bottom: 20px;
-      right: 20px;
+      right: 40px;
       display: flex;
       gap: 20px;
 
@@ -81,35 +81,38 @@
 
   .bottomContainer {
     background-color: $yellow;
-    padding: 21px 0;
+    padding-top: 21px;
+    padding-bottom: 21px;
 
     @include media-breakpoint-down(md) {
-      padding: 20px 22px 20px 0;
+      padding: 20px 0px;
     }
 
     .textContainer {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
       gap: 20px;
+
+      @include media-breakpoint-down(lg) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
 
       h1 {
         max-width: 560px;
         color: $navy;
 
-        @include media-breakpoint-down(xl) {
-          max-width: 440px;
-        }
-
         @include media-breakpoint-down(lg) {
-          max-width: none;
+          max-width: 600px;
         }
       }
 
       .linksContainer {
         display: flex;
         flex-direction: column;
+        width: 100%;
         gap: 13px;
 
         @include media-breakpoint-down(xl) {
@@ -133,6 +136,9 @@
 
           @include media-breakpoint-down(md) {
             gap: 37px;
+          }
+
+          @include media-breakpoint-down(sm) {
           }
 
           h5 {
