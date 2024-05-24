@@ -6,13 +6,17 @@ import { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { Navigation, Pagination } from 'swiper/modules';
 import { useInView } from 'framer-motion';
+import Pattern, { PatternProps } from 'components/Pattern/Pattern';
 
 export interface I_Testimonial {
   author?: string;
   text: string;
 }
 
-const TestimonialsCarousel = (props: { testimonials: I_Testimonial[] }) => {
+const TestimonialsCarousel = (props: {
+  testimonials: I_Testimonial[];
+  pattern: PatternProps;
+}) => {
   const sectionRef = useRef<any>();
   const isInView = useInView(sectionRef, { once: false });
   const [swiper, setSwiper] = useState<SwiperClass>();
@@ -79,6 +83,9 @@ const TestimonialsCarousel = (props: { testimonials: I_Testimonial[] }) => {
           <div ref={nagigationRef} />
           <button ref={nextRef} className={styles.swiper_button} />
         </div>
+      </div>
+      <div className={styles.pattern}>
+        <Pattern {...props.pattern} />
       </div>
     </section>
   );

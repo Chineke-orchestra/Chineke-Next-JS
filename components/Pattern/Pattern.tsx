@@ -28,6 +28,7 @@ const Pattern = ({
           src={patternImage.url}
           title={patternImage.alt}
           wrapper="span"
+          className='pattern'
           beforeInjection={(svg) => {
             svg.classList.add(styles.pattern);
             if (patternColor?.color) {

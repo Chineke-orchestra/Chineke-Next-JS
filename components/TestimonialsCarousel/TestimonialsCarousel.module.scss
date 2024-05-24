@@ -30,7 +30,7 @@
         font-weight: 600;
         line-height: normal;
         letter-spacing: 0.6px;
-        text-transform: capitalize;
+        text-transform: uppercase;
         color: $yellow;
         position: relative;
         &::after {
@@ -115,5 +115,18 @@
   }
   &::before {
     transform: translateX(calc(50%)) rotate(180deg);
+  }
+  .pattern {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    :global(.pattern) {
+      svg {
+        height: auto !important;
+        min-height: auto !important;
+        width: 100%;
+      }
+    }
   }
 }

@@ -229,8 +229,15 @@ const ComponentsListing = ({ components }: { components: any }) => {
               text: item?.field_testimonial,
             };
           });
+        const pattern: PatternProps = {
+          patternBackground: component?.field_pattern_background_colour,
+          patternImage: formatMedia(
+            component?.field_pattern_image?.field_media_image_1,
+          ),
+          patternColor: component?.field_pattern_image_colour,
+        };
         return (
-          <TestimonialsCarousel testimonials={formattedTestimonialsData} />
+          <TestimonialsCarousel testimonials={formattedTestimonialsData} pattern={pattern}/>
         );
       }
 

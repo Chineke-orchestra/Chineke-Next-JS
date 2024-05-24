@@ -72,6 +72,9 @@ export async function getServerSideProps(context) {
       'field_reusable_components.field_cards',
       'field_reusable_components.field_background_image.field_media_image',
       'field_reusable_components.field_gallery_images.field_media_image',
+      'field_reusable_components.field_support_card',
+      'field_reusable_components.field_testimonial',
+      'field_reusable_components.field_testimonial_card',
     ];
 
     const includeParam = includesArray.join(',');
