@@ -34,14 +34,17 @@ const Accordion = (props: {
                   className={classNames(styles.accordion_item, {
                     [styles.active]: index === activeIndex,
                   })}
-                  
                 >
-                  <div className={styles.accordion_title} onClick={() => activeIndexHandler(index)}>
+                  <div
+                    aria-hidden="true"
+                    className={styles.accordion_title}
+                    onClick={() => activeIndexHandler(index)}
+                  >
                     <p>{item.title}</p>
                     <ReactSVG src={arrow.src} />
                   </div>
                   <div className={styles.accordion_text}>
-                    <div>{parse(item.text)}</div>
+                    {item.text && <div>{parse(item.text)}</div>}
                   </div>
                 </div>
               );

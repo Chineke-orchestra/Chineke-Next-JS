@@ -10,7 +10,15 @@
     margin: 0 auto;
 
     h3 {
+      color: $navy;
       margin-bottom: 40px;
+      @include media-breakpoint-down(md) {
+        margin-bottom: 20px;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+      }
     }
     .accordion_items {
       display: flex;
@@ -64,6 +72,18 @@
               @include animated();
               &:hover {
                 text-decoration: underline;
+                color: $navy;
+              }
+            }
+          }
+          p {
+            font-size: 16px;
+            @include media-breakpoint-down(md) {
+              font-size: 14px;
+            }
+            a {
+              color: $blue;
+              &:hover {
                 color: $navy;
               }
             }
