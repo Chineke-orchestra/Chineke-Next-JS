@@ -1,0 +1,18 @@
+@import '../../styles/utils.scss';
+
+.itemContainer {
+  padding-bottom: 33px;
+  border-bottom: 1px solid #ccc;
+
+  p {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  &:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0px;
+  }
+}
