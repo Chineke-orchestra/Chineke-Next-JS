@@ -215,12 +215,6 @@ const Header = ({ headerMenu }: HeadersComponentProps) => {
                             )}
                           >
                             {item.link.title}
-                            <span
-                              className={classNames(
-                                styles.linkArrow,
-                                lightOrDarkStyle,
-                              )}
-                            />
                           </Link>
                         )
                       )}

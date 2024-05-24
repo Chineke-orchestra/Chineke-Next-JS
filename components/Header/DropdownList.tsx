@@ -78,7 +78,7 @@ const DropdownList = ({ items, isSmallScreen }: DropdownListProps) => {
               <Link href={item.link.url} className={styles.parentLink}>
                 {item.link.title}
               </Link>
-              {/* <h5 className={styles.parentLink}>{item.link.title}</h5> */}
+
               {item.description && <p>{item.description}</p>}
               <ul>
                 {item.children.map((child, index) => (
