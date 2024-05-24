@@ -20,6 +20,8 @@ import {
   Feature,
   TwoColumnsList,
   RteSingleColumn,
+  TimelineVariation1,
+  TimelineVariation2,
   TimelineVariation3,
 } from 'components';
 import {
@@ -395,6 +397,49 @@ const ComponentsListing = ({ components }: { components: any }) => {
           },
         );
         return <ImagesGallery images={galleryImages} />;
+      }
+
+      case 'paragraph--timeline_variation_1': {
+        const timelineItemsVariation1 = component?.field_timeline_item.map(
+          (item: any) => {
+            return {
+              title: item?.field_title,
+              text: item?.field_timeline_text_body,
+            };
+          },
+        );
+        return (
+          <TimelineVariation1
+            headline={component?.field_headline}
+            timelineItems={timelineItemsVariation1}
+            imageOne={formatMedia(
+              component?.field_featured_image?.field_media_image_2,
+            )}
+            imageOneText={component?.field_feature_image_text}
+            imageTwo={formatMedia(
+              component?.field_secondary_image?.field_media_image,
+            )}
+          />
+        );
+      }
+
+      case 'paragraph--timeline_variation_2': {
+        const timelineItemsVariation2 = component?.field_timeline_item.map(
+          (item: any) => {
+            return {
+              title: item?.field_title,
+              text: item?.field_timeline_text_body,
+            };
+          },
+        );
+        return (
+          <TimelineVariation2
+            headline={component?.field_headline}
+            timelineItems={timelineItemsVariation2}
+            imageOne={formatMedia(component?.field_image?.field_media_image_2)}
+            imageOneText={component?.field_feature_image_text}
+          />
+        );
       }
 
       case 'paragraph--timeline_variation_3': {

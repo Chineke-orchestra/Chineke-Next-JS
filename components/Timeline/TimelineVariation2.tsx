@@ -1,0 +1,34 @@
+import classNames from 'classnames';
+import styles from './TimelineVariation2.module.scss';
+import TimelineImage from './TimelineImage';
+import { TimelineProps } from './TimelineVariation1';
+import TimelineItem from './TimelineItem';
+
+const TimelineVariation2 = ({
+  headline,
+  timelineItems,
+  imageOne,
+  imageOneText,
+}: TimelineProps) => {
+  return (
+    <section
+      className={classNames(styles.timelineVariation2Container, 'container')}
+    >
+      {headline && (
+        <div className={styles.headlineContainerVariation2}>
+          <h1>{headline}</h1>
+        </div>
+      )}
+
+      {imageOne && <TimelineImage image={imageOne} imageText={imageOneText} />}
+
+      <div className={styles.timelineItemsContainerVariation2}>
+        {timelineItems.map((item, index) => (
+          <TimelineItem key={index} title={item.title} text={item.text} />
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default TimelineVariation2;
