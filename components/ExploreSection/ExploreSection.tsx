@@ -8,7 +8,7 @@ import { delay, motion } from 'framer-motion';
 import ArrowButton from 'components/ArrowButton/ArrowButton';
 import UseAnimation from 'utils/UseAnimation';
 import { useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 export const ExploreSection = (props: {
   title?: string;
@@ -20,12 +20,18 @@ export const ExploreSection = (props: {
     tags: string[];
   };
 }) => {
+  const [activeIndex, setActiveIndex] = useState(-1);
   const ref = useRef<any>();
-  const isInView = useInView(ref, { once: true });
+  const animationRef = useRef<any>();
+  const isInView = useInView(animationRef, {
+    margin: '0px 0px  -40% 0px',
+    once: true,
+  });
 
   return (
     <section
       className={classNames(styles.explore_section, styles[props.variation])}
+      ref={animationRef}
     >
       {props.variation === 'variation_one' && props.backgroundImage && (
         <div
@@ -40,7 +46,7 @@ export const ExploreSection = (props: {
               <div
                 className={styles.featured_card}
                 style={{
-                  backgroundImage: `url(${props.featuredCard?.image.url})`,
+                  background: `url(${props.featuredCard?.image.url})`,
                 }}
               >
                 <div className={styles.tags}>
@@ -63,32 +69,32 @@ export const ExploreSection = (props: {
             <div className={styles.cards} ref={ref}>
               {props.cards?.map((item, index) => {
                 return (
-                  <motion.div
-                    key={index}
-                    className={styles.card}
-                    animate={isInView && 'animate'}
-                    initial={'initial'}
-                    variants={UseAnimation('up', {
-                      startScaleY: 0,
-                      endScaleY: 1,
-                      duration: 1,
-                      fromOpacity: 1,
-                      damping: 56,
-                      delay: 0.5 + index * 0.3,
-                    })}
-                    style={{
-                      transformOrigin: 'bottom',
-                    }}
-                  >
-                    <LinkComponent link={item.link}>
+                  <LinkComponent link={item.link} key={index}>
+                    <motion.div
+                      className={styles.card}
+                      animate={isInView && 'animate'}
+                      initial={'initial'}
+                      variants={UseAnimation('up', {
+                        startScaleY: 0,
+                        endScaleY: 1,
+                        duration: 1,
+                        fromOpacity: 1,
+                        damping: 56,
+                        delay: 0.5 + index * 0.3,
+                      })}
+                      style={{
+                        transformOrigin: 'bottom',
+                      }}
+                      onMouseOver={() => setActiveIndex(index)}
+                      onMouseLeave={() => setActiveIndex(-1)}
+                    >
                       <h4>{item.title}</h4>
-                    </LinkComponent>
 
-                    <>{item.body && parse(item.body)}</>
-                    <LinkComponent link={item.link} className={styles.button}>
-                      <ArrowButton />
-                    </LinkComponent>
-                  </motion.div>
+                      <>{item.body && parse(item.body)}</>
+
+                      <ArrowButton isHovering={activeIndex === index} />
+                    </motion.div>
+                  </LinkComponent>
                 );
               })}
             </div>
