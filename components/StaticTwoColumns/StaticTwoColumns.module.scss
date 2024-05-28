@@ -35,13 +35,13 @@
   .staticTwoColumns {
     display: flex;
     align-items: center;
-    gap: 77px;
+    gap: 31px;
     padding-top: 84px;
     padding-bottom: 86px;
 
     @include media-breakpoint-down(xl) {
       padding-top: 30px;
-      padding-bottom: 40px;
+      padding-bottom: 30px;
     }
 
     @include media-breakpoint-down(lg) {
@@ -66,11 +66,14 @@
 
       @include media-breakpoint-down(lg) {
         flex: none;
+        max-height: 500px;
+        max-width: none;
       }
 
       @include media-breakpoint-down(sm) {
-        max-width: 336px;
-        height: 336px;
+        max-height: 336px;
+        margin-left: 10px;
+        margin-right: 10px;
       }
 
       img {

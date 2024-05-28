@@ -51,6 +51,7 @@ const StaticTwoColumns = ({
       currentHoverStates.map((state, i) => (i === index ? isHovering : state)),
     );
   };
+
   return (
     <section
       className={classNames(styles.staticTwoColumnsWrapper, styles[colorTheme])}
@@ -118,7 +119,7 @@ const StaticTwoColumns = ({
           {ctaLink?.url && (
             <Link href={ctaLink.url} className={classNames('btn large orange')}>
               {ctaLink?.title && ctaLink.title}
-              {ctaIcon && (
+              {ctaIcon?.url && (
                 <div className={styles.iconContainer}>
                   <Image
                     src={ctaIcon.url}

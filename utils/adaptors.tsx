@@ -1,11 +1,11 @@
 import { Colors, I_Card, I_Link, I_Media } from 'types/index';
 
 export const formatMedia = (media: {
-  uri: { url: string };
+  uri: { url?: string };
   resourceIdObjMeta?: { alt: string };
 }): I_Media => {
   return {
-    url: `${process.env.BACKEND_URL}${media?.uri?.url || ''}`,
+    url: media?.uri?.url ? `${process.env.BACKEND_URL}${media.uri.url}` : '',
     alt: media?.resourceIdObjMeta?.alt || '',
   };
 };
