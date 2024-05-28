@@ -115,7 +115,7 @@ const ComponentsListing = ({ components }: { components: any }) => {
       case 'paragraph--stories_carousel':
         return (
           <StoriesCarousel
-            title={component?.field_title}
+            title={component?.field_carousel_title}
             body={component?.field_body?.value}
             tagline={component?.field_tagline}
             link={formatLink(component?.field_cta_button)}
