@@ -49,6 +49,26 @@
     background-color: $white;
     bottom: -5px;
   }
+  &.background_red,
+  &.background_green,
+  &.background_navy,
+  &.background_dark_red,
+  &.background_green &.background_blue {
+    .text {
+      h5 {
+        color: $light-gray !important;
+      }
+    }
+  }
+  &.background_yellow,
+  &.background_white {
+    .text {
+      h5 {
+        color: $gray !important;
+      }
+    }
+  }
+
   &.full_width_image {
     width: 286px;
     padding-top: 0;
