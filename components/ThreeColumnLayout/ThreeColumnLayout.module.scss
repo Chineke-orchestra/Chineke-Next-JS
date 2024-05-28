@@ -25,8 +25,12 @@
     position: relative;
 
     @include media-breakpoint-down(lg) {
-      height: 220px;
+      height: 540px;
       max-width: none;
+    }
+
+    @include media-breakpoint-down(sm) {
+      height: 220px;
     }
 
     img {
@@ -37,6 +41,12 @@
   }
 
   .textContainer {
+    padding-bottom: 52px;
+
+    @include media-breakpoint-down(lg) {
+      padding-bottom: 0px;
+    }
+
     h2 {
       margin-bottom: 10px;
       color: $navy;

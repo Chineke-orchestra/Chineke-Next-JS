@@ -124,6 +124,7 @@ export async function getServerSideProps(context) {
       'field_reusable_components.field_event_list_view',
       'field_reusable_components.field_pattern_image.field_media_image_1',
       'field_reusable_components.field_accordion_item',
+      'field_reusable_components.field_3col_image.field_media_image',
     ];
 
     params = `include=${params.join(',')}`;
