@@ -5,7 +5,7 @@ export const formatMedia = (media: {
   resourceIdObjMeta?: { alt: string };
 }): I_Media => {
   return {
-    url: `${process.env.BACKEND_URL}${media?.uri.url}`,
+    url: `${process.env.BACKEND_URL}${media?.uri?.url || ''}`,
     alt: media?.resourceIdObjMeta?.alt || '',
   };
 };
