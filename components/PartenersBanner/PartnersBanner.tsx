@@ -13,7 +13,6 @@ const PartnersBanner = ({
   backgroundColor,
   logos,
 }: PartnersBannerProps) => {
-  console.log(backgroundColor);
   return (
     <section className="container">
       <div

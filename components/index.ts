@@ -12,6 +12,7 @@ import StatsAndFigures from './StatsAndFigures/StatsAndFigures';
 import OurTeam from './OurTeam/OurTeam';
 import PartnersList from './PartnersList/PartnersList';
 import SupportCarousel from './SupportCarousel/SupportCarousel';
+import LatestNews from './LatestNews/LatestNews';
 import VideoCarousel from './VideoCarousel/VideoCarousel';
 import Modal from './Modal/Modal';
 import EventsList from './EventsList/EventsList';
@@ -42,6 +43,7 @@ export {
   TestimonialsListing,
   EventsCarousel,
   SupportCarousel,
+  LatestNews,
   Pattern,
   TwoColumnText,
   Hero,

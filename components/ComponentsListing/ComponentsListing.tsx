@@ -10,6 +10,7 @@ import {
   SupportCarousel,
   TestimonialsCarousel,
   EventsCarousel,
+  LatestNews,
   VideoCarousel,
   EventsList,
   Pattern,
@@ -479,6 +480,9 @@ const ComponentsListing = ({ components }: { components: any }) => {
           />
         );
       }
+
+      case 'paragraph--latest_news':
+        return <LatestNews news={component?.news} />;
 
       default:
         return <p>block {component?.type} was not implemented</p>;

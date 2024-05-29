@@ -28,6 +28,7 @@
     "decoupled-kit-health-check": "npx --prefer-offline @pantheon-systems/decoupled-kit-health-check drupal"
   },
   "dependencies": {
+    "@motionone/utils": "^10.17.0",
     "@pantheon-systems/drupal-kit": "4.6.5",
     "@pantheon-systems/nextjs-kit": "1.7.8",
     "@tailwindcss/typography": "^0.5.7",

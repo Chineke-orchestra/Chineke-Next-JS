@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { Colors, I_Card, I_Link, I_Media } from 'types/index';
 
 export const formatMedia = (media: {
@@ -112,8 +113,12 @@ export const getMediaFromIncluded = (included: any, mediaId: string) => {
   return { media, file };
 };
 
-export const formatViewEndpointPath = (viewId: string, displayId: string) => {
-  return `${process.env.BACKEND_URL}/jsonapi/views/${viewId}/${displayId}?include=field_feature_image.field_media_image`;
+export const formatViewEndpointPath = (
+  viewId: string,
+  displayId: string,
+  optionalInclude: string = '',
+) => {
+  return `${process.env.BACKEND_URL}/jsonapi/views/${viewId}/${displayId}?include=field_feature_image.field_media_image${optionalInclude}`;
 };
 
 export const formatEventsCardsData = (
@@ -143,6 +148,35 @@ export const formatEventsCardsData = (
         alt: media?.relationships?.field_media_image?.data?.meta?.alt,
       },
       date: item?.attributes?.field_date?.value,
+    };
+  });
+};
+
+export const formatLatestNewsData = (
+  data: any,
+): {
+  image: I_Media;
+  link: I_Link;
+  tags: string[];
+} => {
+  return data?.data?.map((item: any) => {
+    const mediaId = item?.relationships?.field_feature_image?.data?.id;
+    const { media, file } = getMediaFromIncluded(data?.included, mediaId);
+
+    const tagsId = item?.relationships?.field_tags_category?.data?.[0]?.id;
+
+    const tag = data?.included?.find((item: any) => item.id === tagsId);
+
+    return {
+      tags: tag?.attributes?.name ? [tag?.attributes?.name] : null,
+      link: {
+        url: item?.attributes?.path?.alias || '',
+        title: item?.attributes?.title,
+      },
+      image: {
+        url: `${process.env.BACKEND_URL}${file?.attributes?.uri?.url}`,
+        alt: media?.relationships?.field_media_image?.data?.meta?.alt,
+      },
     };
   });
 };

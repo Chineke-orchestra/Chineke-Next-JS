@@ -1,5 +1,7 @@
+import moment from 'moment';
 import {
   formatEventsCardsData,
+  formatLatestNewsData,
   formatViewEndpointPath,
 } from './adaptors';
 
@@ -38,6 +40,22 @@ export const fetchLists = async (components: any[], store: any) => {
         const events = formatEventsCardsData(data);
         formattedComponents.push({ ...component, events, test: data });
 
+        break;
+      }
+      case 'paragraph--latest_news': {
+        const viewId =
+          component?.field_latest_news?.resourceIdObjMeta
+            ?.drupal_internal__target_id;
+        const displayId =
+          component?.field_latest_news?.resourceIdObjMeta?.display_id;
+
+        const data = await store.fetchData(
+          formatViewEndpointPath(viewId, displayId, ',field_tags_category'),
+        );
+
+        const news = formatLatestNewsData(data);
+
+        formattedComponents.push({ ...component, news, test: data });
         break;
       }
       default:

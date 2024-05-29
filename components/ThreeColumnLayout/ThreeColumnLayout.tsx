@@ -11,8 +11,6 @@ export interface ThreeColumnLayoutProps {
 }
 
 const ThreeColumnLayout = ({ image, title, text }: ThreeColumnLayoutProps) => {
-  console.log(image);
-
   return (
     <section className={classNames(styles.threeColumnContainer, 'container')}>
       {image.url && (

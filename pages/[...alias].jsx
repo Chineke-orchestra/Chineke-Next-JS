@@ -120,6 +120,7 @@ export async function getServerSideProps(context) {
       'field_reusable_components.field_testimonial',
       'field_reusable_components.field_testimonial_card',
       'field_reusable_components.field_event_card',
+      'field_reusable_components.field_latest_news',
       'field_reusable_components.field_media_card.field_feature_img.field_media_image',
       'field_reusable_components.field_event_list_view',
       'field_reusable_components.field_pattern_image.field_media_image_1',
