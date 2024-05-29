@@ -88,3 +88,29 @@
     transform: scale(0.8);
   }
 }
+
+.btnCircle {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50px;
+  padding: 0;
+  cursor: pointer;
+
+  &.up {
+    background-image: url('../assets/svg/arrow_up_white.svg');
+    background-repeat: no-repeat;
+    background-size: 24px;
+    background-position: center;
+  }
+
+  &.navy {
+    background-color: $navy;
+  }
+
+  &:active {
+    transform: scale(0.8);
+  }
+}

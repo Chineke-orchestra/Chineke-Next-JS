@@ -1,21 +1,23 @@
 .layout {
-	min-height: 100dvh;
-	min-width: inherit;
+  min-height: 100dvh;
+  min-width: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .footerCopy > a {
-	@apply underline;
+  @apply underline;
 }
 
 .footerCopy > a:first-child {
-	@apply text-white;
+  @apply text-white;
 }
 
 .footerCopy > a:last-child {
-	@apply text-blue-500;
+  @apply text-blue-500;
 }
 
 .footerCopy > a:hover {
-	@apply text-blue-100;
+  @apply text-blue-100;
 }
-
