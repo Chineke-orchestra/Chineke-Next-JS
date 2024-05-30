@@ -117,7 +117,9 @@ const Hero: NextPage<HeroProps> = ({
             {links.map((item, index) => (
               <Link
                 key={index}
-                href={item.url || ''}
+                href={item?.url}
+                target={item?.target}
+                rel={item?.rel}
                 onMouseEnter={() => handleHover(index, true)}
                 onMouseLeave={() => handleHover(index, false)}
               >
