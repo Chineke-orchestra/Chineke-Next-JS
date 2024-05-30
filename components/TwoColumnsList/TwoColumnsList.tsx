@@ -44,7 +44,7 @@ const TwoColumnsList = ({
                 ) : listStyle === 'standard' ? (
                   <span />
                 ) : null}
-                {item}
+                <p>{item}</p>
               </li>
             ))}
           </ul>

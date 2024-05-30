@@ -36,6 +36,7 @@
 
   h3 {
     color: $navy;
+    line-height: normal;
     margin-bottom: 14px;
 
     @include media-breakpoint-down(md) {
@@ -92,6 +93,12 @@
           font-style: normal;
           font-weight: 400;
           line-height: normal;
+        }
+
+        p {
+          font-size: 16px;
+          line-height: normal;
+          opacity: 0.8;
         }
       }
     }
