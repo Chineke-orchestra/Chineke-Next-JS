@@ -44,7 +44,7 @@
 
       .textContainer {
         h6 {
-          color: $red;
+          color: $dark-red;
           margin-bottom: 10px;
         }
 
@@ -100,6 +100,7 @@
           font-weight: 400;
           line-height: 24px;
           text-decoration-line: underline;
+          color: $gray;
         }
 
         @include media-breakpoint-down(md) {
