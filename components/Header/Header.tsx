@@ -111,6 +111,7 @@ const Header = ({ headerMenu }: HeadersComponentProps) => {
 
   return (
     <motion.nav
+      id="headerContainer"
       className={classNames(
         styles.navbar,
         isSmallScreen && dropdownVisible && styles.smallScreen,
@@ -129,10 +130,7 @@ const Header = ({ headerMenu }: HeadersComponentProps) => {
         transitionType: 'ease-in-out',
       })}
     >
-      <div
-        className={classNames(styles.headerContainer, lightOrDarkStyle)}
-        id="headerContainer"
-      >
+      <div className={classNames(styles.headerContainer, lightOrDarkStyle)}>
         <div className={styles.headerTopPattern} />
         <div className={classNames(styles.headerContentContainer, 'container')}>
           <motion.div

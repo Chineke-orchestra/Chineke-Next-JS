@@ -25,12 +25,16 @@ export default function CatchAllRoute({
         setHeaderHeight(headerElement.offsetHeight);
       };
 
-      updateHeaderHeight();
+      const updateHeightWithDelay = () => {
+        setTimeout(updateHeaderHeight, 5);
+      };
 
-      window.addEventListener('resize', updateHeaderHeight);
+      updateHeightWithDelay();
+
+      window.addEventListener('resize', updateHeightWithDelay);
 
       return () => {
-        window.removeEventListener('resize', updateHeaderHeight);
+        window.removeEventListener('resize', updateHeightWithDelay);
       };
     }
   }, []);
