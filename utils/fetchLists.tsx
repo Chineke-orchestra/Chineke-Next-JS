@@ -18,12 +18,14 @@ export const fetchLists = async (components: any[], store: any) => {
             ?.drupal_internal__target_id;
         const displayId =
           component?.field_event_card?.resourceIdObjMeta?.display_id;
+        if (viewId && displayId) {
+          const data = await store.fetchData(
+            formatViewEndpointPath(viewId, displayId),
+          );
+          const events = formatEventsCardsData(data);
+          formattedComponents.push({ ...component, events });
+        }
 
-        const data = await store.fetchData(
-          formatViewEndpointPath(viewId, displayId),
-        );
-        const events = formatEventsCardsData(data);
-        formattedComponents.push({ ...component, events, events2: data });
         break;
       }
       case 'paragraph--event_list': {
@@ -32,13 +34,14 @@ export const fetchLists = async (components: any[], store: any) => {
             ?.drupal_internal__target_id;
         const displayId =
           component?.field_event_list_view?.resourceIdObjMeta?.display_id;
+        if (viewId && displayId) {
+          const data = await store.fetchData(
+            formatViewEndpointPath(viewId, displayId),
+          );
 
-        const data = await store.fetchData(
-          formatViewEndpointPath(viewId, displayId),
-        );
-
-        const events = formatEventsCardsData(data);
-        formattedComponents.push({ ...component, events, test: data });
+          const events = formatEventsCardsData(data);
+          formattedComponents.push({ ...component, events });
+        }
 
         break;
       }
@@ -48,14 +51,16 @@ export const fetchLists = async (components: any[], store: any) => {
             ?.drupal_internal__target_id;
         const displayId =
           component?.field_latest_news?.resourceIdObjMeta?.display_id;
+        if (viewId && displayId) {
+          const data = await store.fetchData(
+            formatViewEndpointPath(viewId, displayId, ',field_tags_category'),
+          );
 
-        const data = await store.fetchData(
-          formatViewEndpointPath(viewId, displayId, ',field_tags_category'),
-        );
+          const news = formatLatestNewsData(data);
 
-        const news = formatLatestNewsData(data);
+          formattedComponents.push({ ...component, news });
+        }
 
-        formattedComponents.push({ ...component, news, test: data });
         break;
       }
       default:
