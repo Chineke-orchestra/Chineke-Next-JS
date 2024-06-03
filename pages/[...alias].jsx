@@ -133,6 +133,10 @@ export async function getServerSideProps(context) {
       'field_reusable_components.field_partners_banner_logo.field_media_image_4',
       'field_reusable_components.field_image.field_media_image_2',
       'field_reusable_components.field_3col_image.field_media_image',
+      'field_reusable_components.field_timeline_item',
+      'field_reusable_components.field_timeline_item.field_image.field_media_image_2',
+      'field_reusable_components.field_secondary_image.field_media_image',
+      'field_reusable_components.field_featured_image.field_media_image_2',
     ];
 
     params = `include=${params.join(',')}`;

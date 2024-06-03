@@ -5,7 +5,7 @@
   border-bottom: 1px solid #ccc;
 
   @include media-breakpoint-down(lg) {
-    padding: 0 20px;
+    padding-bottom: 24px;
   }
 
   p {

@@ -29,10 +29,12 @@ const TimelineVariation3 = ({
           imageText={imageOneText}
           additionalClass="imageOne"
         >
-          <TimelineItem
-            title={timelineItems[0].title}
-            text={timelineItems[0].text}
-          />
+          <div className={styles.timelineItemsContainerVariation3}>
+            <TimelineItem
+              title={timelineItems[0].title}
+              text={timelineItems[0].text}
+            />
+          </div>
         </TimelineImage>
       )}
 
@@ -42,10 +44,12 @@ const TimelineVariation3 = ({
           imageText={imageTwoText}
           additionalClass="imageTwo"
         >
-          <TimelineItem
-            title={timelineItems[1].title}
-            text={timelineItems[1].text}
-          />
+          <div className={styles.timelineItemsContainerVariation3}>
+            <TimelineItem
+              title={timelineItems[1].title}
+              text={timelineItems[1].text}
+            />
+          </div>
         </TimelineImage>
       )}
 
@@ -55,10 +59,12 @@ const TimelineVariation3 = ({
           imageText={imageThreeText}
           additionalClass="imageThree"
         >
-          <TimelineItem
-            title={timelineItems[2].title}
-            text={timelineItems[2].text}
-          />
+          <div className={styles.timelineItemsContainerVariation3}>
+            <TimelineItem
+              title={timelineItems[2].title}
+              text={timelineItems[2].text}
+            />
+          </div>
         </TimelineImage>
       )}
     </section>
