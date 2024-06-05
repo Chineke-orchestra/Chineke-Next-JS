@@ -34,10 +34,14 @@ const Modal: FC<ModalProps> = ({ children, onClose, modalRef }) => {
   }, [modalRef, onClose]);
 
   useEffect(() => {
+    const scrollBarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
     document.body.style.overflow = 'hidden';
+    document.body.style.paddingRight = `${scrollBarWidth}px`;
 
     return () => {
       document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
     };
   }, []);
 

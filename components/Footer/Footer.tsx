@@ -5,8 +5,9 @@ import { ReactSVG } from 'react-svg';
 import parse from 'html-react-parser';
 import UseAnimation from 'utils/UseAnimation';
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { I_Media } from 'types/index';
+import { SubscribePopup } from 'components';
 
 export interface FeaturedLinkProps {
   title?: string;
@@ -49,13 +50,14 @@ const Footer = ({
 }: FooterMenuProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-
+  const [subscribeModal, setSubscribeModal] = useState<boolean>(false);
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
   };
+
   return (
     <section className={styles.footerContainer} ref={ref}>
       <motion.div
@@ -84,13 +86,20 @@ const Footer = ({
                 {item?.description && <p>{item.description}</p>}
               </div>
 
-              {item?.ctaTitle && item?.ctaUrl && (
+              {item?.ctaUrl ? (
                 <Link
                   href={item.ctaUrl}
                   className={classNames('btn large yellow')}
                 >
                   {item.ctaTitle}
                 </Link>
+              ) : (
+                <button
+                  className={classNames('btn large yellow')}
+                  onClick={() => setSubscribeModal(!subscribeModal)}
+                >
+                  {item.ctaTitle}
+                </button>
               )}
             </div>
           ))}
@@ -141,8 +150,11 @@ const Footer = ({
         onClick={scrollToTop}
         className={classNames(styles.scrollToTopBtn, 'btnCircle up navy')}
       />
-
       <div className={styles.pattern} />
+
+      {subscribeModal && (
+        <SubscribePopup onClose={() => setSubscribeModal(false)} />
+      )}
     </section>
   );
 };
