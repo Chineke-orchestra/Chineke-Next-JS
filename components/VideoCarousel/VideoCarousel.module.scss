@@ -2,10 +2,10 @@
 
 .carousel {
   overflow: hidden;
-  padding: 40px 0;
+  padding: 43px 0 40px 0;
 
   @include media-breakpoint-down(md) {
-    padding: 20px 0px;
+    padding: 20px 0px 29px 0;
   }
   .top_side {
     display: flex;
@@ -122,12 +122,14 @@
   }
   .buttons_container {
     display: flex;
+    flex-direction: row-reverse;
     gap: 40px;
     @include media-breakpoint-down(md) {
       padding: 0 20px;
       margin-top: 18px;
       gap: 10px;
       justify-content: space-between;
+      flex-direction: row;
     }
   }
 }
