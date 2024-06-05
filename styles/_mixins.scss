@@ -45,3 +45,9 @@
   align-items: center;
   justify-content: center;
 }
+
+@function px-to-vw($pxValue, $viewportWidth) {
+  $vwValue: ($pxValue / $viewportWidth) * 100;
+  @return #{$vwValue}vw;
+}
+
