@@ -39,9 +39,18 @@ const Modal: FC<ModalProps> = ({ children, onClose, modalRef }) => {
     document.body.style.overflow = 'hidden';
     document.body.style.paddingRight = `${scrollBarWidth}px`;
 
+    const header = document.getElementById('headerContainer');
+    if (header) {
+      header.style.paddingRight = `${scrollBarWidth}px`;
+    }
+
     return () => {
       document.body.style.overflow = '';
       document.body.style.paddingRight = '';
+
+      if (header) {
+        header.style.paddingRight = '';
+      }
     };
   }, []);
 
