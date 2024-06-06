@@ -89,9 +89,9 @@ p {
 }
 
 ul {
-  color: $black;
+  color: $gray;
   font-family: $primary-font;
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 30px;
@@ -111,6 +111,18 @@ ul {
   }
 }
 
+ol {
+  li {
+    list-style: decimal;
+    color: $gray;
+    font-family: $primary-font;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+  }
+}
+
 a {
   p {
     font-family: $primary-font;
@@ -118,5 +130,38 @@ a {
     line-height: 27px;
     font-weight: 400;
     color: $gray;
+  }
+}
+
+sup {
+  font-size: 12px;
+  vertical-align: super;
+  font-weight: 400;
+}
+
+table {
+  font-family: $primary-font;
+  font-size: 16px;
+  line-height: normal;
+
+  td,
+  th {
+    border: 2px solid $light-gray;
+    padding: 8px;
+    vertical-align: top;
+  }
+  tr {
+    &:nth-child(even) {
+      background-color: $light-gray;
+    }
+  }
+  th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: $navy;
+    color: white;
+    vertical-align: top;
+    border: none;
   }
 }

@@ -1,7 +1,7 @@
 @import '../../styles/utils.scss';
 
 .accordion_component {
-  padding: 40px 0 170px 0;
+  padding: 40px 0 77px 0;
   @include media-breakpoint-down(md) {
     padding: 40px 0;
   }
@@ -41,17 +41,19 @@
           @include media-breakpoint-down(md) {
             gap: 20px;
           }
-          p {
+          h6 {
             font-size: 16px;
             font-style: normal;
             font-weight: 600;
+            text-transform: none !important;
+            letter-spacing: normal;
             @include animated();
           }
           svg {
             @include animated();
             transform: rotate(-180deg);
             path {
-              stroke: $navy;
+              stroke: $gray;
               @include animated();
             }
           }
@@ -76,8 +78,10 @@
               }
             }
           }
-          p {
+          h6 {
             font-size: 16px;
+            text-transform: none !important;
+            letter-spacing: normal;
             @include media-breakpoint-down(md) {
               font-size: 14px;
             }
@@ -93,12 +97,12 @@
           .accordion_title {
             background-color: $navy;
             * {
-              color: $white;
+              color: $light-gray;
             }
             svg {
               transform: rotate(-0deg);
               path {
-                stroke: $white;
+                stroke: $light-gray;
               }
             }
           }
@@ -112,9 +116,18 @@
                 padding-bottom: 20px;
               }
             }
+            p {
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;
+            }
           }
         }
       }
     }
+  }
+  ul li {
+    padding-left: 12px;
   }
 }
