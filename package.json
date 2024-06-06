@@ -14,7 +14,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "npm run decoupled-kit-health-check && next build && cp -r .next/static .next/standalone/.next && cp -r public .next/standalone",
-    "build-internal": "npm run decoupled-kit-health-check && next build && cp -r .next/static .next/standalone/.next && cp -r public .next/standalone",
+    "build-internal": "node scripts/create-env.js && npm run decoupled-kit-health-check && next build && cp -r .next/static .next/standalone/.next && cp -r public .next/standalone",
     "start": "node .next/standalone/server.js",
     "build:mono": "next build",
     "start:mono": "next start",
