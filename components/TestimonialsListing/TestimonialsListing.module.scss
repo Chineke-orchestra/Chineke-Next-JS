@@ -8,6 +8,10 @@
   h2 {
     color: $navy;
     margin-bottom: 40px;
+    font-size: 46px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
     @include media-breakpoint-down(md) {
       margin-bottom: 20px;
       font-size: 28px;
