@@ -79,6 +79,11 @@
               width: 20px;
               height: 20px;
               position: relative;
+              img {
+                width: 20px;
+                height: 20px;
+                object-fit: contain;
+              }
             }
             p {
               color: $light-gray;
@@ -86,6 +91,7 @@
               font-style: normal;
               font-weight: 400;
               position: relative;
+              width: calc(100% - 20px);
               :global(.underline) {
                 background-color: $light-gray;
                 bottom: -5px;

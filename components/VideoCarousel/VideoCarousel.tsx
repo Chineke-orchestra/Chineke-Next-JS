@@ -155,7 +155,7 @@ const VideoCarousel = (props: {
                       <Image src={item.image.url} alt={item.image.alt} fill />
                       <div className={styles.text_container}>
                         <div className={styles.image}>
-                          <Image src={infoIcon} alt="info-icon" />
+                          <Image src={infoIcon} alt="info-icon" fill />
                         </div>
                         <p>
                           {item.title}
