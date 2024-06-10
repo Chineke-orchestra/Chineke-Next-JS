@@ -46,7 +46,7 @@ const LatestNews = (props: {
     <motion.section
       className={styles.latest_news}
       ref={ref}
-      style={{ height: `${percent * 2}px` }}
+      style={{ height: percent < 594 ? `594px` : `${percent * 2}px` }}
     >
       <div className={styles.wrapper}>
         <motion.div
