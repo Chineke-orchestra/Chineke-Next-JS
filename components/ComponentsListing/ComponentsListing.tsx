@@ -24,6 +24,7 @@ import {
   TimelineVariation1,
   TimelineVariation2,
   TimelineVariation3,
+  InternalHeroBanner,
 } from 'components';
 import {
   formatCardData,
@@ -270,6 +271,19 @@ const ComponentsListing = ({ components }: { components: any }) => {
           />
         );
 
+      case 'paragraph--internal_hero_banner':
+        return (
+          <InternalHeroBanner
+            maskColor={component?.field_mask_colour?.color}
+            maskPosition={component?.field_image_mask}
+            image={formatMedia(component?.field_image?.field_media_image_2)}
+            externalVideo={component?.field_video?.field_media_oembed_video}
+            externalVideoTitle={component?.field_video?.field_title}
+            externalVideoTags={component?.field_video?.field_tags?.map(
+              (tag: any) => tag.name,
+            )}
+          />
+        );
       case 'paragraph--partners_list': {
         const logos = component?.field_logo?.map((item: any) => {
           return formatMedia(item?.field_media_image_4);

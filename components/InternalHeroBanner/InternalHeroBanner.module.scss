@@ -1,0 +1,98 @@
+@import '../../styles/utils.scss';
+
+.internalHeroBannerContainer {
+  width: 100%;
+  height: auto;
+
+  .mediaContainer {
+    position: relative;
+    img {
+      object-fit: contain;
+    }
+
+    .leftCorner,
+    .rightCorner {
+      display: block;
+      width: auto;
+      height: 80%;
+      max-height: 425px;
+      position: absolute;
+
+      @include media-breakpoint-down(xl) {
+        height: 50%;
+      }
+    }
+
+    .leftCorner {
+      top: 0;
+      left: 0;
+    }
+
+    .rightCorner {
+      bottom: 0;
+      right: 0;
+      transform: rotate(180deg);
+    }
+
+    .playButton {
+      width: 50px;
+      height: 50px;
+      background-image: url('../../assets/svg/play-circle.svg');
+      background-repeat: no-repeat;
+      background-color: transparent;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+
+    .infoContainer {
+      position: absolute;
+      left: 20px;
+      bottom: 20px;
+
+      @include media-breakpoint-down(sm) {
+        max-width: 234px;
+        left: 10px;
+        bottom: 10px;
+      }
+
+      .tagsContainer {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+
+        .tag {
+          background-color: $white;
+          color: $gray;
+          padding: 2px 10px;
+          border-radius: 45px;
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: normal;
+          letter-spacing: 0.6px;
+          text-transform: uppercase;
+
+          @include media-breakpoint-down(sm) {
+            font-size: 12px;
+          }
+        }
+      }
+
+      h6 {
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        color: $white;
+        text-transform: none;
+
+        @include media-breakpoint-down(sm) {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

@@ -80,6 +80,7 @@ export async function getServerSideProps(context) {
       'field_reusable_components.field_featured_link.field_feature_image.field_media_image',
       'field_reusable_components.field_featured_link.field_tags_category',
       'field_reusable_components.field_timeline_item.field_image.field_media_image_2',
+      'field_reusable_components.field_video.field_tags',
     ];
 
     const includeParam = includesArray.join(',');
