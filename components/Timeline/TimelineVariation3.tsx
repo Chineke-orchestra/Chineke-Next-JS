@@ -31,8 +31,8 @@ const TimelineVariation3 = ({
         >
           <div className={styles.timelineItemsContainerVariation3}>
             <TimelineItem
-              title={timelineItems[0].title}
-              text={timelineItems[0].text}
+              title={timelineItems[0]?.title}
+              text={timelineItems[0]?.text}
             />
           </div>
         </TimelineImage>
@@ -46,8 +46,8 @@ const TimelineVariation3 = ({
         >
           <div className={styles.timelineItemsContainerVariation3}>
             <TimelineItem
-              title={timelineItems[1].title}
-              text={timelineItems[1].text}
+              title={timelineItems[1]?.title}
+              text={timelineItems[1]?.text}
             />
           </div>
         </TimelineImage>
