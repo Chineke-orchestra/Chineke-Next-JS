@@ -2,11 +2,13 @@
 
 .bannerContainer {
   max-width: 1028px;
+  max-height: 210px;
   padding: 40px;
   margin: 0 auto;
 
   @include media-breakpoint-down(lg) {
     padding: 30px 20px;
+    max-height: 300px;
   }
   @include media-breakpoint-down(sm) {
     padding: 30px 50px 31px 20px;
@@ -40,6 +42,7 @@
       position: relative;
       width: auto;
       height: auto;
+      max-height: 82px;
 
       img {
         width: 100%;
