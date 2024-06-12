@@ -25,7 +25,7 @@ const PartnersList = ({ tagline, title, logos }: PartnersListProps) => {
 
   return (
     <section className={classNames(styles.partners_list, 'container')}>
-      {tagline && <p>{tagline}</p>}
+      {tagline && <h6>{tagline}</h6>}
       {title && <h2>{title}</h2>}
       <div className={styles.logos}>
         {splitedLogos?.map((item: any, index: number) => {

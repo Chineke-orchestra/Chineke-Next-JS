@@ -7,7 +7,7 @@
     padding-top: 75px;
     padding-bottom: 66px;
   }
-  p {
+  h6 {
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -61,7 +61,23 @@
       &.centered {
         justify-content: space-between;
         gap: 160px;
-        margin: 0 auto;
+        // margin-left: calc(65 / 769 * 100);
+
+        @media screen and (min-width: 576px) {
+          margin-left: 50px;
+        }
+        @media screen and (min-width: 620px) {
+          margin-left: 60px;
+        }
+        @media screen and (min-width: 660px) {
+          margin-left: 70px;
+        }
+        @media screen and (min-width: 700px) {
+          margin-left: 75px;
+        }
+        @media screen and (min-width: 725px) {
+          margin-left: 85px;
+        }
         @include media-breakpoint-down(lg) {
           gap: 100px;
         }
