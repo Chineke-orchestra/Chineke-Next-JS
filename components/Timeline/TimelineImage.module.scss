@@ -1,7 +1,6 @@
 @import '../../styles/utils.scss';
 
 .imageBox {
-  // flex: 1;
   display: flex;
   gap: 20px;
   flex-direction: column;
@@ -27,11 +26,13 @@
     }
 
     p {
-      color: $white;
+      color: #F7F6F5;
       position: absolute;
       z-index: 2;
       max-width: 262px;
       bottom: 24px;
+      font-weight: 600;
+      font-size: 16px;
       left: 24px;
       @include media-breakpoint-down(lg) {
         bottom: 20px;
