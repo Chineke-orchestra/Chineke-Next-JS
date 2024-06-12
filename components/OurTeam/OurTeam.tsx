@@ -19,7 +19,7 @@ export interface OurTeamProps {
 const OurTeam = ({ title, cards }: OurTeamProps) => {
   const { isMobile } = useViewport();
   let numberOfCards = isMobile ? 3 : 8;
-  const [showButton, setShowButton] = useState(true);
+  const [showButton, setShowButton] = useState(cards.length > numberOfCards);
   const [slicedCards, setSlicedCards] = useState(cards.slice(0, numberOfCards));
 
   useEffect(() => {
@@ -34,6 +34,9 @@ const OurTeam = ({ title, cards }: OurTeamProps) => {
     ]);
     setShowButton(false);
   };
+  useEffect(() => {
+    setShowButton(cards.length > numberOfCards);
+  }, [cards.length, numberOfCards]);
 
   return (
     <section className={styles.our_team}>
