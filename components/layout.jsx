@@ -8,13 +8,14 @@ export default function Layout({
   footerMenu,
   headerMenu,
   preview = false,
+  showFooter = true,
 }) {
   return (
     <div className={`${styles.layout} flex flex-col justify-between `}>
       {preview && <PreviewRibbon />}
       <Header {...headerMenu} />
       <main className="flex-1">{children}</main>
-      <Footer {...footerMenu} />
+      {showFooter && <Footer {...footerMenu} />}
     </div>
   );
 }

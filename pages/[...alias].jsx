@@ -7,7 +7,7 @@ import Layout from '../components/layout';
 import TitleCard from '../components/TitleCard/TitleCard';
 import { ComponentsListing } from '../components';
 import { fetchFooterData, fetchHeaderData } from '../utils/dataFetcher';
-import { useEffect, useState } from 'react';
+import { useHeaderHeight } from '../utils/useHeaderHeight';
 
 export default function CatchAllRoute({
   pageData,
@@ -16,28 +16,7 @@ export default function CatchAllRoute({
   headerMenu,
   preview,
 }) {
-  const [headerHeight, setHeaderHeight] = useState(0);
-
-  useEffect(() => {
-    const headerElement = document.getElementById('headerContainer');
-    if (headerElement) {
-      const updateHeaderHeight = () => {
-        setHeaderHeight(headerElement.offsetHeight);
-      };
-
-      const updateHeightWithDelay = () => {
-        setTimeout(updateHeaderHeight, 5);
-      };
-
-      updateHeightWithDelay();
-
-      window.addEventListener('resize', updateHeightWithDelay);
-
-      return () => {
-        window.removeEventListener('resize', updateHeightWithDelay);
-      };
-    }
-  }, []);
+  const headerHeight = useHeaderHeight();
 
   return (
     <Layout preview={preview} footerMenu={footerMenu} headerMenu={headerMenu}>
@@ -138,7 +117,7 @@ export async function getServerSideProps(context) {
       'field_reusable_components.field_secondary_image.field_media_image',
       'field_reusable_components.field_featured_image.field_media_image_2',
       'field_reusable_components.field_video.field_tags',
-      'field_reusable_components.field_media_card.field_feature_image_video.field_media_image'
+      'field_reusable_components.field_media_card.field_feature_image_video.field_media_image',
     ];
 
     params = `include=${params.join(',')}`;
