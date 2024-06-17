@@ -28,7 +28,7 @@ const StatsAndFigures: FC<StatsAndFiguresProps> = ({ title, image, stats }) => {
                 return (
                   <div className={styles.stat_item} key={index}>
                     <p className={styles.title}>{item.title}</p>
-                    <p className={styles.text}>{item.text}</p>
+                    <h6 className={styles.text}>{item.text}</h6>
                   </div>
                 );
               })}

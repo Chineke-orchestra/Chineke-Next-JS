@@ -17,6 +17,7 @@
   }
   @include media-breakpoint-down(md) {
     padding: 0;
+    margin: 40px 0;
   }
   .wrapper {
     display: flex;
@@ -70,6 +71,8 @@
             font-weight: 600;
             line-height: normal;
             color: $light-gray;
+            letter-spacing: normal;
+            text-transform: none;
             @include media-breakpoint-down(md) {
               font-size: 16px;
             }
