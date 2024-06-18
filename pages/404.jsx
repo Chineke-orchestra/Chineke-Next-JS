@@ -1,4 +1,3 @@
-// pages/404.jsx
 import Layout from '../components/layout';
 import { NextSeo } from 'next-seo';
 import { fetchHeaderData } from '../utils/dataFetcher';

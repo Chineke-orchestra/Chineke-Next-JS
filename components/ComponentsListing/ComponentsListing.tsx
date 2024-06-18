@@ -376,9 +376,7 @@ const ComponentsListing = ({ components }: { components: any }) => {
       case 'paragraph--video_carousel': {
         const videos = component?.field_media_card?.map((item: any) => {
           return {
-            image: formatMedia(
-              item?.field_feature_image_video?.field_media_image,
-            ),
+            image: formatMedia(item?.field_feature_img),
             videoLink: item?.field_media_oembed_video,
             title: item?.name,
           };
