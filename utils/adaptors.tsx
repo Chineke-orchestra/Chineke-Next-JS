@@ -1,4 +1,4 @@
-import moment from 'moment';
+import { I_Watch_And_Listen_Props } from 'components/WatchAndListen/WatchAndListen';
 import { Colors, I_Card, I_Link, I_Media } from 'types/index';
 
 export const formatMedia = (media: {
@@ -148,6 +148,20 @@ export const formatEventsCardsData = (
         alt: media?.relationships?.field_media_image?.data?.meta?.alt,
       },
       date: item?.attributes?.field_date?.value,
+    };
+  });
+};
+
+export const formatWatchAndListenData = (
+  data: any,
+): I_Watch_And_Listen_Props[] => {
+  return data?.map((item: any) => {
+    return {
+      tags: item?.field_tags?.map((item: any) => item.name),
+      title: item?.name,
+      spotifyUrl: item?.field_media_oembed_audio,
+      videoUrl: item?.field_media_oembed_video,
+      image: formatMedia(item?.field_feature_img),
     };
   });
 };

@@ -24,6 +24,7 @@ import {
   TimelineVariation1,
   TimelineVariation2,
   TimelineVariation3,
+  WatchAndListen,
   InternalHeroBanner,
 } from 'components';
 import {
@@ -32,6 +33,7 @@ import {
   formatLink,
   formatMedia,
   formatTagsData,
+  formatWatchAndListenData,
 } from 'utils/adaptors';
 import { PatternProps } from 'components/Pattern/Pattern';
 import { TwoColumnTextProps } from 'components/TwoColumnText/TwoColumnText';
@@ -471,6 +473,13 @@ const ComponentsListing = ({ components }: { components: any }) => {
             imageThreeText={
               component?.field_timeline_item[2]?.field_feature_image_text
             }
+          />
+        );
+      }
+      case 'paragraph--watch_listen': {
+        return (
+          <WatchAndListen
+            data={formatWatchAndListenData(component?.field_media)}
           />
         );
       }

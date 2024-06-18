@@ -27,12 +27,16 @@ const SpotifyPopup = (props: { onClose: Function; videoLink: string }) => {
         </div>
 
         <iframe
-          src={props.videoLink}
+          src={props.videoLink?.replace(
+            'https://open.spotify.com/',
+            'https://open.spotify.com/embed/',
+          )}
           width="100%"
           height={isMobile ? 534 : 578}
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
           loading="lazy"
           className={styles.test}
+          title="Spotify iframe"
         ></iframe>
       </div>
     </Modal>

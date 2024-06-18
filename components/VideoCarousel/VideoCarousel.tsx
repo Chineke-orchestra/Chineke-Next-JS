@@ -1,6 +1,6 @@
 import styles from './VideoCarousel.module.scss';
 import { I_Link, I_Media } from 'types/index';
-import { LinkComponent, Modal } from 'components';
+import { LinkComponent, VideoPopup } from 'components';
 import classNames from 'classnames';
 import { useEffect, useRef, useState } from 'react';
 import { Navigation } from 'swiper/modules';
@@ -12,8 +12,6 @@ import UseAnimation from 'utils/UseAnimation';
 import { useViewport } from 'utils/viewport';
 import Image from 'next/image';
 import infoIcon from 'assets/svg/info.svg';
-import ReactPlayer from 'react-player';
-import VideoPopup from './VideoPopup';
 
 const SwiperCustomControls = ({
   prevRef,

@@ -6,7 +6,7 @@ import { ReactSVG } from 'react-svg';
 import Corner from '../../assets/svg/hero_corner.svg';
 import ReactPlayer from 'react-player';
 import { useEffect, useState } from 'react';
-import VideoPopup from 'components/VideoCarousel/VideoPopup';
+import VideoPopup from 'components/VideoPopup/VideoPopup';
 
 export interface InternalHeroBannerProps {
   maskColor: string;
@@ -28,8 +28,6 @@ const InternalHeroBanner = ({
   const [isMounted, setIsMounted] = useState(false);
   const [activeVideo, setActiveVideo] = useState<null | string>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-
-  console.log(externalVideoTags);
 
   useEffect(() => {
     setIsMounted(true);
