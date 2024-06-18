@@ -1,14 +1,42 @@
-import moment from 'moment';
 import {
   formatEventsCardsData,
   formatLatestNewsData,
   formatViewEndpointPath,
 } from './adaptors';
 
-const colors = ['#ED5500', '#FCDD00', '#1E1E4C', '#0341F2'];
-
-export const fetchLists = async (components: any[], store: any) => {
+export const fetchLists = async (
+  components: any[],
+  store: any,
+  pageData?: any,
+  resourceName?: string,
+) => {
   const formattedComponents: any = [];
+
+  if (resourceName === 'node--news' || resourceName === 'node--stories') {
+    let headlines = [];
+    if (resourceName === 'node--news') {
+      headlines = pageData?.field_tags_category?.map((item: any) => item.name);
+    }
+    if (resourceName === 'node--stories') {
+      headlines = pageData?.field_categories?.map((item: any) => item.name);
+    }
+    formattedComponents.push({
+      field_background_color: pageData?.field_title_card_bg_color,
+      field_image_position: 'right',
+      field_title: pageData?.title,
+      field_headline: headlines.join(', '),
+      field_static_2_column_image: pageData?.field_feature_image,
+      field_2_columns_text: [
+        {
+          field_link: null,
+          field_rich_text: pageData?.body?.value || null,
+          field_cta_link_icon: null,
+          withParse: true,
+        },
+      ],
+      type: 'paragraph--static_2_column',
+    });
+  }
 
   for (const component of components) {
     switch (component?.type) {

@@ -10,6 +10,7 @@ export interface CardProps {
   link?: I_Link;
   text?: string;
   icon?: I_Media;
+  withParse?: boolean;
   motionProps?: object;
   hoverState?: boolean;
   handleHover: (index: number, isHovering: boolean) => void;
@@ -21,6 +22,7 @@ const TabCard = ({
   link,
   text,
   icon,
+  withParse,
   motionProps,
   hoverState = false,
   handleHover,
@@ -88,6 +90,8 @@ const TabCard = ({
             </motion.div>
           )}
         </Link>
+      ) : withParse && text ? (
+        <>{parse(text)}</>
       ) : (
         <p>{text}</p>
       )}

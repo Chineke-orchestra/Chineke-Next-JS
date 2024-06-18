@@ -15,6 +15,7 @@ export default function CatchAllRoute({
   footerMenu,
   headerMenu,
   preview,
+  resourceName,
 }) {
   const headerHeight = useHeaderHeight();
 
@@ -30,7 +31,11 @@ export default function CatchAllRoute({
       {pageData.field_display_title_card && (
         <TitleCard
           title={pageData?.title}
-          text={pageData?.body?.value}
+          text={
+            resourceName === 'node--news' || resourceName === 'node--stories'
+              ? null
+              : pageData?.body?.value
+          }
           backgroundColor={pageData?.field_title_card_bg_color?.color}
           path={pageData.path.alias}
           headerMenu={headerMenu}
@@ -119,6 +124,16 @@ export async function getServerSideProps(context) {
       'field_reusable_components.field_media_card.field_feature_img',
     ];
 
+    if (resourceName === 'node--news' || resourceName === 'node--stories') {
+      params.push('field_feature_image.field_media_image');
+    }
+    if (resourceName === 'node--news') {
+      params.push('field_tags_category');
+    }
+    if (resourceName === 'node--stories') {
+      params.push('field_categories');
+    }
+
     params = `include=${params.join(',')}`;
 
     const previewParams =
@@ -154,11 +169,14 @@ export async function getServerSideProps(context) {
           field_reusable_components: await fetchLists(
             pageData?.field_reusable_components,
             store,
+            pageData,
+            resourceName,
           ),
         },
         hrefLang,
         footerMenu,
         headerMenu,
+        resourceName,
         preview: Boolean(context.preview),
       },
     };

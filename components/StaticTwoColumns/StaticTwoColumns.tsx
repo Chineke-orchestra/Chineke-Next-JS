@@ -12,6 +12,7 @@ export interface I_Card {
   link?: I_Link;
   text?: string;
   icon?: I_Media;
+  withParse?: boolean;
 }
 
 export interface StaticTwoColumnsProps {
@@ -108,6 +109,7 @@ const StaticTwoColumns = ({
                   link={item.link}
                   text={item.text}
                   icon={item.icon}
+                  withParse={item.withParse}
                   hoverState={hoverStates[index]}
                   handleHover={handleHover}
                   index={index}
