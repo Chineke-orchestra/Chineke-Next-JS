@@ -6,24 +6,23 @@ import parse from 'html-react-parser';
 import UseAnimation from 'utils/UseAnimation';
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { I_Media } from 'types/index';
+import { I_Media, I_Link } from 'types/index';
 import { SubscribePopup } from 'components';
 
 export interface FeaturedLinkProps {
   title?: string;
   tagline?: string;
   description?: string;
+  link: I_Link;
   ctaTitle?: string;
-  ctaUrl?: string;
 }
 export interface MenuLinkProps {
-  title?: string;
-  url?: string;
+  link: I_Link;
 }
 
 export interface SocialLinkProps {
-  url?: string;
   icon?: I_Media;
+  link: I_Link;
 }
 
 export interface BasicBlockItemProps {
@@ -86,12 +85,14 @@ const Footer = ({
                 {item?.description && <p>{item.description}</p>}
               </div>
 
-              {item?.ctaUrl ? (
+              {item?.link ? (
                 <Link
-                  href={item.ctaUrl}
+                  href={item.link.url}
+                  target={item.link.target}
+                  rel={item.link.rel}
                   className={classNames('btn large yellow')}
                 >
-                  {item.ctaTitle}
+                  {item.link.title}
                 </Link>
               ) : (
                 <button
@@ -110,9 +111,14 @@ const Footer = ({
               menuLinks.length > 0 &&
               menuLinks.map(
                 (item, index) =>
-                  item.url && (
-                    <Link href={item.url} key={index}>
-                      {item.title}
+                  item?.link && (
+                    <Link
+                      key={index}
+                      href={item.link.url}
+                      target={item.link.target}
+                      rel={item.link.rel}
+                    >
+                      {item.link.title}
                     </Link>
                   ),
               )}
@@ -123,8 +129,13 @@ const Footer = ({
               {socialLinks?.length > 0 &&
                 socialLinks.map(
                   (item, index) =>
-                    item?.url && (
-                      <Link href={item.url} key={index}>
+                    item?.link && (
+                      <Link
+                        key={index}
+                        href={item.link.url}
+                        target={item.link.target}
+                        rel={item.link.rel}
+                      >
                         {item?.icon && (
                           <ReactSVG
                             src={item.icon.url}

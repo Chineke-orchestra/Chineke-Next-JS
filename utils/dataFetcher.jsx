@@ -43,18 +43,29 @@ export async function fetchFooterData(context) {
     title: item?.field_featured_title,
     tagline: item?.field_tagline,
     description: item?.description,
+    link: formatLink({
+      title: item?.title || null,
+      uri: item?.url || null,
+      options: item?.options || null,
+    }),
     ctaTitle: item?.title,
-    ctaUrl: item?.url,
   }));
 
   const shortMenuLinks = menuLinks.map((item) => ({
-    title: item?.title,
-    url: item?.url,
+    link: formatLink({
+      title: item?.title || null,
+      uri: item?.url || null,
+      options: item?.options || null,
+    }),
   }));
 
   const shortSocialLinks = socialLinks.map((item) => ({
-    url: item?.url,
     icon: formatMedia(item?.field_icon?.field_media_image),
+    link: formatLink({
+      title: item?.title || null,
+      uri: item?.url || null,
+      options: item?.options || null,
+    }),
   }));
 
   const shortBasicBlock = basicBlock.map((item) => ({
