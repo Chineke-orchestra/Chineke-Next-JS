@@ -40,6 +40,20 @@ const LatestNews = (props: {
     }
   }, [scrollRef]);
 
+  useEffect(() => {
+    const resizeHandler = () => {
+      if (scrollRef?.current) {
+        setPercent(
+          scrollRef?.current?.scrollWidth - scrollRef?.current?.clientWidth,
+        );
+      }
+    };
+
+    window.addEventListener('resize', resizeHandler);
+
+    return () => window.removeEventListener('resize', resizeHandler);
+  }, []);
+
   const x = useTransform(scrollYProgress, [0, 1], ['0%', `-${percent}px`]);
 
   return (

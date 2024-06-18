@@ -33,6 +33,16 @@
       grid-template-areas:
         'news-1 animation-1 news-2 news-3 news-5 news-6 animation-5 news-7'
         'news-1 animation-2 animation-3 news-4 animation-4 news-6 animation-6 animation-7';
+      @include media-breakpoint-up(md) {
+        @media (max-height: 800px) {
+          grid-template-rows: repeat(2, 207px);
+          grid-template-columns: repeat(8, 207px);
+          h6 {
+            font-size: 16px !important;
+          }
+        }
+      }
+
       @include media-breakpoint-down(md) {
         padding-right: 0;
         grid-template-rows: px-to-vw(220, 390) px-to-vw(390, 390);
@@ -41,6 +51,12 @@
         grid-template-areas:
           'news-1 animation-1 news-2 animation-3 news-3 animation-5 news-4 animation-7 news-5 animation-9 news-6 animation-11 news-7 animation-13'
           'news-1 animation-2 news-2 animation-4 news-3 animation-6 news-4 animation-8 news-5 animation-10 news-6 animation-12 news-7 animation-14';
+        @media (max-height: 800px) {
+          grid-template-rows: 30vh 40vh;
+          h6 {
+            font-size: 16px !important;
+          }
+        }
       }
 
       .article {
@@ -64,6 +80,10 @@
           color: $white;
           position: relative;
           max-width: max-content;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: normal;
           @include media-breakpoint-down(md) {
             font-size: 14px;
             font-style: normal;
@@ -155,11 +175,17 @@
       h2 {
         writing-mode: vertical-rl;
         text-orientation: mixed;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        color: $navy;
         @include media-breakpoint-down(md) {
           writing-mode: horizontal-tb;
           font-size: 28px;
           font-style: normal;
           font-weight: 600;
+          line-height: normal;
         }
       }
       p {
@@ -184,6 +210,10 @@
             left: -10px;
             transform: translateX(-100%) translateY(-50%);
             width: 40px;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
           }
         }
       }
