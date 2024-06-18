@@ -28,15 +28,26 @@ const Pattern = ({
           src={patternImage.url}
           title={patternImage.alt}
           wrapper="span"
-          className="pattern"
+          className={styles.pattern}
           beforeInjection={(svg) => {
             svg.classList.add(styles.pattern);
-            if (patternColor?.color) {
-              svg.setAttribute('fill', patternColor.color);
-            }
-            if (patternColor?.opacity) {
-              svg.setAttribute('opacity', patternColor.opacity.toString());
-            }
+
+            svg.querySelectorAll('[style]').forEach((element) => {
+              element.removeAttribute('style');
+            });
+            svg.querySelectorAll('[fill]').forEach((element) => {
+              element.removeAttribute('fill');
+            });
+
+            svg.querySelectorAll('*').forEach((element) => {
+              if (patternColor?.color) {
+                (element as HTMLElement).style.fill = patternColor.color;
+              }
+              if (patternColor?.opacity !== undefined) {
+                (element as HTMLElement).style.opacity =
+                  patternColor.opacity.toString();
+              }
+            });
           }}
         />
       )}
