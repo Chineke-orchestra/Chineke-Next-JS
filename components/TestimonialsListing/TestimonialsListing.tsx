@@ -2,7 +2,7 @@ import TestimonialCard, {
   I_Testimonial,
 } from 'components/TestimonialCard/TestimonialCard';
 import styles from './TestimonialsListing.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useViewport } from 'utils/viewport';
 
 const TestimonialsListing = (props: {
@@ -11,7 +11,9 @@ const TestimonialsListing = (props: {
 }) => {
   const { isMobile } = useViewport();
   let numberOfTestimonials = isMobile ? 3 : 6;
-  const [showButton, setShowButton] = useState(true);
+  const [showButton, setShowButton] = useState(
+    props.testimonials?.length > numberOfTestimonials,
+  );
   const [slicedTestimonials, setSlicedTestimonials] = useState(
     props.testimonials.slice(0, numberOfTestimonials),
   );
@@ -26,6 +28,12 @@ const TestimonialsListing = (props: {
     ]);
     setShowButton(false);
   };
+
+  useEffect(() => {
+    setSlicedTestimonials(props.testimonials.slice(0, numberOfTestimonials));
+    setShowButton(props.testimonials?.length > numberOfTestimonials);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isMobile, props.testimonials]);
 
   return (
     <div className={styles.testimonials_listing}>
