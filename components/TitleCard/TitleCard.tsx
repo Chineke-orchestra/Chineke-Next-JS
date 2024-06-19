@@ -65,6 +65,14 @@ const TitleCard = ({
         {text && (
           <div className={styles.rightPart}>
             <div>{parse(text)}</div>
+
+            {router.pathname === '/donate' && (
+              <div className={styles.buttonContainer}>
+                <button className="btn large transparentRed">
+                  Become a friend
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>
