@@ -32,10 +32,11 @@ const DropdownList = ({ items, isSmallScreen }: DropdownListProps) => {
             <div className={styles.parentLink}>
               {item.parentId ? (
                 <Link href={item.link.url}>
-                  {item.link.title} <span className={styles.linkArrow} />
+                  <h6>{item.link.title}</h6>
+                  <span className={styles.linkArrow} />
                 </Link>
               ) : (
-                <h5
+                <h6
                   onClick={() =>
                     item.children &&
                     item.children.length > 0 &&
@@ -45,7 +46,7 @@ const DropdownList = ({ items, isSmallScreen }: DropdownListProps) => {
                   aria-hidden="true"
                 >
                   {item.link.title} <span className={styles.linkArrow} />
-                </h5>
+                </h6>
               )}
 
               {selectedLink && (
@@ -60,7 +61,9 @@ const DropdownList = ({ items, isSmallScreen }: DropdownListProps) => {
             </div>
           ) : (
             <>
-              <Link href={item.link.url}>{item.link.title}</Link>
+              <Link href={item.link.url}>
+                <h6>{item.link.title}</h6>
+              </Link>
               {item.isFeatured && item.imageUrl && (
                 <div className={styles.imageContainer}>
                   <Image src={imageSrc} alt="feature image" sizes="100%" fill />
@@ -76,7 +79,7 @@ const DropdownList = ({ items, isSmallScreen }: DropdownListProps) => {
           {item.children && item.children.length > 0 ? (
             <>
               <Link href={item.link.url} className={styles.parentLink}>
-                {item.link.title}
+                <h6>{item.link.title}</h6>
               </Link>
 
               {item.description && <p>{item.description}</p>}
@@ -91,7 +94,9 @@ const DropdownList = ({ items, isSmallScreen }: DropdownListProps) => {
             </>
           ) : (
             <>
-              <Link href={item.link.url}>{item.link.title}</Link>
+              <Link href={item.link.url}>
+                <h6>{item.link.title}</h6>
+              </Link>
               {item.description && <p>{item.description}</p>}
               {item.isFeatured && item.imageUrl && (
                 <div className={styles.imageContainer}>
@@ -133,13 +138,13 @@ const DropdownList = ({ items, isSmallScreen }: DropdownListProps) => {
             },
           )}
         >
-          <h5
+          <h6
             className={classNames(styles.parentLink, styles.backButton)}
             onClick={handleBackClick}
             aria-hidden="true"
           >
             {selectedLink.link.title}
-          </h5>
+          </h6>
           {selectedLink.children?.map((item, index) => listItem(item, index))}
         </div>
       ) : Array.isArray(items[0]) ? (

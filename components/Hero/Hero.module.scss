@@ -112,6 +112,7 @@
       .linksContainer {
         display: flex;
         flex-direction: column;
+        width: 100%;
         gap: 13px;
 
         @include media-breakpoint-down(xl) {
