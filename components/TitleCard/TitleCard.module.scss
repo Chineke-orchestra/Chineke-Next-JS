@@ -72,7 +72,9 @@
 
     .rightPart {
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      gap: 20px;
+      align-items: flex-start;
       width: 603px;
       @include media-breakpoint-down(lg) {
         width: auto;
