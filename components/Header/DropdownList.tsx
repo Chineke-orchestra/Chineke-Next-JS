@@ -9,9 +9,14 @@ import missingImage from 'assets/images/missing_image.png';
 export interface DropdownListProps {
   items: HeaderProps[] | HeaderProps[][];
   isSmallScreen: boolean;
+  onLinkClickCloseDropdown: () => void;
 }
 
-const DropdownList = ({ items, isSmallScreen }: DropdownListProps) => {
+const DropdownList = ({
+  items,
+  isSmallScreen,
+  onLinkClickCloseDropdown,
+}: DropdownListProps) => {
   const [selectedLink, setSelectedLink] = useState<HeaderProps | null>(null);
 
   const handleLinkClick = (link: HeaderProps) => {
@@ -53,7 +58,13 @@ const DropdownList = ({ items, isSmallScreen }: DropdownListProps) => {
                 <ul>
                   {item.children.map((child, index) => (
                     <li key={index}>
-                      <Link href={child.link.url}>{child.link.title}</Link>
+                      <Link
+                        href={child.link.url}
+                        onClick={onLinkClickCloseDropdown}
+                        aria-hidden="true"
+                      >
+                        {child.link.title}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -61,7 +72,11 @@ const DropdownList = ({ items, isSmallScreen }: DropdownListProps) => {
             </div>
           ) : (
             <>
-              <Link href={item.link.url}>
+              <Link
+                href={item.link.url}
+                onClick={onLinkClickCloseDropdown}
+                aria-hidden="true"
+              >
                 <h6>{item.link.title}</h6>
               </Link>
               {item.isFeatured && item.imageUrl && (
@@ -78,7 +93,12 @@ const DropdownList = ({ items, isSmallScreen }: DropdownListProps) => {
         <li className={styles.dropdownItem} aria-hidden="true" key={itemIndex}>
           {item.children && item.children.length > 0 ? (
             <>
-              <Link href={item.link.url} className={styles.parentLink}>
+              <Link
+                href={item.link.url}
+                className={styles.parentLink}
+                onClick={onLinkClickCloseDropdown}
+                aria-hidden="true"
+              >
                 <h6>{item.link.title}</h6>
               </Link>
 
@@ -94,7 +114,11 @@ const DropdownList = ({ items, isSmallScreen }: DropdownListProps) => {
             </>
           ) : (
             <>
-              <Link href={item.link.url}>
+              <Link
+                href={item.link.url}
+                onClick={onLinkClickCloseDropdown}
+                aria-hidden="true"
+              >
                 <h6>{item.link.title}</h6>
               </Link>
               {item.description && <p>{item.description}</p>}
@@ -155,7 +179,13 @@ const DropdownList = ({ items, isSmallScreen }: DropdownListProps) => {
               [styles.isFeatured]: hasFeaturedInColumn(column),
             })}
           >
-            <ul className={styles.dropdownItem}>{column.map(listItem)}</ul>
+            <ul
+              className={styles.dropdownItem}
+              onClick={onLinkClickCloseDropdown}
+              aria-hidden="true"
+            >
+              {column.map(listItem)}
+            </ul>
           </div>
         ))
       ) : (

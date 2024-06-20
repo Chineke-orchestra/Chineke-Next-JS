@@ -113,6 +113,11 @@ const Header = ({ headerMenu }: HeadersComponentProps) => {
     router.push(`/donate`);
   };
 
+  const handleDropdownLinkClickClose = () => {
+    setDropdownVisible(false);
+    setSelectedLinkId(null);
+  };
+
   return (
     <motion.nav
       id="headerContainer"
@@ -286,6 +291,7 @@ const Header = ({ headerMenu }: HeadersComponentProps) => {
             }
             dropdownVisible={dropdownVisible}
             isSmallScreen={isSmallScreen}
+            onLinkClickCloseDropdown={handleDropdownLinkClickClose}
           />
         )}
       </AnimatePresence>

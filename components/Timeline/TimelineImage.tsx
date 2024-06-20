@@ -17,7 +17,6 @@ const TimelineImage: React.FC<TimelineImageProps> = ({
   additionalClass,
   children,
 }) => {
-  console.log(additionalClass);
   return (
     <div
       className={classNames(

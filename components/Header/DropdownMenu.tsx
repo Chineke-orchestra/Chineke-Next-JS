@@ -16,6 +16,7 @@ export interface DropdownMenuProps {
   links: HeaderProps[];
   dropdownVisible: boolean;
   isSmallScreen: boolean;
+  onLinkClickCloseDropdown: () => void;
 }
 
 const DropdownMenu = ({
@@ -23,6 +24,7 @@ const DropdownMenu = ({
   links,
   dropdownVisible,
   isSmallScreen,
+  onLinkClickCloseDropdown,
 }: DropdownMenuProps) => {
   const columns = useMemo(() => {
     const result: HeaderProps[][] = [];
@@ -77,6 +79,7 @@ const DropdownMenu = ({
           <DropdownList
             items={isSmallScreen ? links : columns}
             isSmallScreen={isSmallScreen}
+            onLinkClickCloseDropdown={onLinkClickCloseDropdown}
           />
 
           {isSmallScreen && (
