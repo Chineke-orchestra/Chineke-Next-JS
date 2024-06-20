@@ -20,10 +20,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: -29px;
 
     @include media-breakpoint-down(lg) {
       max-width: none;
       min-height: auto;
+      margin-right: 0px;
     }
 
     h1 {

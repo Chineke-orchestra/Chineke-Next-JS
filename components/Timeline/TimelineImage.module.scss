@@ -26,7 +26,7 @@
     }
 
     p {
-      color: #F7F6F5;
+      color: #f7f6f5;
       position: absolute;
       z-index: 2;
       max-width: 262px;
@@ -81,6 +81,23 @@
 
     @include media-breakpoint-down(lg) {
       flex-direction: column;
+    }
+  }
+
+  &.imageOneVariation1 {
+    max-width: 407px;
+    width: 100%;
+
+    @include media-breakpoint-down(lg) {
+      max-width: none;
+    }
+  }
+  &.imageTwoVariation1 {
+    max-width: 407px;
+    width: 100%;
+
+    @include media-breakpoint-down(lg) {
+      max-width: none;
     }
   }
 }

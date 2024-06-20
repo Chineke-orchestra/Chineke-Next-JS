@@ -22,10 +22,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: -30px;
 
     @include media-breakpoint-down(lg) {
       max-width: none;
       min-height: auto;
+      margin-left: 0px;
     }
 
     h1 {

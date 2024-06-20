@@ -37,7 +37,13 @@ const TimelineVariation1 = ({
         </div>
       )}
 
-      {imageOne && <TimelineImage image={imageOne} imageText={imageOneText} />}
+      {imageOne && (
+        <TimelineImage
+          image={imageOne}
+          imageText={imageOneText}
+          additionalClass="imageOneVariation1"
+        />
+      )}
 
       <div className={styles.timelineItemsContainer}>
         {timelineItems.map((item, index) => (
@@ -51,7 +57,7 @@ const TimelineVariation1 = ({
             <TimelineImage
               image={imageTwo}
               imageText={imageTwoText}
-              additionalClass={'imageTwoVariation1'}
+              additionalClass="imageTwoVariation1"
             />
           </div>
         </div>
