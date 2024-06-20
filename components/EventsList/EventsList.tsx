@@ -3,8 +3,24 @@ import { Colors, I_Link, I_Media } from 'types/index';
 import { useViewport } from 'utils/viewport';
 import { useEffect, useState } from 'react';
 import { ColoredCardWithImage } from '..';
-import Select from 'react-select';
+import Select, { components } from 'react-select';
 import moment from 'moment';
+
+const DropdownIndicator = (props: any) => {
+  return (
+    <components.DropdownIndicator {...props}>
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M7 10L12 15L17 10H7Z" fill="black" />
+      </svg>
+    </components.DropdownIndicator>
+  );
+};
 
 export interface EventsListProps {
   cards: {
@@ -27,7 +43,7 @@ const EventsList = ({ cards }: EventsListProps) => {
   const { isMobile } = useViewport();
   let numberOfCards = isMobile ? 3 : 8;
   const [page, setPage] = useState(1);
-  const [showButton, setShowButton] = useState(true);
+  const [showButton, setShowButton] = useState(cards?.length > numberOfCards);
   const [filteredCards, setFilteredCards] = useState(cards);
   const [slicedCards, setSlicedCards] = useState(cards.slice(0, numberOfCards));
   const [filter, setFilter] = useState<{
@@ -135,6 +151,7 @@ const EventsList = ({ cards }: EventsListProps) => {
           value={filter}
           onChange={(value) => setFilter(value)}
           instanceId="filter"
+          components={{ DropdownIndicator }}
         />
         <div className={styles.cards}>
           {slicedCards?.map((item, index) => {
