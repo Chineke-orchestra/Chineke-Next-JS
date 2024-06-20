@@ -13,7 +13,7 @@ export interface FeaturedLinkProps {
   title?: string;
   tagline?: string;
   description?: string;
-  link: I_Link;
+  link?: I_Link;
   ctaTitle?: string;
 }
 export interface MenuLinkProps {
@@ -64,10 +64,10 @@ const Footer = ({
         initial={{ opacity: 0 }}
         animate={isInView ? 'animate' : 'initial'}
         variants={UseAnimation('up', {
-          delay: 0,
+          delay: 2,
           initialY: 150,
           endY: 0,
-          duration: 1.5,
+          duration: 2.5,
           stiffness: 100,
           fromOpacity: 0,
           toOpacity: 1,
@@ -85,7 +85,7 @@ const Footer = ({
                 {item?.description && <p>{item.description}</p>}
               </div>
 
-              {item?.link ? (
+              {item?.link?.url ? (
                 <Link
                   href={item.link.url}
                   target={item.link.target}

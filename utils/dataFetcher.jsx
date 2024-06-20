@@ -44,27 +44,27 @@ export async function fetchFooterData(context) {
     tagline: item?.field_tagline,
     description: item?.description,
     link: formatLink({
-      title: item?.title || null,
-      uri: item?.url || null,
-      options: item?.options || null,
+      title: item?.title,
+      uri: item?.url,
+      options: item?.options,
     }),
     ctaTitle: item?.title,
   }));
 
   const shortMenuLinks = menuLinks.map((item) => ({
     link: formatLink({
-      title: item?.title || null,
-      uri: item?.url || null,
-      options: item?.options || null,
+      title: item?.title,
+      uri: item?.url,
+      options: item?.options,
     }),
   }));
 
   const shortSocialLinks = socialLinks.map((item) => ({
     icon: formatMedia(item?.field_icon?.field_media_image),
     link: formatLink({
-      title: item?.title || null,
-      uri: item?.url || null,
-      options: item?.options || null,
+      title: item?.title,
+      uri: item?.url,
+      options: item?.options,
     }),
   }));
 
@@ -133,7 +133,7 @@ export async function fetchHeaderData(context) {
 
             if (
               response?.jsonapi?.individual &&
-              !response?.jsonapi?.individual?.includes('homepage')
+              !response?.jsonapi?.individual?.includes('homepage') 
             ) {
               const featureImageUrl =
                 response.jsonapi.individual +
@@ -179,9 +179,9 @@ export async function fetchHeaderData(context) {
           enabled: item?.attributes?.enabled || null,
           isFeatured: item?.attributes?.field_is_featured || null,
           link: formatLink({
-            title: item?.attributes?.title || null,
-            uri: item?.attributes?.url || null,
-            options: item?.attributes?.options || null,
+            title: item?.attributes?.title,
+            uri: item?.attributes?.url,
+            options: item?.attributes?.options,
           }),
           imageUrl: imageUrl,
           imagePageUrl: imagePageUrl,

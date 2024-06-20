@@ -11,6 +11,7 @@
   font-weight: 600;
   line-height: normal;
   text-transform: uppercase;
+  @include animated();
   cursor: pointer;
 
   &.large {
@@ -21,6 +22,15 @@
   &.medium {
     padding: 14px 20px;
     font-size: 14px;
+  }
+
+  &.small {
+    padding: 10px 15px;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.6px;
   }
 
   &.yellow {
@@ -51,6 +61,49 @@
 
     &:active {
       background-color: $yellow;
+      color: $gray;
+    }
+  }
+
+  &.transparentBlack {
+    box-shadow: inset 0 0 0 2px $gray;
+    background-color: transparent;
+    color: $gray;
+
+    &:hover {
+      background-color: $yellow;
+      box-shadow: inset 0 0 0 2px $yellow;
+    }
+
+    &:active {
+      background-color: $yellow;
+      box-shadow: inset 0 0 0 2px $yellow;
+    }
+
+    &.active {
+      background-color: $yellow;
+      box-shadow: inset 0 0 0 2px $yellow;
+    }
+  }
+
+  &.transparentRed {
+    box-shadow: inset 0 0 0 2px $red;
+    background-color: transparent;
+    color: $gray;
+
+    &:hover {
+      background-color: $red;
+      box-shadow: inset 0 0 0 2px $red;
+    }
+
+    &:active {
+      background-color: $red;
+      box-shadow: inset 0 0 0 2px $red;
+    }
+
+    &.active {
+      background-color: $yellow;
+      box-shadow: inset 0 0 0 2px $yellow;
       color: $gray;
     }
   }

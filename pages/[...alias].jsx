@@ -1,12 +1,8 @@
-import { getCurrentLocaleStore, globalDrupalStateStores } from '../lib/stores';
-import { getPreview } from '../lib/getPreview';
-import { translatePath } from '@pantheon-systems/drupal-kit';
+import { fetchPageData } from '../utils/fetchPageData';
 import { NextSeo } from 'next-seo';
-import { fetchLists } from 'utils/fetchLists.tsx';
 import Layout from '../components/layout';
 import TitleCard from '../components/TitleCard/TitleCard';
 import { ComponentsListing } from '../components';
-import { fetchFooterData, fetchHeaderData } from '../utils/dataFetcher';
 import { useHeaderHeight } from '../utils/useHeaderHeight';
 
 export default function CatchAllRoute({
@@ -50,138 +46,18 @@ export default function CatchAllRoute({
 export async function getServerSideProps(context) {
   try {
     const {
-      locale,
-      locales,
       params: { alias },
     } = context;
-    const origin = process.env.NEXT_PUBLIC_FRONTEND_URL;
-    const hrefLang = locales.map((locale) => {
-      return {
-        hrefLang: locale,
-        href: origin + '/' + locale,
-      };
-    });
-    const lang = context.preview ? context.previewData.previewLang : locale;
-
-    const store = getCurrentLocaleStore(lang, globalDrupalStateStores);
-
-    // get the path from the params
     const path = Array.isArray(alias) ? alias.join('/') : alias;
-    // get the uuid and resource name from the resource's path alias
-    const {
-      entity: { uuid },
-      jsonapi: { resourceName },
-    } = await translatePath(
-      `${store.apiBase}/router/translate-path/`,
-      path,
-      {},
-    );
 
-    // determine params from the resourceName
+    const data = await fetchPageData(context, path);
 
-    let params = [
-      'field_reusable_components',
-      'field_reusable_components.field_cards',
-      'field_reusable_components.field_background_image.field_media_image',
-      'field_reusable_components.field_video',
-      'field_reusable_components.field_featured_link.field_feature_image.field_media_image',
-      'field_reusable_components.field_video.field_media_video_file',
-      'field_reusable_components.field_video, field_reusable_components.field_mobile_image.field_media_image',
-      'field_reusable_components.field_featured_link',
-      'field_reusable_components.field_featured_link.field_feature_image.field_media_image',
-      'field_reusable_components.field_featured_link.field_tags_category',
-      'field_reusable_components.field_story_card',
-      'field_reusable_components.field_story_card.field_stories',
-      'field_reusable_components.field_story_card.field_story_image.field_media_image',
-      'field_reusable_components.field_story_card.field_stories.field_tags',
-      'field_reusable_components.field_mobile_image.field_media_image',
-      'field_reusable_components.field_static_2_column_image.field_media_image',
-      'field_reusable_components.field_cta_link_icon.field_media_image',
-      'field_reusable_components.field_2_columns_text',
-      'field_reusable_components.field_2_columns_text.field_cta_link_icon.field_media_image',
-      'field_reusable_components.field_testimonial_card',
-      'field_reusable_components.field_facts_image.field_media_image_3',
-      'field_reusable_components.field_stats',
-      'field_reusable_components.field_team_cards.field_featured_image.field_media_image_2',
-      'field_reusable_components.field_logo.field_media_image_4',
-      'field_reusable_components.field_support_card',
-      'field_reusable_components.field_testimonial',
-      'field_reusable_components.field_testimonial_card',
-      'field_reusable_components.field_event_card',
-      'field_reusable_components.field_latest_news',
-      'field_reusable_components.field_event_list_view',
-      'field_reusable_components.field_pattern_image.field_media_image_1',
-      'field_reusable_components.field_accordion_item',
-      'field_reusable_components.field_gallery_images.field_media_image',
-      'field_reusable_components.field_partners_banner_logo.field_media_image_4',
-      'field_reusable_components.field_image.field_media_image_2',
-      'field_reusable_components.field_3col_image.field_media_image',
-      'field_reusable_components.field_media',
-      'field_reusable_components.field_timeline_item',
-      'field_reusable_components.field_timeline_item.field_image.field_media_image_2',
-      'field_reusable_components.field_secondary_image.field_media_image',
-      'field_reusable_components.field_featured_image.field_media_image_2',
-      'field_reusable_components.field_media.field_feature_img',
-      'field_reusable_components.field_media.field_tags',
-      'field_reusable_components.field_video.field_tags',
-      'field_reusable_components.field_media_card.field_feature_img',
-    ];
-
-    if (resourceName === 'node--news' || resourceName === 'node--stories') {
-      params.push('field_feature_image.field_media_image');
+    if (data.redirect) {
+      return data;
     }
-    if (resourceName === 'node--news') {
-      params.push('field_tags_category');
-    }
-    if (resourceName === 'node--stories') {
-      params.push('field_categories');
-    }
-
-    params = `include=${params.join(',')}`;
-
-    const previewParams =
-      context.preview && (await getPreview(context, resourceName, params));
-
-    if (previewParams?.error) {
-      return {
-        redirect: {
-          destination: previewParams.redirect,
-          permanent: false,
-        },
-      };
-    }
-
-    // fetch page data
-    const pageData = await store.getObject({
-      objectName: resourceName,
-      id: uuid,
-      params: context.preview ? previewParams : params,
-      refresh: true,
-      res: context.res,
-      anon: context.preview ? false : true,
-    });
-
-    const footerMenu = await fetchFooterData(context);
-
-    const headerMenu = await fetchHeaderData(context);
 
     return {
-      props: {
-        pageData: {
-          ...pageData,
-          field_reusable_components: await fetchLists(
-            pageData?.field_reusable_components,
-            store,
-            pageData,
-            resourceName,
-          ),
-        },
-        hrefLang,
-        footerMenu,
-        headerMenu,
-        resourceName,
-        preview: Boolean(context.preview),
-      },
+      props: data,
     };
   } catch (error) {
     console.error(`There was an error while fetching data: `, error);

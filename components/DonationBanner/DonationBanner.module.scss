@@ -1,0 +1,146 @@
+@import '../../styles/utils.scss';
+
+.donationBannerWrapper {
+  width: 100%;
+  height: 100%;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  background-color: $light-gray;
+
+  @include media-breakpoint-down(md) {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .donationBannerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+
+    @include media-breakpoint-down(md) {
+      flex-direction: column-reverse;
+    }
+
+    .leftSide {
+      flex: 1;
+      max-width: 497px;
+
+      @include media-breakpoint-down(md) {
+        max-width: none;
+      }
+      h6 {
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        color: $dark-red;
+
+        @include media-breakpoint-down(md) {
+          margin-bottom: 5px;
+        }
+      }
+
+      h2 {
+        color: $navy;
+        line-height: normal;
+        margin-bottom: 10px;
+
+        @include media-breakpoint-down(md) {
+          margin-bottom: 5px;
+        }
+      }
+
+      p {
+        color: $navy;
+        margin-bottom: 30px;
+      }
+
+      p:last-of-type {
+        font-size: 14px;
+        line-height: normal;
+        margin: 0px;
+        color: $gray;
+      }
+
+      .buttonsContainer {
+        max-width: 365px;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        margin-bottom: 20px;
+
+        .top {
+          display: flex;
+          justify-content: space-between;
+
+          @include media-breakpoint-down(md) {
+            flex-wrap: wrap;
+          }
+        }
+
+        .bottom {
+          display: flex;
+          justify-content: space-between;
+          gap: 22px;
+
+          @include media-breakpoint-down(md) {
+            justify-content: flex-start;
+            gap: 24px;
+            flex-wrap: wrap;
+          }
+
+          input {
+            width: 100%;
+            background-color: transparent;
+            border: none;
+
+            @include media-breakpoint-down(md) {
+              width: auto;
+            }
+
+            &::placeholder {
+              color: $gray;
+              font-size: 18px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;
+            }
+
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+
+            &:hover::-webkit-outer-spin-button,
+            &:hover::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+            }
+          }
+
+          .button {
+            padding: 16.5px 30px;
+
+            @include media-breakpoint-down(md) {
+              padding: 16.5px 20px;
+            }
+          }
+        }
+
+        .button {
+          padding: 16.5px 40px;
+
+          @include media-breakpoint-down(md) {
+            padding: 16.5px 36px;
+          }
+        }
+      }
+    }
+
+    .rightSide {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      max-width: 604px;
+    }
+  }
+}

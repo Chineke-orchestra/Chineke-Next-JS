@@ -1,0 +1,38 @@
+export const includesArray = [
+  'field_reusable_components',
+  'field_reusable_components.field_video.field_media_video_file',
+  'field_reusable_components.field_video,field_reusable_components.field_mobile_image.field_media_image',
+  'field_reusable_components.field_latest_news',
+  'field_reusable_components.field_video, field_reusable_components.field_mobile_image.field_media_image',
+  'field_reusable_components.field_accordion_item',
+  'field_reusable_components.field_video',
+  'field_reusable_components.field_mobile_image.field_media_image',
+  'field_reusable_components.field_static_2_column_image.field_media_image',
+  'field_reusable_components.field_cta_link_icon.field_media_image',
+  'field_reusable_components.field_2_columns_text',
+  'field_reusable_components.field_2_columns_text.field_cta_link_icon.field_media_image',
+  'field_reusable_components.field_image.field_media_image_2',
+  'field_reusable_components.field_pattern_image.field_media_image_1',
+  'field_reusable_components.field_3col_image.field_media_image',
+  'field_reusable_components.field_partners_banner_logo.field_media_image_4',
+  'field_reusable_components.field_cards',
+  'field_reusable_components.field_background_image.field_media_image',
+  'field_reusable_components.field_gallery_images.field_media_image',
+  'field_reusable_components.field_featured_image.field_media_image_2',
+  'field_reusable_components.field_secondary_image.field_media_image',
+  'field_reusable_components.field_timeline_item',
+  'field_reusable_components.field_support_card',
+  'field_reusable_components.field_testimonial',
+  'field_reusable_components.field_testimonial_card',
+  'field_reusable_components.field_featured_link.field_feature_image.field_media_image',
+  'field_reusable_components.field_featured_link.field_tags_category',
+  'field_reusable_components.field_timeline_item.field_image.field_media_image_2',
+  'field_reusable_components.field_donation_banner_image.field_media_image',
+  'field_reusable_components.field_video.field_tags',
+];
+
+export const getHrefLang = (locales, origin) =>
+  locales.map((locale) => ({
+    hrefLang: locale,
+    href: `${origin}/${locale}`,
+  }));

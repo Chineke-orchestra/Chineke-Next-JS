@@ -109,6 +109,10 @@ const Header = ({ headerMenu }: HeadersComponentProps) => {
     (link) => link.id === selectedLinkId,
   );
 
+  const handleDonate = () => {
+    router.push(`/donate`);
+  };
+
   return (
     <motion.nav
       id="headerContainer"
@@ -265,7 +269,9 @@ const Header = ({ headerMenu }: HeadersComponentProps) => {
                 transitionType: 'ease-in-out',
               })}
             >
-              <button className="btn large yellow">Donate</button>
+              <button className="btn large yellow" onClick={handleDonate}>
+                Donate
+              </button>
             </motion.div>
           )}
         </div>

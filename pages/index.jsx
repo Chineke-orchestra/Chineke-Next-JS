@@ -1,11 +1,8 @@
-import { getCurrentLocaleStore, globalDrupalStateStores } from '../lib/stores';
-import { getPreview } from '../lib/getPreview';
-import { translatePath } from '@pantheon-systems/drupal-kit';
 import { NextSeo } from 'next-seo';
-import { fetchLists } from 'utils/fetchLists.tsx';
 import Layout from '../components/layout';
 import { ComponentsListing } from '../components';
-import { fetchFooterData, fetchHeaderData } from '../utils/dataFetcher';
+import { fetchPageData } from '../utils/fetchPageData';
+
 export default function CatchAllRoute({
   pageData,
   hrefLang,
@@ -27,106 +24,12 @@ export default function CatchAllRoute({
 
 export async function getServerSideProps(context) {
   try {
-    const { locale, locales } = context;
-    const origin = process.env.NEXT_PUBLIC_FRONTEND_URL;
-    const hrefLang = locales.map((locale) => {
-      return {
-        hrefLang: locale,
-        href: origin + '/' + locale,
-      };
-    });
-    const lang = context.preview ? context.previewData.previewLang : locale;
-
-    const store = getCurrentLocaleStore(lang, globalDrupalStateStores);
-
-    // get the path from the params
-    const path = 'homepage';
-    // get the uuid and resource name from the resource's path alias
-    const {
-      entity: { uuid },
-      jsonapi: { resourceName },
-    } = await translatePath(
-      `${store.apiBase}/router/translate-path/`,
-      path,
-      {},
-    );
-
-    const includesArray = [
-      'field_reusable_components',
-      'field_reusable_components.field_video.field_media_video_file',
-      'field_reusable_components.field_video,field_reusable_components.field_mobile_image.field_media_image',
-      'field_reusable_components.field_latest_news',
-      'field_reusable_components.field_video, field_reusable_components.field_mobile_image.field_media_image',
-      'field_reusable_components.field_accordion_item',
-      'field_reusable_components.field_video',
-      'field_reusable_components.field_mobile_image.field_media_image',
-      'field_reusable_components.field_static_2_column_image.field_media_image',
-      'field_reusable_components.field_cta_link_icon.field_media_image',
-      'field_reusable_components.field_2_columns_text',
-      'field_reusable_components.field_2_columns_text.field_cta_link_icon.field_media_image',
-      'field_reusable_components.field_image.field_media_image_2',
-      'field_reusable_components.field_pattern_image.field_media_image_1',
-      'field_reusable_components.field_3col_image.field_media_image',
-      'field_reusable_components.field_partners_banner_logo.field_media_image_4',
-      'field_reusable_components.field_cards',
-      'field_reusable_components.field_background_image.field_media_image',
-      'field_reusable_components.field_gallery_images.field_media_image',
-      'field_reusable_components.field_featured_image.field_media_image_2',
-      'field_reusable_components.field_secondary_image.field_media_image',
-      'field_reusable_components.field_timeline_item',
-      'field_reusable_components.field_support_card',
-      'field_reusable_components.field_testimonial',
-      'field_reusable_components.field_testimonial_card',
-      'field_reusable_components.field_featured_link.field_feature_image.field_media_image',
-      'field_reusable_components.field_featured_link.field_tags_category',
-      'field_reusable_components.field_timeline_item.field_image.field_media_image_2',
-      'field_reusable_components.field_video.field_tags',
-    ];
-
-    const includeParam = includesArray.join(',');
-
-    const params = `include=${includeParam}`;
-
-    const previewParams =
-      context.preview && (await getPreview(context, resourceName, params));
-
-    if (previewParams?.error) {
-      return {
-        redirect: {
-          destination: previewParams.redirect,
-          permanent: false,
-        },
-      };
+    const data = await fetchPageData(context, 'homepage');
+    if (data.redirect) {
+      return data;
     }
-
-    // fetch page data
-    const pageData = await store.getObject({
-      objectName: resourceName,
-      id: uuid,
-      params: context.preview ? previewParams : params,
-      refresh: true,
-      res: context.res,
-      anon: context.preview ? false : true,
-    });
-
-    const footerMenu = await fetchFooterData(context);
-
-    const headerMenu = await fetchHeaderData(context);
-
     return {
-      props: {
-        pageData: {
-          ...pageData,
-          field_reusable_components: await fetchLists(
-            pageData?.field_reusable_components,
-            store,
-          ),
-        },
-        hrefLang,
-        footerMenu,
-        headerMenu,
-        preview: Boolean(context.preview),
-      },
+      props: data,
     };
   } catch (error) {
     console.error(`There was an error while fetching data: `, error);

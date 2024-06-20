@@ -24,6 +24,7 @@ import {
   TimelineVariation1,
   TimelineVariation2,
   TimelineVariation3,
+  DonationBanner,
   WatchAndListen,
   InternalHeroBanner,
 } from 'components';
@@ -486,6 +487,20 @@ const ComponentsListing = ({ components }: { components: any }) => {
 
       case 'paragraph--latest_news':
         return <LatestNews news={component?.news} />;
+
+      case 'paragraph--donation_banner':
+        const donationBannerProps = {
+          headline: component?.field_headline,
+          title: component?.field_donation_banner_title,
+          text: component?.field_donation_banner_body,
+          image: formatMedia(
+            component?.field_donation_banner_image?.field_media_image,
+          ),
+          footNote: component?.field_footnote?.value,
+          donationAmount: component?.field_donation_amount_banner,
+        };
+
+        return <DonationBanner {...donationBannerProps} />;
 
       default:
         return <p>block {component?.type} was not implemented</p>;

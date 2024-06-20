@@ -27,6 +27,7 @@ import TwoColumnsList from './TwoColumnsList/TwoColumnsList';
 import TimelineVariation3 from './Timeline/TimelineVariation3';
 import TimelineVariation1 from './Timeline/TimelineVariation1';
 import TimelineVariation2 from './Timeline/TimelineVariation2';
+import DonationBanner from './DonationBanner/DonationBanner';
 import VideoPopup from './VideoPopup/VideoPopup';
 import WatchAndListen from './WatchAndListen/WatchAndListen';
 import InternalHeroBanner from './InternalHeroBanner/InternalHeroBanner';
@@ -62,6 +63,7 @@ export {
   TimelineVariation3,
   TimelineVariation1,
   TimelineVariation2,
+  DonationBanner,
   VideoPopup,
   WatchAndListen,
   InternalHeroBanner,
