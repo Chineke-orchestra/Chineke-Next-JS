@@ -6,6 +6,11 @@ export const includesArray = [
   'field_reusable_components.field_video, field_reusable_components.field_mobile_image.field_media_image',
   'field_reusable_components.field_accordion_item',
   'field_reusable_components.field_video',
+  'field_reusable_components.field_story_card',
+  'field_reusable_components.field_story_card.field_stories',
+  'field_reusable_components.field_story_card.field_story_image.field_media_image',
+  'field_reusable_components.field_story_card.field_stories.field_tags',
+  'field_reusable_components.field_featured_link',
   'field_reusable_components.field_mobile_image.field_media_image',
   'field_reusable_components.field_static_2_column_image.field_media_image',
   'field_reusable_components.field_cta_link_icon.field_media_image',
@@ -29,6 +34,14 @@ export const includesArray = [
   'field_reusable_components.field_timeline_item.field_image.field_media_image_2',
   'field_reusable_components.field_donation_banner_image.field_media_image',
   'field_reusable_components.field_video.field_tags',
+  'field_reusable_components.field_facts_image.field_media_image_3',
+  'field_reusable_components.field_stats',
+  'field_reusable_components.field_team_cards.field_featured_image.field_media_image_2',
+  'field_reusable_components.field_logo.field_media_image_4',
+  'field_reusable_components.field_event_card',
+  'field_reusable_components.field_latest_news',
+  'field_reusable_components.field_event_list_view',
+  'field_reusable_components.field_media_card.field_feature_img',
 ];
 
 export const getHrefLang = (locales, origin) =>
@@ -36,3 +49,6 @@ export const getHrefLang = (locales, origin) =>
     hrefLang: locale,
     href: `${origin}/${locale}`,
   }));
+
+
+
