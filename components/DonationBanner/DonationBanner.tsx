@@ -5,8 +5,8 @@ import Image from 'next/image';
 import { useState, ChangeEvent, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import UseAnimation from 'utils/UseAnimation';
-import Modal from '../Modal/Modal';
 import { useRouter } from 'next/router';
+import parse from 'html-react-parser';
 
 export interface DonationBannerProps {
   headline?: string;
@@ -107,7 +107,7 @@ const DonationBanner = ({
             </div>
           </div>
 
-          {footNote && <p>{footNote}</p>}
+          {footNote && <p>{parse(footNote)}</p>}
         </div>
         <div className={styles.rightSide}>
           {image && (
