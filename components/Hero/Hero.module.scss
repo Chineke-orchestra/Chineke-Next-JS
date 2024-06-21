@@ -105,14 +105,13 @@
         color: $navy;
 
         @include media-breakpoint-down(lg) {
-          max-width: 600px;
+          max-width: none;
         }
       }
 
       .linksContainer {
         display: flex;
         flex-direction: column;
-        width: 100%;
         gap: 13px;
 
         @include media-breakpoint-down(xl) {
