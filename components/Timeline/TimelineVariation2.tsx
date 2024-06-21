@@ -24,7 +24,12 @@ const TimelineVariation2 = ({
 
       <div className={styles.timelineItemsContainerVariation2}>
         {timelineItems.map((item, index) => (
-          <TimelineItem key={index} title={item.title} text={item.text} />
+          <TimelineItem
+            key={index}
+            title={item.title}
+            text={item.text}
+            additionalClass="titleVariation2"
+          />
         ))}
       </div>
     </section>
