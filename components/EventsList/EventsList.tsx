@@ -53,8 +53,10 @@ const EventsList = ({ cards }: EventsListProps) => {
 
   useEffect(() => {
     setSlicedCards(cards.slice(0, numberOfCards));
+    setShowButton(cards?.length > numberOfCards);
+    setPage(1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [numberOfCards]);
+  }, [isMobile]);
 
   const loadMoreHandler = () => {
     setSlicedCards((prev) => [
@@ -62,9 +64,13 @@ const EventsList = ({ cards }: EventsListProps) => {
       ...filteredCards.slice(page * numberOfCards, (page + 1) * numberOfCards),
     ]);
 
-    setShowButton((page + 1) * numberOfCards < cards?.length);
     setPage((prev) => prev + 1);
   };
+
+  useEffect(() => {
+    setShowButton(slicedCards?.length !== cards?.length);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [slicedCards]);
 
   const sortHandler = () => {
     switch (filter?.value) {
