@@ -15,6 +15,8 @@ export interface FeatureProps {
 }
 
 const Feature = ({ headline, title, text, ctaLink, image }: FeatureProps) => {
+  console.log(ctaLink);
+
   return (
     <section className={classNames(styles.featureWrapper, 'container')}>
       <div className={styles.featureContainer}>
@@ -23,7 +25,11 @@ const Feature = ({ headline, title, text, ctaLink, image }: FeatureProps) => {
           {title && <h1>{title}</h1>}
           {text && <div className={styles.text}>{parse(text)}</div>}
           {ctaLink.url && (
-            <Link href={ctaLink.url} className={classNames('btn large orange')} target="_blank">
+            <Link
+              href={ctaLink.url}
+              className={classNames('btn large orange')}
+              target={ctaLink.target}
+            >
               {ctaLink.title}
             </Link>
           )}
