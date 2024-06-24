@@ -12,6 +12,7 @@ import UseAnimation from 'utils/UseAnimation';
 import { useViewport } from 'utils/viewport';
 import Image from 'next/image';
 import infoIcon from 'assets/svg/info.svg';
+import SpotifyPopup from 'components/SpotifyPopup/SpotifyPopup';
 
 const SwiperCustomControls = ({
   prevRef,
@@ -58,7 +59,12 @@ const ButtonsContainer = ({
 const VideoCarousel = (props: {
   title: string;
   link?: I_Link;
-  videos: { image: I_Media; videoLink: string; title: string }[];
+  videos: {
+    image: I_Media;
+    videoLink: string;
+    title: string;
+    spotifyLink?: string;
+  }[];
 }) => {
   const { isMobile } = useViewport();
   const [initialized, setInitialized] = useState(false);
@@ -71,6 +77,7 @@ const VideoCarousel = (props: {
   const [width, setWidth] = useState(ref?.current?.offsetLeft);
   const [activeIndex, setActiveIndex] = useState(-1);
   const [activeVideo, setActiveVideo] = useState<null | string>(null);
+  const [activeAudio, setActiveAudio] = useState<null | string>(null);
 
   const paddingHandler = () => {
     setPaddingLeft(
@@ -147,7 +154,10 @@ const VideoCarousel = (props: {
                     key={index}
                     onMouseOver={() => setActiveIndex(index)}
                     onMouseLeave={() => setActiveIndex(-1)}
-                    onClick={() => setActiveVideo(item?.videoLink)}
+                    onClick={() => {
+                      item?.videoLink && setActiveVideo(item?.videoLink);
+                      item?.spotifyLink && setActiveAudio(item?.spotifyLink);
+                    }}
                   >
                     <div className={styles.video_card}>
                       <Image src={item.image.url} alt={item.image.alt} fill />
@@ -194,6 +204,9 @@ const VideoCarousel = (props: {
       </div>
       {activeVideo && (
         <VideoPopup onClose={setActiveVideo} videoLink={activeVideo} />
+      )}
+      {activeAudio && (
+        <SpotifyPopup onClose={setActiveAudio} videoLink={activeAudio} />
       )}
     </section>
   );

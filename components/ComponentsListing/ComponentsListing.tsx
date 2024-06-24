@@ -361,6 +361,7 @@ const ComponentsListing = ({ components }: { components: any }) => {
           return {
             image: formatMedia(item?.field_feature_img),
             videoLink: item?.field_media_oembed_video,
+            spotifyLink: item?.field_media_oembed_audio,
             title: item?.name,
           };
         });
