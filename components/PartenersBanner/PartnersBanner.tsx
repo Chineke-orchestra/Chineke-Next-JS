@@ -23,15 +23,13 @@ const PartnersBanner = ({
 
         <div className={styles.logosContainer}>
           {logos.map((item, index) => (
-            <div key={index} className={styles.logoContainer}>
-              <Image
-                src={item.url}
-                alt={item.alt}
-                sizes="100%"
-                width={400}
-                height={400}
-              />
-            </div>
+            <Image
+              key={index}
+              src={item.url}
+              alt={item.alt}
+              width={314}
+              height={82}
+            />
           ))}
         </div>
       </div>
