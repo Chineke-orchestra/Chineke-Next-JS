@@ -76,9 +76,12 @@ button {
   .custom_select__indicator-separator {
     display: none;
   }
+  .custom_select__dropdown-indicator{
+    padding: 0 0 0 10px;
+  }
   .custom_select__control {
     border-radius: 100px;
-    border: 2px solid $gray;
+    border: 1px solid $gray;
     padding: 18px 24px;
     background-color: $white;
     transition: all 0.2s;
@@ -87,14 +90,21 @@ button {
       border-radius: 50px;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
-      border-bottom-color: $white!important;
+      border-bottom-color: $white !important;
     }
     &--is-focused,
     &:hover {
-      border-color: $gray;
+      border-color: $red;
       box-shadow: none;
     }
+    &:not(&--menu-is-open) {
+      &:hover {
+        border-color: $red;
+        background-color: $light-gray;
+      }
+    }
   }
+
   .custom_select__placeholder,
   .custom_select__single-value {
     font-family: $primary-font;
@@ -109,7 +119,7 @@ button {
   }
   .custom_select__menu {
     margin-top: 0;
-    border: 2px solid $gray;
+    border: 1px solid $red;
     border-radius: 0;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
@@ -138,7 +148,7 @@ button {
       font-size: 14px;
     }
   }
-  .custom_select__value-container{
+  .custom_select__value-container {
     padding: 0;
   }
 }
