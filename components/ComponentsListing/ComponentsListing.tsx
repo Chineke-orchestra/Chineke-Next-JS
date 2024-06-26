@@ -54,7 +54,7 @@ const ComponentsListing = ({ components }: { components: any }) => {
     switch (component?.type) {
       case 'paragraph--hero_banner':
         const heroProps: HeroProps = {
-          title: component?.field_title,
+          title: component?.field_hero_title,
           links: component?.field_links.map((item: any) => formatLink(item)),
           video: formatMedia(component?.field_video?.field_media_video_file),
           externalVideo: component?.field_video?.field_media_oembed_video,

@@ -103,9 +103,13 @@
       h1 {
         max-width: 560px;
         color: $navy;
+        font-size: 40px;
+        line-height: normal;
 
         @include media-breakpoint-down(lg) {
           max-width: none;
+          font-size: 28px;
+          line-height: normal;
         }
       }
 
