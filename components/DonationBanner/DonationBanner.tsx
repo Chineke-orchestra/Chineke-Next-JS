@@ -13,18 +13,20 @@ export interface DonationBannerProps {
   title: string;
   text?: string;
   image: I_Media;
+  secondImage: I_Media;
   footNote?: string;
   donationAmount?: number[];
 }
 
 const DonationBanner = ({
-  headline,
-  title,
-  text,
-  image,
-  footNote,
-  donationAmount,
-}: DonationBannerProps) => {
+                          headline,
+                          title,
+                          text,
+                          image,
+                          secondImage,
+                          footNote,
+                          donationAmount,
+                        }: DonationBannerProps) => {
   const [manualAmount, setManualAmount] = useState<number | null>(null);
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
   const ref = useRef(null);
@@ -51,25 +53,23 @@ const DonationBanner = ({
     <section className={styles.donationBannerWrapper} ref={ref}>
       <motion.div
         className={classNames(styles.donationBannerContainer, 'container')}
-        animate={isInView && 'animate'}
-        initial={'initial'}
-        variants={UseAnimation('up', {
-          delay: 0,
-          startY: 300,
-          endY: 0,
-          duration: 1.5,
-          stiffness: 100,
-          fromOpacity: 0,
-          toOpacity: 1,
-        })}
       >
-        <div className={styles.leftSide}>
+        <motion.div className={styles.leftSide}
+             animate={isInView ? 'animate' : 'initial'}
+             initial='initial'
+             variants={UseAnimation('up', {
+               delay: 0.5,
+               startY: 300,
+               endY: 0,
+               duration: 1.5,
+               stiffness: 100,
+               fromOpacity: 0,
+               toOpacity: 1,
+             })}
+        >
           {headline && <h6>{headline}</h6>}
-
           {title && <h2>{title}</h2>}
-
           {text && <p>{text}</p>}
-
           <div className={styles.buttonsContainer}>
             <div className={styles.top}>
               {donationAmount &&
@@ -96,6 +96,7 @@ const DonationBanner = ({
                 className={classNames(
                   styles.button,
                   'btn large transparentBlack',
+                  styles.amountBtn
                 )}
               />
               <button
@@ -106,18 +107,44 @@ const DonationBanner = ({
               </button>
             </div>
           </div>
-
           {footNote && <p>{parse(footNote)}</p>}
-        </div>
+        </motion.div>
         <div className={styles.rightSide}>
           {image && (
-            <Image
-              src={image.url}
-              alt={image.alt}
-              layout="responsive"
-              width={604}
-              height={406}
-            />
+            <div className={styles.imageWrapper} style={{ flexBasis: '33%' }}>
+              <Image
+                src={image.url}
+                alt={image.alt}
+                layout="responsive"
+                width={201}
+                height={406}
+              />
+            </div>
+          )}
+          {secondImage && (
+            <motion.div
+              className={styles.imageWrapper}
+              animate={isInView ? 'animate' : 'initial'}
+              initial='initial'
+              variants={UseAnimation('up', {
+                delay: 0.5,
+                startY: 300,
+                endY: 0,
+                duration: 1.5,
+                stiffness: 100,
+                fromOpacity: 0,
+                toOpacity: 1,
+              })}
+              style={{ flexBasis: '67%' }}
+            >
+              <Image
+                src={secondImage.url}
+                alt={secondImage.alt}
+                layout="responsive"
+                width={401}
+                height={406}
+              />
+            </motion.div>
           )}
         </div>
       </motion.div>

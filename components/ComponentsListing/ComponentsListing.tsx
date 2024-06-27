@@ -494,9 +494,8 @@ const ComponentsListing = ({ components }: { components: any }) => {
           headline: component?.field_headline,
           title: component?.field_donation_banner_title,
           text: component?.field_donation_banner_body,
-          image: formatMedia(
-            component?.field_donation_banner_image?.field_media_image,
-          ),
+          image: formatMedia(component?.field_donation_banner_image?.field_media_image),
+          secondImage: formatMedia(component?.field_donation_banner_second_ima?.field_media_image),
           footNote: component?.field_footnote?.value,
           donationAmount: component?.field_donation_amount_banner,
         };

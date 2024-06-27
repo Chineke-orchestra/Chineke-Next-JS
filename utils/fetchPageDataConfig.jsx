@@ -33,6 +33,7 @@ export const includesArray = [
   'field_reusable_components.field_featured_link.field_tags_category',
   'field_reusable_components.field_timeline_item.field_image.field_media_image_2',
   'field_reusable_components.field_donation_banner_image.field_media_image',
+  'field_reusable_components.field_donation_banner_second_ima.field_media_image',
   'field_reusable_components.field_video.field_tags',
   'field_reusable_components.field_facts_image.field_media_image_3',
   'field_reusable_components.field_stats',
