@@ -179,8 +179,8 @@
 
   .scrollToTopBtn {
     position: absolute;
-    right: 60px;
-    bottom: 220px;
+    right: 40px;
+    bottom: 196px;
 
     @include media-breakpoint-down(xl) {
       bottom: 170px;
@@ -188,7 +188,7 @@
     }
 
     @include media-breakpoint-down(md) {
-      bottom: 120px;
+      bottom: 126px;
     }
   }
 

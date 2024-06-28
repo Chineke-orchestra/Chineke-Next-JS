@@ -159,7 +159,7 @@ const Footer = ({
 
       <button
         onClick={scrollToTop}
-        className={classNames(styles.scrollToTopBtn, 'btnCircle up navy')}
+        className={classNames(styles.scrollToTopBtn, 'btnCircle up red')}
       />
       <div className={styles.pattern} />
 
