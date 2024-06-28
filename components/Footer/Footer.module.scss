@@ -61,7 +61,7 @@
           font-size: 14px;
           font-style: normal;
           font-weight: 400;
-          line-height: normal;
+          line-height: 21px;
           margin-bottom: 20px;
         }
       }
@@ -99,6 +99,7 @@
         flex-direction: column;
 
         a {
+          font-family: $primary-font;
           font-size: 14px;
           font-style: normal;
           font-weight: 400;
@@ -195,7 +196,7 @@
     width: 100%;
     height: 49px;
     overflow: hidden;
-    background-image: url('../../assets//svg/pattern_footer.svg');
+    background-image: url('../../assets/svg/pattern_footer.svg');
     background-repeat: repeat;
     background-position: top;
     background-size: auto 68px;
