@@ -33,7 +33,7 @@ const TimelineVariation1 = ({
     <section className={classNames(styles.timelineContainer, 'container')}>
       {headline && (
         <div className={styles.headlineContainer}>
-          <h1>{headline}</h1>
+          <h2>{headline}</h2>
         </div>
       )}
 

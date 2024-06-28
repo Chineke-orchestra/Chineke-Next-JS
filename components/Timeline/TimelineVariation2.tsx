@@ -16,7 +16,7 @@ const TimelineVariation2 = ({
     >
       {headline && (
         <div className={styles.headlineContainerVariation2}>
-          <h1>{headline}</h1>
+          <h2>{headline}</h2>
         </div>
       )}
 
