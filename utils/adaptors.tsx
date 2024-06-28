@@ -68,7 +68,7 @@ export const formatTagsData = (
     name: string;
   }[],
 ): string[] => {
-  return data.map((item) => item.name);
+  return data?.map((item) => item.name);
 };
 
 export const formatCardWithImageData = (

@@ -113,7 +113,8 @@ const ComponentsListing = ({ components }: { components: any }) => {
                   .field_media_image,
               ),
               tags: formatTagsData(
-                component?.field_featured_link?.field_tags_category,
+                component?.field_featured_link?.field_tags_category ||
+                  component?.field_featured_link?.field_tags,
               ),
             }}
           />

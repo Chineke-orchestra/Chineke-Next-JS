@@ -62,7 +62,7 @@ export const ExploreSection = (props: {
                 <LinkComponent link={props.featuredCard.link}>
                   <h3>{props.featuredCard.title}</h3>
                 </LinkComponent>
-                <>{parse(props.featuredCard.body)}</>
+                <>{props.featuredCard.body && parse(props.featuredCard.body)}</>
               </div>
             )}
             {props.title && <h2>{props.title}</h2>}
