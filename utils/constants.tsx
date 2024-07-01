@@ -8,3 +8,4 @@ export const backgroundClasses = {
   '#181818': 'background_gray',
   '#CC3D00': 'background_dark_red',
 };
+export const FRONTEND_URL = 'https://www.chineke.org';

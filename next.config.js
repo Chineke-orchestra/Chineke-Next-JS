@@ -71,6 +71,7 @@ module.exports = async () => {
 		...(injectedOptions && injectedOptions),
 		env: {
 			BACKEND_URL: process.env.BACKEND_URL,
+			FRONTEND_URL: process.env.FRONTEND_URL,
 			PORT: process.env.AH_SITE_ENVIRONMENT ? 3058 : undefined,
 			backendUrl: backendUrl,
 			// set imageUrl if IMAGE_DOMAIN is set in env vars to override default

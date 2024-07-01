@@ -10,6 +10,7 @@ import {
   SupportCarousel,
   TestimonialsCarousel,
   EventsCarousel,
+  EventInfo,
   LatestNews,
   VideoCarousel,
   EventsList,
@@ -354,6 +355,26 @@ const ComponentsListing = ({ components }: { components: any }) => {
               component?.field_facts_image?.field_media_image_3,
             )}
             stats={stats}
+          />
+        );
+      }
+      case 'event_info': {
+        return (
+          <EventInfo
+            image={formatMedia(component?.image?.thumbnail)}
+            backgroundColor={component?.backgroundColor}
+            maskColor={component?.maskColor}
+            imageMaskPosition={component?.imageMaskPosition}
+            startDate={component?.field_date?.value}
+            endDate={component?.field_date?.end_value}
+            location={component?.location}
+            button={formatLink(component?.field_book_now)}
+            amenities={component?.field_amenities?.map((item: any) => {
+              return formatMedia(item.field_icon?.field_media_image);
+            })}
+            videoUrl={component?.field_video?.field_media_oembed_video}
+            tags={component?.field_tags?.map((item: any) => item.name)}
+            title={component?.title}
           />
         );
       }

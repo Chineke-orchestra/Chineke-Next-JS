@@ -12,30 +12,55 @@ export const fetchLists = async (
 ) => {
   const formattedComponents: any = [];
 
-  if (resourceName === 'node--news' || resourceName === 'node--stories') {
-    let headlines = [];
-    if (resourceName === 'node--news') {
-      headlines = pageData?.field_tags_category?.map((item: any) => item.name);
+  switch (true) {
+    case resourceName === 'node--events': {
+      formattedComponents.push({
+        image: pageData?.field_feature_image,
+        backgroundColor: pageData?.field_title_card_bg_color?.color || null,
+        maskColor: pageData?.field_image_mask_color?.color || null,
+        imageMaskPosition: pageData?.field_image_mask_position,
+        field_date: pageData?.field_date,
+        field_amenities: pageData?.field_amenities,
+        location: pageData?.field_location,
+        field_book_now: pageData?.field_book_now,
+        title: pageData?.title,
+        field_display_title_card: pageData?.field_display_title_card,
+        field_video: pageData?.field_video,
+        field_tags: pageData?.field_tags,
+        type: 'event_info',
+      });
+      break;
     }
-    if (resourceName === 'node--stories') {
-      headlines = pageData?.field_categories?.map((item: any) => item.name);
+    case resourceName === 'node--news' || resourceName === 'node--stories': {
+      let headlines = [];
+      if (resourceName === 'node--news') {
+        headlines = pageData?.field_tags_category?.map(
+          (item: any) => item.name,
+        );
+      }
+      if (resourceName === 'node--stories') {
+        headlines = pageData?.field_categories?.map((item: any) => item.name);
+      }
+      formattedComponents.push({
+        field_background_color: pageData?.field_title_card_bg_color,
+        field_image_position: 'right',
+        field_title: pageData?.title,
+        field_headline: headlines.join(', '),
+        field_static_2_column_image: pageData?.field_feature_image,
+        field_2_columns_text: [
+          {
+            field_link: null,
+            field_rich_text: pageData?.body?.value || null,
+            field_cta_link_icon: null,
+            withParse: true,
+          },
+        ],
+        type: 'paragraph--static_2_column',
+      });
+      break;
     }
-    formattedComponents.push({
-      field_background_color: pageData?.field_title_card_bg_color,
-      field_image_position: 'right',
-      field_title: pageData?.title,
-      field_headline: headlines.join(', '),
-      field_static_2_column_image: pageData?.field_feature_image,
-      field_2_columns_text: [
-        {
-          field_link: null,
-          field_rich_text: pageData?.body?.value || null,
-          field_cta_link_icon: null,
-          withParse: true,
-        },
-      ],
-      type: 'paragraph--static_2_column',
-    });
+    default:
+      break;
   }
 
   for (const component of components) {
@@ -91,6 +116,7 @@ export const fetchLists = async (
 
         break;
       }
+
       default:
         formattedComponents.push(component);
     }

@@ -31,6 +31,17 @@ export async function fetchPageData(context, path) {
     dynamicIncludesArray.push('field_categories');
   }
 
+  if (resourceName === 'node--events') {
+    const excludeFromParams = ['field_reusable_components.field_stats'];
+    dynamicIncludesArray = dynamicIncludesArray.filter((item) =>
+      excludeFromParams.includes(item),
+    );
+    dynamicIncludesArray.push('field_feature_image.field_media_image');
+    dynamicIncludesArray.push('field_video');
+    dynamicIncludesArray.push('field_tags');
+    dynamicIncludesArray.push('field_amenities.field_icon.field_media_image');
+  }
+
   const includeParam = dynamicIncludesArray.join(',');
 
   const params = `include=${includeParam}`;
