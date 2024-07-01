@@ -63,6 +63,9 @@
           grid-row-start: 1;
           grid-row-end: 3;
           padding: 0 25px 17px 20px;
+          @include media-breakpoint-down(md) {
+            padding: 0 18px 20px 15px;
+          }
         }
         height: 100%;
         display: flex;
@@ -72,13 +75,14 @@
         padding: 0 27px 35px 20px;
         position: relative;
         background-repeat: no-repeat !important;
-        background-size: auto 100% !important;
+        background-size: fill;
         background-position: center !important;
         @include animated();
         h6 {
           color: $white;
           position: relative;
           max-width: max-content;
+          text-transform: none;
           font-size: 18px;
           font-style: normal;
           font-weight: 600;
