@@ -81,6 +81,12 @@
       button {
         align-self: flex-start;
       }
+
+      :global(.btn) {
+        @include media-breakpoint-down(md) {
+          font-size: 14px;
+        }
+      }
     }
 
     .rightColumn {
