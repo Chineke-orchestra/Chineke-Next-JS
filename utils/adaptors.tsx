@@ -16,27 +16,28 @@ export const formatLink = (link: {
   uri: string;
   options?: {
     attributes: {
-      target: '_self' | '_blank';
+      target: '_self' | '_blank' | 'none';
       rel: string;
     };
   };
 }): I_Link => {
   let target = '_self' as '_self' | '_blank';
   let rel = '';
-  if (link?.options?.attributes?.target) {
+
+  if (link?.options?.attributes?.target && link?.options?.attributes?.target !== 'none') {
     target = link?.options?.attributes?.target;
-  } else if (link?.uri?.includes('internal')) {
-    target = '_self';
   } else {
-    target = '_blank';
+    target = '_self';
   }
+
   if (link?.options?.attributes?.rel) {
     rel = link?.options?.attributes?.rel;
-  } else if (link?.uri?.includes('internal')) {
-    rel = '';
+  } else if (target === '_blank') {
+    rel = 'nofollow noopener';
   } else {
-    rel = 'nofollow noopenner';
+    rel = '';
   }
+
   return {
     url: link?.uri?.replace('internal:', ''),
     title: link?.title,
