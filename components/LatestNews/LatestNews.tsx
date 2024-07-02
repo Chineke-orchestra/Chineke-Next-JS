@@ -9,6 +9,7 @@ import { motion, useTransform, useScroll, useInView } from 'framer-motion';
 import { LinkComponent } from '..';
 import { useViewport } from 'utils/viewport';
 import UseAnimation from 'utils/UseAnimation';
+import Image from 'next/image';
 
 const LatestNews = (props: {
   news: {
@@ -91,11 +92,22 @@ const LatestNews = (props: {
                   <LinkComponent link={item.link}>
                     <div
                       style={{
-                        background: `url(${item.image.url})`,
                         gridArea: `news-${index + 1}`,
                       }}
                       className={classNames(styles.article, styles.news)}
                     >
+                      <motion.div
+                        className={styles.image}
+                        animate={{ scale: animate === index ? 1.05 : 1 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <Image
+                          src={item.image.url}
+                          alt={item.link.title}
+                          layout="fill"
+                          objectFit="cover"
+                        />
+                      </motion.div>
                       {item.tags &&
                         item.tags.map((item, index) => {
                           return (
