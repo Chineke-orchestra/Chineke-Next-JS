@@ -24,7 +24,10 @@ export const formatLink = (link: {
   let target = '_self' as '_self' | '_blank';
   let rel = '';
 
-  if (link?.options?.attributes?.target && link?.options?.attributes?.target !== 'none') {
+  if (
+    link?.options?.attributes?.target &&
+    link?.options?.attributes?.target !== 'none'
+  ) {
     target = link?.options?.attributes?.target;
   } else {
     target = '_self';
@@ -137,6 +140,10 @@ export const formatEventsCardsData = (
     const mediaId = item?.relationships?.field_feature_image?.data?.id;
     const { media, file } = getMediaFromIncluded(data?.included, mediaId);
 
+    const imageUrl = file?.attributes?.uri?.url
+      ? `${process.env.BACKEND_URL}${file?.attributes?.uri?.url}`
+      : null;
+
     return {
       tag: item?.attributes?.field_location,
       link: {
@@ -145,8 +152,8 @@ export const formatEventsCardsData = (
       },
       backgroundColor: colors[index % 4],
       image: {
-        url: `${process.env.BACKEND_URL}${file?.attributes?.uri?.url}`,
-        alt: media?.relationships?.field_media_image?.data?.meta?.alt,
+        url: imageUrl,
+        alt: media?.relationships?.field_media_image?.data?.meta?.alt || '',
       },
       date: item?.attributes?.field_date?.value,
     };
@@ -182,6 +189,10 @@ export const formatLatestNewsData = (
 
     const tag = data?.included?.find((item: any) => item.id === tagsId);
 
+    const imageUrl = file?.attributes?.uri?.url
+      ? `${process.env.BACKEND_URL}${file?.attributes?.uri?.url}`
+      : null;
+
     return {
       tags: tag?.attributes?.name ? [tag?.attributes?.name] : null,
       link: {
@@ -189,8 +200,8 @@ export const formatLatestNewsData = (
         title: item?.attributes?.title,
       },
       image: {
-        url: `${process.env.BACKEND_URL}${file?.attributes?.uri?.url}`,
-        alt: media?.relationships?.field_media_image?.data?.meta?.alt,
+        url: imageUrl,
+        alt: media?.relationships?.field_media_image?.data?.meta?.alt || '',
       },
     };
   });

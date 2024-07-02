@@ -43,4 +43,13 @@
       margin-left: 0;
     }
   }
+
+  :global(.custom_select__option) {
+    white-space: pre-line;
+  }
+
+  :global(.custom_select__option::before) {
+    content: attr(data-label);
+    display: block;
+  }
 }

@@ -34,9 +34,12 @@ const ColoredCardWithImage = (props: {
         onFocus={() => setAnimate(true)}
         onMouseLeave={() => setAnimate(false)}
       >
-        <div className={styles.image}>
-          <Image src={props.image.url} alt={props.image.alt} fill />
-        </div>
+        {props.image.url && (
+          <div className={styles.image}>
+            <Image src={props.image.url} alt={props.image.alt} fill />
+          </div>
+        )}
+
         <div className={styles.text}>
           {props.tag && <p className="tag light">{props.tag}</p>}
           <h5>

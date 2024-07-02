@@ -39,10 +39,10 @@ export interface EventsListProps {
 }
 
 const options = [
-  { value: 'a-z', label: 'Location (A-Z)' },
-  { value: 'z-a', label: 'Location (Z-A)' },
-  { value: 'latest', label: 'Date (latest)' },
-  { value: 'furthest', label: 'Date (furthest)' },
+  { value: 'a-z', label: 'LOCATION (A-Z)' },
+  { value: 'z-a', label: 'LOCATION (Z-A)' },
+  { value: 'latest', label: 'DATE (LATEST)' },
+  { value: 'furthest', label: 'DATE (FURTHEST)' },
 ];
 
 const EventsList = ({ cards }: EventsListProps) => {
@@ -164,6 +164,12 @@ const EventsList = ({ cards }: EventsListProps) => {
           onChange={(value) => setFilter(value)}
           instanceId="filter"
           components={{ DropdownIndicator }}
+          formatOptionLabel={(option) => (
+            <div>
+              {option.label.replace(' (', '\n(')}{' '}
+              {/* Replace the space and bracket with a newline */}
+            </div>
+          )}
         />
         <div className={styles.cards}>
           {slicedCards?.map((item, index) => {
@@ -179,7 +185,10 @@ const EventsList = ({ cards }: EventsListProps) => {
           })}
         </div>
         {showButton && (
-          <button className="btn large yellow" onClick={loadMoreHandler}>
+          <button
+            className="btn large transparentBlack"
+            onClick={loadMoreHandler}
+          >
             Load more
           </button>
         )}

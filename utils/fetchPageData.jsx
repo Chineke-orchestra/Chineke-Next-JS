@@ -68,6 +68,7 @@ export async function fetchPageData(context, path) {
     anon: context.preview ? false : true,
   });
 
+
   const footerMenu = await fetchFooterData(context);
   const headerMenu = await fetchHeaderData(context);
 
