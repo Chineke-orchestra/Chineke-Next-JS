@@ -10,7 +10,7 @@
   @include media-breakpoint-down(lg) {
     flex-direction: column;
     padding: 30px 0;
-    gap: 20px;
+    gap: 0;
   }
 
   .headlineContainer {
@@ -36,7 +36,6 @@
       min-width: 300px;
 
       @include media-breakpoint-down(lg) {
-        font-size: 24px;
         transform: none;
         max-height: none;
         min-width: auto;
@@ -46,7 +45,7 @@
 
   .timelineItemsContainerVariation3 {
     @include media-breakpoint-down(lg) {
-      padding: 0 20px 15px 20px;
+      padding: 0 20px 35px;
     }
   }
 }
