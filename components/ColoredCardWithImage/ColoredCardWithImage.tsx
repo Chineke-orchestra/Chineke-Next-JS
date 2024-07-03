@@ -1,10 +1,7 @@
-import { motion } from 'framer-motion';
 import styles from './ColoredCardWithImage.module.scss';
 import { Colors, I_Link, I_Media } from 'types/index';
 import Image from 'next/image';
 import { LinkComponent } from 'components';
-import UseAnimation from 'utils/UseAnimation';
-import { useState } from 'react';
 import classNames from 'classnames';
 import { backgroundClasses } from 'utils/constants';
 
@@ -17,7 +14,6 @@ const ColoredCardWithImage = (props: {
   date?: string;
   index?: number;
 }) => {
-  const [animate, setAnimate] = useState(false);
   return (
     <LinkComponent link={props.link} className={styles.link}>
       <div
@@ -30,9 +26,6 @@ const ColoredCardWithImage = (props: {
           },
         )}
         style={{ backgroundColor: props.backgroundColor }}
-        onMouseOver={() => setAnimate(true)}
-        onFocus={() => setAnimate(true)}
-        onMouseLeave={() => setAnimate(false)}
       >
         {props.image.url && (
           <div className={styles.image}>
@@ -44,20 +37,7 @@ const ColoredCardWithImage = (props: {
           {props.tag && <p className="tag light">{props.tag}</p>}
           <h5>
             {props.link.title}
-            <motion.span
-              className="underline"
-              initial={{ scaleX: 0 }}
-              animate={animate ? 'animate' : 'initial'}
-              variants={UseAnimation('right', {
-                duration: 0.5,
-                distance: 0,
-                startScaleX: 0,
-                endScaleX: 1,
-              })}
-              style={{
-                originX: 0,
-              }}
-            />
+            <span className={styles.underline}></span>
           </h5>
           {props.date && <p className={styles.date}>{props.date}</p>}
         </div>

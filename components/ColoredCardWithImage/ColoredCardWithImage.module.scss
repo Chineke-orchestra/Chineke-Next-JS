@@ -10,6 +10,7 @@
     width: 320px;
     padding-top: 40px;
   }
+
   .image {
     height: 340px;
     position: relative;
@@ -38,11 +39,27 @@
       color: $light-gray;
       position: relative;
       margin-top: 10px;
+
+      .underline {
+        display: block;
+        height: 2px;
+        background-color: currentColor;
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
     }
   }
   &:hover {
     img {
       scale: 1.1;
+    }
+
+    .text h5 .underline {
+      opacity: 1;
     }
   }
   :global(.underline) {

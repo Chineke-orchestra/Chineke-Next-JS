@@ -1,8 +1,5 @@
 import styles from './LatestNews.module.scss';
 import classNames from 'classnames';
-import { motion } from 'framer-motion';
-
-import { useAutoScrolling } from 'utils/useAutoScrolling';
 
 export interface I_Animated_Card {
   url: string;
@@ -13,10 +10,8 @@ export interface I_Animated_Card {
 }
 
 const AnimatedCard = ({ item }: { item: I_Animated_Card }) => {
-  const x = useAutoScrolling();
-
   return (
-    <motion.div
+    <div
       className={classNames(styles.article, styles.animated, {
         [styles[item?.variation || '']]: item?.variation,
       })}
@@ -24,7 +19,7 @@ const AnimatedCard = ({ item }: { item: I_Animated_Card }) => {
         gridArea: `animation-${item.index + 1}`,
       }}
     >
-      <motion.div className={styles.container} style={{ x }}>
+      <div className={styles.container}>
         <div
           style={{
             background: `url(${item.url})`,
@@ -45,8 +40,8 @@ const AnimatedCard = ({ item }: { item: I_Animated_Card }) => {
             background: `url(${item.url})`,
           }}
         />
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 };
 

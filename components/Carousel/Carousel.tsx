@@ -8,7 +8,7 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/scss/pagination';
 import { Swiper } from 'swiper/react';
 import 'swiper/css';
-import { delay, motion, useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import UseAnimation from 'utils/UseAnimation';
 import { useViewport } from 'utils/viewport';
 

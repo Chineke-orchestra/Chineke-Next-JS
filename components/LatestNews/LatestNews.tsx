@@ -118,21 +118,7 @@ const LatestNews = (props: {
                         })}
                       <h6>
                         {item.link.title}
-
-                        <motion.span
-                          className="underline"
-                          initial={{ scaleX: 0 }}
-                          animate={animate === index ? 'animate' : 'initial'}
-                          variants={UseAnimation('right', {
-                            duration: 0.5,
-                            distance: 0,
-                            startScaleX: 0,
-                            endScaleX: 1,
-                          })}
-                          style={{
-                            originX: 0,
-                          }}
-                        />
+                        <span className={styles.underline}></span>
                       </h6>
                     </div>
                   </LinkComponent>

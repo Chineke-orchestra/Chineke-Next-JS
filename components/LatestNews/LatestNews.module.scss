@@ -94,8 +94,16 @@
             font-style: normal;
             font-weight: 600;
           }
-          :global(.underline) {
-            background-color: $white;
+          .underline {
+            display: block;
+            height: 2px;
+            background-color: currentColor;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
           }
         }
         &.contained_image {
@@ -149,6 +157,12 @@
           }
           * {
             z-index: 1;
+          }
+        }
+
+        &:hover {
+          h6 .underline {
+            opacity: 1;
           }
         }
       }
