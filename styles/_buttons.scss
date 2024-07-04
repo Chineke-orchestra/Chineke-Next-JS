@@ -142,6 +142,15 @@
 
   &.red {
     background-color: $red;
+
+    &:hover {
+      background-color: $light-gray;
+      box-shadow: inset 0 0 0 2px $yellow;
+
+      &.up {
+        background-image: url('../assets/svg/arrow_up_black.svg');
+      }
+    }
   }
 
   &:active {

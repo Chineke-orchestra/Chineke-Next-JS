@@ -25,6 +25,7 @@ import {
   TimelineVariation1,
   TimelineVariation2,
   TimelineVariation3,
+  NewsList,
   DonationBanner,
   WatchAndListen,
   InternalHeroBanner,
@@ -511,6 +512,9 @@ const ComponentsListing = ({ components }: { components: any }) => {
       case 'paragraph--latest_news':
         return <LatestNews news={component?.news} />;
 
+      case 'paragraph--news_list': {
+        return <NewsList news={component?.news} />;
+      }
       case 'paragraph--donation_banner':
         const donationBannerProps = {
           headline: component?.field_headline,

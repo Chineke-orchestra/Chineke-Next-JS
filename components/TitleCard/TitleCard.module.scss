@@ -21,6 +21,7 @@
 
       .breadCrumbContainer {
         display: flex;
+        align-items: center;
         gap: 10px;
         flex-wrap: wrap;
         margin-bottom: 10px;
@@ -60,6 +61,24 @@
 
           &.active {
             color: $gray;
+          }
+        }
+
+        h6 {
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: normal;
+          letter-spacing: 0.6px;
+          text-transform: uppercase;
+          color: $medium-gray;
+          @include animated();
+
+          &:not(:last-child)::after {
+            content: ' /';
+            padding-left: 5px;
+            pointer-events: none;
+            color: $medium-gray;
           }
         }
       }
@@ -116,6 +135,14 @@
 
             &.active {
               color: $red;
+            }
+          }
+
+          h6 {
+            color: $white;
+
+            &:not(:last-child)::after {
+              color: $white;
             }
           }
         }

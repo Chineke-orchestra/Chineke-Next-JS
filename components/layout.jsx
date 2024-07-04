@@ -2,6 +2,7 @@ import { PreviewRibbon } from '@pantheon-systems/nextjs-kit';
 import styles from './layout.module.css';
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
+import { useEffect } from 'react';
 
 export default function Layout({
   children,
@@ -10,6 +11,11 @@ export default function Layout({
   preview = false,
   showFooter = true,
 }) {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   return (
     <div className={`${styles.layout} flex flex-col justify-between `}>
       {preview && <PreviewRibbon />}

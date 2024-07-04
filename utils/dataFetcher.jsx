@@ -96,7 +96,7 @@ export async function fetchHeaderData(context) {
 
   try {
     const headerMenuResponse = await store.fetchData(
-      `${process.env.BACKEND_URL}/jsonapi/menu_items/header-menu?include=field_field_logo_image,field_field_logo_image.field_media_image`,
+      `${process.env.backendUrl}/jsonapi/menu_items/header-menu?include=field_field_logo_image,field_field_logo_image.field_media_image`,
     );
 
     const { data, included } = headerMenuResponse;
@@ -121,14 +121,14 @@ export async function fetchHeaderData(context) {
                 (inc) => inc.id === mediaImageId,
               );
               if (mediaDetails && mediaDetails.attributes?.uri?.url) {
-                imageUrl = `${process.env.BACKEND_URL}${mediaDetails.attributes.uri.url}`;
+                imageUrl = `${process.env.backendUrl}${mediaDetails.attributes.uri.url}`;
               }
             }
           }
 
           if (item?.attributes?.field_is_featured && item?.attributes?.url) {
             const response = await store.fetchData(
-              `${process.env.BACKEND_URL}/router/translate-path?path=${item.attributes.url}`,
+              `${process.env.backendUrl}/router/translate-path?path=${item.attributes.url}`,
             );
 
             if (
@@ -162,7 +162,7 @@ export async function fetchHeaderData(context) {
                   );
 
                   if (fileDetail && fileDetail.attributes?.uri?.url) {
-                    imagePageUrl = `${process.env.BACKEND_URL}${fileDetail.attributes.uri.url}`;
+                    imagePageUrl = `${process.env.backendUrl}${fileDetail.attributes.uri.url}`;
                   }
                 }
               }

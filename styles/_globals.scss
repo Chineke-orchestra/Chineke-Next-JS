@@ -47,6 +47,10 @@ button {
     background-color: $light-gray;
     color: $gray !important;
   }
+  &.yellow {
+    background-color: $yellow;
+    color: $gray !important;
+  }
 }
 
 .swiper-pagination-bullets {

@@ -1,3 +1,4 @@
+import { I_Tag } from 'components/NewsList/NewsList';
 import { I_Watch_And_Listen_Props } from 'components/WatchAndListen/WatchAndListen';
 import { Colors, I_Card, I_Link, I_Media } from 'types/index';
 
@@ -6,7 +7,7 @@ export const formatMedia = (media: {
   resourceIdObjMeta?: { alt: string };
 }): I_Media => {
   return {
-    url: media?.uri?.url ? `${process.env.BACKEND_URL}${media.uri.url}` : '',
+    url: media?.uri?.url ? `${process.env.backendUrl}${media.uri.url}` : '',
     alt: media?.resourceIdObjMeta?.alt || '',
   };
 };
@@ -122,7 +123,7 @@ export const formatViewEndpointPath = (
   displayId: string,
   optionalInclude: string = '',
 ) => {
-  return `${process.env.BACKEND_URL}/jsonapi/views/${viewId}/${displayId}?include=field_feature_image.field_media_image${optionalInclude}`;
+  return `${process.env.backendUrl}/jsonapi/views/${viewId}/${displayId}?include=field_feature_image.field_media_image${optionalInclude}`;
 };
 
 export const formatEventsCardsData = (
@@ -141,7 +142,7 @@ export const formatEventsCardsData = (
     const { media, file } = getMediaFromIncluded(data?.included, mediaId);
 
     const imageUrl = file?.attributes?.uri?.url
-      ? `${process.env.BACKEND_URL}${file?.attributes?.uri?.url}`
+      ? `${process.env.backendUrl}${file?.attributes?.uri?.url}`
       : null;
 
     return {
@@ -190,7 +191,7 @@ export const formatLatestNewsData = (
     const tag = data?.included?.find((item: any) => item.id === tagsId);
 
     const imageUrl = file?.attributes?.uri?.url
-      ? `${process.env.BACKEND_URL}${file?.attributes?.uri?.url}`
+      ? `${process.env.backendUrl}${file?.attributes?.uri?.url}`
       : null;
 
     return {
@@ -203,6 +204,50 @@ export const formatLatestNewsData = (
         url: imageUrl,
         alt: media?.relationships?.field_media_image?.data?.meta?.alt || '',
       },
+    };
+  });
+};
+
+export const formatNewsListData = (
+  data: any,
+): {
+  image: I_Media;
+  date: string;
+  link: I_Link;
+  category: string;
+}[] => {
+  return data?.data?.map((item: any) => {
+    const mediaId = item?.relationships?.field_feature_image?.data?.id;
+    const { media, file } = getMediaFromIncluded(data?.included, mediaId);
+
+    const tagsId = item?.relationships?.field_tags_category?.data?.[0]?.id;
+
+    const tag = data?.included?.find((item: any) => item.id === tagsId);
+
+    return {
+      category: tag?.attributes?.name || null,
+      date: item?.attributes?.field_date_time,
+      link: {
+        url: item?.attributes?.path?.alias || '',
+        title: item?.attributes?.title,
+      },
+      image: {
+        url: `${process.env.backendUrl}${file?.attributes?.uri?.url}`,
+        alt: media?.relationships?.field_media_image?.data?.meta?.alt,
+      },
+    };
+  });
+};
+
+export const formatNewsCategoriesData = (
+  data: {
+    attributes: { name: string; drupal_internal__tid: number };
+  }[],
+): I_Tag[] => {
+  return data?.map((item) => {
+    return {
+      name: item.attributes?.name,
+      id: item.attributes?.drupal_internal__tid,
     };
   });
 };

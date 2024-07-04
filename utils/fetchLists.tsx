@@ -1,6 +1,7 @@
 import {
   formatEventsCardsData,
   formatLatestNewsData,
+  formatNewsListData,
   formatViewEndpointPath,
 } from './adaptors';
 
@@ -114,6 +115,22 @@ export const fetchLists = async (
           formattedComponents.push({ ...component, news });
         }
 
+        break;
+      }
+      case 'paragraph--news_list': {
+        const viewId =
+          component?.field_news_list?.resourceIdObjMeta
+            ?.drupal_internal__target_id;
+        const displayId =
+          component?.field_news_list?.resourceIdObjMeta?.display_id;
+
+        const data = await store.fetchData(
+          formatViewEndpointPath(viewId, displayId, ',field_tags_category'),
+        );
+
+        const news = formatNewsListData(data);
+
+        formattedComponents.push({ ...component, news, test: data });
         break;
       }
 
