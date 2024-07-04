@@ -4,7 +4,7 @@ repository: 'Hogarth-Worldwide/di-chineke-main-frontend.git'
 notify: devopssec
 framework: react
 versions:
-  nodejs: 16
+  nodejs: 18
 react:
   endpoint: .next/standalone/server.js
   port: 3058
