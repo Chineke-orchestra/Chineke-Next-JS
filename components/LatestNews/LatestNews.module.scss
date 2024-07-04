@@ -88,11 +88,12 @@
           font-size: 18px;
           font-style: normal;
           font-weight: 600;
-          line-height: normal;
+          line-height: 27px;
           @include media-breakpoint-down(md) {
             font-size: 14px;
             font-style: normal;
             font-weight: 600;
+            line-height: 21px;
           }
           .underline {
             display: block;
@@ -210,6 +211,7 @@
         font-style: normal;
         font-weight: 400;
         position: relative;
+        line-height: 21px;
         &::after {
           content: '';
           background: url('../../assets/images/scroll-line.svg');

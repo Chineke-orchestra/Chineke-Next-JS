@@ -114,6 +114,7 @@ const StaticTwoColumns = ({
                   handleHover={handleHover}
                   index={index}
                   isInView={isInView}
+                  colorTheme={colorTheme}
                 />
               ))}
           </div>

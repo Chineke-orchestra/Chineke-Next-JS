@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { I_Link, I_Media } from 'types/index';
 import parse from 'html-react-parser';
 import Image from 'next/image';
+import classNames from 'classnames';
 
 export interface CardProps {
   link?: I_Link;
@@ -16,6 +17,7 @@ export interface CardProps {
   handleHover: (index: number, isHovering: boolean) => void;
   index: number;
   isInView?: boolean;
+  colorTheme: 'colorInvert' | 'colorNormal';
 }
 
 const TabCard = ({
@@ -28,6 +30,7 @@ const TabCard = ({
   handleHover,
   index,
   isInView = false,
+  colorTheme
 }: CardProps) => {
   const defaultMotionProps = {
     initial: { opacity: 0 },
@@ -53,7 +56,7 @@ const TabCard = ({
           onMouseLeave={() => handleHover(index, false)}
         >
           {link.title && (
-            <h4>
+            <h4 className={classNames(styles.h4, styles[colorTheme])}>
               {link.title}
               <motion.span
                 className={styles.underline}
