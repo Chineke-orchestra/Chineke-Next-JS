@@ -7,13 +7,10 @@ const LinkComponent = (props: {
   children: ReactElement | string;
   className?: string;
 }) => {
-  if (props.link.url === undefined || props.link.url === null) {
-    return <></>;
-  }
   return (
     <Link
       className={props.className}
-      href={props?.link?.url}
+      href={props?.link?.url || '/'}
       target={props.link.target}
       rel={props.link.rel}
     >

@@ -3,6 +3,7 @@ import { NextSeo } from 'next-seo';
 import Layout from '../components/layout';
 import TitleCard from '../components/TitleCard/TitleCard';
 import { ComponentsListing } from '../components';
+import { fetchFooterData, fetchHeaderData } from '../utils/dataFetcher';
 import { useHeaderHeight } from '../utils/useHeaderHeight';
 
 export default function CatchAllRoute({
@@ -28,19 +29,29 @@ export default function CatchAllRoute({
         <TitleCard
           title={pageData?.title}
           text={
-            resourceName === 'node--news' || resourceName === 'node--stories' || resourceName === 'node--events'
+            resourceName === 'node--news' ||
+            resourceName === 'node--stories' ||
+            resourceName === 'node--events'
               ? null
               : pageData?.body?.value
           }
           backgroundColor={pageData?.field_title_card_bg_color?.color}
           path={pageData.path.alias}
           headerMenu={headerMenu}
-          type={resourceName === 'node--news' || resourceName === 'node--stories' || resourceName === 'node--events'
-          ? pageData?.type
-          : null}
-          date={resourceName === 'node--news' || resourceName === 'node--stories' || resourceName === 'node--events'
-          ? pageData?.field_date?.value
-          : null}
+          type={
+            resourceName === 'node--news' ||
+            resourceName === 'node--stories' ||
+            resourceName === 'node--events'
+              ? pageData?.type
+              : null
+          }
+          date={
+            resourceName === 'node--news' ||
+            resourceName === 'node--stories' ||
+            resourceName === 'node--events'
+              ? pageData?.field_date?.value
+              : null
+          }
         />
       )}
 

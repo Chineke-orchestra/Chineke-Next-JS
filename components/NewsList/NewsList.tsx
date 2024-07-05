@@ -51,7 +51,6 @@ const NewsList = (props: {
       .then((data) => {
         if (page === 0) {
           setNews(formatNewsListData(data));
-          console.log(data);
           setTotalNews(data.meta.count);
         } else {
           setNews((prev) => {
