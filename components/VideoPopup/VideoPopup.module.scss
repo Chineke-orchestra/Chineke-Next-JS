@@ -23,10 +23,14 @@
     .close_icon {
       width: 24px;
       height: 24px;
+      background-size: cover;
       background: url('../../assets/svg/85-close.svg');
       background-position: center;
-      background-size: cover;
       background-repeat: no-repeat;
+    }
+
+    &:hover {
+      background-color: $red;
     }
   }
 }
