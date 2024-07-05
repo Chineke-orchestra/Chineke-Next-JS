@@ -10,13 +10,13 @@ export interface PatternProps {
 }
 
 const Pattern = ({
-  patternBackground,
-  patternImage,
-  patternColor,
-}: PatternProps) => {
+                   patternBackground,
+                   patternImage,
+                   patternColor,
+                 }: PatternProps) => {
   const containerStyle: React.CSSProperties = {
-    backgroundColor: patternBackground?.color,
-    opacity: patternBackground?.opacity,
+    backgroundColor: patternBackground?.color || 'transparent',
+    opacity: patternBackground?.opacity !== null && patternBackground?.opacity !== undefined ? patternBackground.opacity : 1,
   };
 
   return (
@@ -41,11 +41,10 @@ const Pattern = ({
 
             svg.querySelectorAll('*').forEach((element) => {
               if (patternColor?.color) {
-                (element as HTMLElement).style.fill = patternColor.color;
+                (element as HTMLElement).style.fill = patternColor.color!;
               }
-              if (patternColor?.opacity !== undefined) {
-                (element as HTMLElement).style.opacity =
-                  patternColor.opacity.toString();
+              if (patternColor?.opacity !== null && patternColor?.opacity !== undefined) {
+                (element as HTMLElement).style.opacity = patternColor.opacity!.toString();
               }
             });
           }}
