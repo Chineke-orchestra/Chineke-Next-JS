@@ -7,7 +7,7 @@
   padding-bottom: 80px;
   background-color: $light-gray;
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(lg) {
     padding-top: 30px;
     padding-bottom: 30px;
   }
@@ -18,55 +18,65 @@
     align-items: center;
     gap: 30px;
 
-    @include media-breakpoint-down(md) {
+    @include media-breakpoint-down(lg) {
       flex-direction: column-reverse;
+      align-items: flex-start;
     }
 
     .leftSide {
       flex: 1;
+      height: inherit;
       max-width: 497px;
 
-      @include media-breakpoint-down(md) {
+      @include media-breakpoint-down(lg) {
         max-width: none;
       }
-      h6 {
-        text-transform: uppercase;
-        margin-bottom: 10px;
-        color: $dark-red;
 
-        @include media-breakpoint-down(md) {
+      h6 {
+        letter-spacing: 2.8px;
+        text-transform: uppercase;
+        color: $dark-red;
+        margin-bottom: 10px;
+
+        @include media-breakpoint-down(lg) {
           margin-bottom: 5px;
         }
       }
 
       h2 {
         color: $navy;
-        line-height: normal;
         margin-bottom: 10px;
 
-        @include media-breakpoint-down(md) {
+        @include media-breakpoint-down(lg) {
           font-size: 36px;
           margin-bottom: 5px;
         }
       }
 
       p {
-        color: $navy;
         line-height: normal;
-        margin-bottom: 30px;
+        color: $navy;
+        margin-bottom: 20px;
 
-        @include media-breakpoint-down(md) {
-          max-width: 350px;
+        @include media-breakpoint-down(lg) {
           font-size: 16px;
         }
       }
 
-      p:last-of-type {
+      button {
+        margin-bottom: 30px;
+      }
+
+      .footNote {
         font-size: 14px;
         line-height: normal;
         margin: 0;
         color: $gray;
         max-width: 357px;
+
+        @include media-breakpoint-down(lg) {
+          max-width: none;
+        }
       }
 
       a {
@@ -80,105 +90,6 @@
           text-decoration: none;
         }
       }
-
-      .buttonsContainer {
-        max-width: 365px;
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-        margin-bottom: 20px;
-
-        .top {
-          display: flex;
-          justify-content: space-between;
-
-          @include media-breakpoint-down(md) {
-            justify-content: flex-start;
-            flex-wrap: wrap;
-            gap: 18px;
-          }
-
-          .button {
-            padding: 16.5px 40px;
-            font-size: 18px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-
-            @include media-breakpoint-down(md) {
-              padding: 16.5px 36px;
-            }
-
-            &:hover {
-              color: $gray !important;
-            }
-          }
-        }
-
-        .bottom {
-          display: flex;
-          justify-content: space-between;
-          gap: 22px;
-
-          @include media-breakpoint-down(md) {
-            justify-content: flex-start;
-            gap: 24px;
-          }
-
-          input {
-            width: 100%;
-            background-color: transparent;
-            border: none;
-            cursor: auto;
-
-            &:hover {
-              box-shadow: inset 0 0 0 2px #181818;
-            }
-
-            @include media-breakpoint-down(md) {
-              width: auto;
-            }
-
-            &::placeholder {
-              color: $gray;
-              font-size: 18px;
-              font-style: normal;
-              font-weight: 400;
-              line-height: normal;
-            }
-
-            &::-webkit-outer-spin-button,
-            &::-webkit-inner-spin-button {
-              -webkit-appearance: none;
-              margin: 0;
-            }
-
-            &:hover::-webkit-outer-spin-button,
-            &:hover::-webkit-inner-spin-button {
-              -webkit-appearance: none;
-            }
-          }
-
-          .button {
-            padding: 18px 24px;
-            font-size: 16px;
-            @include media-breakpoint-down(md) {
-              padding: 18px 20px;
-            }
-          }
-
-          .amountBtn {
-            text-transform: none;
-            font-size: 18px;
-            font-weight: 400;
-            padding: 16.5px 40px;
-            @include media-breakpoint-down(md) {
-              padding: 16.5px 28px;
-              max-width: 194px;
-            }
-          }
-        }
-      }
     }
 
     .rightSide {
@@ -186,9 +97,16 @@
       width: 100%;
       height: 100%;
       max-width: 604px;
+      max-height: 406px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      @include media-breakpoint-down(lg) {
+        max-width: none;
+        max-height: none;
+        padding: 0px 10px;
+      }
 
       .imageWrapper {
         height: 100%;

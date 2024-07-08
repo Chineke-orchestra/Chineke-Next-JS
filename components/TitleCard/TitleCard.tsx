@@ -130,11 +130,11 @@ const TitleCard = ({
             <div>{parse(text)}</div>
 
             {router.pathname === '/donate' && (
-              <div className={styles.buttonContainer}>
+              <Link href="/becomeafriend" className={styles.buttonContainer}>
                 <button className="btn large transparentRed">
                   Become a friend
                 </button>
-              </div>
+              </Link>
             )}
           </div>
         )}

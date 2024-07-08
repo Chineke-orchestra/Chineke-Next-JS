@@ -540,7 +540,6 @@ const ComponentsListing = ({ components }: { components: any }) => {
             component?.field_donation_banner_second_ima?.field_media_image,
           ),
           footNote: component?.field_footnote?.value,
-          donationAmount: component?.field_donation_amount_banner,
         };
 
         return <DonationBanner {...donationBannerProps} />;

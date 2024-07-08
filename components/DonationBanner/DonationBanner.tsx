@@ -15,38 +15,22 @@ export interface DonationBannerProps {
   image: I_Media;
   secondImage: I_Media;
   footNote?: string;
-  donationAmount?: number[];
 }
 
 const DonationBanner = ({
-                          headline,
-                          title,
-                          text,
-                          image,
-                          secondImage,
-                          footNote,
-                          donationAmount,
-                        }: DonationBannerProps) => {
-  const [manualAmount, setManualAmount] = useState<number | null>(null);
-  const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
+  headline,
+  title,
+  text,
+  image,
+  secondImage,
+  footNote,
+}: DonationBannerProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const router = useRouter();
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = parseFloat(e.target.value);
-    setManualAmount(isNaN(value) ? null : value);
-    setSelectedAmount(null);
-  };
-
-  const handleButtonClick = (amount: number) => {
-    setSelectedAmount(amount);
-    setManualAmount(null);
-  };
-
   const handleDonate = () => {
-    const amount = manualAmount ?? selectedAmount ?? 0;
-    router.push(`/donate?donation=${amount}`);
+    router.push(`/donate`);
   };
 
   return (
@@ -54,60 +38,32 @@ const DonationBanner = ({
       <motion.div
         className={classNames(styles.donationBannerContainer, 'container')}
       >
-        <motion.div className={styles.leftSide}
-             animate={isInView ? 'animate' : 'initial'}
-             initial='initial'
-             variants={UseAnimation('up', {
-               delay: 0.5,
-               startY: 300,
-               endY: 0,
-               duration: 1.5,
-               stiffness: 100,
-               fromOpacity: 0,
-               toOpacity: 1,
-             })}
+        <motion.div
+          className={styles.leftSide}
+          animate={isInView ? 'animate' : 'initial'}
+          initial="initial"
+          variants={UseAnimation('up', {
+            delay: 0.5,
+            startY: 300,
+            endY: 0,
+            duration: 1.5,
+            stiffness: 100,
+            fromOpacity: 0,
+            toOpacity: 1,
+          })}
         >
           {headline && <h6>{headline}</h6>}
           {title && <h2>{title}</h2>}
           {text && <p>{text}</p>}
-          <div className={styles.buttonsContainer}>
-            <div className={styles.top}>
-              {donationAmount &&
-                donationAmount.map((amount, index) => (
-                  <button
-                    className={classNames(
-                      styles.button,
-                      'btn large transparentBlack ',
-                      { active: selectedAmount === amount },
-                    )}
-                    key={index}
-                    onClick={() => handleButtonClick(amount)}
-                  >
-                    {amount}
-                  </button>
-                ))}
-            </div>
-            <div className={styles.bottom}>
-              <input
-                type="number"
-                value={manualAmount !== null ? manualAmount : ''}
-                onChange={handleInputChange}
-                placeholder="£ Enter amount"
-                className={classNames(
-                  styles.button,
-                  'btn large transparentBlack',
-                  styles.amountBtn
-                )}
-              />
-              <button
-                onClick={handleDonate}
-                className={classNames(styles.button, 'btn large orange')}
-              >
-                DONATE
-              </button>
-            </div>
-          </div>
-          {footNote && <p>{parse(footNote)}</p>}
+
+          <button
+            onClick={handleDonate}
+            className={classNames(styles.button, 'btn large orange')}
+          >
+            DONATE
+          </button>
+
+          {footNote && <p className={styles.footNote}>{parse(footNote)}</p>}
         </motion.div>
         <div className={styles.rightSide}>
           {image && (
@@ -125,7 +81,7 @@ const DonationBanner = ({
             <motion.div
               className={styles.imageWrapper}
               animate={isInView ? 'animate' : 'initial'}
-              initial='initial'
+              initial="initial"
               variants={UseAnimation('up', {
                 delay: 0.5,
                 startY: 300,

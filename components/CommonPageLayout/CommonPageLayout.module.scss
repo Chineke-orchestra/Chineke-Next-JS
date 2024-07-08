@@ -1,4 +1,4 @@
-@import '../styles/utils.scss';
+@import '../../styles/utils.scss';
 
 .frameContainer {
   background-color: $light-gray;
@@ -13,6 +13,6 @@
   }
 
   :global(#etapIframe) {
-    padding: 20px;
+    padding: 30px;
   }
 }
