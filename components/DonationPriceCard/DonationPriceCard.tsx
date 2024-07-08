@@ -39,11 +39,8 @@ const DonationPriceCard = ({
 
           <div className={styles.buttonsContainer}>
             {ctaButtons === 'single' && donationSingle && (
-              <Link
-                className="btn medium transparentBlack"
-                href={`/donate?single=${donationSingle}&friend_type=wind_friend`}
-              >
-                Donate
+              <Link className="btn large yellow" href={'/becomeafriend'}>
+                Become a friend
               </Link>
             )}
 
@@ -52,7 +49,7 @@ const DonationPriceCard = ({
                 {donationSingle && (
                   <Link
                     className="btn medium transparentBlack"
-                    href={`/donate?single=${donationSingle}&friend_type=wind_friend`}
+                    href={'/donate'}
                   >
                     Single
                   </Link>
@@ -60,7 +57,7 @@ const DonationPriceCard = ({
                 {donationCouple && (
                   <Link
                     className="btn medium transparentBlack"
-                    href={`/donate?couple=${donationCouple}&friend_type=wind_friend`}
+                    href={'/donate'}
                   >
                     Couple
                   </Link>
