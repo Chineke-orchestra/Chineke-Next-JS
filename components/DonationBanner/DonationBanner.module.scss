@@ -71,6 +71,14 @@
 
       a {
         text-decoration: underline;
+
+        &:hover {
+          color: $blue;
+        }
+
+        &:active {
+          text-decoration: none;
+        }
       }
 
       .buttonsContainer {
@@ -100,6 +108,10 @@
             @include media-breakpoint-down(md) {
               padding: 16.5px 36px;
             }
+
+            &:hover {
+              color: $gray !important;
+            }
           }
         }
 
@@ -117,6 +129,11 @@
             width: 100%;
             background-color: transparent;
             border: none;
+            cursor: auto;
+
+            &:hover {
+              box-shadow: inset 0 0 0 2px #181818;
+            }
 
             @include media-breakpoint-down(md) {
               width: auto;
@@ -179,5 +196,8 @@
       }
     }
   }
-}
 
+  :global(.btn.active) {
+    color: $gray !important;
+  }
+}

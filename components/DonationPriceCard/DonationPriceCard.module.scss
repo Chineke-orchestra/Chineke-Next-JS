@@ -1,0 +1,118 @@
+@import '../../styles/utils.scss';
+
+.donationCardContainer {
+  width: 100%;
+  height: 100%;
+  padding-top: 40px;
+  padding-bottom: 32px;
+
+  .donationCardWrapper {
+    width: 100%;
+    max-width: 1028px;
+    height: 100%;
+    margin: 0 auto;
+    background-color: $light-gray;
+    padding: 30px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    @include media-breakpoint-down(md) {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 20px 20px 30px 20px;
+    }
+
+    .titlePart {
+      max-width: 230px;
+      @include media-breakpoint-down(md) {
+        max-width: none;
+      }
+
+      h3 {
+        color: $dark-red;
+      }
+
+      p {
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+      }
+    }
+
+    .bodyTextPart {
+      max-width: 461px;
+      border-left: 1px solid rgba($gray, 0.1);
+      padding: 39px 0px 39px 30px;
+
+      @include media-breakpoint-down(md) {
+        border-left: none;
+        border-top: 1px solid rgba($gray, 0.1);
+        max-width: none;
+        padding: 20px 0px 0px 0px;
+      }
+
+      p:first-child {
+        font-size: 14px;
+        line-height: normal;
+        margin-bottom: 10px;
+
+        strong {
+          color: $dark-red;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+        }
+      }
+
+      li {
+        list-style: none;
+        margin-left: 20px;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+
+        &::after {
+          width: 3px;
+          height: 3px;
+          border-radius: 5px;
+          left: -14px;
+          top: 9px;
+        }
+      }
+    }
+
+    .buttonsPart {
+      p {
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+
+      .buttonsContainer {
+        .buttons {
+          display: flex;
+          gap: 10px;
+        }
+
+        a {
+          white-space: nowrap;
+
+          &:hover {
+            background-color: $red;
+            box-shadow: inset 0 0 0 2px $red;
+            color: $navy;
+          }
+
+          &:nth-child(2) {
+            color: $navy;
+          }
+        }
+      }
+    }
+  }
+}

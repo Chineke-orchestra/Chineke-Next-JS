@@ -25,6 +25,7 @@ import {
   TimelineVariation1,
   TimelineVariation2,
   TimelineVariation3,
+  DonationPriceCard,
   NewsList,
   DonationBanner,
   WatchAndListen,
@@ -512,6 +513,18 @@ const ComponentsListing = ({ components }: { components: any }) => {
       case 'paragraph--latest_news':
         return <LatestNews news={component?.news} />;
 
+      case 'paragraph--donation_price_card':
+        const donationCardProps = {
+          title: component?.field_title,
+          subtitle: component?.field_subtitle,
+          text: component?.field_body_text_formatted?.value,
+          donationSingle: component?.field_donation_amount[0],
+          donationCouple: component?.field_donation_amount[1],
+          ctaHeadline: component?.field_cta_heading_text,
+          ctaButtons: component?.field_cta_buttons,
+        };
+
+        return <DonationPriceCard {...donationCardProps} />;
       case 'paragraph--news_list': {
         return <NewsList news={component?.news} />;
       }
