@@ -22,8 +22,6 @@ const DonationPriceCard = ({
   ctaHeadline,
   ctaButtons,
 }: DonationCardProps) => {
-  console.log(ctaButtons);
-
   return (
     <section className={classNames(styles.donationCardContainer, 'container')}>
       <div className={styles.donationCardWrapper}>
@@ -38,7 +36,7 @@ const DonationPriceCard = ({
           {ctaHeadline && <p>{ctaHeadline}</p>}
 
           <div className={styles.buttonsContainer}>
-            {ctaButtons === 'single' && donationSingle && (
+            {ctaButtons === 'single' && (
               <Link className="btn large yellow" href={'/becomeafriend'}>
                 Become a friend
               </Link>
