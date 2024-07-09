@@ -17,7 +17,7 @@ const DonatePage = ({
       headerMenu={headerMenu}
       preview={preview}
       resourceName={resourceName}
-      iframeSrc="https://app.etapestry.com/onlineforms/CHINEKEFoundation/donate-1.html"
+      iframeSrc="https://app.etapestry.com/onlineforms/CHINEKEFoundation/donate.html"
     />
   );
 };

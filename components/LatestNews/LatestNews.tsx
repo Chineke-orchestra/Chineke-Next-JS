@@ -101,12 +101,14 @@ const LatestNews = (props: {
                         animate={{ scale: animate === index ? 1.05 : 1 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <Image
-                          src={item.image.url}
-                          alt={item.link.title}
-                          layout="fill"
-                          objectFit="cover"
-                        />
+                        {item?.image?.url && (
+                          <Image
+                            src={item.image.url}
+                            alt={item.link.title}
+                            layout="fill"
+                            objectFit="cover"
+                          />
+                        )}
                       </motion.div>
                       {item.tags &&
                         item.tags.map((item, index) => {

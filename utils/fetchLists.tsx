@@ -103,8 +103,10 @@ export const fetchLists = async (
         const viewId =
           component?.field_latest_news?.resourceIdObjMeta
             ?.drupal_internal__target_id;
+
         const displayId =
           component?.field_latest_news?.resourceIdObjMeta?.display_id;
+
         if (viewId && displayId) {
           const data = await store.fetchData(
             formatViewEndpointPath(viewId, displayId, ',field_tags_category'),

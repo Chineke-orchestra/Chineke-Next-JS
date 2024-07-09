@@ -109,11 +109,12 @@ export const formatCardWithImageData = (
 };
 
 export const getMediaFromIncluded = (included: any, mediaId: string) => {
-  const media = included?.find((item: any) => item?.id === mediaId);
-  const file = included?.find(
-    (item: any) =>
-      item.id === media?.relationships?.field_media_image?.data?.id,
-  );
+  const media = included?.find((item: any) => item?.id === mediaId) || null;
+  const file =
+    included?.find(
+      (item: any) =>
+        item.id === media?.relationships?.field_media_image?.data?.id,
+    ) || null;
 
   return { media, file };
 };
@@ -178,32 +179,36 @@ export const formatWatchAndListenData = (
 export const formatLatestNewsData = (
   data: any,
 ): {
-  image: I_Media;
+  image: I_Media | null;
   link: I_Link;
-  tags: string[];
-} => {
+  tags: string[] | null;
+}[] => {
+  console.log('Data:', JSON.stringify(data.data, null, 2));
   return data?.data?.map((item: any) => {
     const mediaId = item?.relationships?.field_feature_image?.data?.id;
     const { media, file } = getMediaFromIncluded(data?.included, mediaId);
 
     const tagsId = item?.relationships?.field_tags_category?.data?.[0]?.id;
-
-    const tag = data?.included?.find((item: any) => item.id === tagsId);
+    const tag = data?.included?.find(
+      (includedItem: any) => includedItem.id === tagsId,
+    );
 
     const imageUrl = file?.attributes?.uri?.url
-      ? `${process.env.backendUrl}${file?.attributes?.uri?.url}`
+      ? `${process.env.backendUrl}${file.attributes.uri.url}`
       : null;
 
     return {
-      tags: tag?.attributes?.name ? [tag?.attributes?.name] : null,
+      tags: tag?.attributes?.name ? [tag.attributes.name] : null,
       link: {
         url: item?.attributes?.path?.alias || '',
-        title: item?.attributes?.title,
+        title: item?.attributes?.title || '',
       },
-      image: {
-        url: imageUrl,
-        alt: media?.relationships?.field_media_image?.data?.meta?.alt || '',
-      },
+      image: imageUrl
+        ? {
+            url: imageUrl,
+            alt: media?.relationships?.field_media_image?.data?.meta?.alt || '',
+          }
+        : null,
     };
   });
 };
@@ -224,6 +229,10 @@ export const formatNewsListData = (
 
     const tag = data?.included?.find((item: any) => item.id === tagsId);
 
+    const imageUrl = file?.attributes?.uri?.url
+      ? `${process.env.backendUrl}${file?.attributes?.uri?.url}`
+      : null;
+
     return {
       category: tag?.attributes?.name || null,
       date: item?.attributes?.field_date_time,
@@ -232,8 +241,8 @@ export const formatNewsListData = (
         title: item?.attributes?.title,
       },
       image: {
-        url: `${process.env.backendUrl}${file?.attributes?.uri?.url}`,
-        alt: media?.relationships?.field_media_image?.data?.meta?.alt,
+        url: imageUrl,
+        alt: media?.relationships?.field_media_image?.data?.meta?.alt || '',
       },
     };
   });

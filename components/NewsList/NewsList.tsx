@@ -128,7 +128,10 @@ const NewsList = (props: {
                   onBlur={() => setActiveIndex(-1)}
                 >
                   <div className={styles.image}>
-                    <Image src={item.image.url} alt={item.image.alt} fill />
+                    {item?.image?.url && (
+                      <Image src={item.image.url} alt={item.image.alt} fill />
+                    )}
+
                     {item.category && (
                       <p className="tag yellow">{item.category}</p>
                     )}

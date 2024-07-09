@@ -74,6 +74,28 @@
           font-weight: 400;
           line-height: normal;
         }
+
+        a {
+          position: relative;
+          color: inherit;
+          text-decoration: none;
+
+          &::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -2px; 
+            left: 0;
+            background-color: #181818;
+            opacity: 0;
+            transition: opacity 0.25s ease-in-out;
+          }
+
+          &:hover::after {
+            opacity: 1;
+          }
+        }
       }
     }
   }
