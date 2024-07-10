@@ -5,10 +5,8 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
   @include media-breakpoint-down(md) {
     width: 320px;
-    padding-top: 40px;
   }
 
   .image {
@@ -19,11 +17,12 @@
       transition: scale 1s;
     }
     @include media-breakpoint-down(md) {
-      height: 241px;
+      height: 293px;
     }
     @include media-breakpoint-down(sm) {
-      width: 260px;
+      width: 100%;
       margin: 0 auto;
+
       img {
         width: 100%;
         height: 100%;
@@ -39,26 +38,35 @@
       color: $light-gray;
       position: relative;
       margin-top: 10px;
+      padding-bottom: 5px;
 
-      .underline {
-        display: block;
-        height: 2px;
-        background-color: currentColor;
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 100%;
-        opacity: 0;
-        transition: opacity 0.3s ease;
+      .word {
+        display: inline-block;
+        position: relative;
+        white-space: pre;
+
+        &::after {
+          content: '';
+          display: block;
+          height: 2px;
+          background-color: currentColor;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
       }
     }
   }
+
   &:hover {
     img {
       scale: 1.1;
     }
 
-    .text h5 .underline {
+    .text h5 .word::after {
       opacity: 1;
     }
   }
