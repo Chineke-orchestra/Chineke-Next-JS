@@ -105,6 +105,10 @@ module.exports = async () => {
 					source: '/sites/default/:path*',
 					destination: `${backendUrl}/sites/default/:path*`,
 				},
+				{
+					source: '/sitemap.xml',
+					destination: '/api/sitemap',
+				},
 			];
 		},
 		transpilePackages: [
