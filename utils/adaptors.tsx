@@ -230,7 +230,7 @@ export const formatNewsListData = (
     const tag = data?.included?.find((item: any) => item.id === tagsId);
 
     const imageUrl = file?.attributes?.uri?.url
-      ? `${process.env.backendUrl}${file?.attributes?.uri?.url}`
+      ? `${process.env.backendUrl}${file.attributes.uri.url}`
       : null;
 
     return {
