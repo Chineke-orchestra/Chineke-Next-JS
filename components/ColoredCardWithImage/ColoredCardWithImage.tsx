@@ -21,12 +21,10 @@ const ColoredCardWithImage = (props: {
     const h5 = titleRef.current;
     if (h5) {
       const words = h5.innerText.split(' ');
-      h5.innerHTML = words
-        .map((word: string, index: number) => {
-          const space = index < words.length - 1 ? ' ' : '';
-          return `<span class="${styles.word}">${word}${space}</span>`;
-        })
-        .join('');
+      h5.innerHTML = words.map((word: string, index: number) => {
+        const space = index < words.length - 1 ? ' ' : '';
+        return `<span class="${styles.word}">${word}${space}</span>`;
+      }).join('');
     }
   }, []);
 
@@ -51,7 +49,9 @@ const ColoredCardWithImage = (props: {
 
         <div className={styles.text}>
           {props.tag && <p className="tag light">{props.tag}</p>}
-          <h5 ref={titleRef}>{props.link.title}</h5>
+          <h5 ref={titleRef}>
+            {props.link.title}
+          </h5>
           {props.date && <p className={styles.date}>{props.date}</p>}
         </div>
       </div>

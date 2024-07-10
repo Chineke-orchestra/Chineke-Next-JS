@@ -1,6 +1,6 @@
 import styles from './SubscribePopup.module.scss';
 import { Modal } from 'components';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import subscribeImage from '../../assets/images/subscribe_Image.png';
 import logoChineke from '../../assets/svg/chineke_logo_black.svg';
 import Image from 'next/image';
@@ -17,6 +17,10 @@ const SubscribePopup = (props: SubscribePopupProps) => {
   const [submitedWithSuccess, setSubmitedWithSuccess] = useState(false);
   const [error, setError] = useState<string>('');
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const url = `https://chineke.us7.list-manage.com/subscribe/post?u=200247d8dd8ea28281c53a57d&id=cc6314200f&f_id=0015cfe4f0`;
@@ -31,6 +35,7 @@ const SubscribePopup = (props: SubscribePopupProps) => {
         } else if (data.result === 'error') {
           setError(data.msg);
           setSubmitedWithSuccess(false);
+          console.log(data.msg);
         } else if (data.result === 'success') {
           setSubmitedWithSuccess(true);
           setError('');
@@ -43,7 +48,8 @@ const SubscribePopup = (props: SubscribePopupProps) => {
     <Modal onClose={props.onClose} modalRef={modalRef}>
       <div className={styles.popup_container} ref={modalRef}>
         <button className={styles.close_button} onClick={props.onClose}>
-          CLOSE <span className={styles.close_icon} />
+          CLOSE
+          <span className={styles.close_icon} />
         </button>
         <div className={styles.popup_left}>
           <Image src={subscribeImage.src} alt="subscribe image" fill />
@@ -59,7 +65,7 @@ const SubscribePopup = (props: SubscribePopupProps) => {
                 : 'Your Gateway to Exclusive Updates'}
             </h5>
 
-            <p>
+            <p style={submitedWithSuccess ? { fontSize: '18px' } : {}}>
               {submitedWithSuccess
                 ? 'Get ready for exclusive updates straight to your inbox. Stay tuned!'
                 : 'Get exclusive updates delivered to your inbox! Stay informed, inspired, and ahead of the curve with our newsletter subscription.'}
@@ -71,7 +77,7 @@ const SubscribePopup = (props: SubscribePopupProps) => {
                   Email Address <span>*</span>
                 </label>
                 <input
-                  type="email"
+                  type="textEmailAddress"
                   name="EMAIL"
                   required
                   value={email}

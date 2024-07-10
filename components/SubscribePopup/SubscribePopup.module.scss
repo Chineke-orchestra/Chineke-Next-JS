@@ -11,39 +11,57 @@
   @include media-breakpoint-down(md) {
     flex-direction: column;
     height: 80vh;
+    min-height: 682px;
   }
 
   .close_button {
+    width: 68px;
+    height: 18px;
     position: absolute;
-    top: 10px;
+    top: 20px;
     right: 20px;
-    padding: 10px 0px;
+    padding: 0px;
     background-color: transparent;
     font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
     letter-spacing: 0.6px;
     text-transform: uppercase;
+    text-align: center;
     cursor: pointer;
     color: $black;
     z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    &::after {
-      content: 'X';
+    @include media-breakpoint-down(md) {
+      width: 40px;
+      height: 12px;
+      top: 11px;
+      right: 10px;
+      font-size: 8px;
+      font-weight: 400;
+      letter-spacing: 0.4px;
+    }
+
+    span {
       width: 18px;
       height: 18px;
-      padding: 3px;
-      margin-left: 10px;
-      color: $black;
+      background-image: url('../../assets/svg/close_x_black.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
       @include animated();
+
+      @include media-breakpoint-down(md) {
+        width: 10px;
+        height: 10px;
+      }
     }
 
     &:hover {
       color: $red;
 
-      &::after {
-        color: $red;
+      span {
+        background-image: url('../../assets/svg/close_x_red.svg');
       }
     }
   }
@@ -100,6 +118,7 @@
 
       h5 {
         color: $navy;
+        max-width: 412px;
         margin-bottom: 10px;
         @include media-breakpoint-down(md) {
           margin-bottom: 3px;
@@ -107,6 +126,7 @@
       }
 
       p {
+        max-width: 412px;
         font-size: 16px;
         font-style: normal;
         font-weight: 400;
@@ -163,6 +183,7 @@
         bottom: 10px;
         color: $dark-red;
         font-size: 12px;
+        padding-right: 30px;
 
         @include media-breakpoint-down(md) {
           font-size: 10px;
