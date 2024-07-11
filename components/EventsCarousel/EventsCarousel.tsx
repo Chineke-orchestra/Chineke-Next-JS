@@ -48,7 +48,7 @@ const EventsCarousel = (props: {
                   {...item}
                   index={index}
                   fullWidthImage
-                  date={moment(item?.date).format('D MMM YYYY - hA')}
+                  date={moment(item?.date).format('D MMM YYYY - h:mm A')}
                 />
               </motion.div>
             </SwiperSlide>

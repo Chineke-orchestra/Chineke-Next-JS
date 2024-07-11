@@ -176,7 +176,7 @@ const EventsList = ({ cards }: EventsListProps) => {
             return (
               <ColoredCardWithImage
                 {...item}
-                date={moment(item?.date).format('D MMM YYYY - hA')}
+                date={moment(item?.date).format('D MMM YYYY - h:mm A')}
                 index={index}
                 fullWidthImage
                 key={index}
