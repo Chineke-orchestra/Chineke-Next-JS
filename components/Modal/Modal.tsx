@@ -6,9 +6,15 @@ interface ModalProps {
   children: ReactNode;
   onClose: Function;
   modalRef: React.RefObject<HTMLDivElement>;
+  additionalClass?: string;
 }
 
-const Modal: FC<ModalProps> = ({ children, onClose, modalRef }) => {
+const Modal: FC<ModalProps> = ({
+  children,
+  onClose,
+  modalRef,
+  additionalClass,
+}) => {
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -55,7 +61,12 @@ const Modal: FC<ModalProps> = ({ children, onClose, modalRef }) => {
   }, []);
 
   return (
-    <div className={styles.modal}>
+    <div
+      className={classNames(
+        styles.modal,
+        additionalClass ? styles[additionalClass] : '',
+      )}
+    >
       <div className={styles.modal_content}>
         <div className={classNames('container')}>
           <div>{children}</div>

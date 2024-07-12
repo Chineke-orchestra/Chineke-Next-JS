@@ -11,12 +11,21 @@
   align-items: center;
   justify-content: center;
   background-color: rgba($black, 0.8);
+
   .modal_content {
     width: 100%;
   }
   :global(.container) {
     @include media-breakpoint-up(xl) {
       padding: 0;
+    }
+  }
+
+  &.subscribePopup {
+    :global(.container) {
+      @include media-breakpoint-down(md) {
+        padding: 0 15px !important;
+      }
     }
   }
 }

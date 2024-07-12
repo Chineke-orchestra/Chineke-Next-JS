@@ -45,7 +45,11 @@ const SubscribePopup = (props: SubscribePopupProps) => {
   };
 
   return (
-    <Modal onClose={props.onClose} modalRef={modalRef}>
+    <Modal
+      onClose={props.onClose}
+      modalRef={modalRef}
+      additionalClass="subscribePopup"
+    >
       <div className={styles.popup_container} ref={modalRef}>
         <button className={styles.close_button} onClick={props.onClose}>
           CLOSE

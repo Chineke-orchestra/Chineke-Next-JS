@@ -15,7 +15,6 @@
 
   .news_container {
     display: grid;
-    padding: 0 31px;
     grid-template-columns: repeat(4, 1fr);
     gap: 32px;
     margin-bottom: 45px;
@@ -85,6 +84,25 @@
           color: $navy;
           max-width: max-content;
           position: relative;
+
+          .word {
+            display: inline-block;
+            position: relative;
+            white-space: pre;
+
+            &::after {
+              content: '';
+              display: block;
+              height: 2px;
+              background-color: currentColor;
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: 100%;
+              opacity: 0;
+              transition: opacity 0.3s ease;
+            }
+          }
         }
       }
       &:hover {
@@ -92,6 +110,10 @@
           img {
             transform: scale(1.15);
           }
+        }
+
+        .text h5 .word::after {
+          opacity: 1;
         }
       }
     }
@@ -105,6 +127,13 @@
     flex-wrap: wrap;
     gap: 15px;
     margin-bottom: 40px;
+    scrollbar-width: none;
+    transform: translateX(-31px);
+
+    @include media-breakpoint-down(xl) {
+      transform: none;
+      overflow: auto;
+    }
 
     @include media-breakpoint-down(md) {
       flex-wrap: nowrap;
@@ -116,12 +145,12 @@
       }
     }
     :global(.btn) {
+      white-space: nowrap;
       &:not(:global(.yellow)) {
         background-color: transparent;
         box-shadow: inset 0 0 0 1px $gray;
         &:hover {
           box-shadow: inset 0 0 0 2px $red;
-          background-color: $yellow;
           color: $gray;
         }
 

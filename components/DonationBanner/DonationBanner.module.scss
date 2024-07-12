@@ -63,16 +63,13 @@
         }
       }
 
-      button {
-        margin-bottom: 30px;
-      }
-
       .footNote {
         font-size: 14px;
         line-height: normal;
         margin: 0;
         color: $gray;
         max-width: 357px;
+        margin-top: 30px;
 
         @include media-breakpoint-down(lg) {
           max-width: none;

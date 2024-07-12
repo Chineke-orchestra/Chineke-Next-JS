@@ -1,12 +1,10 @@
 import styles from './NewsList.module.scss';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useViewport } from 'utils/viewport';
 import { I_Link, I_Media } from 'types/index';
 import Image from 'next/image';
 import { LinkComponent } from '..';
 import moment from 'moment';
-import { motion } from 'framer-motion';
-import UseAnimation from 'utils/UseAnimation';
 import classNames from 'classnames';
 import { getCurrentLocaleStore, globalDrupalStateStores } from 'lib/stores';
 import { useRouter } from 'next/router';
@@ -43,6 +41,8 @@ const NewsList = (props: {
   const [news, setNews] = useState(props.news);
   const [totalNews, setTotalNews] = useState(0);
 
+  const titleRefs = useRef<(HTMLHeadingElement | null)[]>([]);
+
   const fetcher = (url: string) =>
     fetch(url)
       .then((res) => {
@@ -65,35 +65,43 @@ const NewsList = (props: {
     fetcher,
   );
 
-  useEffect(() => {
-    setIsFirstLoad(false);
-  }, []);
-
   const loadMoreHandler = () => {
     setPage((prev) => prev + 1);
   };
 
-  const getTags = async () => {
-    try {
-      const data: any = await store.fetchData(`/api/tags`);
-      setTags(() => {
-        return [
-          {
-            name: 'All',
-            id: -1,
-          },
-          ...formatNewsCategoriesData(data?.data?.data),
-        ];
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
+    const getTags = async () => {
+      try {
+        const data: any = await store.fetchData(`/api/tags`);
+        setTags(() => {
+          return [
+            {
+              name: 'All',
+              id: -1,
+            },
+            ...formatNewsCategoriesData(data?.data?.data),
+          ];
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     getTags();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    setIsFirstLoad(false);
+
+    titleRefs.current.forEach((h5) => {
+      if (h5) {
+        const words = h5.innerText.split(' ');
+        h5.innerHTML = words
+          .map((word: string, index: number) => {
+            const space = index < words.length - 1 ? ' ' : '';
+            return `<span class="${styles.word}">${word}${space}</span>`;
+          })
+          .join('');
+      }
+    });
+  }, [news, store]);
 
   return (
     <div className={styles.news_listing}>
@@ -138,22 +146,8 @@ const NewsList = (props: {
                   </div>
                   <div className={styles.text}>
                     <p>{moment(item.date).format('DD MMM YYYY')}</p>
-                    <h5>
+                    <h5 ref={(el) => (titleRefs.current[index] = el)}>
                       {item.link.title}
-                      <motion.span
-                        className="underline"
-                        initial={{ scaleX: 0 }}
-                        animate={index === activeIndex ? 'animate' : 'initial'}
-                        variants={UseAnimation('right', {
-                          duration: 0.5,
-                          distance: 0,
-                          startScaleX: 0,
-                          endScaleX: 1,
-                        })}
-                        style={{
-                          originX: 0,
-                        }}
-                      />
                     </h5>
                   </div>
                 </div>
