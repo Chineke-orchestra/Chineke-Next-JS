@@ -21,21 +21,20 @@ const WatchAndListen = (props: { data: I_Watch_And_Listen_Props[] }) => {
 
   const [showButton, setShowButton] = useState(true);
   const [slicedData, setSlicedData] = useState<
-    { grid: I_Watch_And_Listen_Props[]; flex: I_Watch_And_Listen_Props[] }[]
+    { grid: I_Watch_And_Listen_Props[]; flex: I_Watch_And_Listen_Props[]; additional: I_Watch_And_Listen_Props[] }[]
   >([
     {
       grid: props.data?.slice(0, isMobile ? 3 : 4),
       flex: isMobile ? [] : props.data?.slice(4, 7),
+      additional: [],
     },
   ]);
 
   const loadMoreHandler = () => {
-    setSlicedData([
-      {
-        grid: props.data?.slice(0, 3),
-        flex: props.data?.slice(3, 7),
-      },
-    ]);
+    const allData = [...slicedData];
+    const remainingData = props.data.slice(isMobile ? 3 : 7);
+    allData[0].additional = remainingData;
+    setSlicedData(allData);
     setShowButton(false);
   };
 
@@ -44,11 +43,11 @@ const WatchAndListen = (props: { data: I_Watch_And_Listen_Props[] }) => {
       {
         grid: props.data?.slice(0, isMobile ? 3 : 4),
         flex: isMobile ? [] : props.data?.slice(4, 7),
+        additional: [],
       },
     ]);
     setShowButton(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isMobile]);
+  }, [isMobile, props.data]);
 
   const [activeVideo, setActiveVideo] = useState<null | string>(null);
   const [activeAudio, setActiveAudio] = useState<null | string>(null);
@@ -57,12 +56,24 @@ const WatchAndListen = (props: { data: I_Watch_And_Listen_Props[] }) => {
     <section className={styles.watch_and_listen} ref={animationRef}>
       <div className={classNames('container')}>
         <div className={styles.wrapper}>
-          {slicedData?.map((slicedItem, index) => {
+          {slicedData.map((slicedItem, index) => {
             return (
               <div key={index} className={styles.row}>
                 <div className={styles.grid}>
-                  {slicedItem?.grid?.map(
-                    (item: I_Watch_And_Listen_Props, ind: number) => {
+                  {slicedItem.grid.map((item, ind) => {
+                    return (
+                      <WatchAndListenCard
+                        {...item}
+                        setActiveVideo={setActiveVideo}
+                        setActiveAudio={setActiveAudio}
+                        key={ind}
+                      />
+                    );
+                  })}
+                </div>
+                {slicedItem.flex.length > 0 && (
+                  <div className={styles.flex}>
+                    {slicedItem.flex.map((item, ind) => {
                       return (
                         <WatchAndListenCard
                           {...item}
@@ -71,29 +82,27 @@ const WatchAndListen = (props: { data: I_Watch_And_Listen_Props[] }) => {
                           key={ind}
                         />
                       );
-                    },
-                  )}
-                </div>
-                {slicedItem?.flex?.length > 0 && (
-                  <div className={styles.flex}>
-                    {slicedItem?.flex?.map(
-                      (item: I_Watch_And_Listen_Props, ind: number) => {
-                        return (
-                          <WatchAndListenCard
-                            {...item}
-                            setActiveVideo={setActiveVideo}
-                            setActiveAudio={setActiveAudio}
-                            key={ind}
-                          />
-                        );
-                      },
-                    )}
+                    })}
+                  </div>
+                )}
+                {slicedItem.additional && slicedItem.additional.length > 0 && (
+                  <div className={`${styles.flex} ${styles.additional}`}>
+                    {slicedItem.additional.map((item, ind) => {
+                      return (
+                        <WatchAndListenCard
+                          {...item}
+                          setActiveVideo={setActiveVideo}
+                          setActiveAudio={setActiveAudio}
+                          key={ind + (isMobile ? 3 : 7)}
+                        />
+                      );
+                    })}
                   </div>
                 )}
               </div>
             );
           })}
-          {showButton && isMobile && (
+          {showButton && props.data.length > (isMobile ? 3 : 7) && (
             <button className="btn large yellow" onClick={loadMoreHandler}>
               Load more
             </button>
@@ -102,10 +111,10 @@ const WatchAndListen = (props: { data: I_Watch_And_Listen_Props[] }) => {
       </div>
 
       {activeVideo && (
-        <VideoPopup onClose={setActiveVideo} videoLink={activeVideo} />
+        <VideoPopup onClose={() => setActiveVideo(null)} videoLink={activeVideo} />
       )}
       {activeAudio && (
-        <SpotifyPopup onClose={setActiveAudio} videoLink={activeAudio} />
+        <SpotifyPopup onClose={() => setActiveAudio(null)} videoLink={activeAudio} />
       )}
     </section>
   );
