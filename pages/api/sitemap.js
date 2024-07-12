@@ -44,10 +44,12 @@ export default async function handler(req, res) {
 
     let sitemapData = await sitemapResponse.text();
 
-    sitemapData = sitemapData.replace(
-      '<?xml-stylesheet type="text/xsl" href="/sitemap_generator/default/sitemap.xsl"?>',
-      '<?xml-stylesheet type="text/xsl" href="/api/sitemap?stylesheet=true"?>'
-    );
+    sitemapData = sitemapData
+    .replace('<?xml-stylesheet type="text/xsl" href="/sitemap_generator/default/sitemap.xsl"?>',
+      '<?xml-stylesheet type="text/xsl" href="/api/sitemap?stylesheet=true"?>')
+    .replace(/<loc>(https?:\/\/[^<]*)<\/loc>/g, (match, p1) => {
+      return match.replace(p1, p1.replace(/^https?:\/\/[^\/]+/, 'https://chineke.org'));
+    });
 
     res.setHeader('Content-Type', 'application/xml');
     res.status(200).send(sitemapData);
