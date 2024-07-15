@@ -530,7 +530,12 @@ const ComponentsListing = ({ components }: { components: any }) => {
         return <NewsList news={component?.news} />;
       }
       case 'paragraph--stories_list': {
-        return <StoriesList stories={component?.stories} />;
+        return (
+          <StoriesList
+            stories={component?.stories}
+            type={component?.field_stories_list?.resourceIdObjMeta?.display_id}
+          />
+        );
       }
       case 'paragraph--donation_banner':
         const donationBannerProps = {

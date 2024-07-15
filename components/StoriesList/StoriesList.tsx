@@ -20,6 +20,7 @@ const StoriesList = (props: {
     image: I_Media;
     link: I_Link;
   }[];
+  type: string;
 }) => {
   const { isMobile } = useViewport();
   const { locale } = useRouter();
@@ -92,24 +93,26 @@ const StoriesList = (props: {
 
   return (
     <section className={classNames(styles.storiesListContainer, 'container')}>
-      <div className={styles.filtersContainer}>
-        {categories?.map((item) => {
-          return (
-            <button
-              className={classNames('btn small', {
-                yellow: item.id === activeFilter,
-              })}
-              key={item?.id}
-              onClick={() => {
-                setActiveFilter(item.id);
-                setPage(0);
-              }}
-            >
-              {item.name}
-            </button>
-          );
-        })}
-      </div>
+      {props.type === 'all' && (
+        <div className={styles.filtersContainer}>
+          {categories?.map((item) => {
+            return (
+              <button
+                className={classNames('btn small', {
+                  yellow: item.id === activeFilter,
+                })}
+                key={item?.id}
+                onClick={() => {
+                  setActiveFilter(item.id);
+                  setPage(0);
+                }}
+              >
+                {item.name}
+              </button>
+            );
+          })}
+        </div>
+      )}
 
       <div className={styles.cardsContainer}>
         {stories.map((item, index) => {
