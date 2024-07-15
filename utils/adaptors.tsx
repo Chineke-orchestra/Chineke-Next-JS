@@ -83,14 +83,14 @@ export const formatCardWithImageData = (
     field_stories: {
       title: string;
       path: { alias: string };
-      field_tags: any[];
+      field_categories: { name: string }[];
     };
     field_story_image: any;
   }[],
 ): {
   backgroundColor: Colors;
   link: I_Link;
-  tag: string;
+  tag: string[];
   image: I_Media;
 }[] => {
   return data?.map((item) => {
@@ -103,7 +103,7 @@ export const formatCardWithImageData = (
         target:
           item?.field_target_option === 'new_browser' ? '_blank' : '_self',
       },
-      tag: item?.field_stories?.field_tags?.[0]?.name,
+      tag: item?.field_stories?.field_categories?.map((cat) => cat.name) || [],
     };
   });
 };
@@ -257,6 +257,50 @@ export const formatNewsCategoriesData = (
     return {
       name: item.attributes?.name,
       id: item.attributes?.drupal_internal__tid,
+    };
+  });
+};
+
+export const formatStoriesListData = (
+  data: any,
+): {
+  image: I_Media;
+  link: I_Link;
+  backgroundColor: Colors;
+  categories: string[];
+}[] => {
+  const colors = ['#0341F2', '#ED5500', '#FCDD00', '#1E1E4C'];
+  return data?.data?.map((item: any, index: number) => {
+    const mediaId = item?.relationships?.field_feature_image?.data?.id;
+    const { media, file } = getMediaFromIncluded(data?.included, mediaId);
+
+    const categoryIds =
+      item?.relationships?.field_categories?.data?.map((cat: any) => cat.id) ||
+      [];
+    const categories = categoryIds
+      .map((categoryId: string) => {
+        const category = data?.included?.find(
+          (includedItem: any) => includedItem.id === categoryId,
+        );
+        return category?.attributes?.name || null;
+      })
+      .filter(Boolean);
+
+    const imageUrl = file?.attributes?.uri?.url
+      ? `${process.env.backendUrl}${file?.attributes?.uri?.url}`
+      : null;
+
+    return {
+      image: {
+        url: imageUrl,
+        alt: media?.relationships?.field_media_image?.data?.meta?.alt || '',
+      },
+      link: {
+        url: item?.attributes?.path?.alias || '',
+        title: item?.attributes?.title,
+      },
+      backgroundColor: colors[index % 4],
+      categories,
     };
   });
 };

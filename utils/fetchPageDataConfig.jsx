@@ -10,6 +10,7 @@ export const includesArray = [
   'field_reusable_components.field_story_card.field_stories',
   'field_reusable_components.field_story_card.field_story_image.field_media_image',
   'field_reusable_components.field_story_card.field_stories.field_tags',
+  'field_reusable_components.field_story_card.field_stories.field_categories',
   'field_reusable_components.field_featured_link',
   'field_reusable_components.field_mobile_image.field_media_image',
   'field_reusable_components.field_static_2_column_image.field_media_image',

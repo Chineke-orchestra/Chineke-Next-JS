@@ -3,6 +3,7 @@ import {
   formatLatestNewsData,
   formatNewsListData,
   formatViewEndpointPath,
+  formatStoriesListData,
 } from './adaptors';
 
 export const fetchLists = async (
@@ -32,6 +33,7 @@ export const fetchLists = async (
       });
       break;
     }
+
     case resourceName === 'node--news' || resourceName === 'node--stories': {
       let headlines = [];
       if (resourceName === 'node--news') {
@@ -133,6 +135,23 @@ export const fetchLists = async (
         const news = formatNewsListData(data);
 
         formattedComponents.push({ ...component, news, test: data });
+        break;
+      }
+
+      case 'paragraph--stories_list': {
+        const viewId =
+          component?.field_stories_list?.resourceIdObjMeta
+            ?.drupal_internal__target_id;
+        const displayId =
+          component?.field_stories_list?.resourceIdObjMeta?.display_id;
+
+        const data = await store.fetchData(
+          formatViewEndpointPath(viewId, displayId, ',field_categories'),
+        );
+
+        const stories = formatStoriesListData(data);
+
+        formattedComponents.push({ ...component, stories });
         break;
       }
 

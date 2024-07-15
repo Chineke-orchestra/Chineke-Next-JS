@@ -14,6 +14,7 @@
     position: relative;
     overflow: hidden;
     img {
+      object-fit: cover;
       transition: scale 1s;
     }
     @include media-breakpoint-down(md) {
@@ -30,15 +31,21 @@
     }
   }
   .text {
-    padding: 11px 38px 40px 30px;
+    padding: 11px 38px 28px 24px;
     @include media-breakpoint-down(md) {
       padding: 40px 30px;
     }
+
+    .tagsContainer {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
     h5 {
       color: $light-gray;
       position: relative;
       margin-top: 10px;
-      padding-bottom: 5px;
 
       .word {
         display: inline-block;
@@ -155,7 +162,7 @@
     &.background_yellow {
       .text {
         h5 {
-          color: $dark_red !important;
+          color: $navy !important;
         }
       }
     }
@@ -165,6 +172,66 @@
         h5 {
           color: $yellow !important;
         }
+      }
+    }
+    &.storiesTag {
+      &.background_navy,
+      &.background_blue,
+      &.background_yellow,
+      &.background_red {
+        :global(.tag) {
+          background-color: $light-gray;
+          padding: 2px 10px;
+          color: $gray !important;
+          font-size: 12px;
+          text-transform: uppercase;
+        }
+
+        .image {
+          height: 340px;
+
+          @include media-breakpoint-down(md) {
+            height: 286px;
+          }
+        }
+        .tagsContainer {
+          margin-bottom: 10px;
+        }
+
+        .text {
+          padding: 11px 38px 28px 24px;
+
+          @include media-breakpoint-down(sm) {
+            padding: 10px 0px 0px;
+          }
+
+          h5 {
+            line-height: 30px;
+            margin: 0px;
+            padding: 0px;
+          }
+        }
+      }
+    }
+  }
+
+  &.storiesCarousel {
+    padding-top: 20px;
+
+    @include media-breakpoint-down(md) {
+      padding: 40px 30px;
+      gap: 40px;
+    }
+
+    .text {
+      @include media-breakpoint-down(md) {
+        padding: 0px;
+      }
+    }
+
+    .image {
+      @include media-breakpoint-down(md) {
+        height: 242px;
       }
     }
   }

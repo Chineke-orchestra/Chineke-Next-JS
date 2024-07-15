@@ -30,6 +30,7 @@ import {
   DonationBanner,
   WatchAndListen,
   InternalHeroBanner,
+  StoriesList,
 } from 'components';
 import {
   formatCardData,
@@ -527,6 +528,9 @@ const ComponentsListing = ({ components }: { components: any }) => {
         return <DonationPriceCard {...donationCardProps} />;
       case 'paragraph--news_list': {
         return <NewsList news={component?.news} />;
+      }
+      case 'paragraph--stories_list': {
+        return <StoriesList stories={component?.stories} />;
       }
       case 'paragraph--donation_banner':
         const donationBannerProps = {

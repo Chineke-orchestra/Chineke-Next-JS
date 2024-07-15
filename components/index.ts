@@ -35,6 +35,7 @@ import VideoPopup from './VideoPopup/VideoPopup';
 import WatchAndListen from './WatchAndListen/WatchAndListen';
 import InternalHeroBanner from './InternalHeroBanner/InternalHeroBanner';
 import SubscribePopup from './SubscribePopup/SubscribePopup';
+import StoriesList from './StoriesList/StoriesList';
 
 export {
   ComponentsListing,
@@ -74,4 +75,5 @@ export {
   WatchAndListen,
   InternalHeroBanner,
   SubscribePopup,
+  StoriesList,
 };

@@ -15,7 +15,7 @@ const StoriesCarousel = (props: {
     backgroundColor: Colors;
     link: I_Link;
     image: I_Media;
-    tag: string;
+    tag: string[];
   }[];
 }) => {
   const animationRef = useRef<any>();
@@ -49,7 +49,10 @@ const StoriesCarousel = (props: {
                   transformOrigin: 'bottom',
                 }}
               >
-                <ColoredCardWithImage {...item} />
+                <ColoredCardWithImage
+                  {...item}
+                  additionalClass="storiesCarousel"
+                />
               </motion.div>
             </SwiperSlide>
           );
