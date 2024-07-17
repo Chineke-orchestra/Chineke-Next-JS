@@ -91,10 +91,16 @@
         text-transform: none;
         letter-spacing: normal;
         color: $navy;
-        cursor: pointer;
 
         &:hover {
           color: $red;
+        }
+      }
+
+      .noLink {
+        cursor: default;
+        &:hover {
+          color: $navy;
         }
       }
 

@@ -23,7 +23,6 @@ const DonationBanner = ({
   text,
   image,
   secondImage,
-  footNote,
 }: DonationBannerProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -62,8 +61,6 @@ const DonationBanner = ({
           >
             DONATE
           </button>
-
-          {footNote && <p className={styles.footNote}>{parse(footNote)}</p>}
         </motion.div>
         <div className={styles.rightSide}>
           {image && (

@@ -131,7 +131,7 @@ const TitleCard = ({
 
             {router.pathname === '/donate' && (
               <Link href="/becomeafriend" className={styles.buttonContainer}>
-                <button className="btn large transparentRed">
+                <button className="btn large yellow">
                   Become a friend
                 </button>
               </Link>

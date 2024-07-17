@@ -111,7 +111,11 @@ export const fetchLists = async (
 
         if (viewId && displayId) {
           const data = await store.fetchData(
-            formatViewEndpointPath(viewId, displayId, ',field_tags_category'),
+            formatViewEndpointPath(
+              viewId,
+              displayId,
+              ',field_tags_category, field_categories, field_tags',
+            ),
           );
 
           const news = formatLatestNewsData(data);

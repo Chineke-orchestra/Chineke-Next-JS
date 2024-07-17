@@ -45,6 +45,7 @@ export const includesArray = [
   'field_reusable_components.field_latest_news',
   'field_reusable_components.field_event_list_view',
   'field_reusable_components.field_media_card.field_feature_img',
+  'field_reusable_components.field_media.field_feature_img'
 ];
 
 export const getHrefLang = (locales, origin) =>

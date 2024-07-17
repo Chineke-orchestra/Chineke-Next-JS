@@ -6,10 +6,12 @@
   padding-top: 40px;
   padding-bottom: 40px;
   justify-content: center;
+  box-sizing: border-box;
 
   @include media-breakpoint-down(md) {
     padding-top: 20px;
     padding-bottom: 20px;
+    flex-direction: column;
   }
 
   .textColumn {
@@ -18,10 +20,12 @@
     display: flex;
     flex-direction: column;
     gap: 32px;
+    box-sizing: border-box;
 
     @include media-breakpoint-down(md) {
+      max-width: none;
       p {
-        font-size: 16px;
+        font-size: 16px !important;
       }
     }
   }

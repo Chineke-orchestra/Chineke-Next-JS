@@ -548,7 +548,6 @@ const ComponentsListing = ({ components }: { components: any }) => {
           secondImage: formatMedia(
             component?.field_donation_banner_second_ima?.field_media_image,
           ),
-          footNote: component?.field_footnote?.value,
         };
 
         return <DonationBanner {...donationBannerProps} />;

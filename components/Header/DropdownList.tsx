@@ -36,10 +36,7 @@ const DropdownList = ({
           {item.children && item.children.length > 0 ? (
             <div className={styles.parentLink}>
               {item.parentId ? (
-                <Link href={item.link.url}>
-                  <h6>{item.link.title}</h6>
-                  <span className={styles.linkArrow} />
-                </Link>
+                <h6 className={styles.noLink}>{item.link.title}</h6>
               ) : (
                 <h6
                   onClick={() =>
@@ -93,14 +90,7 @@ const DropdownList = ({
         <li className={styles.dropdownItem} aria-hidden="true" key={itemIndex}>
           {item.children && item.children.length > 0 ? (
             <>
-              <Link
-                href={item.link.url}
-                className={styles.parentLink}
-                onClick={onLinkClickCloseDropdown}
-                aria-hidden="true"
-              >
-                <h6>{item.link.title}</h6>
-              </Link>
+              <h6 className={styles.noLink}>{item.link.title}</h6>
 
               {item.description && <p>{item.description}</p>}
               <ul>

@@ -188,7 +188,15 @@ export const formatLatestNewsData = (
     const mediaId = item?.relationships?.field_feature_image?.data?.id;
     const { media, file } = getMediaFromIncluded(data?.included, mediaId);
 
-    const tagsId = item?.relationships?.field_tags_category?.data?.[0]?.id;
+    const getTagId = (item: any) => {
+      return (
+        item?.relationships?.field_tags_category?.data?.[0]?.id ||
+        item?.relationships?.field_categories?.data?.[0]?.id ||
+        item?.relationships?.field_tags?.data?.[0]?.id
+      );
+    };
+
+    const tagsId = getTagId(item);
     const tag = data?.included?.find(
       (includedItem: any) => includedItem.id === tagsId,
     );

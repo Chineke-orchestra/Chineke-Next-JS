@@ -62,31 +62,6 @@
           font-size: 16px;
         }
       }
-
-      .footNote {
-        font-size: 14px;
-        line-height: normal;
-        margin: 0;
-        color: $gray;
-        max-width: 357px;
-        margin-top: 30px;
-
-        @include media-breakpoint-down(lg) {
-          max-width: none;
-        }
-      }
-
-      a {
-        text-decoration: underline;
-
-        &:hover {
-          color: $blue;
-        }
-
-        &:active {
-          text-decoration: none;
-        }
-      }
     }
 
     .rightSide {
