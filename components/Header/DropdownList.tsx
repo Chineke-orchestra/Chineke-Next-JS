@@ -169,13 +169,7 @@ const DropdownList = ({
               [styles.isFeatured]: hasFeaturedInColumn(column),
             })}
           >
-            <ul
-              className={styles.dropdownItem}
-              onClick={onLinkClickCloseDropdown}
-              aria-hidden="true"
-            >
-              {column.map(listItem)}
-            </ul>
+            <ul className={styles.dropdownItem}>{column.map(listItem)}</ul>
           </div>
         ))
       ) : (

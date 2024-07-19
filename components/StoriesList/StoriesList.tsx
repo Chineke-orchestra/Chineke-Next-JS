@@ -24,26 +24,24 @@ const StoriesList = (props: {
 }) => {
   const { isMobile } = useViewport();
   const { locale } = useRouter();
-  let numberOfStories = isMobile ? 3 : 6;
+
   const [page, setPage] = useState(0);
   const [categories, setCategories] = useState<I_Tag[]>([]);
   const [activeFilter, setActiveFilter] = useState(-1);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
+  const [stories, setStories] = useState(props.stories);
+  const [totalStories, setTotalStories] = useState(0);
+
+  const numberOfStories = isMobile ? 3 : 6;
 
   const store = getCurrentLocaleStore(
     locale as string,
     globalDrupalStateStores,
   );
 
-  const [isFirstLoad, setIsFirstLoad] = useState(true);
-  const [activeIndex, setActiveIndex] = useState(-1);
-  const [stories, setStories] = useState(props.stories);
-  const [totalStories, setTotalStories] = useState(0);
-
   const fetcher = (url: string) =>
     fetch(url)
-      .then((res) => {
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((data) => {
         if (page === 0) {
           setStories(formatStoriesListData(data));
@@ -91,6 +89,8 @@ const StoriesList = (props: {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const displayStories = stories.slice(0, (page + 1) * numberOfStories);
+
   return (
     <section className={classNames(styles.storiesListContainer, 'container')}>
       {props.type === 'all' && (
@@ -115,7 +115,7 @@ const StoriesList = (props: {
       )}
 
       <div className={styles.cardsContainer}>
-        {stories.map((item, index) => {
+        {displayStories.map((item, index) => {
           return (
             <ColoredCardWithImage
               {...item}
@@ -129,7 +129,7 @@ const StoriesList = (props: {
         })}
       </div>
 
-      {(stories.length < totalStories || totalStories === undefined) && (
+      {(displayStories.length < totalStories || totalStories === undefined) && (
         <button
           className="btn large yellow load_more"
           onClick={loadMoreHandler}

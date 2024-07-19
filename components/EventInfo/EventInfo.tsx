@@ -7,7 +7,7 @@ import mask from 'assets/svg/event-mask.svg';
 import maskMobile from 'assets/svg/event-mask-mobile.svg';
 import locationIcon from 'assets/svg/location.svg';
 import clockIcon from 'assets/svg/clock.svg';
-import calendarIocn from 'assets/svg/calendar.svg';
+import calendarIcon from 'assets/svg/calendar.svg';
 import shareIcon from 'assets/svg/share.svg';
 import moment from 'moment';
 import { LinkComponent, VideoPopup } from '..';
@@ -47,7 +47,7 @@ const EventInfo = (props: {
   const eventDetails = [
     {
       label: 'Date',
-      icon: calendarIocn,
+      icon: calendarIcon,
       alt: 'calendar icon',
       value: moment(props.startDate).format('D MMM YYYY'),
     },
@@ -161,15 +161,18 @@ const EventInfo = (props: {
           <div className={classNames(styles.amenities, styles.mobile_section)}>
             {props.amenities?.map((item, index) => {
               return (
-                <Image
-                  key={index}
-                  src={item.url}
-                  alt={item.alt}
-                  width={24}
-                  height={24}
-                  loading="eager"
-                  className={styles.icon}
-                />
+                item.url &&
+                item.url.trim() !== '' && (
+                  <Image
+                    key={index}
+                    src={item.url}
+                    alt={item.alt}
+                    width={24}
+                    height={24}
+                    loading="eager"
+                    className={styles.icon}
+                  />
+                )
               );
             })}
           </div>

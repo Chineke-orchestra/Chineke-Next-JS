@@ -26,28 +26,26 @@ const NewsList = (props: {
 }) => {
   const { isMobile } = useViewport();
   const { locale } = useRouter();
-  let numberOfTestimonials = isMobile ? 3 : 6;
   const [page, setPage] = useState(0);
   const [tags, setTags] = useState<I_Tag[]>([]);
   const [activeFilter, setActiveFilter] = useState(-1);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const [news, setNews] = useState(props.news);
+  const [totalNews, setTotalNews] = useState(0);
+
+  const numberOfNews = isMobile ? 4 : 8;
 
   const store = getCurrentLocaleStore(
     locale as string,
     globalDrupalStateStores,
   );
 
-  const [isFirstLoad, setIsFirstLoad] = useState(true);
-  const [activeIndex, setActiveIndex] = useState(-1);
-  const [news, setNews] = useState(props.news);
-  const [totalNews, setTotalNews] = useState(0);
-
   const titleRefs = useRef<(HTMLHeadingElement | null)[]>([]);
 
   const fetcher = (url: string) =>
     fetch(url)
-      .then((res) => {
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((data) => {
         if (page === 0) {
           setNews(formatNewsListData(data));
@@ -103,6 +101,8 @@ const NewsList = (props: {
     });
   }, [news, store]);
 
+  const displayNews = news.slice(0, (page + 1) * numberOfNews);
+
   return (
     <div className={styles.news_listing}>
       <div className={classNames(styles.buttons, 'container')}>
@@ -125,7 +125,7 @@ const NewsList = (props: {
       </div>
       <div className="container">
         <div className={styles.news_container}>
-          {news?.map((item, index) => {
+          {displayNews?.map((item, index) => {
             return (
               <LinkComponent link={item.link} key={index}>
                 <div
@@ -156,7 +156,7 @@ const NewsList = (props: {
           })}
         </div>
 
-        {(news.length < totalNews || totalNews === undefined) && (
+        {(displayNews.length < totalNews || totalNews === undefined) && (
           <button
             className="btn large yellow load_more"
             onClick={loadMoreHandler}

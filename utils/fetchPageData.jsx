@@ -40,6 +40,10 @@ export async function fetchPageData(context, path) {
     dynamicIncludesArray.push('field_video');
     dynamicIncludesArray.push('field_tags');
     dynamicIncludesArray.push('field_amenities.field_icon.field_media_image');
+    dynamicIncludesArray.push('field_reusable_components.field_testimonial');
+    dynamicIncludesArray.push(
+      'field_reusable_components.field_pattern_image.field_media_image_1',
+    );
   }
 
   const includeParam = dynamicIncludesArray.join(',');
@@ -67,7 +71,6 @@ export async function fetchPageData(context, path) {
     res: context.res,
     anon: context.preview ? false : true,
   });
-
 
   const footerMenu = await fetchFooterData(context);
   const headerMenu = await fetchHeaderData(context);

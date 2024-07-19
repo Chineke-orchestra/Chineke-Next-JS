@@ -224,6 +224,9 @@
     }
 
     .text {
+      .tagsContainer {
+        text-transform: uppercase;
+      }
       @include media-breakpoint-down(md) {
         padding: 0px;
       }
