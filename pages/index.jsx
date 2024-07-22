@@ -4,11 +4,11 @@ import { ComponentsListing } from '../components';
 import { fetchPageData } from '../utils/fetchPageData';
 
 const stripHtmlTags = (html) => {
-  const div = document.createElement('div');
-  div.innerHTML = html;
-  return div.textContent || div.innerText || '';
+  if (!html) {
+    return ''; 
+  }
+  return html.replace(/<\/?[^>]+(>|$)/g, "");
 };
-
 export default function LandingPage({
   pageData,
   hrefLang,

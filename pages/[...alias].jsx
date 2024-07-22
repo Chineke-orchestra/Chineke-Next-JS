@@ -7,9 +7,10 @@ import { fetchFooterData, fetchHeaderData } from '../utils/dataFetcher';
 import { useHeaderHeight } from '../utils/useHeaderHeight';
 
 const stripHtmlTags = (html) => {
-  const div = document.createElement('div');
-  div.innerHTML = html;
-  return div.textContent || div.innerText || '';
+  if (!html) {
+    return ''; 
+  }
+  return html.replace(/<\/?[^>]+(>|$)/g, "");
 };
 
 export default function CatchAllRoute({
