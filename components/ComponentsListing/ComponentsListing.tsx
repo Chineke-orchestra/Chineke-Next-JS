@@ -54,6 +54,7 @@ import PartnersBanner, {
 import ImagesGallery from 'components/ImagesGallery/ImagesGallery';
 
 const ComponentsListing = ({ components }: { components: any }) => {
+  console.log(components);
   const PrintComponent = ({ component }: any) => {
     switch (component?.type) {
       case 'paragraph--hero_banner':

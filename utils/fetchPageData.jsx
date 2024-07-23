@@ -21,29 +21,26 @@ export async function fetchPageData(context, path) {
 
   // Adjust the includes array based on resourceName if needed
   let dynamicIncludesArray = [...includesArray];
-  if (resourceName === 'node--news' || resourceName === 'node--stories') {
-    dynamicIncludesArray.push('field_feature_image.field_media_image');
-  }
-  if (resourceName === 'node--news') {
-    dynamicIncludesArray.push('field_tags_category');
-  }
-  if (resourceName === 'node--stories') {
-    dynamicIncludesArray.push('field_categories');
-  }
 
   if (resourceName === 'node--events') {
     const excludeFromParams = ['field_reusable_components.field_stats'];
     dynamicIncludesArray = dynamicIncludesArray.filter((item) =>
-      excludeFromParams.includes(item),
+      !excludeFromParams.includes(item)
     );
     dynamicIncludesArray.push('field_feature_image.field_media_image');
     dynamicIncludesArray.push('field_video');
     dynamicIncludesArray.push('field_tags');
     dynamicIncludesArray.push('field_amenities.field_icon.field_media_image');
-    dynamicIncludesArray.push('field_reusable_components.field_testimonial');
-    dynamicIncludesArray.push(
-      'field_reusable_components.field_pattern_image.field_media_image_1',
-    );
+  } else {
+    if (resourceName === 'node--news' || resourceName === 'node--stories') {
+      dynamicIncludesArray.push('field_feature_image.field_media_image');
+    }
+    if (resourceName === 'node--news') {
+      dynamicIncludesArray.push('field_tags_category');
+    }
+    if (resourceName === 'node--stories') {
+      dynamicIncludesArray.push('field_categories');
+    }
   }
 
   const includeParam = dynamicIncludesArray.join(',');
