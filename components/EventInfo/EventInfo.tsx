@@ -56,7 +56,7 @@ const EventInfo = (props: {
       label: 'Time',
       icon: clockIcon,
       alt: 'clock icon',
-      value: `${moment(props.startDate).format('HH:mm')} ${
+      value: `${moment(props.startDate).format('HH:mm')} - ${
         props.endDate ? moment(props.endDate).format('HH:MM') : ''
       }`,
     },

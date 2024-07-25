@@ -160,6 +160,10 @@
           h6 {
             z-index: 1;
           }
+
+          :global(.tag) {
+            text-transform: uppercase;
+          }
         }
 
         &:hover {
