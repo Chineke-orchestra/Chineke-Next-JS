@@ -17,6 +17,9 @@
   &.large {
     padding: 18px 24px;
     font-size: 16px;
+    @include media-breakpoint-down(md) {
+      font-size: 14px;
+    }
   }
 
   &.medium {
@@ -113,6 +116,14 @@
     color: $white;
     cursor: not-allowed;
     box-shadow: none;
+  }
+
+  &.load_more {
+    padding: 18px 24px;
+    font-size: 16px;
+    @include media-breakpoint-down(md) {
+      font-size: 14px;
+    }
   }
 }
 

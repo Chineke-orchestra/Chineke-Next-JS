@@ -54,7 +54,6 @@ import PartnersBanner, {
 import ImagesGallery from 'components/ImagesGallery/ImagesGallery';
 
 const ComponentsListing = ({ components }: { components: any }) => {
-  console.log(components);
   const PrintComponent = ({ component }: any) => {
     switch (component?.type) {
       case 'paragraph--hero_banner':
@@ -366,6 +365,7 @@ const ComponentsListing = ({ components }: { components: any }) => {
         return (
           <EventInfo
             image={formatMedia(component?.image?.thumbnail)}
+            imageVideo={formatMedia(component?.field_video?.field_feature_img)}
             backgroundColor={component?.backgroundColor}
             maskColor={component?.maskColor}
             imageMaskPosition={component?.imageMaskPosition}

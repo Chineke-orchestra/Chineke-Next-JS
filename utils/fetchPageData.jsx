@@ -28,7 +28,7 @@ export async function fetchPageData(context, path) {
       !excludeFromParams.includes(item)
     );
     dynamicIncludesArray.push('field_feature_image.field_media_image');
-    dynamicIncludesArray.push('field_video');
+    dynamicIncludesArray.push('field_video.field_feature_img');
     dynamicIncludesArray.push('field_tags');
     dynamicIncludesArray.push('field_amenities.field_icon.field_media_image');
   } else {

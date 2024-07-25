@@ -20,6 +20,7 @@ import { FRONTEND_URL } from 'utils/constants';
 
 const EventInfo = (props: {
   image: I_Media;
+  imageVideo: I_Media;
   backgroundColor: string;
   maskColor: string;
   imageMaskPosition: 'left_top' | 'bottom_right';
@@ -128,7 +129,7 @@ const EventInfo = (props: {
           aria-hidden="true"
         >
           <Image
-            src={props.image.url}
+            src={props.image.url || props.imageVideo.url}
             alt={props.image.alt}
             fill
             loading="eager"

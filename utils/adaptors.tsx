@@ -188,6 +188,16 @@ export const formatLatestNewsData = (
     const mediaId = item?.relationships?.field_feature_image?.data?.id;
     const { media, file } = getMediaFromIncluded(data?.included, mediaId);
 
+    const videoId = item?.relationships?.field_video?.data?.id;
+    const videoIncludedId = data?.included?.find(
+      (includedItem: any) => includedItem.id === videoId,
+    );
+    const videoImageId =
+      videoIncludedId?.relationships?.field_feature_img?.data?.id;
+    const videImageIncluded = data?.included?.find(
+      (includedItem: any) => includedItem.id === videoImageId,
+    );
+
     const getTagId = (item: any) => {
       return (
         item?.relationships?.field_tags_category?.data?.[0]?.id ||
@@ -203,7 +213,9 @@ export const formatLatestNewsData = (
 
     const imageUrl = file?.attributes?.uri?.url
       ? `${process.env.backendUrl}${file.attributes.uri.url}`
-      : null;
+      : videImageIncluded?.attributes?.uri?.url
+        ? `${process.env.backendUrl}${videImageIncluded.attributes.uri.url}`
+        : null;
 
     return {
       tags: tag?.attributes?.name ? [tag.attributes.name] : null,
@@ -214,7 +226,11 @@ export const formatLatestNewsData = (
       image: imageUrl
         ? {
             url: imageUrl,
-            alt: media?.relationships?.field_media_image?.data?.meta?.alt || '',
+            alt:
+              media?.relationships?.field_media_image?.data?.meta?.alt ||
+              videoIncludedId?.relationships?.field_feature_img?.data?.meta
+                ?.alt ||
+              '',
           }
         : null,
     };

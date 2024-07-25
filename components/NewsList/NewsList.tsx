@@ -109,7 +109,7 @@ const NewsList = (props: {
         {tags?.map((item) => {
           return (
             <button
-              className={classNames('btn  medium', {
+              className={classNames('btn  small', {
                 yellow: item.id === activeFilter,
               })}
               key={item?.id}

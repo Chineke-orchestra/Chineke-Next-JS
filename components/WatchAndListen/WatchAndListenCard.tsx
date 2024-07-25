@@ -48,7 +48,7 @@ const WatchAndListenCard = (
           width="100%"
           height="100%"
           controls={false}
-          playing={isPlaying}
+          // playing={isPlaying}
           muted
           config={{
             vimeo: {
