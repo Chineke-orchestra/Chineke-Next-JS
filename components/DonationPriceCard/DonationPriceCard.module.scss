@@ -12,26 +12,31 @@
     height: 100%;
     margin: 0 auto;
     background-color: $light-gray;
-    padding: 30px 40px;
+    padding: 30px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+    min-height: 220px;
 
     @include media-breakpoint-down(md) {
       flex-direction: column;
       align-items: flex-start;
-      padding: 20px 20px 30px 20px;
+      padding: 20px 20px 33px 20px;
     }
 
     .titlePart {
-      max-width: 230px;
+      max-width: 311px;
+      width: 100%;
       @include media-breakpoint-down(md) {
         max-width: none;
       }
 
       h3 {
         color: $dark-red;
+        @include media-breakpoint-down(md) {
+          font-size: 28px;
+          line-height: 38px;
+          margin-bottom: 9px;
+        }
       }
 
       p {
@@ -41,6 +46,9 @@
         line-height: normal;
         letter-spacing: 0.6px;
         text-transform: uppercase;
+        @include media-breakpoint-down(md) {
+          margin-bottom: 20px;
+        }
       }
     }
 
@@ -53,13 +61,18 @@
         border-left: none;
         border-top: 1px solid rgba($gray, 0.1);
         max-width: none;
-        padding: 20px 0px 0px 0px;
+        padding: 20px 0px 20px 0px;
       }
 
-      p:first-child {
-        font-size: 14px;
-        line-height: normal;
+      .bodyTitlePart {
+        font-size: 18px;
+        line-height: 27px;
         margin-bottom: 10px;
+        color: $dark-red;
+        @include media-breakpoint-down(md) {
+          font-size: 16px;
+          line-height: 24px;
+        }
 
         strong {
           color: $dark-red;
@@ -69,13 +82,16 @@
         }
       }
 
+      p, li{
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 21px;
+      }
+
       li {
         list-style: none;
         margin-left: 20px;
-        font-size: 14px;
         font-style: normal;
-        font-weight: 400;
-        line-height: normal;
 
         &::after {
           width: 3px;
@@ -88,6 +104,11 @@
     }
 
     .buttonsPart {
+      margin-left: auto;
+      @include media-breakpoint-down(md) {
+        margin-left: initial;
+      }
+
       p {
         font-size: 14px;
         margin-bottom: 10px;

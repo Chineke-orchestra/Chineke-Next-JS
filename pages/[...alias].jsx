@@ -3,14 +3,30 @@ import { NextSeo } from 'next-seo';
 import Layout from '../components/layout';
 import TitleCard from '../components/TitleCard/TitleCard';
 import { ComponentsListing } from '../components';
-import { fetchFooterData, fetchHeaderData } from '../utils/dataFetcher';
 import { useHeaderHeight } from '../utils/useHeaderHeight';
 
 const stripHtmlTags = (html) => {
   if (!html) {
-    return ''; 
+    return '';
   }
   return html.replace(/<\/?[^>]+(>|$)/g, "");
+};
+
+const getMetaDescription = (pageData, resourceName) => {
+  let description = '';
+
+  if (
+    resourceName === 'node--news' ||
+    resourceName === 'node--stories' ||
+    resourceName === 'node--events'
+  ) {
+    description = pageData?.body?.summary || pageData?.body?.value;
+  } else {
+    description = pageData?.body?.summary || pageData?.body?.value;
+  }
+
+  const strippedDescription = stripHtmlTags(description);
+  return strippedDescription || 'No description available';
 };
 
 export default function CatchAllRoute({
@@ -23,25 +39,16 @@ export default function CatchAllRoute({
 }) {
   const headerHeight = useHeaderHeight();
 
-  const getMetaDescription = () => {
-    if (
-      resourceName === 'node--news' ||
-      resourceName === 'node--stories' ||
-      resourceName === 'node--events'
-    ) {
-      return stripHtmlTags(pageData?.body?.summary || pageData?.body?.value);
-    }
-    return stripHtmlTags(pageData?.body?.summary || pageData?.body?.value);
-  };
+  const metaDescription = getMetaDescription(pageData, resourceName);
 
   return (
     <Layout preview={preview} footerMenu={footerMenu} headerMenu={headerMenu}>
       <NextSeo
         title={pageData?.title}
-        description={getMetaDescription()}
+        description={metaDescription}
         openGraph={{
           title: pageData?.title,
-          description: getMetaDescription(),
+          description: metaDescription,
         }}
         languageAlternates={hrefLang}
       />

@@ -17,8 +17,6 @@ const DonationPriceCard = ({
   title,
   subtitle,
   text,
-  donationSingle,
-  donationCouple,
   ctaHeadline,
   ctaButtons,
 }: DonationCardProps) => {
@@ -30,38 +28,39 @@ const DonationPriceCard = ({
           {subtitle && <p>{subtitle}</p>}
         </div>
 
-        {text && <div className={styles.bodyTextPart}>{parse(text)}</div>}
+        {text && <div className={styles.bodyTextPart}>
+          {ctaHeadline && <p className={styles.bodyTitlePart}>{ctaHeadline}</p>}
+          {parse(text)}
+        </div>}
 
         <div className={styles.buttonsPart}>
-          {ctaHeadline && <p>{ctaHeadline}</p>}
-
           <div className={styles.buttonsContainer}>
-            {ctaButtons === 'single' && (
+            {(ctaButtons === 'single' || ctaButtons === 'couple') && (
               <Link className="btn large yellow" href={'/becomeafriend'}>
                 Become a friend
               </Link>
             )}
 
-            {ctaButtons === 'couple' && (
-              <div className={styles.buttons}>
-                {donationSingle && (
-                  <Link
-                    className="btn medium transparentBlack"
-                    href={'/donate'}
-                  >
-                    Single
-                  </Link>
-                )}
-                {donationCouple && (
-                  <Link
-                    className="btn medium transparentBlack"
-                    href={'/donate'}
-                  >
-                    Couple
-                  </Link>
-                )}
-              </div>
-            )}
+            {/*{ctaButtons === 'couple' && (*/}
+            {/*  <div className={styles.buttons}>*/}
+            {/*    {donationSingle && (*/}
+            {/*      <Link*/}
+            {/*        className="btn medium transparentBlack"*/}
+            {/*        href={'/donate'}*/}
+            {/*      >*/}
+            {/*        Single*/}
+            {/*      </Link>*/}
+            {/*    )}*/}
+            {/*    {donationCouple && (*/}
+            {/*      <Link*/}
+            {/*        className="btn medium transparentBlack"*/}
+            {/*        href={'/donate'}*/}
+            {/*      >*/}
+            {/*        Couple*/}
+            {/*      </Link>*/}
+            {/*    )}*/}
+            {/*  </div>*/}
+            {/*)}*/}
 
             {ctaButtons === 'contact_us' && (
               <Link href="/contact" className="btn medium transparentBlack">

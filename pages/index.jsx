@@ -5,10 +5,17 @@ import { fetchPageData } from '../utils/fetchPageData';
 
 const stripHtmlTags = (html) => {
   if (!html) {
-    return ''; 
+    return '';
   }
   return html.replace(/<\/?[^>]+(>|$)/g, "");
 };
+
+const getMetaDescription = (pageData) => {
+  const description = pageData?.body?.summary || pageData?.body?.value || '';
+  const strippedDescription = stripHtmlTags(description);
+  return strippedDescription || 'No description available';
+};
+
 export default function LandingPage({
   pageData,
   hrefLang,
@@ -16,18 +23,16 @@ export default function LandingPage({
   headerMenu,
   preview,
 }) {
-  const description = stripHtmlTags(
-    pageData?.body?.summary || pageData?.body?.value,
-  );
+  const metaDescription = getMetaDescription(pageData);
 
   return (
     <Layout preview={preview} footerMenu={footerMenu} headerMenu={headerMenu}>
       <NextSeo
         title={pageData?.title}
-        description={description}
+        description={metaDescription}
         openGraph={{
           title: pageData?.title,
-          description: description,
+          description: metaDescription,
         }}
         languageAlternates={hrefLang}
       />
