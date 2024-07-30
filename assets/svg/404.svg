@@ -5,13 +5,13 @@
 <ellipse cx="260.511" cy="101.54" rx="33.8464" ry="33.8464" fill="#FCDD00"/>
 <ellipse cx="260.511" cy="101.539" rx="5.64107" ry="5.64106" fill="#1E1E4C"/>
 <g filter="url(#filter0_d_4533_39388)">
-<path d="M273.119 149.51L311.519 187.91" stroke="white" stroke-width="3.6"/>
+<path d="M273.119 149.51L311.519 187.91" stroke="white" strokeWidth="3.6"/>
 </g>
 <g filter="url(#filter1_d_4533_39388)">
 <ellipse cx="273.895" cy="149.892" rx="8.5214" ry="8.52033" transform="rotate(60 273.895 149.892)" fill="#F7F6F5"/>
 </g>
 <g filter="url(#filter2_d_4533_39388)">
-<path d="M248.323 149.066L209.936 187.452" stroke="white" stroke-width="3.6"/>
+<path d="M248.323 149.066L209.936 187.452" stroke="white" strokeWidth="3.6"/>
 </g>
 <g filter="url(#filter3_d_4533_39388)">
 <ellipse cx="248.599" cy="149.887" rx="8.5214" ry="8.52033" transform="rotate(105 248.599 149.887)" fill="#F7F6F5"/>

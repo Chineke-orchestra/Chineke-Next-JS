@@ -80,7 +80,9 @@
     }
   }
   .details_section {
+    width: 100%;
     display: flex;
+    flex-wrap: wrap;
     gap: 40px;
     align-items: center;
     justify-content: space-between;
@@ -94,6 +96,7 @@
     }
     .icons_section {
       display: flex;
+      flex: 1;
       gap: 60px;
       @include media-breakpoint-down(sm) {
         display: grid;
@@ -142,17 +145,27 @@
           letter-spacing: normal;
           white-space: nowrap;
         }
+
+        &:last-child {
+          h6 {
+            white-space: wrap;
+          }
+        }
       }
     }
     .right_side {
       display: flex;
+      flex: 1;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
       height: 100%;
+
+      @include media-breakpoint-down(lg) {
+        gap: 20px;
+      }
       @include media-breakpoint-down(md) {
         flex-direction: column;
         align-items: flex-start;
-        gap: 20px;
       }
       :global(.share) {
         background-color: transparent;
