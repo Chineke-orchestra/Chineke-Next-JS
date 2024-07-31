@@ -80,42 +80,59 @@
     }
   }
   .details_section {
-    width: 100%;
+    width: auto;
     display: flex;
     flex-wrap: wrap;
-    gap: 40px;
     align-items: center;
     justify-content: space-between;
-    padding: 40px 30px;
+    gap: 50px;
+    padding: 42px 30px;
     background-color: $navy;
+
+    @media (max-width: 1410px) {
+      gap: 40px;
+    }
+
+    @media (max-width: 1350px) {
+      gap: 30px;
+    }
+
+    @media (max-width: 1260px) {
+      gap: 20px;
+    }
+
     @include media-breakpoint-down(lg) {
       flex-direction: column;
       align-items: flex-start;
-      padding: 30px 20px 34.5px 20px;
+      padding: 30px 20px;
       gap: 20px;
     }
     .icons_section {
       display: flex;
-      flex: 1;
-      gap: 60px;
-      @include media-breakpoint-down(sm) {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px 54px;
+      gap: 50px;
+
+      @media (max-width: 1350px) {
+        gap: 30px;
       }
+
+      @media (max-width: 1260px) {
+        gap: 20px;
+      }
+
       @include media-breakpoint-down(xl) {
         gap: 20px;
         width: auto;
       }
       @include media-breakpoint-down(sm) {
-        gap: 20px;
-        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px 54px;
       }
+
       .group {
         display: flex;
         flex-direction: column;
         gap: 10px;
-        max-width: 189px;
         @include media-breakpoint-down(lg) {
           max-width: 100%;
         }
@@ -145,19 +162,12 @@
           letter-spacing: normal;
           white-space: nowrap;
         }
-
-        &:last-child {
-          h6 {
-            white-space: wrap;
-          }
-        }
       }
     }
     .right_side {
       display: flex;
-      flex: 1;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: flex-end;
       height: 100%;
 
       @include media-breakpoint-down(lg) {
@@ -170,7 +180,7 @@
       :global(.share) {
         background-color: transparent;
         border: 1px solid $light-gray;
-        font-size: 16px;
+        font-size: 14px;
         font-style: normal;
         font-weight: 600;
         color: $light-gray;
@@ -190,7 +200,10 @@
       }
       :global(.btn) {
         width: max-content;
-        text-wrap: nowrap;
+        -webkit-white-space: nowrap;
+        -moz-white-space: nowrap;
+        -ms-white-space: nowrap;
+        white-space: nowrap;
       }
       .social_icons_container {
         display: flex;
@@ -199,6 +212,22 @@
         border-left: 1px solid $white;
         padding-left: 50px;
         margin-right: 59px;
+
+        @media (max-width: 1410px) {
+          padding-left: 40px;
+          margin-right: 40px;
+        }
+
+        @media (max-width: 1350px) {
+          padding-left: 30px;
+          margin-right: 30px;
+        }
+
+        @media (max-width: 1260px) {
+          padding-left: 20px;
+          margin-right: 20px;
+        }
+
         @include media-breakpoint-down(xl) {
           padding-left: 20px;
           margin-right: 39px;
@@ -212,10 +241,16 @@
           font-weight: 400;
           line-height: normal;
           color: $light-gray;
+          white-space: nowrap;
         }
         .social_icons {
           display: flex;
           gap: 30px;
+
+          @media (max-width: 1260px) {
+            gap: 20px;
+          }
+
           @include media-breakpoint-down(xl) {
             gap: 15px;
           }
@@ -239,6 +274,19 @@
     gap: 12px;
     border-left: 1px solid $white;
     padding: 0 50px;
+
+    @media (max-width: 1410px) {
+      padding: 0 40px;
+    }
+
+    @media (max-width: 1350px) {
+      padding: 0 30px;
+    }
+
+    @media (max-width: 1260px) {
+      padding: 0 20px;
+    }
+
     p {
       font-size: 16px;
       font-style: normal;
@@ -255,7 +303,12 @@
   }
   .amenities {
     align-items: center;
-    gap: 40px;
+    gap: 30px;
+
+    @media (max-width: 1260px) {
+      gap: 20px;
+    }
+
     @include media-breakpoint-down(xl) {
       gap: 20px;
     }
