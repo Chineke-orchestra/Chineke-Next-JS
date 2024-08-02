@@ -71,7 +71,7 @@
           line-height: normal;
           letter-spacing: 0.6px;
           text-transform: uppercase;
-          color: $medium-gray;
+          color: $gray;
           @include animated();
 
           &:not(:last-child)::after {

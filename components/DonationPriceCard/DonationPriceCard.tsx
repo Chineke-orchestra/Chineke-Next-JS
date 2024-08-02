@@ -28,10 +28,14 @@ const DonationPriceCard = ({
           {subtitle && <p>{subtitle}</p>}
         </div>
 
-        {text && <div className={styles.bodyTextPart}>
-          {ctaHeadline && <p className={styles.bodyTitlePart}>{ctaHeadline}</p>}
-          {parse(text)}
-        </div>}
+        {text && (
+          <div className={styles.bodyTextPart}>
+            {ctaHeadline && (
+              <p className={styles.bodyTitlePart}>{ctaHeadline}</p>
+            )}
+            {parse(text)}
+          </div>
+        )}
 
         <div className={styles.buttonsPart}>
           <div className={styles.buttonsContainer}>
@@ -40,27 +44,6 @@ const DonationPriceCard = ({
                 Become a friend
               </Link>
             )}
-
-            {/*{ctaButtons === 'couple' && (*/}
-            {/*  <div className={styles.buttons}>*/}
-            {/*    {donationSingle && (*/}
-            {/*      <Link*/}
-            {/*        className="btn medium transparentBlack"*/}
-            {/*        href={'/donate'}*/}
-            {/*      >*/}
-            {/*        Single*/}
-            {/*      </Link>*/}
-            {/*    )}*/}
-            {/*    {donationCouple && (*/}
-            {/*      <Link*/}
-            {/*        className="btn medium transparentBlack"*/}
-            {/*        href={'/donate'}*/}
-            {/*      >*/}
-            {/*        Couple*/}
-            {/*      </Link>*/}
-            {/*    )}*/}
-            {/*  </div>*/}
-            {/*)}*/}
 
             {ctaButtons === 'contact_us' && (
               <Link href="/contact" className="btn medium transparentBlack">

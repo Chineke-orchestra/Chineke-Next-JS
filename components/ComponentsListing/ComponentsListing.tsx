@@ -520,8 +520,6 @@ const ComponentsListing = ({ components }: { components: any }) => {
           title: component?.field_title,
           subtitle: component?.field_subtitle,
           text: component?.field_body_text_formatted?.value,
-          donationSingle: component?.field_donation_amount[0],
-          donationCouple: component?.field_donation_amount[1],
           ctaHeadline: component?.field_cta_heading_text,
           ctaButtons: component?.field_cta_buttons,
         };

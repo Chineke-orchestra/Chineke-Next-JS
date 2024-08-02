@@ -249,7 +249,7 @@ export const formatNewsListData = (
     const mediaId = item?.relationships?.field_feature_image?.data?.id;
     const { media, file } = getMediaFromIncluded(data?.included, mediaId);
 
-    const tagsId = item?.relationships?.field_tags_category?.data?.[0]?.id;
+    const tagsId = item?.relationships?.field_tags_category?.data?.id;
 
     const tag = data?.included?.find((item: any) => item.id === tagsId);
 
