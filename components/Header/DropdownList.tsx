@@ -96,7 +96,13 @@ const DropdownList = ({
               <ul>
                 {item.children.map((child, index) => (
                   <li key={index}>
-                    <Link href={child.link.url}>{child.link.title}</Link>
+                    <Link
+                      href={child.link.url}
+                      onClick={onLinkClickCloseDropdown}
+                      aria-hidden="true"
+                    >
+                      {child.link.title}
+                    </Link>
                     {child.description && <p>{child.description}</p>}
                   </li>
                 ))}
