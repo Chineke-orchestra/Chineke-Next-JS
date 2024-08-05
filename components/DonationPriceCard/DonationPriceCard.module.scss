@@ -32,11 +32,10 @@
 
       h3 {
         color: $dark-red;
-        @include media-breakpoint-down(md) {
-          font-size: 28px;
-          line-height: 38px;
-          margin-bottom: 9px;
-        }
+        font-size: 28px;
+        line-height: 38px;
+        font-weight: 600;
+        margin-bottom: 9px;
       }
 
       p {
@@ -55,40 +54,30 @@
     .bodyTextPart {
       max-width: 461px;
       border-left: 1px solid rgba($gray, 0.1);
-      padding: 39px 0px 39px 30px;
+      padding: 39px 30px 39px 30px;
 
       @include media-breakpoint-down(md) {
+        width: 100%;
         border-left: none;
         border-top: 1px solid rgba($gray, 0.1);
         max-width: none;
         padding: 20px 0px 20px 0px;
       }
 
-      .bodyTitlePart {
-        font-size: 18px;
-        line-height: 27px;
-        margin-bottom: 10px;
-        color: $dark-red;
-        @include media-breakpoint-down(md) {
-          font-size: 16px;
-          line-height: 24px;
-        }
-
-        strong {
-          color: $dark-red;
-          font-size: 16px;
-          font-style: normal;
-          font-weight: 400;
-        }
-      }
-
-      p, li{
-        font-size: 14px;
+      p,
+      strong {
+        font-size: 16px;
+        font-style: normal;
         font-weight: 400;
-        line-height: 21px;
+        line-height: normal;
+        color: $dark-red;
+        margin-bottom: 8px;
       }
 
       li {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: normal;
         list-style: none;
         margin-left: 20px;
         font-style: normal;

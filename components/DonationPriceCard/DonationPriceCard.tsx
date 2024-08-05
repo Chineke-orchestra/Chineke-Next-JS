@@ -28,14 +28,7 @@ const DonationPriceCard = ({
           {subtitle && <p>{subtitle}</p>}
         </div>
 
-        {text && (
-          <div className={styles.bodyTextPart}>
-            {ctaHeadline && (
-              <p className={styles.bodyTitlePart}>{ctaHeadline}</p>
-            )}
-            {parse(text)}
-          </div>
-        )}
+        {text && <div className={styles.bodyTextPart}>{parse(text)}</div>}
 
         <div className={styles.buttonsPart}>
           <div className={styles.buttonsContainer}>
