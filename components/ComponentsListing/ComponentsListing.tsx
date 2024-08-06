@@ -274,7 +274,10 @@ const ComponentsListing = ({ components }: { components: any }) => {
         );
       case 'paragraph--partners_list': {
         const logos = component?.field_logo?.map((item: any) => {
-          return formatMedia(item?.field_media_image_4);
+          return {
+            image: formatMedia(item?.field_media_image_4),
+            link: item?.field_logo_link?.uri,
+          };
         });
         return (
           <PartnersList

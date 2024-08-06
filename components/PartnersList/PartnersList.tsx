@@ -4,11 +4,15 @@ import { I_Media } from 'types/index';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useViewport } from 'utils/viewport';
+import Link from 'next/link';
 
 export interface PartnersListProps {
   tagline?: string;
   title?: string;
-  logos: I_Media[];
+  logos: {
+    image: I_Media;
+    link: string;
+  }[];
 }
 
 const PartnersList = ({ tagline, title, logos }: PartnersListProps) => {
@@ -36,19 +40,33 @@ const PartnersList = ({ tagline, title, logos }: PartnersListProps) => {
                 [styles.centered]: item?.length < (isMobile ? 3 : 4),
               })}
             >
-              {item?.map((logo: I_Media, index: number) => {
-                return (
-                  <div key={index} className={styles.logo}>
-                    <Image
-                      src={logo.url}
-                      alt={logo.alt}
-                      fill
-                      objectFit="contain"
-                      objectPosition="center"
-                    />
-                  </div>
-                );
-              })}
+              {item?.map(
+                (logo: { image: I_Media; link: string }, index: number) => {
+                  return (
+                    <div key={index} className={styles.logo}>
+                      {logo?.link ? (
+                        <Link href={logo.link} target={'_blank'}>
+                          <Image
+                            src={logo.image.url}
+                            alt={logo.image.alt}
+                            fill
+                            objectFit="contain"
+                            objectPosition="center"
+                          />
+                        </Link>
+                      ) : (
+                        <Image
+                          src={logo.image.url}
+                          alt={logo.image.alt}
+                          fill
+                          objectFit="contain"
+                          objectPosition="center"
+                        />
+                      )}
+                    </div>
+                  );
+                },
+              )}
             </div>
           );
         })}
