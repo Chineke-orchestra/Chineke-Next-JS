@@ -9,7 +9,10 @@ const stripHtmlTags = (html) => {
   if (!html) {
     return '';
   }
-  return html.replace(/<\/?[^>]+(>|$)/g, "");
+  return html.replace(
+    /<\/?[a-z][\w.-]*(?:\s+[a-z][\w.-]*(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^'">\s]+))?)*\s*\/?>/gi,
+    '',
+  );
 };
 
 const getMetaDescription = (pageData, resourceName) => {
@@ -47,8 +50,8 @@ export default function CatchAllRoute({
         title={pageData?.title}
         description={metaDescription}
         openGraph={{
-          title: pageData?.title,
-          description: metaDescription,
+          title: pageData?.metatag?.[0]?.attributes?.content,
+          description: pageData?.metatag?.[1]?.attributes?.content,
         }}
         languageAlternates={hrefLang}
       />
