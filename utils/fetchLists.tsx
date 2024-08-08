@@ -35,20 +35,18 @@ export const fetchLists = async (
     }
 
     case resourceName === 'node--news' || resourceName === 'node--stories': {
-      let headlines = [];
+      let headline = '';
       if (resourceName === 'node--news') {
-        headlines = pageData?.field_tags_category?.map(
-          (item: any) => item.name,
-        );
+        headline = pageData?.field_tags_category?.name || '';
       }
       if (resourceName === 'node--stories') {
-        headlines = pageData?.field_categories?.map((item: any) => item.name);
+        headline = pageData?.field_categories?.name || '';
       }
       formattedComponents.push({
         field_background_color: pageData?.field_title_card_bg_color,
         field_image_position: 'right',
         field_title: pageData?.title,
-        field_headline: headlines.join(', '),
+        field_headline: headline,
         field_static_2_column_image: pageData?.field_feature_image,
         field_2_columns_text: [
           {
