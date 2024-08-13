@@ -5,7 +5,7 @@ import { SwiperSlide } from 'swiper/react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import UseAnimation from 'utils/UseAnimation';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 const EventsCarousel = (props: {
   title: string;
@@ -23,7 +23,7 @@ const EventsCarousel = (props: {
   const animationRef = useRef<any>();
 
   const isInView = useInView(animationRef, {
-    margin: '0px 0px  -40% 0px',
+    margin: '0px 0px  -10% 0px',
     once: true,
   });
   return (
@@ -48,7 +48,9 @@ const EventsCarousel = (props: {
                   {...item}
                   index={index}
                   fullWidthImage
-                  date={moment(item?.date).format('D MMM YYYY - h:mm A')}
+                  date={moment(item?.date)
+                    .tz(moment.tz.guess())
+                    .format('D MMM YYYY - h:mm A')}
                 />
               </motion.div>
             </SwiperSlide>

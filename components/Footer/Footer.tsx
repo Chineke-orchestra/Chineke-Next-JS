@@ -47,8 +47,11 @@ const Footer = ({
   basicBlock,
   menuTitle,
 }: FooterMenuProps) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const animationRef = useRef<any>();
+  const isInView = useInView(animationRef, {
+    margin: '0px 0px  -10% 0px',
+    once: true,
+  });
   const [subscribeModal, setSubscribeModal] = useState<boolean>(false);
   const scrollToTop = () => {
     window.scrollTo({
@@ -58,13 +61,13 @@ const Footer = ({
   };
 
   return (
-    <section className={styles.footerContainer} ref={ref}>
+    <section className={styles.footerContainer} ref={animationRef}>
       <motion.div
         className={classNames(styles.topContainer, 'container')}
         initial={{ opacity: 0 }}
         animate={isInView ? 'animate' : 'initial'}
         variants={UseAnimation('up', {
-          delay: 2,
+          delay: 0.5,
           initialY: 150,
           endY: 0,
           duration: 2.5,

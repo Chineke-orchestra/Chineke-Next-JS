@@ -40,8 +40,11 @@ const StaticTwoColumns = ({
     new Array(cards.length).fill(false),
   );
 
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const animationRef = useRef<any>();
+  const isInView = useInView(animationRef, {
+    margin: '0px 0px  -10% 0px',
+    once: true,
+  });
 
   const flexDirection = imagePosition === 'right' ? 'rowReverse' : '';
   const colorTheme =
@@ -66,7 +69,7 @@ const StaticTwoColumns = ({
       >
         <motion.div
           className={styles.imageContainer}
-          ref={ref}
+          ref={animationRef}
           initial={{ opacity: 0 }}
           animate={isInView ? 'animate' : 'initial'}
           variants={UseAnimation('up', {

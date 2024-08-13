@@ -24,8 +24,11 @@ const DonationBanner = ({
   image,
   secondImage,
 }: DonationBannerProps) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(scrollRef, {
+    margin: '0px 0px  -10% 0px',
+    once: true,
+  });
   const router = useRouter();
 
   const handleDonate = () => {
@@ -33,7 +36,7 @@ const DonationBanner = ({
   };
 
   return (
-    <section className={styles.donationBannerWrapper} ref={ref}>
+    <section className={styles.donationBannerWrapper} ref={scrollRef}>
       <motion.div
         className={classNames(styles.donationBannerContainer, 'container')}
       >

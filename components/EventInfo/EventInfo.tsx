@@ -9,7 +9,7 @@ import locationIcon from 'assets/svg/location.svg';
 import clockIcon from 'assets/svg/clock.svg';
 import calendarIcon from 'assets/svg/calendar.svg';
 import shareIcon from 'assets/svg/share.svg';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { LinkComponent, VideoPopup } from '..';
 import classNames from 'classnames';
 import { useViewport } from 'utils/viewport';
@@ -45,19 +45,24 @@ const EventInfo = (props: {
   };
   const [displayVideo, setDisplayVideo] = useState(false);
 
+  const startDateLocal = moment(props.startDate).tz(moment.tz.guess());
+  const endDateLocal = props.endDate
+    ? moment(props.endDate).tz(moment.tz.guess())
+    : null;
+
   const eventDetails = [
     {
       label: 'Date',
       icon: calendarIcon,
       alt: 'calendar icon',
-      value: moment(props.startDate).format('D MMM YYYY'),
+      value: startDateLocal.format('D MMM YYYY'),
     },
     {
       label: 'Time',
       icon: clockIcon,
       alt: 'clock icon',
-      value: `${moment(props.startDate).format('HH:mm')} - ${
-        props.endDate ? moment(props.endDate).format('HH:MM') : ''
+      value: `${startDateLocal.format('HH:mm')} - ${
+        endDateLocal ? endDateLocal.format('HH:mm') : ''
       }`,
     },
     {

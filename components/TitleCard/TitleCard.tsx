@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import parse from 'html-react-parser';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 export interface TitleCardProps {
   title?: string;
@@ -36,9 +36,10 @@ const TitleCard = ({
   const breadcrumbs = findBreadcrumbPaths(path, headerMenu.headerMenu);
 
   const determineEventStatus = (type?: string, date?: string) => {
-    const currentDate = moment();
+    const currentDate = moment().tz(moment.tz.guess());
     if (type === 'node--events' && date) {
-      return moment(date).isBefore(currentDate) ? 'previous' : 'upcoming';
+      const eventDate = moment(date).tz(moment.tz.guess());
+      return eventDate.isBefore(currentDate) ? 'previous' : 'upcoming';
     }
     return null;
   };
@@ -131,9 +132,7 @@ const TitleCard = ({
 
             {router.pathname === '/donate' && (
               <Link href="/becomeafriend" className={styles.buttonContainer}>
-                <button className="btn large yellow">
-                  Become a friend
-                </button>
+                <button className="btn large yellow">Become a friend</button>
               </Link>
             )}
           </div>

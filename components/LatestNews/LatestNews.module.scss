@@ -10,7 +10,7 @@
   }
   .wrapper {
     position: sticky;
-    top: 180px;
+    top: 220px;
     left: 0;
     overflow: hidden;
     @include media-breakpoint-down(md) {
@@ -88,12 +88,11 @@
           font-size: 18px;
           font-style: normal;
           font-weight: 600;
-          line-height: 27px;
+          line-height: 18px;
           @include media-breakpoint-down(md) {
             font-size: 14px;
             font-style: normal;
             font-weight: 600;
-            line-height: 21px;
           }
           .underline {
             display: block;

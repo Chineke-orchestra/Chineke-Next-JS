@@ -4,7 +4,7 @@ import { useViewport } from 'utils/viewport';
 import { I_Link, I_Media } from 'types/index';
 import Image from 'next/image';
 import { LinkComponent } from '..';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import classNames from 'classnames';
 import { getCurrentLocaleStore, globalDrupalStateStores } from 'lib/stores';
 import { useRouter } from 'next/router';
@@ -145,7 +145,11 @@ const NewsList = (props: {
                     )}
                   </div>
                   <div className={styles.text}>
-                    <p>{moment(item.date).format('DD MMM YYYY')}</p>
+                    <p>
+                      {moment(item?.date)
+                        .tz(moment.tz.guess())
+                        .format('D MMM YYYY - h:mm A')}
+                    </p>
                     <h5 ref={(el) => (titleRefs.current[index] = el)}>
                       {item.link.title}
                     </h5>

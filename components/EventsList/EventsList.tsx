@@ -4,7 +4,7 @@ import { useViewport } from 'utils/viewport';
 import { useEffect, useState } from 'react';
 import { ColoredCardWithImage } from '..';
 import Select, { components } from 'react-select';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 const DropdownIndicator = (props: any) => {
   return (
@@ -176,7 +176,9 @@ const EventsList = ({ cards }: EventsListProps) => {
             return (
               <ColoredCardWithImage
                 {...item}
-                date={moment(item?.date).format('D MMM YYYY - h:mm A')}
+                date={moment(item?.date)
+                  .tz(moment.tz.guess())
+                  .format('D MMM YYYY - h:mm A')}
                 index={index}
                 fullWidthImage
                 key={index}

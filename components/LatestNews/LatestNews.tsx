@@ -27,7 +27,7 @@ const LatestNews = (props: {
     target: ref,
   });
   const isInView = useInView(scrollRef, {
-    margin: '0px 0px  -40% 0px',
+    margin: '0px 0px  -10% 0px',
     once: true,
   });
 
