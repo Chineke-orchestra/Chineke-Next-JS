@@ -78,7 +78,14 @@ const DropdownList = ({
               </Link>
               {item.isFeatured && item.imageUrl && (
                 <div className={styles.imageContainer}>
-                  <Image src={imageSrc} alt="feature image" sizes="100%" fill />
+                  <Image
+                    src={imageSrc}
+                    alt="feature image"
+                    sizes="100%"
+                    fill
+                    loading="lazy"
+                    priority={false}
+                  />
                 </div>
               )}
             </>
@@ -120,7 +127,14 @@ const DropdownList = ({
               {item.description && <p>{item.description}</p>}
               {item.isFeatured && item.imageUrl && (
                 <div className={styles.imageContainer}>
-                  <Image src={imageSrc} alt="feature image" sizes="100%" fill />
+                  <Image
+                    src={imageSrc}
+                    alt="feature image"
+                    sizes="100%"
+                    fill
+                    loading="lazy"
+                    priority={false}
+                  />
                 </div>
               )}
             </>

@@ -60,7 +60,14 @@ const Hero: NextPage<HeroProps> = ({
     <section className={styles.hero}>
       <div className={styles.videoContainer}>
         {isMobile && image ? (
-          <Image src={image.url} alt={image.alt} sizes="100%" fill />
+          <Image
+            src={image.url}
+            alt={image.alt}
+            sizes="100%"
+            fill
+            loading="eager"
+            priority
+          />
         ) : (
           isMounted &&
           videoSource && (

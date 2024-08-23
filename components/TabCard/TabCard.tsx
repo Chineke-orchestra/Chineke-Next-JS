@@ -89,7 +89,8 @@ const TabCard = ({
                 fromOpacity: 1,
               })}
             >
-              <Image src={icon.url} alt={icon.alt} sizes="100%" fill />
+              <Image src={icon.url} alt={icon.alt} sizes="100%" fill  loading="lazy"
+              priority={false}/>
             </motion.div>
           )}
         </Link>

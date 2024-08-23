@@ -60,7 +60,13 @@ const WatchAndListenCard = (
           light={isPlaying ? undefined : props.image.url}
         />
       ) : (
-        <Image src={props.image.url} alt={props.image.alt} fill />
+        <Image
+          src={props.image.url}
+          alt={props.image.alt}
+          fill
+          loading="lazy"
+          priority={false}
+        />
       )}
 
       <div className={styles.text_container}>

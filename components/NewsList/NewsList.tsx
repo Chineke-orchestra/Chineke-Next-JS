@@ -137,7 +137,13 @@ const NewsList = (props: {
                 >
                   <div className={styles.image}>
                     {item?.image?.url && (
-                      <Image src={item.image.url} alt={item.image.alt} fill />
+                      <Image
+                        src={item.image.url}
+                        alt={item.image.alt}
+                        fill
+                        loading="lazy"
+                        priority={false}
+                      />
                     )}
 
                     {item.category && (

@@ -15,7 +15,14 @@ const ThreeColumnLayout = ({ image, title, text }: ThreeColumnLayoutProps) => {
     <section className={classNames(styles.threeColumnContainer, 'container')}>
       {image.url && (
         <div className={styles.imageContainer}>
-          <Image src={image.url} alt={image.alt} sizes="100%" fill />
+          <Image
+            src={image.url}
+            alt={image.alt}
+            sizes="100%"
+            fill
+            loading="lazy"
+            priority={false}
+          />
         </div>
       )}
 

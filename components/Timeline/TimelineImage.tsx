@@ -26,7 +26,8 @@ const TimelineImage: React.FC<TimelineImageProps> = ({
     >
       <div className={styles.imageContainer}>
         {image.url && (
-          <Image src={image.url} alt={image.alt} sizes="100%" fill />
+          <Image src={image.url} alt={image.alt} sizes="100%" fill  loading="lazy"
+          priority={false}/>
         )}
         {imageText && <p>{imageText}</p>}
       </div>

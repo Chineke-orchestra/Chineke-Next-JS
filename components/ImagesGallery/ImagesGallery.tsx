@@ -30,7 +30,14 @@ const ImagesGallery = ({ images }: ImageGalleryProps) => {
       <div className={styles.imagesGridContainer}>
         {visibleImages?.map((item, index) => (
           <div key={index} className={styles.imageContainer}>
-            <Image src={item.url} alt={item.alt} sizes="100%" fill />
+            <Image
+              src={item.url}
+              alt={item.alt}
+              sizes="100%"
+              fill
+              loading="lazy"
+              priority={false}
+            />
           </div>
         ))}
       </div>

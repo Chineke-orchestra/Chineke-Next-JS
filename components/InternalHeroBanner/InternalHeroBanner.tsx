@@ -87,6 +87,8 @@ const InternalHeroBanner = ({
             layout="responsive"
             width={100}
             height={100}
+            loading="eager"
+            priority
           />
         )}
 

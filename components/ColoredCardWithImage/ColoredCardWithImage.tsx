@@ -73,6 +73,8 @@ const ColoredCardWithImage = (props: {
               alt={props.image.alt}
               sizes="100%"
               fill
+              loading="lazy"
+              priority={false}
             />
           </div>
         )}

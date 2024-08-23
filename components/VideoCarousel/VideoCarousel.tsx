@@ -160,10 +160,12 @@ const VideoCarousel = (props: {
                     }}
                   >
                     <div className={styles.video_card}>
-                      <Image src={item.image.url} alt={item.image.alt} fill />
+                      <Image src={item.image.url} alt={item.image.alt} fill loading="lazy"
+              priority={false} />
                       <div className={styles.text_container}>
                         <div className={styles.image}>
-                          <Image src={infoIcon} alt="info-icon" fill />
+                          <Image src={infoIcon} alt="info-icon" fill loading="lazy"
+              priority={false} />
                         </div>
                         <p>
                           {item.title}

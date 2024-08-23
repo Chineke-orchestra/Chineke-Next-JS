@@ -107,6 +107,8 @@ const LatestNews = (props: {
                             alt={item.link.title}
                             layout="fill"
                             objectFit="cover"
+                            loading="lazy"
+                            priority={false}
                           />
                         )}
                       </motion.div>

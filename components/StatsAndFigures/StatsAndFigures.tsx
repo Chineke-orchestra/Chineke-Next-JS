@@ -19,7 +19,8 @@ const StatsAndFigures: FC<StatsAndFiguresProps> = ({ title, image, stats }) => {
       <div className="container">
         <div className={styles.wrapper}>
           <div className={styles.image}>
-            <Image src={image.url} alt={image.alt} fill />
+            <Image src={image.url} alt={image.alt} fill loading="lazy"
+              priority={false} />
           </div>
           <div className={styles.stats_wrapper}>
             <h3>{title}</h3>

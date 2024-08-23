@@ -54,7 +54,8 @@ const OurTeam = ({ title, cards }: OurTeamProps) => {
                 style={{ backgroundColor: item?.backgroundColor }}
               >
                 <div className={styles.image}>
-                  <Image src={item.image.url} alt={item.image.alt} fill />
+                  <Image src={item.image.url} alt={item.image.alt} fill loading="lazy"
+              priority={false} />
                 </div>
                 <div className={styles.text}>
                   {item.tagline && (

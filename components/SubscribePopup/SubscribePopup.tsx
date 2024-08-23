@@ -56,7 +56,8 @@ const SubscribePopup = (props: SubscribePopupProps) => {
           <span className={styles.close_icon} />
         </button>
         <div className={styles.popup_left}>
-          <Image src={subscribeImage.src} alt="subscribe image" fill />
+          <Image src={subscribeImage.src} alt="subscribe image" fill loading="lazy"
+              priority={false} />
         </div>
 
         <div className={styles.popup_right}>

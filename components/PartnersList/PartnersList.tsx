@@ -52,6 +52,8 @@ const PartnersList = ({ tagline, title, logos }: PartnersListProps) => {
                             fill
                             objectFit="contain"
                             objectPosition="center"
+                            loading="lazy"
+                            priority={false}
                           />
                         </Link>
                       ) : (
@@ -61,6 +63,8 @@ const PartnersList = ({ tagline, title, logos }: PartnersListProps) => {
                           fill
                           objectFit="contain"
                           objectPosition="center"
+                          loading="lazy"
+                          priority={false}
                         />
                       )}
                     </div>

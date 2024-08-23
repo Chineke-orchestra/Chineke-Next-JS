@@ -33,7 +33,16 @@ const Feature = ({ headline, title, text, ctaLink, image }: FeatureProps) => {
           )}
         </div>
         <div className={styles.imageContainer}>
-          {image && <Image src={image.url} alt={image.alt} sizes="100%" fill />}
+          {image && (
+            <Image
+              src={image.url}
+              alt={image.alt}
+              sizes="100%"
+              fill
+              loading="lazy"
+              priority={false}
+            />
+          )}
         </div>
       </div>
     </section>

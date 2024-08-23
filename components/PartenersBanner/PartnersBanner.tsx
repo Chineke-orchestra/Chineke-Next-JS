@@ -29,6 +29,8 @@ const PartnersBanner = ({
               alt={item.alt}
               width={314}
               height={82}
+              loading="lazy"
+              priority={false}
             />
           ))}
         </div>

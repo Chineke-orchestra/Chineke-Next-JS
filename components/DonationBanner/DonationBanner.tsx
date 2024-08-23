@@ -74,6 +74,7 @@ const DonationBanner = ({
                 layout="responsive"
                 width={201}
                 height={406}
+                loading="lazy"
               />
             </div>
           )}
@@ -99,6 +100,8 @@ const DonationBanner = ({
                 layout="responsive"
                 width={401}
                 height={406}
+                loading="lazy"
+                priority={false}
               />
             </motion.div>
           )}

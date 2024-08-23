@@ -82,7 +82,16 @@ const StaticTwoColumns = ({
             transitionType: 'linear',
           })}
         >
-          {image && <Image src={image.url} alt={image.alt} sizes="100%" fill />}
+          {image && (
+            <Image
+              src={image.url}
+              alt={image.alt}
+              sizes="100%"
+              fill
+              loading="lazy"
+              priority={false}
+            />
+          )}
         </motion.div>
 
         <div className={styles.textContainer}>
@@ -132,6 +141,8 @@ const StaticTwoColumns = ({
                     alt={ctaIcon.alt}
                     sizes="100%"
                     fill
+                    loading="lazy"
+                    priority={false}
                   />
                 </div>
               )}
