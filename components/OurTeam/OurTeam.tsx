@@ -30,7 +30,7 @@ const OurTeam = ({ title, cards }: OurTeamProps) => {
   const loadMoreHandler = () => {
     setSlicedCards((prev) => [
       ...prev,
-      ...cards.slice(numberOfCards - 1, cards?.length - 1),
+      ...cards.slice(numberOfCards, cards?.length),
     ]);
     setShowButton(false);
   };

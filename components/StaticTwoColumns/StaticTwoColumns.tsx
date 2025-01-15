@@ -131,7 +131,7 @@ const StaticTwoColumns = ({
               ))}
           </div>
 
-          {ctaLink?.url && (
+          {ctaLink?.url && ctaLink?.url !== "route:<nolink>" && (
             <Link href={ctaLink.url} className={classNames('btn large orange')}>
               {ctaLink?.title && ctaLink.title}
               {ctaIcon?.url && (

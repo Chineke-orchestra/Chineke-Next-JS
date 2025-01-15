@@ -154,7 +154,7 @@ const Carousel = (props: {
                 <LinkComponent
                   link={props.link}
                   className={classNames(
-                    'btn large yellow',
+                    props.link?.url ? 'btn large yellow' : '',
                     styles.button,
                     props.buttonClass,
                   )}
