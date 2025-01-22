@@ -46,10 +46,10 @@ export const ExploreSection = (props: {
               <div
                 className={styles.featured_card}
                 style={{
-                  background: `url(${props.featuredCard?.image.url})`,
+                  background: `url(${props.featuredCard?.image.url}) no-repeat center center / cover`,
                 }}
               >
-                <div className={styles.tags}>
+                <div className={`${styles.tags} featuredcard_bgimage`}>
                   {props.featuredCard?.tags?.map((tag, index) => {
                     return (
                       <p className="tag light" key={index}>

@@ -52,7 +52,7 @@ export const formatLink = (link: {
 
 export const formatCardData = (
   data: {
-    field_title: string;
+    field_card_title: string;
     field_body_text_formatted: {
       value: string;
     };
@@ -61,7 +61,7 @@ export const formatCardData = (
 ): I_Card[] => {
   return data?.map((item: any) => {
     return {
-      title: item?.field_title,
+      title: item?.field_card_title,
       body: item?.field_body_text_formatted?.value,
       link: formatLink(item?.field_link),
     };

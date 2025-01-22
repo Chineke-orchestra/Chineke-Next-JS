@@ -218,7 +218,7 @@ const ComponentsListing = ({ components }: { components: any }) => {
           component?.field_testimonial?.map((item: any) => {
             return {
               author: item?.field_author,
-              text: item?.field_testimonial,
+              text: item?.field_testimonial_text,
             };
           });
         const pattern: PatternProps = {
@@ -293,7 +293,7 @@ const ComponentsListing = ({ components }: { components: any }) => {
             return {
               author: item?.field_author,
               date: item?.field_date_time,
-              text: item?.field_testimonial,
+              text: item?.field_testimonial_text,
             };
           },
         );
@@ -319,7 +319,7 @@ const ComponentsListing = ({ components }: { components: any }) => {
         const cards = component?.field_support_card?.map((item: any) => {
           return {
             title: item?.field_sup_text,
-            text: item?.field_sup_card_body_text,
+            text: item?.field_sup_card_body_text_new,
             link: formatLink(item?.field_url),
           };
         });

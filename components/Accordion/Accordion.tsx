@@ -30,7 +30,6 @@ const Accordion = (props: {
       }, 350);
     }
   };
-
   return (
     <section className={styles.accordion_component}>
       <div className="container">
@@ -55,7 +54,8 @@ const Accordion = (props: {
                     <ReactSVG src={arrow.src} />
                   </div>
                   <div className={styles.accordion_text}>
-                    {item.text && <div>{parse(item.text)}</div>}
+                  
+                    {item.text && <div className={styles.sponserList_20}>{parse(item.text)}</div>}
                   </div>
                 </div>
               );
