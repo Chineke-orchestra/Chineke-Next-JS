@@ -46,7 +46,15 @@ const TabCard = ({
     }),
     ...motionProps,
   };
+  function parseBasicHtml(text: string | undefined) { 
+    if (!text) { 
+      return null; 
+    }
 
+    const parsedText = text.replace(/<b>(.*?)<\/b>/g, '<strong>$1</strong>');
+    
+    return <div dangerouslySetInnerHTML={{ __html: parsedText }} />;
+  }
   return (
     <motion.div className={styles.card} {...defaultMotionProps}>
       {link?.url ? (
@@ -97,7 +105,7 @@ const TabCard = ({
       ) : withParse && text ? (
         <>{parse(text)}</>
       ) : (
-        <p>{text}</p>
+        <div>{parseBasicHtml(text)}</div>
       )}
     </motion.div>
   );

@@ -83,7 +83,7 @@ const ComponentsListing = ({ components }: { components: any }) => {
           cards: component?.field_2_columns_text.map((item: any) => {
             return {
               link: formatLink(item?.field_link),
-              text: item.field_rich_text,
+              text: item.field_rich_text_new?.value,
               icon: formatMedia(item?.field_cta_link_icon?.field_media_image),
               withParse: item?.withParse || false,
             };
