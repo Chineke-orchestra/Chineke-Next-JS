@@ -130,11 +130,11 @@ const TitleCard = ({
           <div className={styles.rightPart}>
             <div>{parse(text)}</div>
 
-            {router.pathname === '/donate' && (
+            {/* {router.pathname === '/donate' && (
               <Link href="/becomeafriend" className={styles.buttonContainer}>
                 <button className="btn large yellow">Become a friend</button>
               </Link>
-            )}
+            )} */}
           </div>
         )}
       </div>
