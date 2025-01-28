@@ -32,7 +32,7 @@ export function middleware(request) {
     '/reviews-old': '/',
     '/reviews': '/',
     '/stephen-carpenter': '/',
-    '/supporters': '/',
+    '/supporters': '/donate',
     '/upcoming-concerts': '/',
     '/vacancies': '/',
     '/watch': '/',

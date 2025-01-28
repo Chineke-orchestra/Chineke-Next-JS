@@ -5,6 +5,7 @@ import DropdownList from './DropdownList';
 import { motion } from 'framer-motion';
 import UseAnimation from 'utils/UseAnimation';
 import { HeaderProps } from './Header';
+import { useRouter } from 'next/router';
 
 export interface LinkProps {
   title: string;
@@ -56,6 +57,10 @@ const DropdownMenu = ({
 
     return result;
   }, [links]);
+  const router = useRouter();
+  const handleDonate = () => {
+    router.push(`/donate`);
+  };
 
   return (
     dropdownVisible && (
@@ -84,7 +89,7 @@ const DropdownMenu = ({
 
           {isSmallScreen && (
             <div className={styles.donateButton}>
-              <button className="btn large yellow">Donate</button>
+              <button className="btn large yellow" onClick={handleDonate}>Donate</button>
             </div>
           )}
         </div>
