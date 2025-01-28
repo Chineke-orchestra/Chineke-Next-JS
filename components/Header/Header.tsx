@@ -38,7 +38,14 @@ const Header = ({ headerMenu }: HeadersComponentProps) => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const navbarRef = useRef<HTMLDivElement>(null);
-  useCustomCookieBanner('https://cdn-cookieyes.com/client_data/7d7a99a42b8b6e441a7c47dd/script.js', 'cookieyes');
+  
+  const isMultiUatDomain = typeof window !== 'undefined' && window.location.hostname.includes('multi-uat');
+  console.log(isMultiUatDomain);
+  
+const scriptUrl = isMultiUatDomain
+  ? 'https://cdn-cookieyes.com/client_data/15a2a458ddc6783740a46abe/script.js'
+  : 'https://cdn-cookieyes.com/client_data/7d7a99a42b8b6e441a7c47dd/script.js';
+  useCustomCookieBanner(scriptUrl, 'cookieyes');
 
   const groupLinksIntoRows = (links: HeaderProps[]): HeaderProps[][] => {
     const rows: HeaderProps[][] = [];
