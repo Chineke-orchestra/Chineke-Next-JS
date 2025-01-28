@@ -11,6 +11,7 @@ import LogoChinekeBlack from 'assets/svg/chineke_logo_black.svg';
 import DropdownMenu from './DropdownMenu';
 import { motion, AnimatePresence } from 'framer-motion';
 import UseAnimation from 'utils/UseAnimation';
+import useCustomCookieBanner from 'utils/useCustomCookieBanner';
 
 export interface HeaderProps {
   id: string;
@@ -37,6 +38,7 @@ const Header = ({ headerMenu }: HeadersComponentProps) => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const navbarRef = useRef<HTMLDivElement>(null);
+  useCustomCookieBanner('https://cdn-cookieyes.com/client_data/7d7a99a42b8b6e441a7c47dd/script.js', 'cookieyes');
 
   const groupLinksIntoRows = (links: HeaderProps[]): HeaderProps[][] => {
     const rows: HeaderProps[][] = [];
@@ -119,6 +121,7 @@ const Header = ({ headerMenu }: HeadersComponentProps) => {
   };
 
   return (
+
     <motion.nav
       id="headerContainer"
       className={classNames(
