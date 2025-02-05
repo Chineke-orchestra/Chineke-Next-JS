@@ -48,4 +48,9 @@
             object-fit: contain;
         }
     }
+    .cardContentLink {
+        a {
+            text-decoration: underline;
+        }
+    }
 }

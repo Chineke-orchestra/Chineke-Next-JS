@@ -12,6 +12,7 @@ export interface ImageGalleryProps {
 const ImagesGallery = ({ images }: ImageGalleryProps) => {
   const { isMobile } = useViewport();
   const [initialVisible, setInitialVisible] = useState(9);
+  const [visibleImagesCount, setvisibleImagesCount] = useState(images.length);
 
   useEffect(() => {
     const initialImagesLoaded = isMobile ? 4 : 9;
@@ -24,12 +25,13 @@ const ImagesGallery = ({ images }: ImageGalleryProps) => {
 
   const visibleImages = images.slice(0, initialVisible);
   const allImagesLoaded = initialVisible >= images.length;
+  
 
   return (
     <section className={classNames(styles.imagesGalleryContainer, 'container')}>
       <div className={styles.imagesGridContainer}>
         {visibleImages?.map((item, index) => (
-          <div key={index} className={styles.imageContainer}>
+          <div key={index} className={`${styles.imageContainer} ${visibleImagesCount === 3 && index === 1 ? styles.autoHeight : ''}`}>
             <Image
               src={item.url}
               alt={item.alt}
@@ -41,7 +43,7 @@ const ImagesGallery = ({ images }: ImageGalleryProps) => {
           </div>
         ))}
       </div>
-
+      {images.length > 3 && (
       <div className={styles.loadMoreButton}>
         <button
           className="btn large yellow"
@@ -51,6 +53,7 @@ const ImagesGallery = ({ images }: ImageGalleryProps) => {
           Load More
         </button>
       </div>
+      )}
     </section>
   );
 };

@@ -83,7 +83,7 @@ const TabCard = ({
             </h4>
           )}
 
-          {text && <p>{parse(text)}</p>}
+          {text && <div>{parse(text)}</div>}
 
           {icon && (
             <motion.div
@@ -105,7 +105,7 @@ const TabCard = ({
       ) : withParse && text ? (
         <>{parse(text)}</>
       ) : (
-        <div>{parseBasicHtml(text)}</div>
+        <div className={styles.cardContentLink}>{parseBasicHtml(text)}</div>
       )}
     </motion.div>
   );

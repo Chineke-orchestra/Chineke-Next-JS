@@ -40,7 +40,6 @@ const Header = ({ headerMenu }: HeadersComponentProps) => {
   const navbarRef = useRef<HTMLDivElement>(null);
   
   const isMultiUatDomain = typeof window !== 'undefined' && window.location.hostname.includes('multi-uat');
-  console.log(isMultiUatDomain);
   
 const scriptUrl = isMultiUatDomain
   ? 'https://cdn-cookieyes.com/client_data/15a2a458ddc6783740a46abe/script.js'
