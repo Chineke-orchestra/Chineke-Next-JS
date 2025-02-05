@@ -4,12 +4,9 @@ export function middleware(request) {
   const { pathname } = request.nextUrl;
 
   const redirectionMap = {
-    '/news': '/news',
     '/become-a-friend': '/donate',
-    '/candace-allen': '/candace-allen',
     '/chineke-junior-auditions': '/',
     '/chineke-junior-orchestra-the-reunion-concert': '/',
-    '/chineke-junior-orchestra': '/chineke-junior-orchestra',
     '/dvorak-symphony-no9-from-the-new-world-sibelius-finlandia': '/',
     '/education-work': '/',
     '/frank-douglas': '/dr-frank-douglas',
@@ -22,10 +19,8 @@ export function middleware(request) {
     '/new-page': '/',
     '/our-board': '/',
     '/our-founder': '/',
-    '/our-mission': '/our-mission',
     '/our-staff': '/',
     '/players': '/',
-    '/previous-concerts': '/previous-concerts',
     '/promotionaldeck': '/',
     '/rachmaninov-piano-concerto-no3-sibelius-no2': '/',
     '/research': '/',
