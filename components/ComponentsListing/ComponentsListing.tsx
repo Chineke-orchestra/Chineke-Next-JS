@@ -538,7 +538,8 @@ const ComponentsListing = ({ components }: { components: any }) => {
           />
         );
       }
-      case 'paragraph--donation_banner':
+      case 'paragraph--from_library': 
+      case 'paragraph--donation_banner': {
         const donationBannerProps = {
           headline: component?.field_headline,
           title: component?.field_donation_banner_title,
@@ -552,7 +553,7 @@ const ComponentsListing = ({ components }: { components: any }) => {
         };
 
         return <DonationBanner {...donationBannerProps} />;
-
+      }
       default:
         return <p>block {component?.type} was not implemented</p>;
     }

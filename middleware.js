@@ -25,7 +25,6 @@ export function middleware(request) {
     '/rachmaninov-piano-concerto-no3-sibelius-no2': '/',
     '/research': '/',
     '/reviews-old': '/',
-    '/reviews': '/',
     '/stephen-carpenter': '/',
     '/supporters': '/donate',
     '/upcoming-concerts': '/',
