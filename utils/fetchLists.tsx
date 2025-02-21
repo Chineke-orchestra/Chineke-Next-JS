@@ -112,7 +112,7 @@ export const fetchLists = async (
             formatViewEndpointPath(
               viewId,
               displayId,
-              ',field_tags_category, field_categories, field_tags, field_video.field_media_image,field_video.field_feature_img',
+              ',field_tags_category, field_categories, field_tags, field_video.field_feature_img',
             ),
           );
 
