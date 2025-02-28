@@ -82,7 +82,7 @@ const StaticTwoColumns = ({
             transitionType: 'linear',
           })}
         >
-          {image && (
+          {image &&  image.url !== ''  &&(
             <Image
               src={image.url}
               alt={image.alt}

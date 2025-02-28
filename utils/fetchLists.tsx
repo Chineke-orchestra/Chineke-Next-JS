@@ -36,28 +36,32 @@ export const fetchLists = async (
 
     case resourceName === 'node--news' || resourceName === 'node--stories': {
       let headline = '';
-      if (resourceName === 'node--news') {
-        headline = pageData?.field_tags_category?.name || '';
+
+      if ( pageData.field_display_title_card  !== true) {
+        if (resourceName === 'node--news') {
+          headline = pageData?.field_tags_category?.name || '';
+        }
+        if (resourceName === 'node--stories') {
+          headline = pageData?.field_categories?.name || '';
+        }
+        
+          formattedComponents.push({
+            field_background_color: pageData?.field_title_card_bg_color,
+            field_image_position: 'right',
+            field_title: pageData?.title,
+            field_headline: headline,
+            field_static_2_column_image: pageData?.field_feature_image,
+            field_2_columns_text: [
+              {
+                field_link: null,
+                field_rich_text: pageData?.body?.value || null,
+                field_cta_link_icon: null,
+                withParse: true,
+              },
+            ],
+            type: 'paragraph--static_2_column',
+          });
       }
-      if (resourceName === 'node--stories') {
-        headline = pageData?.field_categories?.name || '';
-      }
-      formattedComponents.push({
-        field_background_color: pageData?.field_title_card_bg_color,
-        field_image_position: 'right',
-        field_title: pageData?.title,
-        field_headline: headline,
-        field_static_2_column_image: pageData?.field_feature_image,
-        field_2_columns_text: [
-          {
-            field_link: null,
-            field_rich_text: pageData?.body?.value || null,
-            field_cta_link_icon: null,
-            withParse: true,
-          },
-        ],
-        type: 'paragraph--static_2_column',
-      });
       break;
     }
     default:
