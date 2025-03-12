@@ -55,7 +55,7 @@ const StoriesList = (props: {
       });
 
   const { data, isLoading } = useSWR(
-    !isFirstLoad ? `/api/stories?page=${page}&id=${activeFilter}` : undefined,
+    !isFirstLoad ? `/api/stories?page=${page}&id=${activeFilter}&type=${props.type}` : undefined,
     fetcher,
   );
 

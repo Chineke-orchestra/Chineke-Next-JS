@@ -44,6 +44,9 @@
           height: auto;
         }
       }
+      &.autoHeight {
+        height: auto;
+      }
 
       &:nth-child(5) {
         height: 504px;

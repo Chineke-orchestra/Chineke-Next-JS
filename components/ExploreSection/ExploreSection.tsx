@@ -52,7 +52,7 @@ export const ExploreSection = (props: {
                 <div className={`${styles.tags} featuredcard_bgimage`}>
                   {props.featuredCard?.tags?.map((tag, index) => {
                     return (
-                      <p className="tag light" key={index}>
+                      <p className={`${styles.tagItem} tag light`} key={index}>
                         {tag}
                       </p>
                     );

@@ -15,6 +15,7 @@ export const formatMedia = (media: {
 export const formatLink = (link: {
   title: string;
   uri: string;
+  url: string;
   options?: {
     attributes: {
       target: '_self' | '_blank' | 'none';
@@ -24,6 +25,7 @@ export const formatLink = (link: {
 }): I_Link => {
   let target = '_self' as '_self' | '_blank';
   let rel = '';
+  let url = '';
 
   if (
     link?.options?.attributes?.target &&
@@ -42,8 +44,14 @@ export const formatLink = (link: {
     rel = '';
   }
 
+  if(link?.url){
+    url = link?.url;
+  } else {
+    url = link?.uri?.replace('internal:', '')
+  }
+
   return {
-    url: link?.uri?.replace('internal:', ''),
+    url: url,
     title: link?.title,
     target,
     rel,
