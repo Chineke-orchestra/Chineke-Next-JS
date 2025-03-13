@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import arrow from 'assets/svg/arrow-left.svg';
 import { ReactSVG } from 'react-svg';
 import { useViewport } from 'utils/viewport';
+import { usePathname } from 'next/navigation';
 
 const Accordion = (props: {
   title: string;
@@ -16,6 +17,12 @@ const Accordion = (props: {
   const [activeIndex, setActiveIndex] = useState(0);
   const { isMobile } = useViewport();
   const ref = useRef<any>([]);
+  const pathname = usePathname();
+  const slug = pathname.split('/')[1];
+  const sponserListClass = slug === 'support-us' ? 'sponserListPage' : '';
+  const checkSponserListClasses = classNames(styles.accordion_text, {
+    [styles.sponserListPage]: sponserListClass,
+  });
 
   const activeIndexHandler = (index: number) => {
     if (index === activeIndex) {
@@ -53,7 +60,7 @@ const Accordion = (props: {
                     <h6>{item.title}</h6>
                     <ReactSVG src={arrow.src} />
                   </div>
-                  <div className={styles.accordion_text}>
+                  <div className={checkSponserListClasses}>
                   
                     {item.text && <div className={styles.sponserList_20}>{parse(item.text)}</div>}
                   </div>
