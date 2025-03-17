@@ -9,6 +9,7 @@ import { usePathname } from 'next/navigation';
 
 const Accordion = (props: {
   title: string;
+  defaultMessage: string;
   items: {
     title: string;
     text: string;
@@ -42,6 +43,10 @@ const Accordion = (props: {
       <div className="container">
         <div className={styles.accordion_inner_component}>
           <h3>{props.title}</h3>
+          {props.defaultMessage && props.items.length === 0 && (
+            <p>{props.defaultMessage}</p>
+          )}
+
           <div className={styles.accordion_items}>
             {props.items?.map((item, index) => {
               return (
