@@ -56,10 +56,12 @@ if (process.env.BACKEND_URL === undefined) {
 **/
 if (process.env.PANTHEON_ENVIRONMENT === 'live') {
 	backendUrl = `https://live-${backendUrl.replace(/^https?:\/\/[^-]*-/, '')}`;
+	process.env.BACKEND_URL = backendUrl;
 	imageDomain = backendUrl.replace(/^https?:\/\//, '');
 }
 if (process.env.PANTHEON_ENVIRONMENT === 'multi-uat') {
 	backendUrl = `https://uat-${backendUrl.replace(/^https?:\/\/[^-]*-/, '')}`;
+	process.env.BACKEND_URL = backendUrl;
 	imageDomain = backendUrl.replace(/^https?:\/\//, '');
 }
 
