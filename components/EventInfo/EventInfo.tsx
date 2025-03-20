@@ -61,9 +61,7 @@ const EventInfo = (props: {
       label: 'Time',
       icon: clockIcon,
       alt: 'clock icon',
-      value: `${startDateLocal.format('HH:mm')} - ${
-        endDateLocal ? endDateLocal.format('HH:mm') : ''
-      }`,
+      value: `${startDateLocal.format('HH:mm')}${endDateLocal ? ` - ${endDateLocal.format('HH:mm')}` : ''}`,
     },
     {
       label: 'Location',

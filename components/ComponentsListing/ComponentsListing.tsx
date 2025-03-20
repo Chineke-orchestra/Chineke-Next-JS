@@ -211,7 +211,7 @@ const ComponentsListing = ({ components }: { components: any }) => {
           },
         );
         return (
-          <Accordion title={component?.field_title} items={accordionItems} />
+          <Accordion title={component?.field_title} items={accordionItems} defaultMessage={component?.field_default_message} />
         );
       case 'paragraph--testimonials': {
         const formattedTestimonialsData: I_Testimonial[] =

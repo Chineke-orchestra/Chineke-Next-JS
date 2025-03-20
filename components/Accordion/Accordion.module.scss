@@ -93,6 +93,19 @@
             }
           }
         }
+        .sponserListPage{
+          div {
+            &.sponserList_20 {
+              columns: auto 2;
+              column-gap: 2rem;
+              max-height: 550px;
+              overflow-y: auto;
+              p {
+                break-inside: avoid;
+              }
+            }
+          }
+        }
         &.active {
           .accordion_title {
             background-color: $navy;
@@ -111,14 +124,6 @@
             div {
               padding-top: 32px;
               padding-bottom: 32px;
-              &.sponserList_20 {
-                columns: auto 2;
-                column-gap: 2rem;
-                max-height: 550px;
-                p {
-                  break-inside: avoid;
-                }
-              }
               @include media-breakpoint-down(md) {
                 padding-top: 20px;
                 padding-bottom: 20px;
@@ -132,7 +137,15 @@
               line-height: normal;
             }
           }
+          .sponserListPage{
+            div {
+              &.sponserList_20 {
+                overflow-y: scroll;
+              }
+            }
+          }
         }
+        
       }
     }
   }
