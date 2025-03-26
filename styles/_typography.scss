@@ -15,7 +15,7 @@ li {
 }
 h1 {
   font-size: 46px;
-  line-height: 69px;
+  line-height: 1.3em;
   font-weight: 600;
   color: $gray;
 
@@ -162,5 +162,13 @@ table {
     color: white;
     vertical-align: top;
     border: none;
+  }
+}
+p {
+  a{
+    text-decoration: underline;
+    &:hover {
+      color: #0341F2;
+    }
   }
 }

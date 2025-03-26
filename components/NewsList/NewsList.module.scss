@@ -131,7 +131,7 @@
     gap: 15px;
     margin-bottom: 40px;
     scrollbar-width: none;
-    transform: translateX(-31px);
+
 
     @include media-breakpoint-down(xl) {
       transform: none;

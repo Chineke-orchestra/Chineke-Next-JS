@@ -44,10 +44,9 @@ const EventInfo = (props: {
     });
   };
   const [displayVideo, setDisplayVideo] = useState(false);
-
-  const startDateLocal = moment(props.startDate).tz(moment.tz.guess());
+  const startDateLocal = moment(props.startDate);
   const endDateLocal = props.endDate
-    ? moment(props.endDate).tz(moment.tz.guess())
+    ? moment(props.endDate)
     : null;
 
   const eventDetails = [
@@ -61,7 +60,9 @@ const EventInfo = (props: {
       label: 'Time',
       icon: clockIcon,
       alt: 'clock icon',
-      value: `${startDateLocal.format('HH:mm')}${endDateLocal ? ` - ${endDateLocal.format('HH:mm')}` : ''}`,
+      value: `${startDateLocal.format('hh:mm A')} - ${
+        endDateLocal ? endDateLocal.format('hh:mm A') : ''
+      }`,
     },
     {
       label: 'Location',

@@ -112,6 +112,9 @@
           line-height: 24px;
           text-decoration-line: underline;
           color: $gray;
+          &:hover {
+            color: #0341F2;
+          }
         }
 
         @include media-breakpoint-down(md) {
