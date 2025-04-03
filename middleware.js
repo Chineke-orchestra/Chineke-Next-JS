@@ -4,7 +4,6 @@ export function middleware(request) {
   const { pathname } = request.nextUrl;
 
   const redirectionMap = {
-    '/news': '/',
     '/become-a-friend': '/donate',
     '/chineke-junior-auditions': '/',
     '/chineke-junior-orchestra-the-reunion-concert': '/',
