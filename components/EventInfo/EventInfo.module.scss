@@ -84,7 +84,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 50px;
+    gap: 30px;
     padding: 42px 30px;
     background-color: $navy;
 
@@ -109,7 +109,7 @@
     }
     .icons_section {
       display: flex;
-      gap: 50px;
+      gap: 30px;
 
       @media (max-width: 1360px) {
         gap: 30px;
