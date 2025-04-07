@@ -11,7 +11,7 @@ import LogoChinekeBlack from 'assets/svg/chineke_logo_black.svg';
 import DropdownMenu from './DropdownMenu';
 import { motion, AnimatePresence } from 'framer-motion';
 import UseAnimation from 'utils/UseAnimation';
-import useCustomCookieBanner from 'utils/useCustomCookieBanner';
+import Script from 'next/script';
 
 export interface HeaderProps {
   id: string;
@@ -23,6 +23,7 @@ export interface HeaderProps {
   imageUrl?: string;
   imagePageUrl?: string;
   children?: HeaderProps[];
+  Script: string;
 }
 
 export interface HeadersComponentProps {
@@ -44,7 +45,6 @@ const Header = ({ headerMenu }: HeadersComponentProps) => {
 const scriptUrl = isMultiUatDomain
   ? 'https://cdn-cookieyes.com/client_data/15a2a458ddc6783740a46abe/script.js'
   : 'https://cdn-cookieyes.com/client_data/7d7a99a42b8b6e441a7c47dd/script.js';
-  useCustomCookieBanner(scriptUrl, 'cookieyes');
 
   const groupLinksIntoRows = (links: HeaderProps[]): HeaderProps[][] => {
     const rows: HeaderProps[][] = [];
@@ -127,7 +127,8 @@ const scriptUrl = isMultiUatDomain
   };
 
   return (
-
+    <>
+    <Script id="cookieyes" src={scriptUrl} strategy="afterInteractive" />
     <motion.nav
       id="headerContainer"
       className={classNames(
@@ -305,6 +306,9 @@ const scriptUrl = isMultiUatDomain
         )}
       </AnimatePresence>
     </motion.nav>
+    </>
+    
+    
   );
 };
 
