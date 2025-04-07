@@ -1,9 +1,10 @@
 import styles from './OurTeam.module.scss';
-import { Colors, I_Media } from 'types/index';
+import { Colors, I_Media, I_Link } from 'types/index';
 import Image from 'next/image';
 import classNames from 'classnames';
 import { backgroundClasses } from 'utils/constants';
 import { useViewport } from 'utils/viewport';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 export interface OurTeamProps {
@@ -13,6 +14,7 @@ export interface OurTeamProps {
     tagline?: string;
     image: I_Media;
     backgroundColor: Colors;
+    cardlink: I_Link;
   }[];
 }
 
@@ -52,10 +54,16 @@ const OurTeam = ({ title, cards }: OurTeamProps) => {
                   styles[backgroundClasses[item.backgroundColor]],
                 )}
                 style={{ backgroundColor: item?.backgroundColor }}
+              >   
+              {item.cardlink && item.cardlink.url ? ( 
+              <Link 
+                href={item.cardlink.url}
+                target={item.cardlink.target}
+                rel={item.cardlink.rel}
               >
                 <div className={styles.image}>
                   <Image src={item.image.url} alt={item.image.alt} fill loading="lazy"
-              priority={false} />
+                    priority={false} />
                 </div>
                 <div className={styles.text}>
                   {item.tagline && (
@@ -63,6 +71,22 @@ const OurTeam = ({ title, cards }: OurTeamProps) => {
                   )}
                   <h5 className={styles.title}>{item.title}</h5>
                 </div>
+              </Link>
+              ) : (
+                // Render image and text directly without the Link
+                <div className={styles.content}> 
+                  <div className={styles.image}>
+                    <Image src={item.image.url} alt={item.image.alt} fill loading="lazy"
+                      priority={false} />
+                  </div>
+                  <div className={styles.text}>
+                    {item.tagline && (
+                      <p className={styles.tagline}>{item.tagline}</p>
+                    )}
+                    <h5 className={styles.title}>{item.title}</h5>
+                  </div>
+                </div>
+              )} 
               </div>
             );
           })}

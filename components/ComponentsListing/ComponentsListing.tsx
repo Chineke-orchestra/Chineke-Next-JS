@@ -334,13 +334,14 @@ const ComponentsListing = ({ components }: { components: any }) => {
         );
       }
 
-      case 'paragraph--our_team': {
+      case 'paragraph--our_team': {      
         const cards = component?.field_team_cards?.map((item: any) => {
           return {
             title: item?.field_card_title,
             tagline: item?.field_tagline,
             backgroundColor: item?.field_card_background_color?.color,
             image: formatMedia(item?.field_featured_image?.field_media_image_2),
+            cardlink: item?.field_card_link,
           };
         });
         return <OurTeam title={component?.field_title} cards={cards} />;
