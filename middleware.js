@@ -19,7 +19,6 @@ export function middleware(request) {
     '/our-founder': '/',
     '/our-staff': '/',
     '/players': '/',
-    '/previous-concerts': '/',
     '/promotionaldeck': '/',
     '/rachmaninov-piano-concerto-no3-sibelius-no2': '/',
     '/research': '/',
