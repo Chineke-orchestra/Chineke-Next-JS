@@ -16,7 +16,7 @@ export interface I_Watch_And_Listen_Props {
 }
 
 const WatchAndListen = (props: { data: I_Watch_And_Listen_Props[] }) => {
-  const animationRef = useRef<any>();
+  const animationRef = useRef<any>(undefined);
   const { isMobile } = useViewport();
 
   const [showButton, setShowButton] = useState(true);

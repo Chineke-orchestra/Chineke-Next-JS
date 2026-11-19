@@ -21,8 +21,8 @@ export const ExploreSection = (props: {
   };
 }) => {
   const [activeIndex, setActiveIndex] = useState(-1);
-  const ref = useRef<any>();
-  const animationRef = useRef<any>();
+  const ref = useRef<any>(undefined);
+  const animationRef = useRef<any>(undefined);
   const isInView = useInView(animationRef, {
     margin: '0px 0px  -40% 0px',
     once: true,

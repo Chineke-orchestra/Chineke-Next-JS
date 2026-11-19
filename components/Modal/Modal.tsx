@@ -5,7 +5,7 @@ import classNames from 'classnames';
 interface ModalProps {
   children: ReactNode;
   onClose: Function;
-  modalRef: React.RefObject<HTMLDivElement>;
+  modalRef: React.RefObject<HTMLDivElement | null>;
   additionalClass?: string;
 }
 

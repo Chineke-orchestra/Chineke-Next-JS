@@ -2,10 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Layout from '../../components/layout';
 
-import {
-	getCurrentLocaleStore,
-	globalDrupalStateStores,
-} from '../../lib/stores';
+import { drupal, localeOptions } from '../../lib/drupal';
 import styles from './preview-error.module.css';
 
 export default function PreviewError({ footerMenu, preview }) {
@@ -26,15 +23,9 @@ export default function PreviewError({ footerMenu, preview }) {
 }
 
 export async function getServerSideProps(context) {
-	const { locale } = context;
-	const lang = context.preview ? context.previewData.previewLang : locale;
-	const store = getCurrentLocaleStore(lang, globalDrupalStateStores);
-
-	const footerMenu = await store.getObject({
-		objectName: 'menu_items--main',
-		refresh: true,
-		res: context.res,
-		anon: true,
+	const footerMenu = await drupal.getResourceCollection('menu_items--main', {
+		withAuth: false,
+		...localeOptions(context),
 	});
 
 	return {

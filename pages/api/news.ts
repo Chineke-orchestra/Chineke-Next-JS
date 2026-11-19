@@ -1,4 +1,4 @@
-import { getCurrentLocaleStore, globalDrupalStateStores } from 'lib/stores';
+import { fetchJson } from 'lib/drupal';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
@@ -6,12 +6,7 @@ export default async function handler(
   res: NextApiResponse<any>,
 ) {
   try {
-    const { locale, page, id } = req.query;
-
-    const store = getCurrentLocaleStore(
-      (locale as string) || 'en',
-      globalDrupalStateStores,
-    );
+    const { page, id } = req.query;
 
     let url = `${process.env.BACKEND_URL}/jsonapi/views/news_list/default?include=field_feature_image.field_media_image,field_tags_category&`;
 
@@ -23,10 +18,10 @@ export default async function handler(
       url += `page=${page}`;
     }
 
-    const data = await store.fetchData(url);
+    const data = await fetchJson(url);
 
     return res.json({ ...data });
   } catch (err: any) {
-    return res.status(err.status).send(err.message);
+    return res.status(err.status || 500).send(err.message);
   }
 }

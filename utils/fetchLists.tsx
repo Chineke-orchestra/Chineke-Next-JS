@@ -5,10 +5,10 @@ import {
   formatViewEndpointPath,
   formatStoriesListData,
 } from './adaptors';
+import { fetchJson } from '../lib/drupal';
 
 export const fetchLists = async (
   components: any[],
-  store: any,
   pageData?: any,
   resourceName?: string,
 ) => {
@@ -77,7 +77,7 @@ export const fetchLists = async (
         const displayId =
           component?.field_event_card?.resourceIdObjMeta?.display_id;
         if (viewId && displayId) {
-          const data = await store.fetchData(
+          const data = await fetchJson(
             formatViewEndpointPath(viewId, displayId),
           );
           const events = formatEventsCardsData(data);
@@ -93,7 +93,7 @@ export const fetchLists = async (
         const displayId =
           component?.field_event_list_view?.resourceIdObjMeta?.display_id;
         if (viewId && displayId) {
-          const data = await store.fetchData(
+          const data = await fetchJson(
             formatViewEndpointPath(viewId, displayId),
           );
 
@@ -112,7 +112,7 @@ export const fetchLists = async (
           component?.field_latest_news?.resourceIdObjMeta?.display_id;
 
         if (viewId && displayId) {
-          const data = await store.fetchData(
+          const data = await fetchJson(
             formatViewEndpointPath(
               viewId,
               displayId,
@@ -134,7 +134,7 @@ export const fetchLists = async (
         const displayId =
           component?.field_news_list?.resourceIdObjMeta?.display_id;
 
-        const data = await store.fetchData(
+        const data = await fetchJson(
           formatViewEndpointPath(viewId, displayId, ',field_tags_category'),
         );
 
@@ -151,7 +151,7 @@ export const fetchLists = async (
         const displayId =
           component?.field_stories_list?.resourceIdObjMeta?.display_id;
 
-        const data = await store.fetchData(
+        const data = await fetchJson(
           formatViewEndpointPath(viewId, displayId, ',field_categories'),
         );
 

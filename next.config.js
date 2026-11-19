@@ -1,106 +1,44 @@
 const path = require('path');
 const getLocales = require('./scripts/get-locales');
 
-// Load the .env file for local development
-// .env.development.local by default
-require('dotenv').config({
-  path: path.resolve(process.cwd(), '.env.development.local'),
-});
-
-if (
-  process.env.AH_SITE_ENVIRONMENT == undefined &&
-  process.env.BACKEND_URL === undefined &&
-  process.env.PANTHEON_CMS_ENDPOINT === undefined
-) {
-  let message;
-  if (process.env.NODE_ENV === 'development') {
-    message = `No BACKEND_URL found.\nSee the README.md for information on setting this variable locally.`;
-  } else if (process.env.NODE_ENV === 'production') {
-    message = `No CMS Endpoint found.\nLink a CMS or set the BACKEND_URL environment variable in the settings tab in the dashboard\nIf your site does not require a backend to build, remove this check from the next.config.js.`;
-  }
-  throw new Error(message);
+if (!process.env.BACKEND_URL) {
+	throw new Error(
+		'BACKEND_URL is not set. Set it in .env.local for local development, or in the Pantheon Secrets Manager.',
+	);
 }
 
-// if the FRONTEND_URL is not set, fallback to the PANTHEON_ENVIRONMENT_URL
-if (
-  process.env.FRONTEND_URL === undefined &&
-  process.env.PANTHEON_ENVIRONMENT_URL
-) {
-  process.env.FRONTEND_URL = process.env.PANTHEON_ENVIRONMENT_URL;
-}
+const backendUrl = process.env.BACKEND_URL.replace(/\/$/, '');
+const { protocol, hostname, port } = new URL(
+	process.env.IMAGE_DOMAIN
+		? `${backendUrl.startsWith('http:') ? 'http' : 'https'}://${process.env.IMAGE_DOMAIN}`
+		: backendUrl,
+);
 
-let backendUrl, imageDomain;
-
-// Set config for internal dev environments
-if (process.env.AH_SITE_ENVIRONMENT !== undefined) {
-	process.env.BACKEND_URL = `https://chinekebe.${process.env.AH_SITE_ENVIRONMENT}.shareda.hogarthww.digital`;
-	console.log("An internal environment backend URL has been set: " + process.env.BACKEND_URL);
-}
-
-if (process.env.BACKEND_URL === undefined) {
-  backendUrl = `https://${process.env.PANTHEON_CMS_ENDPOINT}`;
-  imageDomain = process.env.IMAGE_DOMAIN || process.env.PANTHEON_CMS_ENDPOINT;
-
-  // populate BACKEND_URL as a fallback and for build scripts
-  process.env.BACKEND_URL = `https://${process.env.PANTHEON_CMS_ENDPOINT}`;
-} else {
-  backendUrl = process.env.BACKEND_URL;
-  imageDomain =
-    process.env.IMAGE_DOMAIN ||
-    process.env.BACKEND_URL.replace(/^https?:\/\//, '');
-}
-
-/*
-* PANTHEON_ENVIRONMENT is equal to `multi-demo` since that is the name of my branch. I will use this variable to create a `backendUrl` which points
-* to my Multidev backend.
-**/
-if (process.env.PANTHEON_ENVIRONMENT === 'live') {
-	backendUrl = `https://live-${backendUrl.replace(/^https?:\/\/[^-]*-/, '')}`;
-	process.env.BACKEND_URL = backendUrl;
-	imageDomain = backendUrl.replace(/^https?:\/\//, '');
-}
-if (process.env.PANTHEON_ENVIRONMENT === 'multi-uat') {
-	backendUrl = `https://uat-${backendUrl.replace(/^https?:\/\/[^-]*-/, '')}`;
-	process.env.BACKEND_URL = backendUrl;
-	imageDomain = backendUrl.replace(/^https?:\/\//, '');
-}
-
-// remove trailing slash if it exists
-imageDomain = imageDomain.replace(/\/$/, '');
-
-console.log("The backend URL is " + backendUrl);
-
-// expose FRONTEND_URL to properly set hrefLang
-// and remove trailing slash
-process.env.NEXT_PUBLIC_FRONTEND_URL = process.env.FRONTEND_URL
-  ? process.env.FRONTEND_URL?.replace(/\/$/, '')
-  : '';
-
-const injectedOptions = {};
-if (process.env.PANTHEON_UPLOAD_PATH) {
-  injectedOptions['basePath'] = process.env.PANTHEON_UPLOAD_PATH;
-}
+process.env.NEXT_PUBLIC_FRONTEND_URL = (process.env.FRONTEND_URL || '').replace(
+	/\/$/,
+	'',
+);
 
 module.exports = async () => {
 	const locales = await getLocales();
-	const nextConfig = {
-		...(injectedOptions && injectedOptions),
+
+	return {
 		env: {
-			BACKEND_URL: process.env.BACKEND_URL,
-			FRONTEND_URL: process.env.FRONTEND_URL,
-			PORT: process.env.AH_SITE_ENVIRONMENT ? 3058 : undefined,
-			backendUrl: backendUrl,
-			// set imageUrl if IMAGE_DOMAIN is set in env vars to override default
-			imageUrl: `https://${imageDomain}`,
-			// makes locales available to lib/stores.js
-			locales: locales,
+			backendUrl,
+			imageUrl: `${protocol}//${hostname}${port ? `:${port}` : ''}`,
 		},
 		reactStrictMode: true,
 		images: {
-			domains: [imageDomain],
+			remotePatterns: [
+				{
+					protocol: protocol.replace(':', ''),
+					hostname,
+					...(port && { port }),
+				},
+			],
 		},
 		i18n: {
-			locales: locales,
+			locales,
 			defaultLocale: 'en',
 		},
 		output: 'standalone',
@@ -117,11 +55,5 @@ module.exports = async () => {
 				},
 			];
 		},
-		transpilePackages: [
-			'@pantheon-systems/nextjs-kit',
-			'@pantheon-systems/drupal-kit',
-		],
 	};
-
-  return nextConfig;
 };

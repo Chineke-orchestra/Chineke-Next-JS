@@ -13,7 +13,7 @@ import moment from 'moment-timezone';
 import { LinkComponent, VideoPopup } from '..';
 import classNames from 'classnames';
 import { useViewport } from 'utils/viewport';
-import { FacebookShareButton, TwitterShareButton } from 'react-share';
+import { FacebookShareButton, XShareButton } from 'react-share';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { FRONTEND_URL } from 'utils/constants';
@@ -75,7 +75,7 @@ const EventInfo = (props: {
   const socialIcons = [
     {
       Component: (
-        <TwitterShareButton url={shareUrl} title={props.title}>
+        <XShareButton url={shareUrl} text={props.title}>
           <div className={styles.icon}>
             <Image
               src="/images/x.svg"
@@ -85,7 +85,7 @@ const EventInfo = (props: {
               loading="eager"
             />
           </div>
-        </TwitterShareButton>
+        </XShareButton>
       ),
     },
     {

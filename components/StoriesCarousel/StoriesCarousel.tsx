@@ -18,7 +18,7 @@ const StoriesCarousel = (props: {
     tag: string[];
   }[];
 }) => {
-  const animationRef = useRef<any>();
+  const animationRef = useRef<any>(undefined);
 
   const isInView = useInView(animationRef, {
     margin: '0px 0px  -10% 0px',

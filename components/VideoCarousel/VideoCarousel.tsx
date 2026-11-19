@@ -4,7 +4,7 @@ import { LinkComponent, VideoPopup } from 'components';
 import classNames from 'classnames';
 import { useEffect, useRef, useState } from 'react';
 import { Navigation } from 'swiper/modules';
-import 'swiper/scss/pagination';
+import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { motion } from 'framer-motion';
@@ -72,8 +72,8 @@ const VideoCarousel = (props: {
 
   const prevRef = useRef<any>(null);
   const nextRef = useRef<any>(null);
-  const ref = useRef<any>();
-  const animationRef = useRef<any>();
+  const ref = useRef<any>(undefined);
+  const animationRef = useRef<any>(undefined);
   const [width, setWidth] = useState(ref?.current?.offsetLeft);
   const [activeIndex, setActiveIndex] = useState(-1);
   const [activeVideo, setActiveVideo] = useState<null | string>(null);

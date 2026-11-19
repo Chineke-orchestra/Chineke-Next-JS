@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { useViewport } from 'utils/viewport';
 import { Colors, I_Link, I_Media } from 'types/index';
 import { ColoredCardWithImage } from '..';
-import { getCurrentLocaleStore, globalDrupalStateStores } from 'lib/stores';
 import { useRouter } from 'next/router';
 import {
   formatNewsCategoriesData,
@@ -33,11 +32,6 @@ const StoriesList = (props: {
   const [totalStories, setTotalStories] = useState(0);
 
   const numberOfStories = isMobile ? 3 : 6;
-
-  const store = getCurrentLocaleStore(
-    locale as string,
-    globalDrupalStateStores,
-  );
 
   const fetcher = (url: string) =>
     fetch(url)
@@ -69,7 +63,7 @@ const StoriesList = (props: {
 
   const getTags = async () => {
     try {
-      const data: any = await store.fetchData(`/api/categories`);
+      const data: any = await fetch(`/api/categories`).then((response) => response.json());
       setCategories(() => {
         return [
           {

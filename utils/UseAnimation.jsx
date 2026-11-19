@@ -49,7 +49,7 @@ const UseAnimation = (direction = 'up', options = {}) => {
   let transition =
     transitionType === 'spring'
       ? {
-          type: 'spring',
+          type: /** @type {const} */ ('spring'),
           stiffness,
           damping,
           mass,

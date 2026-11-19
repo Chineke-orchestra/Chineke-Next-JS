@@ -20,7 +20,7 @@ const SupportCarousel = (props: {
   }[];
 }) => {
   const [activeIndex, setActiveIndex] = useState(-1);
-  const animationRef = useRef<any>();
+  const animationRef = useRef<any>(undefined);
 
   const isInView = useInView(animationRef, {
     margin: '0px 0px  -40% 0px',

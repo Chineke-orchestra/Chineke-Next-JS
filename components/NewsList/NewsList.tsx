@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { LinkComponent } from '..';
 import moment from 'moment-timezone';
 import classNames from 'classnames';
-import { getCurrentLocaleStore, globalDrupalStateStores } from 'lib/stores';
 import { useRouter } from 'next/router';
 import { formatNewsCategoriesData, formatNewsListData } from 'utils/adaptors';
 import useSWR from 'swr';
@@ -35,11 +34,6 @@ const NewsList = (props: {
   const [totalNews, setTotalNews] = useState(0);
 
   const numberOfNews = isMobile ? 4 : 8;
-
-  const store = getCurrentLocaleStore(
-    locale as string,
-    globalDrupalStateStores,
-  );
 
   const titleRefs = useRef<(HTMLHeadingElement | null)[]>([]);
 
@@ -70,7 +64,7 @@ const NewsList = (props: {
   useEffect(() => {
     const getTags = async () => {
       try {
-        const data: any = await store.fetchData(`/api/tags`);
+        const data: any = await fetch(`/api/tags`).then((response) => response.json());
         setTags(() => {
           return [
             {
@@ -99,7 +93,7 @@ const NewsList = (props: {
           .join('');
       }
     });
-  }, [news, store]);
+  }, [news]);
 
   const displayNews = news.slice(0, (page + 1) * numberOfNews);
 
@@ -156,7 +150,9 @@ const NewsList = (props: {
                         .tz(moment.tz.guess())
                         .format('D MMM YYYY - h:mm A')}
                     </p>
-                    <h5 ref={(el) => (titleRefs.current[index] = el)}>
+                    <h5 ref={(el) => {
+ titleRefs.current[index] = el;
+ }}>
                       {item.link.title}
                     </h5>
                   </div>

@@ -1,41 +1,29 @@
-import { getCurrentLocaleStore, globalDrupalStateStores } from '../lib/stores';
+import { drupal, fetchJson, localeOptions } from '../lib/drupal';
 import { formatLink, formatMedia } from './adaptors';
 
 export async function fetchFooterData(context) {
-  const store = getCurrentLocaleStore(context.locale, globalDrupalStateStores);
-
   const [featuredLinks, menuLinks, socialLinks, basicBlock, menuTitle] =
     await Promise.all([
-      store.getObject({
-        objectName: 'menu_items--footer-featured-links',
-        refresh: true,
-        res: context.res,
-        anon: true,
+      drupal.getResourceCollection('menu_items--footer-featured-links', {
+        withAuth: false,
+        ...localeOptions(context),
       }),
-      store.getObject({
-        objectName: 'menu_items--footer-menu-links',
-        refresh: true,
-        res: context.res,
-        anon: true,
+      drupal.getResourceCollection('menu_items--footer-menu-links', {
+        withAuth: false,
+        ...localeOptions(context),
       }),
-      store.getObject({
-        objectName: 'menu_items--social-links',
-        params: 'include=field_icon,field_icon.field_media_image',
-        refresh: true,
-        res: context.res,
-        anon: true,
+      drupal.getResourceCollection('menu_items--social-links', {
+        withAuth: false,
+        params: { include: 'field_icon,field_icon.field_media_image' },
+        ...localeOptions(context),
       }),
-      store.getObject({
-        objectName: 'block_content--basic',
-        refresh: true,
-        res: context.res,
-        anon: true,
+      drupal.getResourceCollection('block_content--basic', {
+        withAuth: false,
+        ...localeOptions(context),
       }),
-      store.getObject({
-        objectName: 'menu--menu',
-        refresh: true,
-        res: context.res,
-        anon: true,
+      drupal.getResourceCollection('menu--menu', {
+        withAuth: false,
+        ...localeOptions(context),
       }),
     ]);
 
@@ -92,10 +80,8 @@ export async function fetchFooterData(context) {
 }
 
 export async function fetchHeaderData(context) {
-  const store = getCurrentLocaleStore(context.locale, globalDrupalStateStores);
-
   try {
-    const headerMenuResponse = await store.fetchData(
+    const headerMenuResponse = await fetchJson(
       `${process.env.backendUrl}/jsonapi/menu_items/header-menu?include=field_field_logo_image,field_field_logo_image.field_media_image`,
     );
 
@@ -127,7 +113,7 @@ export async function fetchHeaderData(context) {
           }
 
           if (item?.attributes?.field_is_featured && item?.attributes?.url) {
-            const response = await store.fetchData(
+            const response = await fetchJson(
               `${process.env.backendUrl}/router/translate-path?path=${item.attributes.url}`,
             );
 
@@ -139,7 +125,7 @@ export async function fetchHeaderData(context) {
                 response.jsonapi.individual +
                 '?include=field_feature_image.field_media_image';
               const featureImageResponse =
-                await store.fetchData(featureImageUrl);
+                await fetchJson(featureImageUrl);
 
               if (
                 featureImageResponse?.data &&

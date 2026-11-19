@@ -55,7 +55,9 @@ const Accordion = (props: {
                   className={classNames(styles.accordion_item, {
                     [styles.active]: index === activeIndex,
                   })}
-                  ref={(el) => (ref.current[index] = el)}
+                  ref={(el) => {
+ ref.current[index] = el;
+ }}
                 >
                   <div
                     aria-hidden="true"

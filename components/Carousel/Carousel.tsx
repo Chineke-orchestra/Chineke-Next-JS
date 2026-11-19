@@ -5,7 +5,7 @@ import { LinkComponent } from 'components';
 import classNames from 'classnames';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { Navigation } from 'swiper/modules';
-import 'swiper/scss/pagination';
+import 'swiper/css/pagination';
 import { Swiper } from 'swiper/react';
 import 'swiper/css';
 import { motion, useInView } from 'framer-motion';
@@ -45,8 +45,8 @@ const Carousel = (props: {
 
   const prevRef = useRef<any>(null);
   const nextRef = useRef<any>(null);
-  const ref = useRef<any>();
-  const animationRef = useRef<any>();
+  const ref = useRef<any>(undefined);
+  const animationRef = useRef<any>(undefined);
   const [width, setWidth] = useState(ref?.current?.offsetLeft);
 
   const isInView = useInView(animationRef, {

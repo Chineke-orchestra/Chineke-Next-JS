@@ -17,7 +17,7 @@ const TestimonialsCarousel = (props: {
   testimonials: I_Testimonial[];
   pattern: PatternProps;
 }) => {
-  const sectionRef = useRef<any>();
+  const sectionRef = useRef<any>(undefined);
   const isInView = useInView(sectionRef, { once: false });
   const [swiper, setSwiper] = useState<SwiperClass>();
 

@@ -25,9 +25,8 @@ function App({ Component, pageProps }) {
   }, [router.events]);
 
   // make sure we don't output invalid `hrefLang` values
-  if (!process.env.NEXT_PUBLIC_FRONTEND_URL) {
-    delete pageProps.hrefLang;
-  }
+  const { hrefLang, ...pagePropsWithoutHrefLang } = pageProps;
+  const props = process.env.NEXT_PUBLIC_FRONTEND_URL ? pageProps : pagePropsWithoutHrefLang;
 
   return (
     <Fragment>
@@ -50,7 +49,7 @@ function App({ Component, pageProps }) {
         }}
       />
       <ViewportProvider>
-        <Component {...pageProps} />
+        <Component {...props} />
       </ViewportProvider>
     </Fragment>
   );

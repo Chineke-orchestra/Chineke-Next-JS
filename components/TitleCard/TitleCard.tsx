@@ -93,9 +93,7 @@ const TitleCard = ({
   const colorTheme =
     backgroundColor === '#1E1E4C'
       ? 'colorInvert'
-      : '#FFFFFF'
-        ? 'colorNormal'
-        : '';
+      : 'colorNormal';
 
   return (
     <section

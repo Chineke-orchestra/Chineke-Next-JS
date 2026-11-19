@@ -1,4 +1,4 @@
-import { PreviewRibbon } from '@pantheon-systems/nextjs-kit';
+import PreviewRibbon from './PreviewRibbon/PreviewRibbon';
 import styles from './layout.module.css';
 import Footer from './Footer/Footer';
 import Header from './Header/Header';

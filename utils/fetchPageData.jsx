@@ -1,6 +1,4 @@
-import { getCurrentLocaleStore, globalDrupalStateStores } from '../lib/stores';
-import { getPreview } from '../lib/getPreview';
-import { translatePath } from '@pantheon-systems/drupal-kit';
+import { drupal, localeOptions } from '../lib/drupal';
 import { fetchLists } from 'utils/fetchLists';
 import { fetchFooterData, fetchHeaderData } from '../utils/dataFetcher';
 import { includesArray, getHrefLang } from './fetchPageDataConfig';
@@ -9,15 +7,16 @@ export async function fetchPageData(context, path) {
   const { locale, locales } = context;
   const origin = process.env.NEXT_PUBLIC_FRONTEND_URL;
   const hrefLang = getHrefLang(locales, origin);
-  const lang = context.preview ? context.previewData.previewLang : locale;
+  const withAuth = Boolean(context.preview);
 
-  const store = getCurrentLocaleStore(lang, globalDrupalStateStores);
-
-  // get the uuid and resource name from the resource's path alias
+  const translated = await drupal.translatePath(`/${path}`, { withAuth });
+  if (!translated) {
+    throw new Error(`Unable to resolve path: ${path}`);
+  }
   const {
     entity: { uuid },
     jsonapi: { resourceName },
-  } = await translatePath(`${store.apiBase}/router/translate-path/`, path, {});
+  } = translated;
 
   // Adjust the includes array based on resourceName if needed
   let dynamicIncludesArray = [...includesArray];
@@ -43,30 +42,16 @@ export async function fetchPageData(context, path) {
     }
   }
 
-  const includeParam = dynamicIncludesArray.join(',');
+  const params = { include: dynamicIncludesArray.join(',') };
 
-  const params = `include=${includeParam}`;
-
-  const previewParams =
-    context.preview && (await getPreview(context, resourceName, params));
-
-  if (previewParams?.error) {
-    return {
-      redirect: {
-        destination: previewParams.redirect,
-        permanent: false,
-      },
-    };
+  if (context.preview && context.previewData?.resourceVersion) {
+    params.resourceVersion = context.previewData.resourceVersion;
   }
 
-  // fetch page data
-  const pageData = await store.getObject({
-    objectName: resourceName,
-    id: uuid,
-    params: context.preview ? previewParams : params,
-    refresh: true,
-    res: context.res,
-    anon: context.preview ? false : true,
+  const pageData = await drupal.getResource(resourceName, uuid, {
+    params,
+    withAuth,
+    ...localeOptions(context),
   });
 
   const footerMenu = await fetchFooterData(context);
@@ -77,7 +62,6 @@ export async function fetchPageData(context, path) {
       ...pageData,
       field_reusable_components: await fetchLists(
         pageData?.field_reusable_components,
-        store,
         pageData,
         resourceName,
       ),

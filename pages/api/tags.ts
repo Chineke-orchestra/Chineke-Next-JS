@@ -1,19 +1,13 @@
-import { getCurrentLocaleStore, globalDrupalStateStores } from 'lib/stores';
+import { fetchJson } from 'lib/drupal';
 
 export default async function handler(req: any, res: any) {
   try {
-    const { locale } = req.query;
-    const store = getCurrentLocaleStore(
-      locale as string,
-      globalDrupalStateStores,
-    );
-
-    const data = await store.fetchData(
+        const data = await fetchJson(
       `${process.env.BACKEND_URL}/jsonapi/taxonomy_term/tags`,
     );
 
     return res.json({ data });
   } catch (err: any) {
-    return res.status(err.status).send(err.message);
+    return res.status(err.status || 500).send(err.message);
   }
 }
