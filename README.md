@@ -1,108 +1,119 @@
-<div align="center">
-	<picture>
-  	<source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/pantheon-systems/decoupled-kit-js/canary/web/static/img/W_Fist-Tagline.png">
-  	<img height="120" alt="Pantheon.io logo featuring a fist capturing lighting. Pantheon™, The Platform for Extraordinary Websites." src="https://raw.githubusercontent.com/pantheon-systems/decoupled-kit-js/canary/web/static/img/B_Fist-Tagline.png">
-	</picture>
-	<a href="https://decoupledkit.pantheon.io/docs#next-drupal-starter">
-		<h1 style="margin:auto;" align="center">Next Drupal Starter</h1>
-	</a>
-</div>
+# Chineke! Foundation front end
 
-For detailed documentation on the Decoupled Kit Starters, visit
-[the Decoupled Kit developer documentation](https://decoupledkit.pantheon.io).
+The public website for the [Chineke! Foundation](https://chineke.org), built
+with Next.js (Pages Router) and sourcing content from a Drupal CMS through the
+[`next-drupal`](https://next-drupal.org) library. It is hosted on Pantheon's
+Next.js hosting.
 
-For more information on using the starter on Pantheon Front-End Sites, visit
-[the Pantheon.io platform documentation](https://docs.pantheon.io/guides/decoupled/).
+## Requirements
 
-## Getting Started
+- Node.js 24 (see `.nvmrc`)
+- npm. The `.npmrc` sets `legacy-peer-deps=true`, which `npm install` needs.
+- A running Drupal backend with the Next.js module and an OAuth consumer that
+  has the `nextjs_preview` scope.
 
-The Next Drupal starter requires Node.js and is built and tested on the LTS
-version which can be found on the
-[Node.js downloads page](https://nodejs.org/en/download).
+## Environment variables
 
-The starter kit supports npm, pnpm, and yarn. If you created the starer via the
-Pantheon Front-End Sites dashboard, it will use npm by default. To change this,
-delete the `package-lock.json` file and the `node-modules` folder, then run the
-install command of your preferred package manager.
+Copy `.env.example` to `.env.local` for local development. On Pantheon, set the
+same values in the Secrets Manager.
 
-If you created the starter via `create-pantheon-decoupled-kit`, it will detect
-the package manager used to run the command and use it install the starter's
-dependencies unless the `--noInstall` flag was used.
+| Variable                   | Required | Purpose                                                                                                         |
+| -------------------------- | -------- | --------------------------------------------------------------------------------------------------------------- |
+| `BACKEND_URL`              | Yes      | URL of the Drupal site. The build fails if it is missing.                                                       |
+| `CLIENT_ID`                | Yes      | Drupal OAuth consumer client ID, used to validate draft preview requests.                                       |
+| `CLIENT_SECRET`            | Yes      | Drupal OAuth consumer secret.                                                                                   |
+| `DRUPAL_REVALIDATE_SECRET` | Yes      | Must match the revalidate secret on the Drupal `next_site`. Drupal sends it as `?secret=` to `/api/revalidate`. |
+| `FRONTEND_URL`             | No       | Public URL of this site, used for `hreflang`.                                                                   |
+| `IMAGE_DOMAIN`             | No       | Host serving images, if different from `BACKEND_URL`.                                                           |
+| `IMAGE_OPT_CONCURRENCY`    | No       | Concurrent image optimisations. Defaults to `2`.                                                                |
+| `DEBUG_MODE`               | No       | Enables extra debug output.                                                                                     |
+| `NODE_EXTRA_CA_CERTS`      | No       | Local only. Path to the DDEV mkcert root CA when the backend is `*.ddev.site`.                                  |
 
-## `@pantheon-systems` npm Packages
-
-## `@pantheon-systems/drupal-kit` npm package
-
-The Pantheon
-[`@pantheon-systems/drupal-kit`](https://www.npmjs.com/package/@pantheon-systems/drupal-kit)
-is included as a dependency in this project. This allows developers to make use
-of utility functions to simplify the process of building and maintaining a
-Front-End site on Pantheon.
-
-API reference documentation can be found at
-https://decoupledkit.pantheon.io/docs/Packages/drupal-kit.
-
-### `create-pantheon-decoupled-kit`
-
-The `create-pantheon-decoupled-kit` npm package, or "the CLI", is the single
-source of truth for all of the JavaScript/TypeScript starter kit templates. See
-[Using the CLI](https://decoupledkit.pantheon.io/docs/frontend-starters/using-the-cli)
-for more information.
-
-In addition to scaffolding new projects, a number of add-ons are available which
-can be added to an existing project. For more detailed information on the
-available add-ons, see the
-[Decoupled Kit developer documentation](https://decoupledkit.pantheon.io/docs/frontend-starters/using-the-cli#add-ons).
-
-### `@pantheon-systems/decoupled-kit-health-check`
-
-To ensure the Decoupled Kit starter has what it needs to source data from a
-[Decoupled Kit Backend](https://decoupledkit.pantheon.io/docs/backend-starters),
-a health-check is run as a part of the the build command and will error in case
-a critical component is not met.
-
-See a
-[detailed description of the health-check here](https://github.com/pantheon-systems/decoupled-kit-js/tree/canary/packages/decoupled-kit-health-check#what-does-it-do).
-
-To disable the health check, see
-[Disabling the decoupled kit health check](https://decoupledkit.pantheon.io/docs/frontend-starters/nextjs/nextjs-drupal/troubleshooting#disabling-the-decoupled-kit-health-check)
+The draft preview secret is validated by Drupal, so this site does not need it.
 
 ## Local development
 
-### Lando
+```bash
+nvm use
+npm install
+cp .env.example .env.local
+npm run dev
+```
 
-To configure the starter for local development with Lando, see the
-[Decoupled Kit developer docs on Local Development](https://decoupledkit.pantheon.io/docs/backend-starters/decoupled-drupal/local-development).
+The site runs at http://localhost:3000.
 
-### Commands
+## Scripts
 
-The Decoupled Kit starters include a number of scripts defined in the
-`package.json`. To list all of these scripts, `cd` into your starter's directory
-and in a terminal use the `npm run` command.
+| Script                              | What it does                                                                            |
+| ----------------------------------- | --------------------------------------------------------------------------------------- |
+| `npm run dev`                       | Starts the development server.                                                          |
+| `npm run build`                     | Builds the standalone output and copies the static assets into it. Used by Pantheon.    |
+| `npm start`                         | Runs the standalone production server (`.next/standalone/server.js`). Used by Pantheon. |
+| `npm run build:mono` / `start:mono` | Standard `next build` and `next start`, without the standalone copy step.               |
+| `npm run lint` / `lint:fix`         | Runs ESLint.                                                                            |
+| `npm run prettier` / `prettier:fix` | Checks or fixes formatting.                                                             |
 
-Some commands include:
+## How it works
 
-### `dev`
+### Content
 
-Runs the starter in developer mode.
+`lib/drupal.js` creates a `NextDrupalPages` client using `BACKEND_URL` and the
+OAuth credentials. Pages are rendered on the server on each request.
 
-#### `build`
+### Caching
 
-Runs the build step for the starter. By default, the
-`@pantheon-systems/decoupled-kit-health-check` is run before the build. This
-command is required for Pantheon Front-End Sites.
+Pages and the public API routes send
+`Cache-Control: public, s-maxage=300, stale-while-revalidate=86400`, set by
+`utils/setCacheHeaders.ts`. Editor changes can take up to five minutes to
+appear. Requests carrying the Draft Mode cookie are never cached.
 
-#### `start`
+`cacheHandler.mjs` wires in `@pantheon-systems/nextjs-cache-handler`, which
+selects the cache backend for the environment.
 
-Runs the starter in production mode. This command is required for Pantheon
-Front-End Sites.
+### On-demand revalidation
 
-### `test`
+On save, Drupal calls `/api/revalidate?path=<path>&secret=<secret>`. The route
+returns 401 if the secret is wrong or unset, and 400 for an invalid path. It
+handles `path` only, so the Drupal revalidator must be set to Path, not Cache
+Tag. Pantheon's edge purge on this call is not yet verified on a Multidev.
 
-Runs the tests.
+### Draft preview
 
-### `update-snapshots`
+Drupal's preview link opens `/api/preview`. That route asks Drupal to validate
+the link at `/next/draft-url` using the OAuth credentials, and enables Next.js
+Draft Mode only when Drupal accepts it. Any other response returns 403.
+`/api/exit-preview` turns Draft Mode off.
 
-Updates the snapshots used for the snapshot tests. The starter comes with an
-example snapshot test that may need to be updating depending on your
-configuration.
+### Redirects
+
+`proxy.js` holds the legacy redirects: a map of individual paths, plus a
+catch-all that sends every `/events/...` and `/news/...` path to the home page.
+Its `matcher` lists the same paths so the proxy does not run on other requests.
+When adding a redirect, update both the map and the `matcher`.
+
+### Images
+
+Remote images are optimised by Next.js and allowed only from the backend (or
+`IMAGE_DOMAIN`) host. Optimisation runs inside the site's container, so
+`IMAGE_OPT_CONCURRENCY` and the image cache size in `next.config.js` limit how
+much it can use.
+
+### Locales
+
+`next.config.js` reads the locale list from the Drupal backend through
+`scripts/get-locales`, so the backend must be reachable at build time.
+
+## Deploying to Pantheon
+
+1. Set `BACKEND_URL`, `CLIENT_ID` and `CLIENT_SECRET` in the Secrets Manager.
+2. Push to the branch connected to the Pantheon site. Pantheon runs
+   `npm run build` and `npm start`.
+3. Confirm Draft Mode preview works from Drupal on a Multidev before launch.
+
+See the
+[Pantheon Next.js hosting documentation](https://docs.pantheon.io/guides/decoupled/)
+for platform details.
+
+## Licence
+
+See `LICENSE.md`.

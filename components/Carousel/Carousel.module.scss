@@ -4,7 +4,8 @@
   overflow: hidden;
   .wrapper {
     width: 100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: 381px max-content;
     gap: 32px;
     padding-left: 100px;
     @include media-breakpoint-down(xl) {
@@ -19,8 +20,6 @@
       padding: 0 20px;
       gap: 40px;
     }
-    display: grid;
-    grid-template-columns: 381px max-content;
     .left_side {
       display: flex;
       flex-direction: column;
