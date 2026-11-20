@@ -4,6 +4,7 @@ import Layout from '../components/layout';
 import TitleCard from '../components/TitleCard/TitleCard';
 import { ComponentsListing } from '../components';
 import { useHeaderHeight } from '../utils/useHeaderHeight';
+import { setCacheHeaders } from 'utils/setCacheHeaders';
 
 const stripHtmlTags = (html) => {
   if (!html) {
@@ -104,6 +105,7 @@ export async function getServerSideProps(context) {
     if (data.redirect) {
       return data;
     }
+    setCacheHeaders(context);
 
     return {
       props: data,

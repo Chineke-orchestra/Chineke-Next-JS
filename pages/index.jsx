@@ -2,6 +2,7 @@ import { NextSeo } from 'next-seo';
 import Layout from '../components/layout';
 import { ComponentsListing } from '../components';
 import { fetchPageData } from '../utils/fetchPageData';
+import { setCacheHeaders } from 'utils/setCacheHeaders';
 
 const stripHtmlTags = (html) => {
   if (!html) {
@@ -50,6 +51,7 @@ export async function getServerSideProps(context) {
     if (data.redirect) {
       return data;
     }
+    setCacheHeaders(context);
     return {
       props: { ...data },
     };

@@ -28,7 +28,13 @@ module.exports = async () => {
 			imageUrl: `${protocol}//${hostname}${port ? `:${port}` : ''}`,
 		},
 		reactStrictMode: true,
+		cacheHandler: path.resolve(__dirname, './cacheHandler.mjs'),
+		cacheMaxMemorySize: 0,
+		experimental: {
+			imgOptConcurrency: Number(process.env.IMAGE_OPT_CONCURRENCY || 2),
+		},
 		images: {
+			maximumDiskCacheSize: 500 * 1024 * 1024,
 			remotePatterns: [
 				{
 					protocol: protocol.replace(':', ''),

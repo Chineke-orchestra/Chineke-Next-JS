@@ -1,5 +1,6 @@
 import CommonPageLayout from '../components/CommonPageLayout/CommonPageLayout';
 import { fetchPageData } from '../utils/fetchPageData';
+import { setCacheHeaders } from 'utils/setCacheHeaders';
 
 const BecomeFriendPage = ({
   pageData,
@@ -30,6 +31,7 @@ export async function getServerSideProps(context) {
     if (data.redirect) {
       return data;
     }
+    setCacheHeaders(context);
     return {
       props: data,
     };

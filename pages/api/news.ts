@@ -1,3 +1,4 @@
+import { setCacheHeaders } from 'utils/setCacheHeaders';
 import { fetchJson } from 'lib/drupal';
 import { NextApiRequest, NextApiResponse } from 'next';
 
@@ -20,6 +21,7 @@ export default async function handler(
 
     const data = await fetchJson(url);
 
+    setCacheHeaders({ req, res });
     return res.json({ ...data });
   } catch (err: any) {
     return res.status(err.status || 500).send(err.message);
