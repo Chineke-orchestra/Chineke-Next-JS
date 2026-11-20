@@ -1,4 +1,5 @@
 import { timingSafeEqual } from 'crypto';
+import { clearEdgeCachePaths } from '@pantheon-systems/nextjs-cache-handler';
 
 function secretMatches(provided) {
   const expected = process.env.DRUPAL_REVALIDATE_SECRET;
@@ -23,7 +24,10 @@ export default async function handler(req, res) {
 
   try {
     await res.revalidate(path);
-    return res.status(200).json({ revalidated: true, path });
+    const edge = await clearEdgeCachePaths([path]);
+    return res
+      .status(200)
+      .json({ revalidated: true, path, edgeCleared: Boolean(edge) });
   } catch (error) {
     return res.status(500).json({ message: 'Revalidation failed' });
   }

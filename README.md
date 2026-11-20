@@ -75,7 +75,7 @@ selects the cache backend for the environment.
 On save, Drupal calls `/api/revalidate?path=<path>&secret=<secret>`. The route
 returns 401 if the secret is wrong or unset, and 400 for an invalid path. It
 handles `path` only, so the Drupal revalidator must be set to Path, not Cache
-Tag. Pantheon's edge purge on this call is not yet verified on a Multidev.
+Tag. Pages render on the server, so the route also calls `clearEdgeCachePaths()` from the cache handler to purge the saved path from the Pantheon edge.
 
 ### Draft preview
 
