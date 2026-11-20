@@ -30,6 +30,9 @@ export interface HeadersComponentProps {
   headerMenu: HeaderProps[];
 }
 
+const cookieYesScriptUrl =
+  'https://cdn-cookieyes.com/client_data/7d7a99a42b8b6e441a7c47dd/script.js';
+
 const Header = ({ headerMenu }: HeadersComponentProps) => {
   const router = useRouter();
   const organizedLinks = organizeLinks(headerMenu);
@@ -39,12 +42,6 @@ const Header = ({ headerMenu }: HeadersComponentProps) => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const navbarRef = useRef<HTMLDivElement>(null);
-  
-  const isMultiUatDomain = typeof window !== 'undefined' && window.location.hostname.includes('multi-uat');
-  
-const scriptUrl = isMultiUatDomain
-  ? 'https://cdn-cookieyes.com/client_data/15a2a458ddc6783740a46abe/script.js'
-  : 'https://cdn-cookieyes.com/client_data/7d7a99a42b8b6e441a7c47dd/script.js';
 
   const groupLinksIntoRows = (links: HeaderProps[]): HeaderProps[][] => {
     const rows: HeaderProps[][] = [];
@@ -128,7 +125,7 @@ const scriptUrl = isMultiUatDomain
 
   return (
     <>
-    <Script id="cookieyes" src={scriptUrl} strategy="afterInteractive" />
+    <Script id="cookieyes" src={cookieYesScriptUrl} strategy="afterInteractive" />
     <motion.nav
       id="headerContainer"
       className={classNames(
